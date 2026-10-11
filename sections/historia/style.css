@@ -12,6 +12,11 @@
 }
 
 .historia-badge-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
   margin-bottom: var(--space-md);
 }
 

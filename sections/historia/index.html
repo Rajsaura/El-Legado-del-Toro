@@ -9,12 +9,96 @@
   <!-- Estilos compartidos del proyecto y específicos de la sección -->
   <link rel="stylesheet" href="../../css/shared.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="intro.css">
+
+  <!-- Preload de los 8 frames del toro para garantizar reproducción instantánea sin parpadeos -->
+  <link rel="preload" as="image" href="images/bull/bull-1.png">
+  <link rel="preload" as="image" href="images/bull/bull-2.png">
+  <link rel="preload" as="image" href="images/bull/bull-3.png">
+  <link rel="preload" as="image" href="images/bull/bull-4.png">
+  <link rel="preload" as="image" href="images/bull/bull-5.png">
+  <link rel="preload" as="image" href="images/bull/bull-6.png">
+  <link rel="preload" as="image" href="images/bull/bull-7.png">
+  <link rel="preload" as="image" href="images/bull/bull-8.png">
 
   <!-- Scripts -->
   <script src="../../js/nav.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="intro.js" defer></script>
 </head>
 <body>
+
+  <!-- ===================================================================
+       INTRODUCCIÓN ANIMADA A PANTALLA COMPLETA (FULL-SCREEN ANIMATED INTRO)
+       =================================================================== -->
+  <aside id="intro-screen" class="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-describedby="intro-desc">
+    <div class="intro-backdrop-texture" aria-hidden="true"></div>
+
+    <!-- Botón Saltar Intro (accesible y visible desde el inicio) -->
+    <button type="button" id="btn-skip-intro" class="intro-btn-skip" aria-label="Saltar introducción e ir al contenido principal">
+      <span>Saltar intro</span>
+      <span class="skip-icon" aria-hidden="true">⏭</span>
+    </button>
+
+    <!-- Escenario central de la animación -->
+    <div class="intro-stage" id="intro-stage">
+
+      <!-- Tres líneas de texto reveladas progresivamente -->
+      <div class="intro-text-wrapper" id="intro-text-wrapper">
+        <h1 class="intro-line intro-line-1" id="intro-title" aria-label="LA HISTORIA">
+          <span class="sr-only">LA HISTORIA</span>
+          <span class="intro-letters-container" aria-hidden="true" data-text="LA HISTORIA"></span>
+        </h1>
+
+        <p class="intro-line intro-line-2" id="intro-author" aria-label="Por Sukrish">
+          <span class="sr-only">Por Sukrish</span>
+          <span class="intro-letters-container" aria-hidden="true" data-text="Por Sukrish"></span>
+        </p>
+
+        <p class="intro-line intro-line-3" id="intro-reg" aria-label="Registration No: 25BDS1058">
+          <span class="sr-only">Registration No: 25BDS1058</span>
+          <span class="intro-letters-container" aria-hidden="true" data-text="Registration No: 25BDS1058"></span>
+        </p>
+      </div>
+
+      <!-- Pista transversal del toro y partículas de polvo -->
+      <div class="intro-bull-track" id="intro-bull-track" aria-hidden="true">
+        <!-- Corredor con silueta de toro animada por frames (bull-1.png a bull-8.png) -->
+        <div class="intro-bull-runner" id="intro-bull-runner">
+          <div class="bull-sprite-container" id="bull-sprite-container">
+            <img src="images/bull/bull-1.png" alt="Toro al galope - Cuadro 1" class="bull-frame is-active" id="bull-frame-0" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-2.png" alt="Toro al galope - Cuadro 2" class="bull-frame" id="bull-frame-1" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-3.png" alt="Toro al galope - Cuadro 3" class="bull-frame" id="bull-frame-2" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-4.png" alt="Toro al galope - Cuadro 4" class="bull-frame" id="bull-frame-3" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-5.png" alt="Toro al galope - Cuadro 5" class="bull-frame" id="bull-frame-4" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-6.png" alt="Toro al galope - Cuadro 6" class="bull-frame" id="bull-frame-5" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-7.png" alt="Toro al galope - Cuadro 7" class="bull-frame" id="bull-frame-6" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-8.png" alt="Toro al galope - Cuadro 8" class="bull-frame" id="bull-frame-7" width="150" height="100" loading="eager" />
+          </div>
+        </div>
+
+        <!-- Contenedor dinámico de partículas de polvo albero -->
+        <div class="intro-dust-container" id="intro-dust-container"></div>
+      </div>
+
+      <!-- Barra de progreso dorada de 6.0 segundos -->
+      <div class="intro-progress-bar-container" aria-hidden="true">
+        <div class="intro-progress-line" id="intro-progress-line"></div>
+      </div>
+
+      <!-- Botón Entrar (fade-in al terminar el galope) -->
+      <div class="intro-actions" id="intro-actions">
+        <button type="button" id="btn-enter-site" class="intro-btn-enter" tabindex="-1" aria-label="Entrar a la revista">
+          <span>Entrar</span>
+          <span class="enter-arrow" aria-hidden="true">↓</span>
+        </button>
+      </div>
+
+      <div id="intro-desc" class="sr-only">
+        Introducción interactiva para la Sección 1: La Historia, creada por Sukrish, matrícula 25BDS1058.
+      </div>
+    </div>
+  </aside>
 
   <!-- Contenedor para inyección de la barra de navegación compartida -->
   <div id="site-nav-container"></div>
@@ -28,6 +112,13 @@
       <header class="historia-hero" id="historia-header">
         <div class="historia-badge-container">
           <span class="badge badge-gold" id="section-badge">Sección 1 • Crónica Histórica</span>
+          <button type="button" id="btn-replay-intro" class="btn-replay-intro" aria-label="Repetir animación de introducción">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Repetir intro</span>
+          </button>
         </div>
 
         <h1 class="historia-title" id="page-title">La Historia</h1>

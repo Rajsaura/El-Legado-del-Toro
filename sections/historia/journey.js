@@ -3,35 +3,57 @@
  * EL LEGADO DEL TORO - SECCIÓN 1: LA HISTORIA
  * Archivo: sections/historia/journey.js
  * 
- * "Viaje en el tiempo" - Cronología interactiva guiada por scroll:
- * 1. Array de 12 eventos históricos con datos verificados y fuentes bibliográficas.
- * 2. Glosario de vocabulario taurino con tooltips interactivos (hover, focus, tap).
- * 3. Menú fijo de navegación por 5 épocas históricas con resaltado activo.
- * 4. Contador de año / fecha lateral adhesivo (sticky) sensible a la posición del scroll.
- * 5. Tarjetas animadas con IntersectionObserver y alternancia de traducción ES / EN al clic.
- * 6. Encapsulación estricta en IIFE sin variables globales.
+ * "Viaje en el tiempo" - Pinned Scroll Stage:
+ * 1. Escenario fijo (position: sticky; height: 100vh) dentro de un contenedor alto.
+ * 2. Progreso de scroll (0 a 1) sincronizado con requestAnimationFrame.
+ * 3. Segmentos alternados de permanencia (DWELL) y transición (TRAVEL).
+ *    - En un dwell: el escenario permanece estático y la tarjeta permanece
+ *      abierta y legible indefinidamente hasta que el usuario hace scroll o
+ *      pulsa el botón "Continuar →". Nada avanza automáticamente.
+ * 4. 12 eventos históricos con orden cronológico estricto y épocas unificadas.
+ * 5. Barra inferior con un dot por evento que permite saltar a su parada al clic.
+ * 6. Contador de año simple y degradados temáticos por época.
+ * 7. Navegación por teclado (Flechas, Home, End).
+ * 8. 100% data-driven: adaptable al añadir un 13º evento al array.
+ * 9. Encapsulación estricta en IIFE sin variables globales.
  * ==========================================================================
  */
 
 (function () {
   'use strict';
 
+  // =========================================================================
+  // 1. ⚙️ CONFIGURACIÓN DE SCROLL PINNED: DWELL Y TRAVEL (EDITAR AQUÍ)
+  // =========================================================================
   /**
-   * ==========================================================================
-   * 1. 📜 ARRAY DE EVENTOS HISTÓRICOS (EDITAR EVENTOS Y CAPTIONS AQUÍ)
-   * ==========================================================================
-   * Cada evento contiene:
-   * - id: Identificador único del evento (prefijo hist-).
-   * - year: Año numérico para ordenación y cómputo.
-   * - dateLabel: Etiqueta textual visible (aproximada como "S. XI" o exacta como "1 Nov 1567").
-   * - era: Una de las 5 épocas ("Orígenes", "Nobleza y prohibiciones", "El toreo a pie", "Edad de Oro", "Leyes y debate").
-   * - title: Título del hito histórico.
-   * - captionEs: Explicación en español (incluye palabras del glosario con <span class="hist-vocab">).
-   * - captionEn: Traducción / explicación en inglés.
-   * - source: { label, url } Fuente archivística o académica oficial.
-   * - type: "hecho" (dato documental fáctico) o "interpretacion" (lectura historiográfica).
+   * DWELL_LENGTH_PX: Distancia de scroll (en píxeles) durante la cual el escenario
+   * permanece inmóvil y la tarjeta del evento está 100% abierta e interactiva.
+   * Modificar este valor para cambiar la duración de la parada.
+   */
+  const DWELL_LENGTH_PX = 700;
+
+  /**
+   * TRAVEL_LENGTH_PX: Distancia de scroll (en píxeles) durante la cual se realiza
+   * la transición fluida y cinematográfica entre dos eventos consecutivos.
+   */
+  const TRAVEL_LENGTH_PX = 500;
+
+  // =========================================================================
+  // 2. 📜 ARRAY DE EVENTOS HISTÓRICOS (DATA-DRIVEN)
+  // =========================================================================
+  /**
+   * Secuencia cronológica estricta:
+   * 1. Finales S. XI (Orígenes)
+   * 2. S. XIII Siete Partidas y 3. 1567 Pío V (Nobleza y prohibiciones)
+   * 4. Princ. S. XVIII toreo a pie, 5. 1785 Ronda y 6. Década de 1780 Carlos III (El toreo a pie)
+   * 7. Princ. S. XX Belmonte y 8. 16 Mayo 1920 Joselito (Edad de Oro)
+   * 9. 1991, 10. 2010 a 2012, 11. 2013 y 12. 2016 (Leyes y debate)
+   *
+   * Para añadir un 13º evento en el futuro, basta con agregar un nuevo objeto
+   * a este array; todo el stage, las paradas y los dots se ajustan automáticamente.
    */
   const events = [
+    // 1. Orígenes
     {
       id: 'hist-evt-1',
       year: 1080,
@@ -39,13 +61,15 @@
       era: 'Orígenes',
       type: 'interpretacion',
       title: 'Fiestas con toros documentadas en Iberia',
-      captionEs: 'TODO: rewrite in my own words. Primeros festejos registrados con reses bravas en la península ibérica; los orígenes exactos de la <span class="hist-vocab" tabindex="0" data-term="tauromaquia" role="button" aria-haspopup="true">tauromaquia</span> continúan siendo objeto de debate historiográfico entre raíces grecorromanas, musulmanas y ritos ganaderos autóctonos.',
-      captionEn: 'TODO: rewrite in my own words. Earliest documented festivals featuring wild cattle in Iberia; the exact origins of bullfighting remain subject to historical debate among Roman, Moorish, and indigenous pastoral traditions.',
+      captionEs: 'Primeros festejos registrados con reses bravas en la península ibérica; los orígenes exactos de la <span class="hist-vocab" tabindex="0" data-term="tauromaquia" role="button" aria-haspopup="true">tauromaquia</span> continúan siendo objeto de debate historiográfico entre raíces grecorromanas, musulmanas y ritos ganaderos autóctonos.',
+      captionEn: 'Earliest documented festivals featuring wild cattle in Iberia; the exact origins of bullfighting remain subject to historical debate among Roman, Moorish, and indigenous pastoral traditions.',
       source: {
         label: 'Britannica, “Bullfighting: History”',
         url: 'https://www.britannica.com/sports/bullfighting/History'
       }
     },
+
+    // 2. Nobleza y prohibiciones
     {
       id: 'hist-evt-2',
       year: 1260,
@@ -53,13 +77,15 @@
       era: 'Nobleza y prohibiciones',
       type: 'interpretacion',
       title: 'Las Siete Partidas de Alfonso X el Sabio',
-      captionEs: 'TODO: rewrite in my own words. El célebre cuerpo legislativo de Alfonso X es leído comúnmente por historiadores del derecho como una censura moral hacia los juegos y alanceamiento de toros cuando mediaba retribución monetaria o pérdida de decoro público.',
-      captionEn: 'TODO: rewrite in my own words. The 13th-century Siete Partidas legal code is widely interpreted by scholars as censuring bull contests whenever staged for commercial reward or public degradation.',
+      captionEs: 'El célebre cuerpo legislativo de Alfonso X es leído comúnmente por historiadores del derecho como una censura moral hacia los juegos y alanceamiento de toros cuando mediaba retribución monetaria o pérdida de decoro público.',
+      captionEn: 'The 13th-century Siete Partidas legal code is widely interpreted by scholars as censuring bull contests whenever staged for commercial reward or public degradation.',
       source: {
         label: 'Codina Segovia, dA. Derecho Animal 11/3 (2020)',
         url: 'https://doi.org/10.5565/rev/da.503'
       }
     },
+
+    // 3. Nobleza y prohibiciones
     {
       id: 'hist-evt-3',
       year: 1567,
@@ -67,13 +93,15 @@
       era: 'Nobleza y prohibiciones',
       type: 'hecho',
       title: 'Bula papal “De Salute Gregis” de San Pío V',
-      captionEs: 'TODO: rewrite in my own words. El Papa Pío V promulga la constitución apostólica que prohíbe terminantemente las corridas de toros en toda la cristiandad bajo pena de excomunión y privación de sepultura eclesiástica.',
-      captionEn: 'TODO: rewrite in my own words. Pope Pius V issues the papal bull "De Salute Gregis", strictly prohibiting bullfights across Christendom under penalty of excommunication and denial of Christian burial.',
+      captionEs: 'El Papa Pío V promulga la constitución apostólica que prohíbe terminantemente las corridas de toros en toda la cristiandad bajo pena de excomunión y privación de sepultura eclesiástica.',
+      captionEn: 'Pope Pius V issues the papal bull "De Salute Gregis", strictly prohibiting bullfights across Christendom under penalty of excommunication and denial of Christian burial.',
       source: {
         label: 'Britannica, “Bullfighting: History”',
         url: 'https://www.britannica.com/sports/bullfighting/History'
       }
     },
+
+    // 4. El toreo a pie
     {
       id: 'hist-evt-4',
       year: 1720,
@@ -81,13 +109,15 @@
       era: 'El toreo a pie',
       type: 'interpretacion',
       title: 'Transición del rejoneo nobiliario al toreo a pie',
-      captionEs: 'TODO: rewrite in my own words. Con la llegada de los Borbones la aristocracia abandona las lizas a caballo, permitiendo que peones y varilargueros del pueblo tomen el centro del <span class="hist-vocab" tabindex="0" data-term="albero" role="button" aria-haspopup="true">albero</span>, profesionalizando la lidia a pie.',
-      captionEn: 'TODO: rewrite in my own words. Following the Bourbon ascension, Spanish nobles steadily abandoned horseback spearing, allowing lower-class artisans and foot lancers to dominate the golden arena sand and establish modern rules.',
+      captionEs: 'Con la llegada de los Borbones la aristocracia abandona las lizas a caballo, permitiendo que peones y varilargueros del pueblo tomen el centro del <span class="hist-vocab" tabindex="0" data-term="albero" role="button" aria-haspopup="true">albero</span>, profesionalizando la lidia a pie.',
+      captionEn: 'Following the Bourbon ascension, Spanish nobles steadily abandoned horseback spearing, allowing lower-class artisans and foot lancers to dominate the golden arena sand and establish modern rules.',
       source: {
         label: 'Shubert, Death and Money in the Afternoon (Oxford UP)',
         url: 'https://academic.oup.com/book/47400'
       }
     },
+
+    // 5. El toreo a pie
     {
       id: 'hist-evt-5',
       year: 1785,
@@ -95,55 +125,63 @@
       era: 'El toreo a pie',
       type: 'hecho',
       title: 'Inauguración de la Real Maestranza de Ronda',
-      captionEs: 'TODO: rewrite in my own words. Queda oficialmente inaugurada la plaza de toros de Ronda en un histórico festejo donde Pedro Romero y Pepe-Hillo consolidan los cánones de la lidia moderna y la arquitectura circular de piedra.',
-      captionEn: 'TODO: rewrite in my own words. The stone bullring of Ronda is officially inaugurated in a landmark corrida featuring Pedro Romero, consolidating the classical aesthetic and modern circular arena design.',
+      captionEs: 'Queda oficialmente inaugurada la plaza de toros de Ronda en un histórico festejo donde Pedro Romero y Pepe-Hillo consolidan los cánones de la lidia moderna y la arquitectura circular de piedra.',
+      captionEn: 'The stone bullring of Ronda is officially inaugurated in a landmark corrida featuring Pedro Romero, consolidating the classical aesthetic and modern circular arena design.',
       source: {
         label: 'Real Maestranza de Ronda',
         url: 'https://www.rmcr.org/en/tauromachy/'
       }
     },
+
+    // 6. El toreo a pie
     {
       id: 'hist-evt-6',
       year: 1785,
       dateLabel: 'Década de 1780',
-      era: 'Nobleza y prohibiciones',
+      era: 'El toreo a pie',
       type: 'hecho',
       title: 'Restricciones ilustradas de Carlos III',
-      captionEs: 'TODO: rewrite in my own words. El monarca reformista Carlos III decreta sucesivas órdenes reales limitando y suspendiendo las corridas de toros de muerte en el reino, impulsado por las críticas de los ministros ilustrados como Jovellanos.',
-      captionEn: 'TODO: rewrite in my own words. Enlightenment monarch Charles III issues royal decrees restricting and banning bullfights resulting in animal death, influenced by modernizing ministers seeking agricultural and economic reform.',
+      captionEs: 'El monarca reformista Carlos III decreta sucesivas órdenes reales limitando y suspendiendo las corridas de toros de muerte en el reino, impulsado por las críticas de los ministros ilustrados como Jovellanos.',
+      captionEn: 'Enlightenment monarch Charles III issues royal decrees restricting and banning bullfights resulting in animal death, influenced by modernizing ministers seeking agricultural and economic reform.',
       source: {
         label: 'Codina Segovia, dA. Derecho Animal (2020)',
         url: 'https://doi.org/10.5565/rev/da.503'
       }
     },
+
+    // 7. Edad de Oro (Belmonte revolucionario antes de la muerte de Joselito)
     {
       id: 'hist-evt-7',
-      year: 1920,
-      dateLabel: '16 Mayo 1920',
-      era: 'Edad de Oro',
-      type: 'hecho',
-      title: 'Muerte de Joselito el Gallo en Talavera de la Reina',
-      captionEs: 'TODO: rewrite in my own words. José Gómez Ortega “Joselito”, considerado el torero más completo y arquitecto técnico del toreo moderno, fallece trágicamente tras la cornada del toro Bailador, poniendo fin simbólico a la Edad de Oro.',
-      captionEn: 'TODO: rewrite in my own words. José Gómez Ortega "Joselito", celebrated as the consummate prodigy and technical architect of modern tauromaquia, is fatally gored by the bull Bailador, marking the tragic end of the Golden Age.',
-      source: {
-        label: 'Britannica, “Joselito”',
-        url: 'https://www.britannica.com/biography/Joselito'
-      }
-    },
-    {
-      id: 'hist-evt-8',
       year: 1914,
       dateLabel: 'Princ. S. XX',
       era: 'Edad de Oro',
       type: 'interpretacion',
       title: 'La revolución del temple estético de Juan Belmonte',
-      captionEs: 'TODO: rewrite in my own words. Belmonte desafía la física del toreo al quedarse quieto y obligar al animal a humillar junto a su cuerpo, transformando la lidia de una prueba de agilidad en un arte trágico ante el <span class="hist-vocab" tabindex="0" data-term="morrillo" role="button" aria-haspopup="true">morrillo</span> de la fiera.',
-      captionEn: 'TODO: rewrite in my own words. Juan Belmonte reshapes the criteria of bullfighting judgment by planting his feet firm and drawing the horns inches past his chest, turning dodging into solemn aesthetic stillness.',
+      captionEs: 'Belmonte desafía la física del toreo al quedarse quieto y obligar al animal a humillar junto a su cuerpo, transformando la lidia de una prueba de agilidad en un arte trágico ante el <span class="hist-vocab" tabindex="0" data-term="morrillo" role="button" aria-haspopup="true">morrillo</span> de la fiera.',
+      captionEn: 'Juan Belmonte reshapes the criteria of bullfighting judgment by planting his feet firm and drawing the horns inches past his chest, turning dodging into solemn aesthetic stillness.',
       source: {
-        label: 'Britannica, “Juan Belmonte” (TODO: URL)',
+        label: 'Britannica, “Juan Belmonte”',
         url: 'https://www.britannica.com/biography/Juan-Belmonte'
       }
     },
+
+    // 8. Edad de Oro
+    {
+      id: 'hist-evt-8',
+      year: 1920,
+      dateLabel: '16 Mayo 1920',
+      era: 'Edad de Oro',
+      type: 'hecho',
+      title: 'Muerte de Joselito el Gallo en Talavera de la Reina',
+      captionEs: 'José Gómez Ortega “Joselito”, considerado el torero más completo y arquitecto técnico del toreo moderno, fallece trágicamente tras la cornada del toro Bailador, poniendo fin simbólico a la Edad de Oro.',
+      captionEn: 'José Gómez Ortega "Joselito", celebrated as the consummate prodigy and technical architect of modern tauromaquia, is fatally gored by the bull Bailador, marking the tragic end of the Golden Age.',
+      source: {
+        label: 'Britannica, “Joselito”',
+        url: 'https://www.britannica.com/biography/Joselito'
+      }
+    },
+
+    // 9. Leyes y debate
     {
       id: 'hist-evt-9',
       year: 1991,
@@ -151,13 +189,15 @@
       era: 'Leyes y debate',
       type: 'hecho',
       title: 'Canarias aprueba la Ley 8/1991 de protección animal',
-      captionEs: 'TODO: rewrite in my own words. El Parlamento de Canarias promulga la primera normativa autonómica de España que prohíbe la utilización de animales en espectáculos que entrañen crueldad o muerte, excluyendo las corridas del archipiélago.',
-      captionEn: 'TODO: rewrite in my own words. The Canary Islands Parliament passes Law 8/1991 on animal welfare, becoming the first Spanish territory to forbid blood spectacles, effectively phasing out bullfights across the islands.',
+      captionEs: 'El Parlamento de Canarias promulga la primera normativa autonómica de España que prohíbe la utilización de animales en espectáculos que entrañen crueldad o muerte, excluyendo las corridas del archipiélago.',
+      captionEn: 'The Canary Islands Parliament passes Law 8/1991 on animal welfare, becoming the first Spanish territory to forbid blood spectacles, effectively phasing out bullfights across the islands.',
       source: {
         label: 'UNED, artículo doctrinal sobre STC 177/2016',
         url: 'https://revistas.uned.es/index.php/RDUNED/article/download/22285/18215/45854'
       }
     },
+
+    // 10. Leyes y debate
     {
       id: 'hist-evt-10',
       year: 2010,
@@ -165,13 +205,15 @@
       era: 'Leyes y debate',
       type: 'hecho',
       title: 'El Parlamento de Cataluña vota la abolición de las corridas',
-      captionEs: 'TODO: rewrite in my own words. Tras la tramitación de una masiva Iniciativa Legislativa Popular impulsada por la plataforma Prou!, el hemiciclo catalán aprueba suprimir las corridas en Cataluña con efectos desde el 1 de enero de 2012.',
-      captionEn: 'TODO: rewrite in my own words. Following a citizen-led popular initiative with 180,000 signatures, the Catalan Parliament votes to ban bullfighting throughout Catalonia effective January 1, 2012.',
+      captionEs: 'Tras la tramitación de una masiva Iniciativa Legislativa Popular impulsada por la plataforma Prou!, el hemiciclo catalán aprueba suprimir las corridas en Cataluña con efectos desde el 1 de enero de 2012.',
+      captionEn: 'Following a citizen-led popular initiative with 180,000 signatures, the Catalan Parliament votes to ban bullfighting throughout Catalonia effective January 1, 2012.',
       source: {
-        label: 'UNED / Diario Oficial (TODO: enlace BOE)',
+        label: 'UNED / Diario Oficial',
         url: 'https://revistas.uned.es/index.php/RDUNED/article/download/22285/18215/45854'
       }
     },
+
+    // 11. Leyes y debate
     {
       id: 'hist-evt-11',
       year: 2013,
@@ -179,13 +221,15 @@
       era: 'Leyes y debate',
       type: 'hecho',
       title: 'Ley 18/2013: Protección de la tauromaquia como patrimonio cultural',
-      captionEs: 'TODO: rewrite in my own words. Las Cortes Generales aprueban la Ley estatal 18/2013 que declara la fiesta de los toros como patrimonio cultural inmaterial español, asignando al Estado el deber de su fomento y protección.',
-      captionEn: 'TODO: rewrite in my own words. The Spanish Parliament passes national Law 18/2013 declaring bullfighting an intangible cultural heritage, mandating the central state to preserve and promote it nationwide.',
+      captionEs: 'Las Cortes Generales aprueban la Ley estatal 18/2013 que declara la fiesta de los toros como patrimonio cultural inmaterial español, asignando al Estado el deber de su fomento y protección.',
+      captionEn: 'The Spanish Parliament passes national Law 18/2013 declaring bullfighting an intangible cultural heritage, mandating the central state to preserve and promote it nationwide.',
       source: {
         label: 'BOE, Ley 18/2013',
         url: 'https://www.boe.es/eli/es/l/2013/11/12/18'
       }
     },
+
+    // 12. Leyes y debate
     {
       id: 'hist-evt-12',
       year: 2016,
@@ -193,8 +237,8 @@
       era: 'Leyes y debate',
       type: 'hecho',
       title: 'Sentencia STC 177/2016 del Tribunal Constitucional',
-      captionEs: 'TODO: rewrite in my own words. El Tribunal Constitucional estima el recurso contra la ley catalana y declara inconstitucional la prohibición, concluyendo que la comunidad autónoma invadió competencias exclusivas del Estado sobre patrimonio común.',
-      captionEn: 'TODO: rewrite in my own words. The Constitutional Court overturns the Catalan ban, ruling that autonomous regions lack legal jurisdiction to prohibit cultural practices protected by central state legislation.',
+      captionEs: 'El Tribunal Constitucional estima el recurso contra la ley catalana y declara inconstitucional la prohibición, concluyendo que la comunidad autónoma invadió competencias exclusivas del Estado sobre patrimonio común.',
+      captionEn: 'The Constitutional Court overturns the Catalan ban, ruling that autonomous regions lack legal jurisdiction to prohibit cultural practices protected by central state legislation.',
       source: {
         label: 'Congreso de los Diputados, Respuesta STC 177/2016',
         url: 'https://www.congreso.es/entradap/l12p/e4/e_0040859_n_000.pdf'
@@ -202,13 +246,9 @@
     }
   ];
 
-  /**
-   * ==========================================================================
-   * 2. 📖 GLOSARIO DE VOCABULARIO TAURINO (EDITAR TÉRMINOS Y DEFINICIONES AQUÍ)
-   * ==========================================================================
-   * Términos definidos para los tooltips interactivos de las palabras marcadas
-   * con <span class="hist-vocab" data-term="...">.
-   */
+  // =========================================================================
+  // 3. 📖 GLOSARIO DE TÉRMINOS TAURINOS
+  // =========================================================================
   const vocab = {
     'tauromaquia': {
       es: 'Tauromaquia',
@@ -220,72 +260,99 @@
     },
     'morrillo': {
       es: 'Morrillo',
-      en: 'The muscular hump on the bull’s neck and upper back that raises its horns and powers its forward charge.'
+      en: 'The muscular hump on the bull’s neck and upper back that powers its forward charge.'
     }
   };
 
-  /**
-   * Definición estructurada de las 5 épocas históricas con sus metadatos y enlaces.
-   */
+  // =========================================================================
+  // 4. 🏛️ CONFIGURACIÓN DE LAS 5 ÉPOCAS
+  // =========================================================================
   const ERAS = [
     {
       id: 'hist-era-origenes',
       name: 'Orígenes',
       label: '1. Orígenes',
-      subtitle: 'Ritos ganaderos ancestrales y la mitología sacrificial ibérica',
-      period: 'Hasta el S. XI'
+      period: 'Hasta el S. XI',
+      bgClass: 'hist-era-bg-0'
     },
     {
       id: 'hist-era-nobleza',
       name: 'Nobleza y prohibiciones',
       label: '2. Nobleza y prohibiciones',
-      subtitle: 'Cortes medievales, el alanceamiento a caballo y las bulas papales',
-      period: 'Siglos XIII – XVIII'
+      period: 'Siglos XIII – XVIII',
+      bgClass: 'hist-era-bg-1'
     },
     {
       id: 'hist-era-toreo-pie',
       name: 'El toreo a pie',
       label: '3. El toreo a pie',
-      subtitle: 'La profesionalización popular, la cantería de Ronda y las primeras reglas',
-      period: 'Siglo XVIII'
+      period: 'Siglo XVIII',
+      bgClass: 'hist-era-bg-2'
     },
     {
       id: 'hist-era-edad-oro',
       name: 'Edad de Oro',
       label: '4. Edad de Oro',
-      subtitle: 'La cumbre clásica, la revolución de Belmonte y la tragedia de Joselito',
-      period: '1910 – 1920'
+      period: '1910 – 1920',
+      bgClass: 'hist-era-bg-3'
     },
     {
       id: 'hist-era-leyes-debate',
       name: 'Leyes y debate',
       label: '5. Leyes y debate',
-      subtitle: 'Prohibiciones autonómicas, recursos constitucionales y patrimonio inmaterial',
-      period: '1991 – Actualidad'
+      period: '1991 – Actualidad',
+      bgClass: 'hist-era-bg-4'
     }
   ];
 
-  // Referencias a elementos del DOM
+  // =========================================================================
+  // 5. VARIABLES DE ESTADO Y ELEMENTOS DOM
+  // =========================================================================
+  let journeyContainer = null;
+  let stageElement = null;
+  let hudEraTitle = null;
+  let hudYearNum = null;
+  let hudCounter = null;
+  let dotsLineFill = null;
+  let dotButtons = [];
+  let cardElements = [];
+  let eraBgElements = [];
+
+  // Navegación superior y contador lateral
   let eraNavContainer = null;
   let yearCounterElement = null;
-  let activeCardElements = [];
+
+  // Control de scroll y animación
+  let isTicking = false;
+  let activeEventIndex = 0;
 
   /**
-   * Genera el HTML de una tarjeta individual a partir del objeto de evento.
+   * Genera el HTML de una tarjeta individual para el pinned scroll stage.
    * @param {Object} event - Objeto del evento histórico
-   * @returns {string} Markup HTML de la tarjeta
+   * @param {number} index - Índice del evento
+   * @returns {string} Markup HTML
    */
-  function createCardHTML(event) {
+  function createStageCardHTML(event, index) {
     const isFact = event.type === 'hecho';
     const badgeClass = isFact ? 'hist-badge-fact' : 'hist-badge-interp';
     const badgeLabel = isFact ? 'Hecho' : 'Interpretación';
     const badgeTooltip = isFact ? 'Hecho: documented fact' : 'Interpretación: a historian’s reading';
+    const isLast = index === events.length - 1;
+    const continueLabel = isLast ? 'Siguiente sección ↓' : 'Continuar →';
 
     return `
-      <article class="hist-card" id="${event.id}" data-year="${event.year}" data-datelabel="${event.dateLabel}" data-era="${event.era}" tabindex="0" role="region" aria-label="${event.title}">
+      <article class="hist-stage-card ${index === 0 ? 'hist-card-active' : ''}" 
+               id="hist-card-${event.id}" 
+               data-index="${index}" 
+               data-year="${event.year}" 
+               data-datelabel="${event.dateLabel}" 
+               data-era="${event.era}" 
+               tabindex="0" 
+               role="region" 
+               aria-label="${event.title}">
         <div class="hist-card-inner">
           <div class="hist-card-topbar">
-            <span class="hist-card-date">${event.dateLabel}</span>
+            <span class="hist-card-era-badge">${event.era}</span>
             <div class="hist-badge-wrapper">
               <span class="hist-badge ${badgeClass}" tabindex="0" data-tooltip="${badgeTooltip}" aria-label="${badgeTooltip}">
                 <span class="hist-badge-dot" aria-hidden="true"></span>
@@ -294,7 +361,10 @@
             </div>
           </div>
 
-          <h3 class="hist-card-title">${event.title}</h3>
+          <div class="hist-card-heading-group">
+            <span class="hist-card-date">${event.dateLabel}</span>
+            <h3 class="hist-card-title">${event.title}</h3>
+          </div>
 
           <div class="hist-card-content">
             <p class="hist-card-caption-es">${event.captionEs}</p>
@@ -313,10 +383,16 @@
               </a>
             </div>
 
-            <button type="button" class="hist-btn-translate" aria-label="Alternar explicación en inglés" title="Clic para alternar idioma inglés / español">
-              <span class="hist-translate-icon" aria-hidden="true">🌐</span>
-              <span class="hist-translate-label">EN / ES</span>
-            </button>
+            <div class="hist-card-actions">
+              <button type="button" class="hist-btn-translate" aria-label="Alternar traducción EN / ES" title="Alternar idioma inglés / español">
+                <span class="hist-translate-icon" aria-hidden="true">🌐</span>
+                <span class="hist-translate-label">EN / ES</span>
+              </button>
+
+              <button type="button" class="hist-btn-continue" data-next-index="${index + 1}" aria-label="${continueLabel}">
+                <span>${continueLabel}</span>
+              </button>
+            </div>
           </div>
         </div>
       </article>
@@ -324,195 +400,404 @@
   }
 
   /**
-   * Renderiza las 5 secciones de época con sus tarjetas asociadas en el contenedor principal.
+   * Construye dinámicamente todo el escenario fijo (Pinned Scroll Stage).
    */
-  function renderJourneyContent() {
-    const journeyContainer = document.getElementById('hist-journey-container');
+  function renderPinnedStage() {
+    journeyContainer = document.getElementById('hist-journey-container');
     if (!journeyContainer) return;
 
-    let html = '';
+    // 1. Fondos con degradados temáticos por época
+    const backdropsHTML = ERAS.map((era, i) => `
+      <div class="hist-era-bg ${era.bgClass} ${i === 0 ? 'hist-bg-active' : ''}" data-era="${era.name}"></div>
+    `).join('');
 
-    ERAS.forEach((era, eraIndex) => {
-      // Filtrar los eventos correspondientes a esta época
-      const eraEvents = events.filter(e => e.era === era.name);
+    // 2. Tarjetas de eventos
+    const cardsHTML = events.map((evt, i) => createStageCardHTML(evt, i)).join('');
 
-      html += `
-        <section class="hist-era-section ${era.id}" id="${era.id}" data-era-index="${eraIndex}" data-era-name="${era.name}">
-          <div class="hist-era-backdrop" aria-hidden="true"></div>
-          <div class="site-container hist-era-container">
-            <header class="hist-era-header">
-              <div class="hist-era-kicker">
-                <span class="hist-era-badge">${era.period}</span>
+    // 3. Dots de navegación inferior (uno por evento)
+    const dotsHTML = events.map((evt, i) => `
+      <button type="button" 
+              class="hist-dot ${i === 0 ? 'hist-dot-active' : ''}" 
+              data-index="${i}" 
+              role="tab" 
+              aria-selected="${i === 0}" 
+              aria-label="Parada ${i + 1} de ${events.length}: ${evt.dateLabel} - ${evt.title}">
+        <span class="hist-dot-marker" aria-hidden="true"></span>
+        <span class="hist-dot-tooltip">${evt.dateLabel} • ${evt.era}</span>
+      </button>
+    `).join('');
+
+    // Montar la estructura completa del stage
+    journeyContainer.innerHTML = `
+      <div class="hist-stage" id="hist-stage" role="region" aria-label="Escenario interactivo de la historia">
+        
+        <!-- Capas de degradados de época -->
+        <div class="hist-stage-backdrop-wrap" aria-hidden="true">
+          ${backdropsHTML}
+          <div class="hist-stage-vignette"></div>
+        </div>
+
+        <!-- HUD superior con época actual y año simple -->
+        <header class="hist-stage-hud" id="hist-stage-hud">
+          <div class="hist-hud-inner">
+            <div class="hist-hud-left">
+              <span class="hist-hud-era-kicker">Época</span>
+              <h2 class="hist-hud-era-title" id="hist-hud-era-title">${events[0].era}</h2>
+            </div>
+
+            <div class="hist-hud-center">
+              <div class="hist-stage-year-badge">
+                <span class="hist-stage-year-icon" aria-hidden="true">⏳</span>
+                <span class="hist-stage-year-num" id="hist-stage-year-num">${events[0].dateLabel}</span>
               </div>
-              <h2 class="hist-era-title">${era.label}</h2>
-              <p class="hist-era-subtitle">${era.subtitle}</p>
-            </header>
+            </div>
 
-            <div class="hist-cards-grid">
-              ${eraEvents.map(createCardHTML).join('')}
+            <div class="hist-hud-right">
+              <span class="hist-hud-counter" id="hist-hud-counter">1 / ${events.length}</span>
+              <span class="hist-hud-scroll-hint" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M19 12l-7 7-7-7"></path>
+                </svg>
+                Desplaza
+              </span>
             </div>
           </div>
-        </section>
-      `;
-    });
+        </header>
 
-    journeyContainer.innerHTML = html;
-  }
+        <!-- Lienzo central con tarjetas -->
+        <div class="hist-stage-canvas" id="hist-stage-canvas">
+          <div class="hist-stage-card-wrap" id="hist-stage-card-wrap">
+            ${cardsHTML}
+          </div>
+        </div>
 
-  /**
-   * Configura el menú fijo de épocas (hist-era-nav) para navegación suave y resaltado.
-   */
-  function initEraNav() {
+        <!-- Barra inferior de progreso y puntos -->
+        <footer class="hist-stage-bottom-bar" id="hist-stage-bottom-bar">
+          <div class="hist-bottom-bar-inner">
+            <div class="hist-dots-track" id="hist-dots-track" role="tablist" aria-label="Paradas cronológicas">
+              <div class="hist-dots-line-bg" aria-hidden="true">
+                <div class="hist-dots-line-fill" id="hist-dots-line-fill"></div>
+              </div>
+              ${dotsHTML}
+            </div>
+          </div>
+        </footer>
+
+      </div>
+    `;
+
+    // Cachear referencias DOM
+    stageElement = document.getElementById('hist-stage');
+    hudEraTitle = document.getElementById('hist-hud-era-title');
+    hudYearNum = document.getElementById('hist-stage-year-num');
+    hudCounter = document.getElementById('hist-hud-counter');
+    dotsLineFill = document.getElementById('hist-dots-line-fill');
+    dotButtons = Array.from(document.querySelectorAll('.hist-dot'));
+    cardElements = Array.from(document.querySelectorAll('.hist-stage-card'));
+    eraBgElements = Array.from(document.querySelectorAll('.hist-era-bg'));
     eraNavContainer = document.getElementById('hist-era-nav');
-    if (!eraNavContainer) return;
-
-    const navLinks = eraNavContainer.querySelectorAll('.hist-era-link');
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-
-        if (targetSection) {
-          const navOffset = eraNavContainer.offsetHeight + 16;
-          const elementPosition = targetSection.getBoundingClientRect().top + window.scrollY;
-          const offsetPosition = elementPosition - navOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-
-          // Enfoque accesible
-          targetSection.setAttribute('tabindex', '-1');
-          targetSection.focus({ preventScroll: true });
-        }
-      });
-    });
-  }
-
-  /**
-   * Resalta la época activa en la barra de navegación superior.
-   * @param {string} eraName - Nombre de la época activa
-   */
-  function updateActiveEraNav(eraName) {
-    if (!eraNavContainer) return;
-
-    const links = eraNavContainer.querySelectorAll('.hist-era-link');
-    links.forEach(link => {
-      const linkEra = link.getAttribute('data-era');
-      if (linkEra === eraName) {
-        link.classList.add('hist-active');
-        link.setAttribute('aria-current', 'true');
-      } else {
-        link.classList.remove('hist-active');
-        link.removeAttribute('aria-current');
-      }
-    });
-  }
-
-  /**
-   * Inicializa el IntersectionObserver para revelar tarjetas al entrar en el viewport
-   * y sincronizar el contador de año sticky lateral.
-   */
-  function initCardObservers() {
-    activeCardElements = Array.from(document.querySelectorAll('.hist-card'));
     yearCounterElement = document.getElementById('hist-year-counter');
 
-    // Comprobación de preferencia de reducción de movimiento
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      activeCardElements.forEach(card => card.classList.add('hist-card-visible'));
-    } else {
-      const cardObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('hist-card-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        root: null,
-        rootMargin: '0px 0px -10% 0px',
-        threshold: 0.15
-      });
-
-      activeCardElements.forEach(card => cardObserver.observe(card));
-    }
-
-    // Observer para las 5 secciones de época para actualizar el menú de épocas
-    const eraSections = document.querySelectorAll('.hist-era-section');
-    const eraObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const eraName = entry.target.getAttribute('data-era-name');
-          updateActiveEraNav(eraName);
-        }
-      });
-    }, {
-      root: null,
-      threshold: 0.25
-    });
-
-    eraSections.forEach(section => eraObserver.observe(section));
-
-    // Observer para actualizar el contador de año lateral con la tarjeta visible más relevante
-    window.addEventListener('scroll', handleScrollYearCounter, { passive: true });
-    handleScrollYearCounter(); // Ejecución inicial
+    updateContainerHeight();
   }
 
   /**
-   * Actualiza el contador de año lateral sticky basándose en la tarjeta más próxima al centro.
+   * Calcula y asigna la altura del contenedor principal:
+   * (N - 1) * (DWELL + TRAVEL) + DWELL + 100vh
    */
-  function handleScrollYearCounter() {
-    if (!yearCounterElement || activeCardElements.length === 0) return;
+  function updateContainerHeight() {
+    if (!journeyContainer) return;
+    const numEvents = events.length;
+    const stepDistance = DWELL_LENGTH_PX + TRAVEL_LENGTH_PX;
+    const totalScrollRange = (numEvents - 1) * stepDistance + DWELL_LENGTH_PX;
+    const totalHeight = window.innerHeight + totalScrollRange;
+    journeyContainer.style.height = totalHeight + 'px';
+  }
 
-    const viewportCenter = window.innerHeight * 0.45;
-    let closestCard = null;
-    let minDistance = Infinity;
+  /**
+   * Obtiene la posición de scroll actual relativa al contenedor del stage.
+   * @returns {Object} Datos del estado actual (dwell o travel, índices, factores)
+   */
+  function computeScrollState() {
+    if (!journeyContainer) return null;
 
-    activeCardElements.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      // Distancia del centro de la tarjeta al punto focal de la pantalla
-      const cardCenter = rect.top + rect.height / 2;
-      const distance = Math.abs(cardCenter - viewportCenter);
+    const rect = journeyContainer.getBoundingClientRect();
+    const scrollOffset = -rect.top;
+    const numEvents = events.length;
+    const stepDistance = DWELL_LENGTH_PX + TRAVEL_LENGTH_PX;
+    const totalScrollRange = (numEvents - 1) * stepDistance + DWELL_LENGTH_PX;
 
-      // Considerar tarjetas que estén en la ventana visible
-      if (rect.bottom > 100 && rect.top < window.innerHeight - 80) {
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = card;
+    // Offset restringido dentro del rango del stage
+    const clampedOffset = Math.max(0, Math.min(totalScrollRange, scrollOffset));
+    const progress = totalScrollRange > 0 ? clampedOffset / totalScrollRange : 0;
+
+    // Buscar en qué segmento (dwell o travel) nos encontramos
+    for (let i = 0; i < numEvents; i++) {
+      const dwellStart = i * stepDistance;
+      const dwellEnd = dwellStart + DWELL_LENGTH_PX;
+
+      if (clampedOffset <= dwellEnd || i === numEvents - 1) {
+        if (clampedOffset >= dwellStart) {
+          // ==================== FASE DWELL ====================
+          // El escenario está inmóvil y la tarjeta abierta
+          return {
+            isDwell: true,
+            activeEventIndex: i,
+            fromIndex: i,
+            toIndex: i,
+            travelFactor: 0,
+            progress: progress,
+            clampedOffset: clampedOffset,
+            totalScrollRange: totalScrollRange
+          };
+        } else {
+          // ==================== FASE TRAVEL ===================
+          // Transición suave entre el evento anterior (i - 1) y el actual (i)
+          const travelStart = (i - 1) * stepDistance + DWELL_LENGTH_PX;
+          const travelFactor = (clampedOffset - travelStart) / TRAVEL_LENGTH_PX;
+          const normalizedFactor = Math.max(0, Math.min(1, travelFactor));
+
+          return {
+            isDwell: false,
+            activeEventIndex: normalizedFactor < 0.5 ? i - 1 : i,
+            fromIndex: i - 1,
+            toIndex: i,
+            travelFactor: normalizedFactor,
+            progress: progress,
+            clampedOffset: clampedOffset,
+            totalScrollRange: totalScrollRange
+          };
         }
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Actualiza visualmente el escenario en función del progreso de scroll.
+   * Ejecutado dentro de requestAnimationFrame para 60fps constante.
+   */
+  function updateStage() {
+    const state = computeScrollState();
+    if (!state) return;
+
+    activeEventIndex = state.activeEventIndex;
+    const activeEvent = events[activeEventIndex];
+
+    // 1. Actualizar HUD superior
+    if (hudEraTitle && hudEraTitle.textContent !== activeEvent.era) {
+      hudEraTitle.textContent = activeEvent.era;
+    }
+    if (hudYearNum && hudYearNum.textContent !== activeEvent.dateLabel) {
+      hudYearNum.textContent = activeEvent.dateLabel;
+    }
+    if (hudCounter) {
+      hudCounter.textContent = `${activeEventIndex + 1} / ${events.length}`;
+    }
+
+    // 2. Sincronizar contador lateral antiguo si existe en el DOM
+    if (yearCounterElement) {
+      const dateVal = yearCounterElement.querySelector('.hist-year-value');
+      const eraVal = yearCounterElement.querySelector('.hist-year-era');
+      if (dateVal && dateVal.textContent !== activeEvent.dateLabel) {
+        dateVal.textContent = activeEvent.dateLabel;
+      }
+      if (eraVal && eraVal.textContent !== activeEvent.era) {
+        eraVal.textContent = activeEvent.era;
+      }
+    }
+
+    // 3. Sincronizar la barra de menú fija superior (#hist-era-nav)
+    if (eraNavContainer) {
+      const links = eraNavContainer.querySelectorAll('.hist-era-link');
+      links.forEach(link => {
+        const era = link.getAttribute('data-era');
+        if (era === activeEvent.era) {
+          link.classList.add('hist-active');
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.classList.remove('hist-active');
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    // 4. Actualizar barra de progreso inferior y dots
+    if (dotsLineFill) {
+      dotsLineFill.style.width = (state.progress * 100) + '%';
+    }
+
+    dotButtons.forEach((btn, i) => {
+      if (i === activeEventIndex) {
+        btn.classList.add('hist-dot-active');
+        btn.setAttribute('aria-selected', 'true');
+      } else {
+        btn.classList.remove('hist-dot-active');
+        btn.setAttribute('aria-selected', 'false');
+      }
+
+      if (i < activeEventIndex) {
+        btn.classList.add('hist-dot-passed');
+      } else {
+        btn.classList.remove('hist-dot-passed');
       }
     });
 
-    if (closestCard) {
-      const dateLabel = closestCard.getAttribute('data-datelabel');
-      const eraName = closestCard.getAttribute('data-era');
+    // 5. Actualizar visibilidad y crossfade de las tarjetas
+    if (state.isDwell) {
+      // En dwell: la tarjeta activa está estática y 100% visible
+      cardElements.forEach((card, idx) => {
+        if (idx === state.activeEventIndex) {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+          card.style.pointerEvents = 'auto';
+          card.classList.add('hist-card-active');
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(24px)';
+          card.style.pointerEvents = 'none';
+          card.classList.remove('hist-card-active');
+        }
+      });
+    } else {
+      // En travel: desvanecimiento cruzado suave entre fromIndex y toIndex
+      const u = state.travelFactor;
+      cardElements.forEach((card, idx) => {
+        if (idx === state.fromIndex) {
+          const opacity = Math.max(0, 1 - u * 2.2);
+          const ty = -u * 30;
+          card.style.opacity = opacity.toFixed(3);
+          card.style.transform = `translateY(${ty.toFixed(1)}px)`;
+          card.style.pointerEvents = opacity > 0.7 ? 'auto' : 'none';
+        } else if (idx === state.toIndex) {
+          const opacity = Math.max(0, (u - 0.45) * 1.8);
+          const ty = (1 - u) * 30;
+          card.style.opacity = opacity.toFixed(3);
+          card.style.transform = `translateY(${ty.toFixed(1)}px)`;
+          card.style.pointerEvents = opacity > 0.7 ? 'auto' : 'none';
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(24px)';
+          card.style.pointerEvents = 'none';
+          card.classList.remove('hist-card-active');
+        }
+      });
+    }
 
-      const dateValueEl = yearCounterElement.querySelector('.hist-year-value');
-      const eraLabelEl = yearCounterElement.querySelector('.hist-year-era');
+    // 6. Transición suave de degradados por época
+    const currentEraName = events[activeEventIndex].era;
+    eraBgElements.forEach(bg => {
+      const era = bg.getAttribute('data-era');
+      if (era === currentEraName) {
+        bg.style.opacity = '1';
+      } else {
+        bg.style.opacity = '0';
+      }
+    });
+  }
 
-      if (dateValueEl && dateValueEl.textContent !== dateLabel) {
-        dateValueEl.textContent = dateLabel;
-        dateValueEl.classList.remove('hist-flip');
-        void dateValueEl.offsetWidth; // Forzar reflow para animación
-        dateValueEl.classList.add('hist-flip');
+  /**
+   * Manejador de evento scroll regulado con requestAnimationFrame.
+   */
+  function onScroll() {
+    if (!isTicking) {
+      isTicking = true;
+      requestAnimationFrame(function () {
+        updateStage();
+        isTicking = false;
+      });
+    }
+  }
+
+  /**
+   * Navega de forma suave al punto medio del dwell del evento especificado.
+   * @param {number} targetIndex - Índice del evento al que saltar
+   */
+  function scrollToEvent(targetIndex) {
+    const clampedIndex = Math.max(0, Math.min(events.length - 1, targetIndex));
+    const stepDistance = DWELL_LENGTH_PX + TRAVEL_LENGTH_PX;
+    // Ubicar el scroll en el centro exacto del dwell para máxima holgura
+    const targetOffset = clampedIndex * stepDistance + (DWELL_LENGTH_PX * 0.5);
+
+    if (!journeyContainer) return;
+
+    const containerTop = journeyContainer.getBoundingClientRect().top + window.scrollY;
+    const targetScrollY = containerTop + targetOffset;
+
+    window.scrollTo({
+      top: targetScrollY,
+      behavior: 'smooth'
+    });
+  }
+
+  /**
+   * Configura las interacciones por clic en los dots inferiores y botones de continuar.
+   */
+  function initNavigationControls() {
+    if (!journeyContainer) return;
+
+    // Clic en los dots de la pista inferior
+    journeyContainer.addEventListener('click', function (e) {
+      const dot = e.target.closest('.hist-dot');
+      if (dot) {
+        e.preventDefault();
+        const index = parseInt(dot.getAttribute('data-index'), 10);
+        if (!isNaN(index)) {
+          scrollToEvent(index);
+        }
+        return;
       }
 
-      if (eraLabelEl && eraLabelEl.textContent !== eraName) {
-        eraLabelEl.textContent = eraName;
+      // Clic en el botón "Continuar →" de la tarjeta
+      const continueBtn = e.target.closest('.hist-btn-continue');
+      if (continueBtn) {
+        e.preventDefault();
+        const nextIndex = parseInt(continueBtn.getAttribute('data-next-index'), 10);
+        if (nextIndex < events.length) {
+          scrollToEvent(nextIndex);
+        } else {
+          // Último evento: desplazarse suavemente a la siguiente sección (Cuestionario)
+          const quizSection = document.getElementById('hist-quiz-section');
+          if (quizSection) {
+            quizSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+        return;
       }
 
-      yearCounterElement.classList.add('hist-visible');
+      // Alternar idioma inglés / español
+      const translateBtn = e.target.closest('.hist-btn-translate');
+      if (translateBtn) {
+        e.preventDefault();
+        const card = translateBtn.closest('.hist-stage-card');
+        if (card) {
+          toggleCardTranslation(card);
+        }
+        return;
+      }
+    });
+
+    // Clic en enlaces de la barra de épocas (#hist-era-nav)
+    if (eraNavContainer) {
+      eraNavContainer.addEventListener('click', function (e) {
+        const link = e.target.closest('.hist-era-link');
+        if (link) {
+          e.preventDefault();
+          const targetEra = link.getAttribute('data-era');
+          // Encontrar el primer evento que pertenece a esa época
+          const targetEventIndex = events.findIndex(evt => evt.era === targetEra);
+          if (targetEventIndex !== -1) {
+            scrollToEvent(targetEventIndex);
+          }
+        }
+      });
     }
   }
 
   /**
    * Alterna la traducción al inglés en una tarjeta.
-   * @param {HTMLElement} card - Elemento .hist-card
+   * @param {HTMLElement} card - Elemento .hist-stage-card
    */
   function toggleCardTranslation(card) {
     if (!card) return;
@@ -536,45 +821,42 @@
   }
 
   /**
-   * Configura los eventos de interacción de las tarjetas (clic y teclado).
+   * Configura el soporte de teclado (Flechas, Home, End).
    */
-  function initCardInteractions() {
-    const journeyContainer = document.getElementById('hist-journey-container');
-    if (!journeyContainer) return;
+  function initKeyboardNavigation() {
+    window.addEventListener('keydown', function (e) {
+      // Ignorar si el usuario está escribiendo en campos de texto
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (activeTag === 'input' || activeTag === 'textarea') return;
 
-    journeyContainer.addEventListener('click', function (e) {
-      // Si se hizo clic en un enlace a la fuente externa o en una palabra del vocabulario, no alternar la tarjeta
-      if (e.target.closest('.hist-source-link') || e.target.closest('.hist-vocab')) {
-        return;
-      }
+      if (!journeyContainer) return;
 
-      const card = e.target.closest('.hist-card');
-      if (card) {
-        toggleCardTranslation(card);
-      }
-    });
+      // Verificar si la ventana de visualización se encuentra en o cerca del stage
+      const rect = journeyContainer.getBoundingClientRect();
+      const isInStage = rect.top <= window.innerHeight * 0.7 && rect.bottom >= window.innerHeight * 0.3;
 
-    journeyContainer.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        // Si el foco está en un enlace de fuente o en un término de vocabulario, permitir su acción nativa
-        if (e.target.closest('.hist-source-link') || e.target.closest('.hist-vocab')) {
-          return;
-        }
-
-        const card = e.target.closest('.hist-card');
-        if (card && document.activeElement === card) {
+      if (isInStage) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
           e.preventDefault();
-          toggleCardTranslation(card);
+          scrollToEvent(activeEventIndex + 1);
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          scrollToEvent(activeEventIndex - 1);
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          scrollToEvent(0);
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          scrollToEvent(events.length - 1);
         }
       }
     });
   }
 
   /**
-   * Crea y administra los tooltips flotantes para los términos de vocabulario taurino.
+   * Configura los tooltips flotantes para los términos del glosario taurino.
    */
   function initVocabTooltips() {
-    // Crear el elemento de tooltip único en el body para evitar cortes por overflow
     let floatingTooltip = document.getElementById('hist-floating-vocab-tooltip');
     if (!floatingTooltip) {
       floatingTooltip = document.createElement('div');
@@ -618,12 +900,9 @@
       let top = rect.top - tooltipRect.height - 10;
       let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
 
-      // Si no cabe por arriba, mostrar debajo
       if (top < 10) {
         top = rect.bottom + 10;
       }
-
-      // Evitar que se desborde horizontalmente
       if (left < 12) left = 12;
       if (left + tooltipRect.width > window.innerWidth - 12) {
         left = window.innerWidth - tooltipRect.width - 12;
@@ -633,7 +912,6 @@
       floatingTooltip.style.left = `${left + window.scrollX}px`;
     }
 
-    // Delegación de eventos para las palabras de vocabulario
     document.addEventListener('mouseover', function (e) {
       const vocabEl = e.target.closest('.hist-vocab');
       if (vocabEl) showTooltip(vocabEl);
@@ -672,17 +950,24 @@
   }
 
   /**
-   * Inicialización global de la página principal tras cargar el DOM.
+   * Inicialización global del módulo al cargar la página.
    */
   function init() {
-    renderJourneyContent();
-    initEraNav();
-    initCardObservers();
-    initCardInteractions();
+    renderPinnedStage();
+    initNavigationControls();
+    initKeyboardNavigation();
     initVocabTooltips();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      updateContainerHeight();
+      updateStage();
+    }, { passive: true });
+
+    // Primera pasada de renderizado
+    updateStage();
   }
 
-  // Ejecución segura una vez que el DOM está listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

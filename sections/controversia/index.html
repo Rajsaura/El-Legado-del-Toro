@@ -1,50 +1,357 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sección 4: La Controversia - En construcción. Revista digital El Legado del Toro.">
-  <title>La Controversia (En Construcción) | El Legado del Toro</title>
+  <meta name="description" content="La Controversia: un debate sobre la tauromaquia, la cultura y el bienestar animal.">
+  <title>La Controversia | El Legado del Toro</title>
 
   <!-- Estilos compartidos -->
   <link rel="stylesheet" href="../../css/shared.css">
 
-  <!-- Script de navegación -->
+  <!-- Estilos de controversia -->
+  <link rel="stylesheet" href="../../css/controversia.css">
+
+  <!-- Scripts -->
   <script src="../../js/nav.js" defer></script>
+  <script src="../../js/controversia.js" defer></script>
 </head>
+
 <body>
 
-  <!-- Contenedor de la barra de navegación compartida -->
+  <!-- Navegación compartida -->
   <div id="site-nav-container"></div>
 
   <main id="main-content">
     <div class="site-container">
       <div class="construction-container">
-        <div class="construction-card">
-          <div class="construction-icon" aria-hidden="true">⚖️</div>
-          <span class="badge badge-gold" style="margin-bottom: var(--space-sm);">Sección 04</span>
+        <div class="construction-card controversia-page">
+
+          <span class="badge badge-gold controversia-section-badge">
+            Sección 04
+          </span>
+
           <h1 class="construction-title">La Controversia</h1>
-          <div class="construction-owner">Responsable: [Name]</div>
-          <p class="construction-desc">
-            Esta sección se encuentra en proceso de elaboración e investigación. Próximamente presentará el debate ético contemporáneo, bienestar animal, argumentos defensores y posturas abolicionistas, junto con un <strong>sondeo de opinión interactivo</strong>.
-          </p>
-          <a href="../../index.html" class="btn btn-primary" id="back-home-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Volver a la Portada
-          </a>
+
+          <div class="construction-owner">
+            Responsable: SAURABH RAJ (25BDS1005)
+          </div>
+
+          <!-- Introducción -->
+          <section class="controversia-intro">
+            <h2>¿Por qué existe este debate?</h2>
+
+            <img src="intro.webp" alt="Introducción a la controversia de la tauromaquia"
+              class="controversia-intro-image">
+
+            <p class="construction-desc">
+              La corrida de toros es una tradición española.
+              Algunas personas la ven como arte.
+              Otras creen que causa sufrimiento animal.
+              Carlos y Lucía tienen opiniones diferentes.
+              Escuchemos sus argumentos.
+            </p>
+          </section>
+
+          <!-- Debate 1 -->
+          <section class="controversia-debate">
+
+            <h2>¿Arte o crueldad?</h2>
+
+            <p class="controversia-subtitle">
+              Dos personas · Dos opiniones · Un debate
+            </p>
+
+            <!-- Carlos -->
+            <div class="controversia-dialogue controversia-carlos">
+              <img src="carlos.png" alt="Ilustración del debate taurino"
+                class="controversia-avatar controversia-avatar-carlos">
+
+              <div class="controversia-bubble">
+                <strong>Carlos · A favor</strong>
+                <p>
+                  La corrida es un arte. El torero necesita mucha práctica,
+                  habilidad y valor. Para mí, es una parte importante de
+                  la cultura española.
+                </p>
+              </div>
+            </div>
+
+            <!-- Lucía -->
+            <div class="controversia-dialogue controversia-lucia">
+              <div class="controversia-bubble">
+                <strong>Lucía · En contra</strong>
+                <p>
+                  Entiendo tu opinión, Carlos. Pero el toro siente dolor
+                  y puede morir. ¿Es correcto causar sufrimiento para
+                  entretener al público?
+                </p>
+              </div>
+
+              <img src="lucia.png" alt="Ilustración sobre el bienestar animal"
+                class="controversia-avatar controversia-avatar-lucia">
+            </div>
+
+            <!-- Carlos -->
+            <div class="controversia-dialogue controversia-carlos">
+              <img src="carlos.png" alt="Carlos defendiendo la tradición"
+                class="controversia-avatar controversia-avatar-carlos">
+
+              <div class="controversia-bubble">
+                <strong>Carlos</strong>
+                <p>
+                  Es una tradición muy antigua. Muchas personas disfrutan
+                  de este espectáculo y quieren conservarlo.
+                </p>
+              </div>
+            </div>
+
+            <!-- Lucía -->
+            <div class="controversia-dialogue controversia-lucia">
+              <div class="controversia-bubble">
+                <strong>Lucía</strong>
+                <p>
+                  Lo entiendo, pero ¿algo es correcto solo porque
+                  es una tradición?
+                </p>
+              </div>
+
+              <img src="lucia.png" alt="Lucía reflexionando sobre la tauromaquia"
+                class="controversia-avatar controversia-avatar-lucia">
+            </div>
+
+
+            <div class="controversia-question">
+              <span class="controversia-question-label">
+                Pregunta para ti
+              </span>
+
+              <p>
+                ¿Puede una actividad ser arte y causar sufrimiento
+                al mismo tiempo?
+              </p>
+
+              <div class="controversia-answer-box">
+                <label for="controversia-debate-answer">
+                  <strong>¿Qué piensas tú?</strong>
+                </label>
+
+                <textarea id="controversia-debate-answer" rows="3" maxlength="300"
+                  placeholder="Escribe tu opinión aquí..."></textarea>
+
+                <button type="button" class="controversia-answer-button">
+                  Enviar respuesta
+                </button>
+
+                <p class="controversia-answer-message" role="status" aria-live="polite"></p>
+              </div>
+            </div>
+
+
+
         </div>
+
+        </section>
+
+        <!-- Debate 2 -->
+        <section class="controversia-debate">
+
+          <h2>¿Tradición o bienestar animal?</h2>
+
+          <p class="controversia-subtitle">
+            Historia y cultura · Protección animal
+          </p>
+
+          <img src="contro.png" alt="Ilustración sobre la tradición taurina y el bienestar animal"
+            class="controversia-topic-image">
+
+          <!-- Carlos -->
+          <div class="controversia-dialogue controversia-carlos">
+            <img src="carlos.png" alt="Carlos defendiendo las tradiciones"
+              class="controversia-avatar controversia-avatar-carlos">
+
+            <div class="controversia-bubble">
+              <strong>Carlos · A favor</strong>
+              <p>
+                La tauromaquia tiene una larga historia en España.
+                Debemos conocer nuestra cultura y respetar
+                nuestras tradiciones.
+              </p>
+            </div>
+          </div>
+
+          <!-- Lucía -->
+          <div class="controversia-dialogue controversia-lucia">
+            <div class="controversia-bubble">
+              <strong>Lucía · En contra</strong>
+              <p>
+                Sí, pero también debemos proteger a los animales.
+                Una tradición antigua no siempre es una tradición correcta.
+              </p>
+            </div>
+
+            <img src="lucia.png" alt="Lucía defendiendo el bienestar animal"
+              class="controversia-avatar controversia-avatar-lucia">
+          </div>
+
+          <!-- Carlos -->
+          <div class="controversia-dialogue controversia-carlos">
+            <img src="carlos.png" alt="Carlos haciendo una pregunta"
+              class="controversia-avatar controversia-avatar-carlos">
+
+            <div class="controversia-bubble">
+              <strong>Carlos</strong>
+              <p>
+                Entonces, ¿debemos olvidar nuestra historia?
+              </p>
+            </div>
+          </div>
+
+          <!-- Lucía -->
+          <div class="controversia-dialogue controversia-lucia">
+            <div class="controversia-bubble">
+              <strong>Lucía</strong>
+              <p>
+                No. Podemos aprender sobre la historia y buscar otras
+                formas de celebrar la cultura.
+              </p>
+            </div>
+
+            <img src="lucia.png" alt="Lucía proponiendo otras formas de celebrar la cultura"
+              class="controversia-avatar controversia-avatar-lucia">
+          </div>
+
+
+          <div class="controversia-question">
+            <span class="controversia-question-label">
+              Pregunta para ti
+            </span>
+
+            <p>
+              ¿Puede una actividad ser arte y causar sufrimiento
+              al mismo tiempo?
+            </p>
+
+            <div class="controversia-answer-box">
+              <label for="controversia-debate-answer">
+                <strong>¿Qué piensas tú?</strong>
+              </label>
+
+              <textarea id="controversia-debate-answer" rows="3" maxlength="300"
+                placeholder="Escribe tu opinión aquí..."></textarea>
+
+              <button type="button" class="controversia-answer-button">
+                Enviar respuesta
+              </button>
+
+              <p class="controversia-answer-message" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+
+
+        </section>
+
+        <!-- Feedback: formulario original conservado -->
+        <section class="controversia-feedback" id="controversia-feedback">
+
+          <h2>¿Y tú qué opinas?</h2>
+          <p>Comparte tu opinión sobre la tauromaquia.</p>
+
+          <form id="controversia-feedback-form">
+
+            <fieldset class="controversia-feedback-group">
+              <legend>1. ¿Qué opinas de las corridas de toros?</legend>
+
+              <label>
+                <input type="radio" name="controversia-opinion" value="A favor" required>
+                Estoy a favor.
+              </label>
+
+              <label>
+                <input type="radio" name="controversia-opinion" value="En contra">
+                Estoy en contra.
+              </label>
+
+              <label>
+                <input type="radio" name="controversia-opinion" value="No estoy seguro">
+                No estoy seguro/a.
+              </label>
+            </fieldset>
+
+            <fieldset class="controversia-feedback-group">
+              <legend>2. ¿Qué es más importante para ti?</legend>
+
+              <label>
+                <input type="radio" name="controversia-prioridad" value="Tradición cultural" required>
+                La tradición cultural.
+              </label>
+
+              <label>
+                <input type="radio" name="controversia-prioridad" value="Bienestar animal">
+                El bienestar animal.
+              </label>
+
+              <label>
+                <input type="radio" name="controversia-prioridad" value="Ambos">
+                Las dos cosas.
+              </label>
+            </fieldset>
+
+            <fieldset class="controversia-feedback-group">
+              <legend>
+                3. ¿Ha cambiado tu opinión después de leer esta página?
+              </legend>
+
+              <label>
+                <input type="radio" name="controversia-cambio" value="Sí" required>
+                Sí.
+              </label>
+
+              <label>
+                <input type="radio" name="controversia-cambio" value="No">
+                No.
+              </label>
+
+              <label>
+                <input type="radio" name="controversia-cambio" value="No estoy seguro">
+                No estoy seguro/a.
+              </label>
+            </fieldset>
+
+            <div class="controversia-feedback-group">
+              <label for="controversia-other-opinion">
+                <strong>¿Tienes otra opinión?</strong>
+              </label>
+
+              <textarea id="controversia-other-opinion" name="controversia-other-opinion" rows="3" maxlength="300"
+                placeholder="Escribe tu opinión aquí..."
+                style="width: 100%; margin-top: 10px; padding: 12px; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="controversia-feedback-button">
+              Enviar opinión
+            </button>
+
+            <p id="controversia-feedback-message" class="controversia-feedback-message" role="status"
+              aria-live="polite"></p>
+
+          </form>
+        </section>
+
       </div>
+    </div>
     </div>
   </main>
 
+  <!-- Footer compartido -->
   <footer class="site-footer" id="site-footer">
     <div class="site-container">
       <div class="footer-content">
         <div class="footer-brand">El Legado del Toro</div>
-        <p class="footer-subtitle">La Corrida de Toros: Arte, Cultura y Controversia</p>
+        <p class="footer-subtitle">
+          La Corrida de Toros: Arte, Cultura y Controversia
+        </p>
         <p class="footer-copy">
           Proyecto colaborativo de revista digital • Sección 4: La Controversia
         </p>
@@ -53,4 +360,5 @@
   </footer>
 
 </body>
+
 </html>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="100%" height="100%" role="img" aria-label="El Toro en el Arte Plástico: homenaje a Francisco de Goya y Pablo Picasso">
+  <defs>
+    <linearGradient id="artBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#artBg)" />
+  <circle cx="200" cy="140" r="95" fill="#C99700" opacity="0.12" />
+
+  <!-- Marco de lienzo o aguafuerte clásico de Goya -->
+  <rect x="50" y="30" width="300" height="220" rx="4" fill="#FFFDF9" stroke="#5C1010" stroke-width="2" />
+  <rect x="58" y="38" width="284" height="204" rx="2" fill="none" stroke="#C99700" stroke-width="1" stroke-dasharray="6,4" />
+
+  <!-- Trazo expresivo del toro inspirado en aguafuerte y cubismo -->
+  <g transform="translate(110, 60)">
+    <!-- Silueta rotunda del toro con líneas de fuerza de aguafuerte -->
+    <path d="M 120 40 C 115 25 130 10 150 5 C 145 18 138 28 128 35 Z" fill="#231F20" />
+    <path d="M 100 45 C 95 30 110 15 125 10 C 120 22 115 32 108 40 Z" fill="#5C1010" />
+    <!-- Lomo y morrillo potente -->
+    <path d="M 20 100 C 5 95 0 80 0 65 C 15 65 35 60 55 65 C 75 70 95 50 115 50 C 130 50 145 65 150 80 C 145 95 130 110 110 115 C 90 120 70 125 50 125 C 30 125 20 115 20 100 Z" fill="#231F20" />
+    <!-- Patas enérgicas en escorzo -->
+    <path d="M 115 110 L 125 160 L 110 162 L 105 120 Z" fill="#231F20" />
+    <path d="M 135 105 L 142 155 L 130 158 L 125 115 Z" fill="#574F4A" />
+    <path d="M 30 120 L 22 165 L 35 168 L 45 125 Z" fill="#231F20" />
+    <path d="M 55 125 L 50 160 L 62 163 L 68 125 Z" fill="#574F4A" />
+    <!-- Trazo de pincelada cubista en oro -->
+    <path d="M 10 60 Q 60 30 110 60 Q 160 90 180 60" stroke="#C99700" stroke-width="3" fill="none" opacity="0.8" />
+  </g>
+
+  <!-- Paleta y pincel en la esquina -->
+  <g transform="translate(70, 205)">
+    <ellipse cx="25" cy="20" rx="22" ry="14" fill="#EFE9DD" stroke="#7E746D" stroke-width="1.5" />
+    <circle cx="36" cy="20" r="4" fill="#FCFAF6" stroke="#7E746D" stroke-width="1" />
+    <circle cx="15" cy="16" r="3" fill="#8B1E1E" />
+    <circle cx="24" cy="14" r="3" fill="#C99700" />
+    <circle cx="30" cy="25" r="3" fill="#231F20" />
+    <!-- Pincel cruzado -->
+    <line x1="5" y1="35" x2="45" y2="5" stroke="#574F4A" stroke-width="2.5" stroke-linecap="round" />
+    <polygon points="45,5 49,2 48,8" fill="#C99700" />
+  </g>
+
+  <text x="200" y="240" font-family="'Cinzel', serif" font-size="8.5" fill="#5C1010" text-anchor="middle" font-weight="bold" letter-spacing="1.5">GOYA • PICASSO • LA TAUROMAQUIA</text>
+</svg>

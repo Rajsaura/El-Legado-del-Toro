@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%" role="img" aria-label="El Traje de Luces: bordado ceremonial en oro y alamares">
+  <defs>
+    <linearGradient id="trajeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" fill="url(#trajeBg)" />
+  
+  <!-- Patrón de seda y bordado en oro -->
+  <g fill="#5C1010">
+    <rect x="80" y="30" width="240" height="180" rx="8" fill="#5C1010" stroke="#8B1E1E" stroke-width="2" />
+  </g>
+  
+  <!-- Cenefa dorada exterior -->
+  <rect x="95" y="45" width="210" height="150" rx="4" fill="none" stroke="#C99700" stroke-width="3" stroke-dasharray="8,6" />
+
+  <!-- Alamares y cordones de pasamanería en oro -->
+  <g stroke="#E0B32D" stroke-width="2" fill="none">
+    <!-- Centro - Filigrana de canutillo de oro -->
+    <circle cx="200" cy="120" r="35" stroke="#C99700" stroke-width="3" />
+    <circle cx="200" cy="120" r="25" stroke="#E0B32D" stroke-width="1.5" />
+    <circle cx="200" cy="120" r="10" fill="#C99700" />
+    <!-- Hilos radiantes -->
+    <line x1="200" y1="85" x2="200" y2="65" />
+    <line x1="200" y1="155" x2="200" y2="175" />
+    <line x1="165" y1="120" x2="145" y2="120" />
+    <line x1="235" y1="120" x2="255" y2="120" />
+    <!-- Alamares laterales con borlitas -->
+    <circle cx="145" cy="85" r="8" fill="#C99700" />
+    <line x1="145" y1="93" x2="145" y2="110" stroke="#C99700" stroke-width="2" />
+    <circle cx="255" cy="85" r="8" fill="#C99700" />
+    <line x1="255" y1="93" x2="255" y2="110" stroke="#C99700" stroke-width="2" />
+    <circle cx="145" cy="155" r="8" fill="#C99700" />
+    <line x1="145" y1="163" x2="145" y2="180" stroke="#C99700" stroke-width="2" />
+    <circle cx="255" cy="155" r="8" fill="#C99700" />
+    <line x1="255" y1="163" x2="255" y2="180" stroke="#C99700" stroke-width="2" />
+  </g>
+
+  <!-- Brillos que evocan los reflejos de las lentejuelas -->
+  <g fill="#FFFFFF" opacity="0.8">
+    <polygon points="120,60 123,67 130,70 123,73 120,80 117,73 110,70 117,67" />
+    <polygon points="280,60 283,67 290,70 283,73 280,80 277,73 270,70 277,67" />
+    <polygon points="190,40 192,44 196,46 192,48 190,52 188,48 184,46 188,44" />
+    <polygon points="210,195 212,199 216,201 212,203 210,207 208,203 204,201 208,199" />
+  </g>
+</svg>

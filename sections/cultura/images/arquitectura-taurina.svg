@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%" role="img" aria-label="La Arquitectura Taurina: el ruedo concéntrico y la barrera">
+  <defs>
+    <linearGradient id="arquiBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" fill="url(#arquiBg)" />
+  
+  <!-- Perspectiva circular de la plaza y gradas concéntricas -->
+  <g fill="none" stroke="#C99700" stroke-width="2">
+    <!-- Círculo exterior de gradas -->
+    <ellipse cx="200" cy="130" rx="160" ry="85" stroke="#7E746D" stroke-width="1.5" />
+    <ellipse cx="200" cy="130" rx="140" ry="75" stroke="#E2DACB" stroke-width="8" />
+    <!-- Pasillo de callejón -->
+    <ellipse cx="200" cy="130" rx="125" ry="65" stroke="#574F4A" stroke-width="2" />
+    <!-- Barrera roja -->
+    <ellipse cx="200" cy="130" rx="115" ry="60" stroke="#8B1E1E" stroke-width="5" />
+    <!-- Ruedo de arena albero -->
+    <ellipse cx="200" cy="130" rx="110" ry="56" fill="#C99700" fill-opacity="0.25" stroke="#C99700" stroke-width="1.5" />
+  </g>
+
+  <!-- Burladero estilizado en el ruedo -->
+  <path d="M 120 120 Q 130 115 140 120" stroke="#8B1E1E" stroke-width="4" fill="none" />
+  <path d="M 260 140 Q 270 145 280 140" stroke="#8B1E1E" stroke-width="4" fill="none" />
+
+  <!-- Arcos neomudéjares superiores en la perspectiva del fondo -->
+  <g stroke="#5C1010" stroke-width="1.5" fill="#FCFAF6">
+    <path d="M 160 55 C 160 40 180 40 180 55 L 180 65 L 160 65 Z" />
+    <path d="M 190 55 C 190 40 210 40 210 55 L 210 65 L 190 65 Z" />
+    <path d="M 220 55 C 220 40 240 40 240 55 L 240 65 L 220 65 Z" />
+  </g>
+
+  <!-- Brújula o rosa de los vientos que simboliza la geometría y arquitectura -->
+  <circle cx="200" cy="130" r="14" fill="none" stroke="#5C1010" stroke-width="1.5" />
+  <circle cx="200" cy="130" r="4" fill="#C99700" />
+</svg>

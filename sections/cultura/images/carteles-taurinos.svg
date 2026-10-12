@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%" role="img" aria-label="Los Carteles Taurinos: litografía histórica y diseño gráfico">
+  <defs>
+    <linearGradient id="cartelBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" fill="url(#cartelBg)" />
+  
+  <!-- Formato de cartel clásico vertical centrado -->
+  <g transform="translate(130, 20)">
+    <!-- Marco de papel envejecido del cartel -->
+    <rect width="140" height="200" rx="4" fill="#FCFAF6" stroke="#8B1E1E" stroke-width="3" />
+    <rect x="6" y="6" width="128" height="188" rx="2" fill="none" stroke="#C99700" stroke-width="1.5" />
+    
+    <!-- Encabezado del cartel -->
+    <rect x="12" y="12" width="116" height="24" fill="#5C1010" />
+    <text x="70" y="28" font-family="'Cinzel', serif" font-size="9" fill="#FCFAF6" text-anchor="middle" font-weight="bold">PLAZA DE TOROS</text>
+
+    <!-- Ilustración central en el cartel -->
+    <rect x="20" y="44" width="100" height="85" fill="#EFE9DD" stroke="#E2DACB" stroke-width="1" />
+    <!-- Silueta del toro y sol en el cartel -->
+    <circle cx="70" cy="80" r="28" fill="#E0B32D" opacity="0.3" />
+    <path d="M 50 100 C 60 85 80 85 90 100 Z" fill="#231F20" />
+    <polygon points="56,88 52,78 60,85" fill="#C99700" />
+    <polygon points="84,88 88,78 80,85" fill="#C99700" />
+
+    <!-- Tipografía litográfica inferior -->
+    <text x="70" y="148" font-family="'Playfair Display', serif" font-size="8" fill="#5C1010" text-anchor="middle" font-weight="bold">GRAN CORRIDA</text>
+    <line x1="30" y1="154" x2="110" y2="154" stroke="#C99700" stroke-width="1" />
+    <text x="70" y="166" font-family="'Plus Jakarta Sans', sans-serif" font-size="6.5" fill="#231F20" text-anchor="middle">6 BRAVOS TOROS 6</text>
+    <text x="70" y="180" font-family="'Cinzel', serif" font-size="6" fill="#7E746D" text-anchor="middle">FERIA TRADICIONAL</text>
+  </g>
+
+  <!-- Elementos decorativos litográficos laterales -->
+  <path d="M 60 80 Q 80 120 60 160" stroke="#C99700" stroke-width="2" fill="none" />
+  <circle cx="60" cy="80" r="3" fill="#C99700" />
+  <circle cx="60" cy="160" r="3" fill="#C99700" />
+
+  <path d="M 340 80 Q 320 120 340 160" stroke="#C99700" stroke-width="2" fill="none" />
+  <circle cx="340" cy="80" r="3" fill="#C99700" />
+  <circle cx="340" cy="160" r="3" fill="#C99700" />
+</svg>

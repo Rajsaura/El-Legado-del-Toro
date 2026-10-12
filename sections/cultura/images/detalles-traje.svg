@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" width="100%" height="100%" role="img" aria-label="Diagrama interactivo de detalles artesanales del traje de luces y la plaza">
+  <defs>
+    <linearGradient id="detBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="320" fill="url(#detBg)" />
+
+  <!-- Chaquetilla ceremonial centrada -->
+  <g transform="translate(150, 40)">
+    <!-- Base de seda carmesí -->
+    <path d="M 60 40 L 20 70 L 40 180 L 160 180 L 180 70 L 140 40 Z" fill="#5C1010" stroke="#8B1E1E" stroke-width="2" />
+    <!-- Cuello rígido -->
+    <path d="M 75 40 L 100 55 L 125 40 Z" fill="#FCFAF6" stroke="#C99700" stroke-width="1.5" />
+    <!-- Alamares y cordonería central -->
+    <line x1="100" y1="55" x2="100" y2="180" stroke="#C99700" stroke-width="3" />
+    <circle cx="100" cy="80" r="5" fill="#E0B32D" />
+    <circle cx="100" cy="115" r="5" fill="#E0B32D" />
+    <circle cx="100" cy="150" r="5" fill="#E0B32D" />
+    <!-- Filigranas en oro en las solapas -->
+    <path d="M 70 70 Q 50 110 70 150" stroke="#C99700" stroke-width="2.5" fill="none" />
+    <path d="M 130 70 Q 150 110 130 150" stroke="#C99700" stroke-width="2.5" fill="none" />
+
+    <!-- Hombreras abombadas con flecos dorados -->
+    <g id="hotspot-hombrera">
+      <ellipse cx="25" cy="65" rx="20" ry="12" fill="#C99700" stroke="#996F00" stroke-width="1.5" />
+      <path d="M 10 72 L 8 90 M 18 75 L 18 95 M 26 77 L 26 97 M 34 75 L 34 95 M 40 72 L 42 90" stroke="#E0B32D" stroke-width="2" stroke-linecap="round" />
+    </g>
+    <g id="hotspot-hombrera-der">
+      <ellipse cx="175" cy="65" rx="20" ry="12" fill="#C99700" stroke="#996F00" stroke-width="1.5" />
+      <path d="M 160 72 L 158 90 M 168 75 L 168 95 M 176 77 L 176 97 M 184 75 L 184 95 M 190 72 L 192 90" stroke="#E0B32D" stroke-width="2" stroke-linecap="round" />
+    </g>
+
+    <!-- Chaleco interior asomando -->
+    <path d="M 75 160 L 100 180 L 125 160 Z" fill="#E0B32D" opacity="0.9" />
+  </g>
+
+  <!-- Puntos interactivos / Hotspots visuales numerados -->
+  <!-- Hotspot 1: Hombrera y Alamares (x: 165, y: 105) -->
+  <g class="cultura-hotspot-pin" transform="translate(170, 105)" style="cursor: pointer;">
+    <circle cx="0" cy="0" r="14" fill="#8B1E1E" stroke="#FCFAF6" stroke-width="2" />
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#C99700" stroke-width="2" stroke-dasharray="3,3" />
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#FCFAF6" text-anchor="middle">1</text>
+  </g>
+
+  <!-- Hotspot 2: Bordados centrales de oro y pedrería (x: 250, y: 155) -->
+  <g class="cultura-hotspot-pin" transform="translate(250, 155)" style="cursor: pointer;">
+    <circle cx="0" cy="0" r="14" fill="#8B1E1E" stroke="#FCFAF6" stroke-width="2" />
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#C99700" stroke-width="2" stroke-dasharray="3,3" />
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#FCFAF6" text-anchor="middle">2</text>
+  </g>
+
+  <!-- Hotspot 3: Chaleco de seda y taleguilla (x: 250, y: 220) -->
+  <g class="cultura-hotspot-pin" transform="translate(250, 220)" style="cursor: pointer;">
+    <circle cx="0" cy="0" r="14" fill="#8B1E1E" stroke="#FCFAF6" stroke-width="2" />
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#C99700" stroke-width="2" stroke-dasharray="3,3" />
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#FCFAF6" text-anchor="middle">3</text>
+  </g>
+
+  <!-- Hotspot 4: Seda artesanal reforzada (x: 325, y: 105) -->
+  <g class="cultura-hotspot-pin" transform="translate(330, 105)" style="cursor: pointer;">
+    <circle cx="0" cy="0" r="14" fill="#8B1E1E" stroke="#FCFAF6" stroke-width="2" />
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#C99700" stroke-width="2" stroke-dasharray="3,3" />
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#FCFAF6" text-anchor="middle">4</text>
+  </g>
+
+  <!-- Pie explicativo sutil -->
+  <text x="250" y="295" font-family="'Cinzel', serif" font-size="9" fill="#5C1010" text-anchor="middle" font-weight="bold" letter-spacing="1.5">PULSA EN CADA NÚMERO PARA DESCUBRIR SUS SECRETOS ARTESANALES</text>
+</svg>

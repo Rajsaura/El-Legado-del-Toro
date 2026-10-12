@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="100%" height="100%" role="img" aria-label="El Toro: símbolo totémico y la dehesa ibérica">
+  <defs>
+    <linearGradient id="toroBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#toroBg)" />
+  
+  <!-- Sol de fondo y siluetas campestres de la dehesa -->
+  <circle cx="200" cy="130" r="75" fill="#E0B32D" opacity="0.25" />
+  <!-- Encinas ibéricas al horizonte -->
+  <path d="M 60 210 C 50 185 80 170 110 175 C 130 160 160 175 160 195 C 170 210 150 215 130 215 Z" fill="#7E746D" opacity="0.4" />
+  <path d="M 250 210 C 240 185 270 170 300 175 C 320 160 350 175 350 195 C 360 210 340 215 320 215 Z" fill="#7E746D" opacity="0.4" />
+  <!-- Suelo de pasto y albero -->
+  <rect x="0" y="215" width="400" height="65" fill="#C99700" opacity="0.2" />
+
+  <!-- Silueta heráldica del toro bravo -->
+  <g transform="translate(130, 85) scale(0.65)" fill="#231F20">
+    <path d="M 170 85 C 165 75 160 60 175 40 C 190 20 220 10 235 5 C 225 20 215 35 200 50 C 190 60 185 75 180 85 Z" fill="#C99700" />
+    <path d="M 145 90 C 140 75 130 55 140 35 C 150 15 175 5 190 0 C 180 15 170 30 160 48 C 152 62 150 78 148 90 Z" fill="#5C1010" />
+    <path d="M 40 160 C 20 155 5 140 0 120 C 5 105 25 100 50 105 C 80 110 110 90 140 85 C 160 80 180 90 190 105 C 205 125 195 150 180 165 C 165 175 150 180 135 180 C 110 180 90 190 70 195 C 50 195 40 180 40 160 Z" />
+    <path d="M 130 90 C 140 65 165 60 185 75 C 195 85 185 110 170 120 C 155 125 140 115 130 90 Z" />
+    <path d="M 145 160 L 155 235 L 138 238 L 130 180 Z" />
+    <path d="M 170 160 L 175 230 L 160 235 L 155 175 Z" />
+    <path d="M 40 170 L 30 235 L 45 240 L 60 185 Z" />
+    <path d="M 70 180 L 65 230 L 78 235 L 85 185 Z" />
+    <path d="M 10 115 C -5 135 -10 170 5 205 C 10 215 5 220 0 220 C -5 215 -15 170 0 115 Z" />
+  </g>
+</svg>

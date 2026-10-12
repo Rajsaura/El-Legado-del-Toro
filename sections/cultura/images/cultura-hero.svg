@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" role="img" aria-label="Ilustración editorial: Fachada monumental y silueta del toro bajo el sol español">
+  <defs>
+    <linearGradient id="heroSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="60%" stop-color="#EFE9DD" />
+      <stop offset="100%" stop-color="#E2DACB" />
+    </linearGradient>
+    <linearGradient id="heroSun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0B32D" />
+      <stop offset="100%" stop-color="#C99700" />
+    </linearGradient>
+    <linearGradient id="heroSand" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C99700" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#5C1010" stop-opacity="0.15" />
+    </linearGradient>
+    <linearGradient id="heroArch" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5C1010" />
+      <stop offset="50%" stop-color="#8B1E1E" />
+      <stop offset="100%" stop-color="#5C1010" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo cielo y atmósfera cálida -->
+  <rect width="800" height="500" fill="url(#heroSky)" />
+
+  <!-- Sol radiante mediterráneo -->
+  <circle cx="400" cy="220" r="140" fill="url(#heroSun)" opacity="0.3" />
+  <circle cx="400" cy="220" r="95" fill="url(#heroSun)" opacity="0.5" />
+
+  <!-- Líneas de rayos sutiles -->
+  <g stroke="#C99700" stroke-width="1.5" opacity="0.4" stroke-dasharray="6,6">
+    <line x1="400" y1="50" x2="400" y2="390" />
+    <line x1="230" y1="220" x2="570" y2="220" />
+    <line x1="280" y1="100" x2="520" y2="340" />
+    <line x1="280" y1="340" x2="520" y2="100" />
+  </g>
+
+  <!-- Gran arco monumental de estilo tradicional (marco arquitectónico) -->
+  <path d="M 120 500 L 120 260 C 120 100, 680 100, 680 260 L 680 500 Z" fill="none" stroke="url(#heroArch)" stroke-width="16" />
+  <path d="M 140 500 L 140 265 C 140 125, 660 125, 660 265 L 660 500 Z" fill="none" stroke="#C99700" stroke-width="3" stroke-dasharray="10,8" />
+
+  <!-- Suelo del ruedo y paisaje de dehesa -->
+  <ellipse cx="400" cy="460" rx="380" ry="80" fill="url(#heroSand)" />
+  <path d="M 0 460 Q 200 420 400 440 T 800 450 L 800 500 L 0 500 Z" fill="#231F20" opacity="0.08" />
+
+  <!-- Silueta de encinas ibéricas al fondo -->
+  <path d="M 220 420 C 210 395 240 375 270 380 C 290 365 330 380 330 405 C 340 420 320 425 300 425 Z" fill="#574F4A" opacity="0.4" />
+  <path d="M 480 425 C 470 400 500 380 530 385 C 550 370 590 385 590 410 C 600 425 580 430 560 430 Z" fill="#574F4A" opacity="0.4" />
+
+  <!-- Silueta emblemática y noble del toro de lidia en el centro -->
+  <g transform="translate(325, 290) scale(0.75)" fill="#231F20">
+    <!-- Cabeza y pitones -->
+    <path d="M 170 85 C 165 75 160 60 175 40 C 190 20 220 10 235 5 C 225 20 215 35 200 50 C 190 60 185 75 180 85 Z" fill="#C99700" />
+    <path d="M 145 90 C 140 75 130 55 140 35 C 150 15 175 5 190 0 C 180 15 170 30 160 48 C 152 62 150 78 148 90 Z" fill="#231F20" opacity="0.8" />
+    <!-- Cuerpo del toro -->
+    <path d="M 40 160 C 20 155 5 140 0 120 C 5 105 25 100 50 105 C 80 110 110 90 140 85 C 160 80 180 90 190 105 C 205 125 195 150 180 165 C 165 175 150 180 135 180 C 110 180 90 190 70 195 C 50 195 40 180 40 160 Z" />
+    <!-- Morro, cuello y morrillo potente -->
+    <path d="M 130 90 C 140 65 165 60 185 75 C 195 85 185 110 170 120 C 155 125 140 115 130 90 Z" />
+    <!-- Patas delanteras y traseras firmes -->
+    <path d="M 145 160 L 155 240 L 140 245 L 130 180 Z" />
+    <path d="M 170 160 L 175 235 L 160 240 L 155 175 Z" />
+    <path d="M 40 170 L 30 240 L 45 245 L 60 185 Z" />
+    <path d="M 70 180 L 65 235 L 78 240 L 85 185 Z" />
+    <!-- Cola elegante -->
+    <path d="M 10 115 C -5 135 -10 170 5 210 C 10 220 5 225 0 225 C -5 220 -15 170 0 115 Z" />
+  </g>
+
+  <!-- Detalles ornamentales en las esquinas -->
+  <g stroke="#C99700" stroke-width="2" fill="none">
+    <path d="M 40 40 L 80 40 M 40 40 L 40 80" />
+    <circle cx="40" cy="40" r="4" fill="#C99700" />
+    <path d="M 760 40 L 720 40 M 760 40 L 760 80" />
+    <circle cx="760" cy="40" r="4" fill="#C99700" />
+    <path d="M 40 460 L 80 460 M 40 460 L 40 420" />
+    <circle cx="40" cy="460" r="4" fill="#C99700" />
+    <path d="M 760 460 L 720 460 M 760 460 L 760 420" />
+    <circle cx="760" cy="460" r="4" fill="#C99700" />
+  </g>
+
+  <!-- Rótulo editorial inferior -->
+  <text x="400" y="482" text-anchor="middle" font-family="'Cinzel', serif" font-size="12" letter-spacing="4" fill="#5C1010" font-weight="bold">SECCIÓN 3 • LA CULTURA Y LA TRADICIÓN</text>
+</svg>

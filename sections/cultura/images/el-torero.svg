@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="100%" height="100%" role="img" aria-label="El Torero: figura emblemática con capote de brega y montera">
+  <defs>
+    <linearGradient id="toreroBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#toreroBg)" />
+  <circle cx="200" cy="140" r="90" fill="#C99700" opacity="0.15" />
+  <circle cx="200" cy="140" r="80" stroke="#C99700" stroke-width="1.5" stroke-dasharray="4,4" fill="none" />
+  
+  <!-- Montera (tocado tradicional) -->
+  <path d="M 175 60 C 175 48 190 42 200 42 C 210 42 225 48 225 60 C 235 62 242 70 240 78 C 235 80 220 72 200 72 C 180 72 165 80 160 78 C 158 70 165 62 175 60 Z" fill="#231F20" />
+  <!-- Cabeza y perfil -->
+  <path d="M 190 74 L 210 74 L 208 95 C 205 102 195 102 192 95 Z" fill="#574F4A" />
+
+  <!-- Chaquetilla con bordados dorados -->
+  <path d="M 180 102 L 155 125 L 170 180 L 230 180 L 245 125 L 220 102 Z" fill="#5C1010" />
+  <!-- Hombreras doradas con alamares -->
+  <ellipse cx="160" cy="120" rx="14" ry="8" fill="#C99700" />
+  <ellipse cx="240" cy="120" rx="14" ry="8" fill="#C99700" />
+  <!-- Bordados y detalles del chaleco -->
+  <path d="M 195 105 L 195 180 M 205 105 L 205 180" stroke="#C99700" stroke-width="2" />
+  <circle cx="200" cy="120" r="3" fill="#E0B32D" />
+  <circle cx="200" cy="140" r="3" fill="#E0B32D" />
+  <circle cx="200" cy="160" r="3" fill="#E0B32D" />
+
+  <!-- Capote de brega estilizado (fucsia y amarillo albero) -->
+  <path d="M 140 160 Q 90 200 130 250 Q 200 270 270 250 Q 310 200 260 160 Q 200 190 140 160 Z" fill="#8B1E1E" />
+  <path d="M 155 175 Q 115 210 145 240 Q 200 255 255 240 Q 285 210 245 175 Q 200 200 155 175 Z" fill="#C99700" opacity="0.85" />
+</svg>

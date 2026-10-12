@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%" role="img" aria-label="El Toro en el Arte y la Literatura: libro poético y pluma de escritor">
+  <defs>
+    <linearGradient id="litBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6" />
+      <stop offset="100%" stop-color="#EFE9DD" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" fill="url(#litBg)" />
+  
+  <circle cx="200" cy="120" r="85" fill="#C99700" opacity="0.12" />
+
+  <!-- Libro abierto de poesía -->
+  <g transform="translate(100, 70)">
+    <!-- Páginas del libro -->
+    <path d="M 10 90 Q 55 75 100 85 L 100 15 Q 55 5 10 15 Z" fill="#FCFAF6" stroke="#574F4A" stroke-width="1.5" />
+    <path d="M 190 90 Q 145 75 100 85 L 100 15 Q 145 5 190 15 Z" fill="#FCFAF6" stroke="#574F4A" stroke-width="1.5" />
+    <!-- Lomo del libro -->
+    <line x1="100" y1="15" x2="100" y2="85" stroke="#8B1E1E" stroke-width="3" />
+    <!-- Líneas de versos poéticos simulados -->
+    <g stroke="#7E746D" stroke-width="1.5" stroke-linecap="round">
+      <line x1="25" y1="30" x2="85" y2="30" />
+      <line x1="25" y1="42" x2="75" y2="42" />
+      <line x1="25" y1="54" x2="80" y2="54" />
+      <line x1="25" y1="66" x2="60" y2="66" />
+
+      <line x1="115" y1="30" x2="175" y2="30" />
+      <line x1="115" y1="42" x2="165" y2="42" />
+      <line x1="115" y1="54" x2="170" y2="54" />
+      <line x1="115" y1="66" x2="150" y2="66" />
+    </g>
+  </g>
+
+  <!-- Pluma estilográfica clásica dorada inclinada -->
+  <g transform="translate(250, 45) rotate(35)">
+    <!-- Cuerpo de la pluma -->
+    <path d="M 0 0 C 4 20 8 60 5 90 L 0 105 L -5 90 C -8 60 -4 20 0 0 Z" fill="#5C1010" />
+    <!-- Plumín dorado -->
+    <polygon points="0,105 5,120 0,135 -5,120" fill="#E0B32D" stroke="#C99700" stroke-width="1" />
+    <line x1="0" y1="105" x2="0" y2="130" stroke="#231F20" stroke-width="1" />
+  </g>
+
+  <!-- Laurel o corona poética de fondo -->
+  <path d="M 70 120 C 70 160 110 190 150 195" stroke="#C99700" stroke-width="2" fill="none" />
+  <path d="M 330 120 C 330 160 290 190 250 195" stroke="#C99700" stroke-width="2" fill="none" />
+</svg>

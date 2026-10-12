@@ -25,6 +25,7 @@
   <script src="../../js/nav.js" defer></script>
   <script src="script.js" defer></script>
   <script src="intro.js" defer></script>
+  <script src="journey.js" defer></script>
 </head>
 <body>
 
@@ -131,7 +132,7 @@
           <div class="byline-container" id="article-byline">
             <div class="byline-avatar" aria-hidden="true">S</div>
             <div class="byline-info">
-              <span class="byline-author" id="author-name">Por Sukrish, Sección 1</span>
+              <span class="byline-author" id="author-name">Por Sukrish, Sección 1: La Historia</span>
               <span class="byline-role">Investigación Histórica &amp; Redacción</span>
             </div>
           </div>
@@ -149,59 +150,74 @@
       </header>
 
       <!-- ===================================================================
-           2. ÁREA DE INTRODUCCIÓN (PLACEHOLDER)
+           2. MENÚ FIJO DE NAVEGACIÓN POR ÉPOCAS (STICKY ERA NAV)
            =================================================================== -->
-      <section class="historia-intro-section" id="historia-intro" aria-labelledby="intro-heading">
-        <div class="reading-container">
-          <article class="intro-placeholder-card">
-            <h2 class="intro-guide-title" id="intro-heading">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-              Introducción Histórica [Espacio Reservado]
-            </h2>
-            <div class="intro-placeholder-text">
-              <p>
-                <strong>[Área reservada para el ensayo introductorio]:</strong> Aquí se redactará el marco contextual sobre el origen mitológico y sacrificial del toro en las culturas mediterráneas e ibéricas, explorando cómo la tauromaquia evolucionó desde una práctica aristocrática a caballo hacia un espectáculo popular y reglamentado a pie en plazas públicas.
-              </p>
-              <p class="text-muted" style="font-size: var(--text-sm); margin-top: var(--space-sm);">
-                <em>Nota del autor:</em> Este bloque albergará los párrafos narrativos, citas de historiadores y la tesis central de la Sección 1.
-              </p>
-            </div>
-          </article>
+      <nav id="hist-era-nav" class="hist-era-nav" aria-label="Navegación por épocas del toreo">
+        <div class="site-container hist-era-nav-inner">
+          <span class="hist-era-nav-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Viaje en el tiempo
+          </span>
+          <div class="hist-era-pills">
+            <a href="#hist-era-origenes" class="hist-era-link hist-active" data-era="Orígenes">1. Orígenes</a>
+            <a href="#hist-era-nobleza" class="hist-era-link" data-era="Nobleza y prohibiciones">2. Nobleza</a>
+            <a href="#hist-era-toreo-pie" class="hist-era-link" data-era="El toreo a pie">3. Toreo a pie</a>
+            <a href="#hist-era-edad-oro" class="hist-era-link" data-era="Edad de Oro">4. Edad de Oro</a>
+            <a href="#hist-era-leyes-debate" class="hist-era-link" data-era="Leyes y debate">5. Leyes y debate</a>
+          </div>
         </div>
-      </section>
+      </nav>
+
+      <!-- Contador de fecha / año lateral adhesivo (Sticky HUD) -->
+      <aside id="hist-year-counter" class="hist-year-counter" aria-live="polite" aria-atomic="true" aria-label="Fecha actual del recorrido">
+        <div class="hist-year-badge">
+          <span class="hist-year-heading">Época</span>
+          <span class="hist-year-era">Orígenes</span>
+          <span class="hist-year-divider" aria-hidden="true"></span>
+          <span class="hist-year-value">S. XI</span>
+        </div>
+      </aside>
 
       <!-- ===================================================================
-           3. CONTENEDOR DE LA LÍNEA DE TIEMPO (EMPTY TIMELINE CONTAINER)
+           3. VIAJE EN EL TIEMPO: 5 SECCIONES DE ÉPOCA Y TARJETAS INTERACTIVAS
            =================================================================== -->
-      <section class="historia-timeline-section" id="historia-timeline-section" aria-labelledby="timeline-heading">
-        <div class="section-heading-wrapper">
-          <span class="section-label">Cronología Interactiva</span>
-          <h2 class="section-title" id="timeline-heading">Hitos y Épocas Históricas</h2>
-        </div>
+      <div id="hist-journey-container" class="hist-journey-container" aria-label="Cronología histórica guiada por scroll">
+        <!-- Renderizado dinámicamente por journey.js -->
+      </div>
 
-        <div class="timeline-container-wrapper">
-          <!-- Contenedor vacío donde se inyectará dinámicamente la línea temporal -->
-          <div id="timeline-container" class="timeline-container" aria-live="polite">
-            <div class="timeline-placeholder-content">
-              <div class="placeholder-icon" aria-hidden="true">⏳</div>
-              <h3 class="placeholder-title">Línea de Tiempo en Construcción</h3>
-              <p class="placeholder-desc">
-                Contenedor interactivo preparado para albergar los períodos cronológicos fundamentales del toreo. Se incorporará navegación interactiva por épocas, descripciones históricas y material visual.
-              </p>
-              <div class="timeline-skeleton-badges" aria-label="Épocas proyectadas">
-                <span class="epoch-badge">1. Orígenes y Ritos Ibéricos</span>
-                <span class="epoch-badge">2. Edad Media y Rejoneo Aristocrático</span>
-                <span class="epoch-badge">3. Siglo XVIII y Escuelas Populares</span>
-                <span class="epoch-badge">4. La Edad de Oro (Joselito y Belmonte)</span>
-                <span class="epoch-badge">5. Siglo XX y Contemporaneidad</span>
-              </div>
+      <!-- ===================================================================
+           4. CUESTIONARIO HISTÓRICO (ESPACIO RESERVADO - NO CONSTRUIR AÚN)
+           =================================================================== -->
+      <section id="hist-quiz-section" class="hist-quiz-section" aria-labelledby="hist-quiz-title">
+        <div class="site-container">
+          <div class="hist-quiz-card-placeholder">
+            <div class="hist-quiz-badge-wrap">
+              <span class="hist-quiz-badge">Próximamente • Autoevaluación</span>
+            </div>
+            <h2 class="hist-quiz-title" id="hist-quiz-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Cuestionario Histórico [Espacio Reservado]
+            </h2>
+            <p class="hist-quiz-desc">
+              Espacio reservado para el cuestionario interactivo de 5 preguntas sobre las épocas, transformaciones sociales y debates jurídicos de la tauromaquia.
+            </p>
+            <div class="hist-quiz-indicators" aria-hidden="true">
+              <span class="hist-quiz-dot"></span>
+              <span class="hist-quiz-dot"></span>
+              <span class="hist-quiz-dot"></span>
+              <span class="hist-quiz-dot"></span>
+              <span class="hist-quiz-dot"></span>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ===================================================================
-           4. CAJA "MI REFLEXIÓN" (REFLEXIÓN EDITORIAL PERSONAL)
+           5. CAJA "MI REFLEXIÓN" (REFLEXIÓN EDITORIAL PERSONAL)
            =================================================================== -->
       <section class="historia-reflexion-section" id="historia-reflexion-section" aria-labelledby="reflexion-heading">
         <div class="reading-container">
@@ -223,7 +239,7 @@
       </section>
 
       <!-- ===================================================================
-           5. SECCIÓN DE REFERENCIAS (BIBLIOGRAFÍA Y FUENTES)
+           6. SECCIÓN DE REFERENCIAS (BIBLIOGRAFÍA Y FUENTES)
            =================================================================== -->
       <section class="historia-referencias-section" id="historia-referencias-section" aria-labelledby="referencias-heading">
         <div class="reading-container">

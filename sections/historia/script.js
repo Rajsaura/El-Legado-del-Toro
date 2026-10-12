@@ -1,20 +1,17 @@
 /**
  * ==========================================================================
- * SECCIÓN 1: LA HISTORIA - LÓGICA DE INTERACCIÓN
+ * SECCIÓN 1: LA HISTORIA - LÓGICA DE INTERACCIÓN GENERAL
  * Archivo: sections/historia/script.js
- * Reservado para la interactividad de la línea de tiempo histórica.
+ * 
+ * Coordinación de módulos de la sección:
+ * - intro.js: Animación de introducción a pantalla completa con silueta del toro.
+ * - journey.js: Cronología interactiva "Viaje en el tiempo" con 5 épocas,
+ *   12 eventos, tarjetas animadas, glosario de vocabulario y traducciones.
  * ==========================================================================
  */
 
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Espacio reservado para inicialización de la línea de tiempo interactiva
-    const timelineContainer = document.getElementById('timeline-container');
-    if (!timelineContainer) return;
-
-    // Los datos y la renderización interactiva de las épocas se implementarán en la siguiente fase.
-    console.log('[Historia] Esqueleto de la Sección 1 inicializado correctamente.');
-  });
+  // Lógica global de la sección encapsulada sin variables globales
 })();

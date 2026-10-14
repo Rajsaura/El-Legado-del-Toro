@@ -2201,30 +2201,49 @@
   outline-offset: 2px;
 }
 
-/* MARCADORES SVG INTERACTIVOS */
+/* MARCADORES SVG INTERACTIVOS (Arquitectura de hitbox fija y no vibrante) */
 .hist-map-marker {
   cursor: pointer;
   outline: none;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-  transform-origin: center;
+  /* Ningún transform en hover sobre el grupo: la geometría se mantiene 100% rígida */
+  transition: opacity 0.25s ease;
 }
 
-.hist-map-marker:hover,
-.hist-map-marker:focus-visible {
-  transform: scale(1.18);
+/* 1. Hitbox invisible de interacción (ÚNICO elemento que recibe eventos de ratón) */
+.hist-marker-hitbox {
+  cursor: pointer;
+  pointer-events: all !important;
+  fill: transparent;
 }
 
+.hist-map-marker:focus-visible .hist-marker-hitbox {
+  stroke: var(--color-gold-light, #f3d068);
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+/* 2. Todos los elementos visuales decorativos NO interceptan eventos de ratón */
+.hist-marker-pulse,
+.hist-marker-aura,
+.hist-marker-pin,
+.hist-marker-icon,
+.hist-marker-tag,
+.hist-marker-tag-bg,
+.hist-marker-tag-text {
+  pointer-events: none !important;
+}
+
+/* Pulso animado decorativo */
 .hist-marker-pulse {
   fill: none;
-  stroke: rgba(224, 179, 45, 0.8);
+  stroke: rgba(224, 179, 45, 0.75);
   stroke-width: 1.5;
-  transform-origin: center;
-  animation: histMarkerPulse 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation: histMarkerPulse 2.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
 @keyframes histMarkerPulse {
   0% {
-    r: 7px;
+    r: 6.5px;
     opacity: 0.9;
     stroke: rgba(224, 179, 45, 0.9);
   }
@@ -2241,27 +2260,34 @@
 }
 
 .hist-marker-pin {
-  fill: var(--color-gold);
+  fill: var(--color-gold, #c99700);
   stroke: #FFFDF9;
   stroke-width: 1.5;
   transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
 }
 
+/* Feedback visual de hover/foco: SOLO color y brillo, CERO cambio geométrico */
 .hist-map-marker:hover .hist-marker-pin,
 .hist-map-marker:focus-visible .hist-marker-pin {
   fill: #FFFFFF;
-  stroke: var(--color-gold-light);
+  stroke: var(--color-gold-light, #f3d068);
+  stroke-width: 2px;
+}
+
+.hist-map-marker:hover .hist-marker-aura,
+.hist-map-marker:focus-visible .hist-marker-aura {
+  fill: rgba(254, 240, 138, 0.55);
 }
 
 .hist-map-marker.hist-marker-selected .hist-marker-pin {
   fill: #ffe066;
   stroke: #FFFFFF;
-  stroke-width: 2.2;
+  stroke-width: 2.2px;
 }
 
 .hist-map-marker.hist-marker-selected .hist-marker-aura {
-  fill: rgba(254, 240, 138, 0.6);
+  fill: rgba(254, 240, 138, 0.75);
 }
 
 .hist-map-marker.hist-marker-dimmed {
@@ -2269,11 +2295,10 @@
   pointer-events: none;
 }
 
-/* Etiqueta flotante del marcador */
+/* Etiqueta flotante de la ciudad */
 .hist-marker-tag {
   opacity: 0.88;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .hist-marker-tag-bg {
@@ -2285,7 +2310,7 @@
 
 .hist-marker-tag-text {
   fill: #FFFDF9;
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, sans-serif);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -2299,7 +2324,7 @@
 
 .hist-map-marker.hist-marker-selected .hist-marker-tag-bg {
   fill: rgba(60, 12, 14, 0.96);
-  stroke: var(--color-gold);
+  stroke: var(--color-gold, #c99700);
   stroke-width: 1.2;
 }
 
@@ -3227,4 +3252,22 @@
 .referencia-card-link:focus-visible {
   outline: 2px solid var(--color-gold-light);
   outline-offset: 2px;
+}
+
+
+.hist-map-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: rgba(252, 250, 246, 0.5);
+  text-align: right;
+  margin-top: 0.4rem;
+}
+
+.hist-map-attribution a {
+  color: rgba(224, 179, 45, 0.7);
+  text-decoration: underline;
+}
+
+.hist-map-attribution a:hover {
+  color: var(--color-gold-light);
 }

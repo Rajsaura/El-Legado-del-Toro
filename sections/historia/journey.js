@@ -2330,10 +2330,28 @@
         updateStage();
       }, { passive: true });
     }
+
+    window.addEventListener('historiaLanguageChange', function (e) {
+      if (e.detail && e.detail.lang && e.detail.lang !== exhibitLanguage) {
+        exhibitLanguage = e.detail.lang;
+        if (isExhibitOpen) {
+          renderExhibitContent(activeExhibitIndex);
+        }
+        cardElements.forEach(function (card) {
+          const isTranslated = card.classList.contains('hist-translated');
+          if (exhibitLanguage === 'en' && !isTranslated) {
+            toggleCardTranslation(card, false);
+          } else if (exhibitLanguage === 'es' && isTranslated) {
+            toggleCardTranslation(card, false);
+          }
+        });
+      }
+    });
   }
 
-  function toggleCardTranslation(card) {
+  function toggleCardTranslation(card, broadcast) {
     if (!card) return;
+    if (broadcast === undefined) broadcast = true;
 
     const isTranslated = card.classList.contains('hist-translated');
     const captionEs = card.querySelector('.hist-card-caption-es');
@@ -2350,6 +2368,15 @@
       if (captionEs) captionEs.setAttribute('aria-hidden', 'true');
       if (captionEn) captionEn.removeAttribute('aria-hidden');
       if (translateBtn) translateBtn.setAttribute('aria-pressed', 'true');
+    }
+
+    if (broadcast) {
+      exhibitLanguage = card.classList.contains('hist-translated') ? 'en' : 'es';
+      try {
+        window.dispatchEvent(new CustomEvent('historiaLanguageChange', { detail: { lang: exhibitLanguage } }));
+      } catch (err) {
+        // Ignore in headless/test environments
+      }
     }
   }
 
@@ -2552,6 +2579,11 @@
     },
     toggleLanguage: function () {
       toggleExhibitLanguage();
+    },
+    setLanguage: function (lang) {
+      if (lang && lang !== exhibitLanguage) {
+        toggleExhibitLanguage();
+      }
     }
   };
 

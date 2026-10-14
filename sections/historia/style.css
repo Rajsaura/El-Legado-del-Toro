@@ -1923,7 +1923,7 @@
 .hist-vocab-tooltip.hist-tooltip-active {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .hist-tooltip-title {
@@ -3802,7 +3802,13 @@
   .hist-exhibit-modal,
   .hist-exhibit-dialog,
   .hist-btn-exhibit,
-  .hist-exhibit-close-btn {
+  .hist-exhibit-close-btn,
+  .hist-quiz-card,
+  .hist-quiz-option,
+  .hist-quiz-bar-fill,
+  .hist-quiz-feedback,
+  .hist-quiz-results-card,
+  .hist-quiz-btn {
     transition: none !important;
     transform: none !important;
     animation: none !important;

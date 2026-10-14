@@ -174,7 +174,59 @@
       </header>
 
       <!-- ===================================================================
-           2. MENÚ FIJO DE NAVEGACIÓN POR ÉPOCAS (STICKY ERA NAV)
+           2. NAVEGADOR DE SALAS DEL MUSEO HISTÓRICO (SECTION NAVIGATOR)
+           =================================================================== -->
+      <nav id="hist-museum-nav" class="hist-museum-nav" aria-label="Navegación de salas del museo">
+        <div class="site-container hist-museum-nav-inner">
+          <div class="hist-museum-nav-brand">
+            <span class="hist-museum-nav-icon" aria-hidden="true">🏛️</span>
+            <span class="hist-museum-nav-label">
+              <span class="hist-lang-es">Salas del Museo</span>
+              <span class="hist-lang-en" style="display:none;">Museum Galleries</span>
+            </span>
+          </div>
+          <div class="hist-museum-nav-pills" role="tablist" aria-label="Salas temáticas del museo">
+            <a href="#hist-journey-container" class="hist-museum-pill hist-museum-active" data-section="hist-journey-container" role="tab" aria-selected="true" id="nav-room-timeline">
+              <span class="hist-museum-pill-num">I</span>
+              <span class="hist-museum-pill-text">
+                <span class="hist-lang-es">Cronología</span>
+                <span class="hist-lang-en" style="display:none;">Timeline</span>
+              </span>
+            </a>
+            <a href="#hist-map-section" class="hist-museum-pill" data-section="hist-map-section" role="tab" aria-selected="false" id="nav-room-map">
+              <span class="hist-museum-pill-num">II</span>
+              <span class="hist-museum-pill-text">
+                <span class="hist-lang-es">Cartografía</span>
+                <span class="hist-lang-en" style="display:none;">Map</span>
+              </span>
+            </a>
+            <a href="#historia-referencias-section" class="hist-museum-pill" data-section="historia-referencias-section" role="tab" aria-selected="false" id="nav-room-archive">
+              <span class="hist-museum-pill-num">III</span>
+              <span class="hist-museum-pill-text">
+                <span class="hist-lang-es">Archivo Digital</span>
+                <span class="hist-lang-en" style="display:none;">Digital Archive</span>
+              </span>
+            </a>
+            <a href="#hist-quiz-section" class="hist-museum-pill" data-section="hist-quiz-section" role="tab" aria-selected="false" id="nav-room-quiz">
+              <span class="hist-museum-pill-num">IV</span>
+              <span class="hist-museum-pill-text">
+                <span class="hist-lang-es">Cuestionario</span>
+                <span class="hist-lang-en" style="display:none;">Quiz</span>
+              </span>
+            </a>
+            <a href="#historia-reflexion-section" class="hist-museum-pill" data-section="historia-reflexion-section" role="tab" aria-selected="false" id="nav-room-reflection">
+              <span class="hist-museum-pill-num">V</span>
+              <span class="hist-museum-pill-text">
+                <span class="hist-lang-es">Reflexión &amp; Legado</span>
+                <span class="hist-lang-en" style="display:none;">Reflection</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ===================================================================
+           3. MENÚ FIJO DE NAVEGACIÓN POR ÉPOCAS (STICKY ERA NAV - SALA I)
            =================================================================== -->
       <nav id="hist-era-nav" class="hist-era-nav" aria-label="Navegación por épocas del toreo">
         <div class="site-container hist-era-nav-inner">
@@ -223,23 +275,33 @@
     </aside>
 
     <!-- ===================================================================
-         3. VIAJE EN EL TIEMPO: STAGE PINNED SCROLL DE PANTALLA COMPLETA
+         SALA I: CRONOLOGÍA HISTÓRICA (PINNED STAGE DE PANTALLA COMPLETA)
          =================================================================== -->
-    <section id="hist-journey-container" class="hist-journey-container" aria-label="Cronología histórica guiada por scroll">
+    <section id="hist-journey-container" class="hist-journey-container hist-museum-room" data-room="timeline" aria-label="Cronología histórica guiada por scroll">
       <!-- Renderizado dinámicamente por journey.js -->
     </section>
 
       <!-- ===================================================================
-           4. MAPA HISTÓRICO INTERACTIVO: GEOGRAFÍA DE LA TAUROMAQUIA (FASE 5)
+           SALA II: MAPA HISTÓRICO INTERACTIVO: GEOGRAFÍA DE LA LIDIA
            =================================================================== -->
-      <section id="hist-map-section" class="hist-map-section" aria-labelledby="hist-map-title">
+      <section id="hist-map-section" class="hist-map-section hist-museum-room" data-room="map" aria-labelledby="hist-map-title">
         <div class="site-container">
           
           <!-- Cabecera de la Sección del Mapa -->
           <div class="hist-map-header">
             <div class="hist-map-kicker-wrap">
-              <span class="badge" id="hist-map-badge">Cartografía Histórica • Fase 5</span>
-              <span class="hist-map-kicker-meta" id="hist-map-meta">7 Sedes Fundacionales y Escenarios Legales</span>
+              <span class="badge badge-gold hist-museum-room-badge">
+                <span class="hist-lang-es">SALA II • CARTOGRAFÍA HISTÓRICA</span>
+                <span class="hist-lang-en" style="display:none;">GALLERY II • HISTORICAL CARTOGRAPHY</span>
+              </span>
+              <span class="badge" id="hist-map-badge">
+                <span class="hist-lang-es">Cartografía Histórica • 7 Sedes</span>
+                <span class="hist-lang-en" style="display:none;">Historical Cartography • 7 Sites</span>
+              </span>
+              <span class="hist-map-kicker-meta" id="hist-map-meta">
+                <span class="hist-lang-es">7 Sedes Fundacionales y Escenarios Legales</span>
+                <span class="hist-lang-en" style="display:none;">7 Foundational Seats &amp; Legal Arenas</span>
+              </span>
             </div>
             
             <h2 class="hist-map-title" id="hist-map-title">
@@ -334,59 +396,27 @@
       </section>
 
       <!-- ===================================================================
-           6. CUESTIONARIO HISTÓRICO INTERACTIVO (FASE 6)
+           SALA III: ARCHIVO HISTÓRICO DIGITAL (BIBLIOGRAFÍA Y FONDOS DOCUMENTALES)
            =================================================================== -->
-      <section id="hist-quiz-section" class="hist-quiz-section" aria-labelledby="hist-quiz-main-heading">
+      <section class="historia-referencias-section hist-museum-room" id="historia-referencias-section" aria-labelledby="referencias-heading" data-room="archive">
         <div class="site-container">
-          <div id="hist-quiz-container" class="hist-quiz-container">
-            <!-- Interfaz del cuestionario inyectada y gestionada por quiz.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           7. CAJA "MI REFLEXIÓN" (REFLEXIÓN EDITORIAL PERSONAL)
-           =================================================================== -->
-      <section class="historia-reflexion-section" id="historia-reflexion-section" aria-labelledby="reflexion-heading">
-        <div class="reading-container">
-          <aside class="reflection-box" id="mi-reflexion">
-            <h2 class="reflection-title" id="reflexion-heading">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              <span class="hist-lang-es">Mi reflexión editorial</span>
-              <span class="hist-lang-en" style="display:none;">Editorial Reflection</span>
-            </h2>
-            <div class="reflection-body">
-              <p class="hist-lang-p-es">
-                Reconstruir la trayectoria histórica de la tauromaquia a través de sus fuentes primarias revela una verdad fundamental: el espectáculo del toro nunca fue una tradición estática ni unívoca, sino un campo de permanente tensión entre la consagración cultural y el cuestionamiento ético. Desde las prevenciones alfonsíes de <em>Las Siete Partidas</em> en el siglo XIII y las bulas papales de Pío V en el XVI, hasta la revolución estética de Juan Belmonte y las complejas resoluciones competenciales del Tribunal Constitucional en el siglo XXI, cada época ha redefinido sus límites. Lejos de reducir el debate a simplificaciones maniqueas, la historia nos enseña que el destino de las manifestaciones culturales se forja en el diálogo crítico entre su peso patrimonial, la sensibilidad moral de su sociedad y el marco de las libertades democráticas.
-              </p>
-              <p class="hist-lang-p-en" style="display:none;">
-                Reconstructing the historical trajectory of tauromaquia through its primary sources reveals a fundamental truth: bullfighting has never been a static or unanimous tradition, but rather an arena of continuous tension between cultural consecration and ethical scrutiny. From the 13th-century strictures of <em>Las Siete Partidas</em> and Pius V's 16th-century papal bulls, to Juan Belmonte's aesthetic revolution and the 21st-century jurisprudence of Spain's Constitutional Court, every era has reshaped its boundaries. Rather than reducing the debate to binary simplifications, history demonstrates that the evolution of cultural expressions is forged in the critical dialogue between inherited heritage, changing moral sensibilities, and democratic governance.
-              </p>
-            </div>
-            <div class="reflexion-author-sig">
-              <span class="hist-lang-es">— Sukrish, Responsable de la Sección 1: La Historia</span>
-              <span class="hist-lang-en" style="display:none;">— Sukrish, Lead Author, Section 1: History</span>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           8. ARCHIVO HISTÓRICO DIGITAL (BIBLIOGRAFÍA Y FONDOS DOCUMENTALES)
-           =================================================================== -->
-      <section class="historia-referencias-section" id="historia-referencias-section" aria-labelledby="referencias-heading">
-        <div class="reading-container">
           <div class="referencias-wrapper" id="referencias-container">
             <div class="referencias-header">
+              <div class="hist-room-kicker-wrap">
+                <span class="badge badge-gold hist-museum-room-badge">
+                  <span class="hist-lang-es">SALA III • ARCHIVO HISTÓRICO DIGITAL</span>
+                  <span class="hist-lang-en" style="display:none;">GALLERY III • DIGITAL ARCHIVE</span>
+                </span>
+                <span class="badge" id="references-badge">
+                  <span class="hist-lang-es">Fondo Documental Cotejado</span>
+                  <span class="hist-lang-en" style="display:none;">Verified Document Repository</span>
+                </span>
+              </div>
               <h2 class="referencias-title" id="referencias-heading">
                 <span aria-hidden="true">🏛️</span>
                 <span class="hist-lang-es">Archivo Histórico Digital &amp; Fondos Documentales</span>
                 <span class="hist-lang-en" style="display:none;">Digital Historical Archive &amp; Document Repositories</span>
               </h2>
-              <span class="badge" id="references-badge">
-                <span class="hist-lang-es">Fondo Documental Cotejado</span>
-                <span class="hist-lang-en" style="display:none;">Verified Document Repository</span>
-              </span>
             </div>
 
             <p class="referencias-lead">
@@ -470,6 +500,56 @@
 
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SALA IV: CUESTIONARIO HISTÓRICO INTERACTIVO (FASE 6)
+           =================================================================== -->
+      <section id="hist-quiz-section" class="hist-quiz-section hist-museum-room" aria-labelledby="hist-quiz-main-heading" data-room="quiz">
+        <div class="site-container">
+          <div class="hist-room-kicker-wrap text-center" style="text-align: center; margin-bottom: 1rem;">
+            <span class="badge badge-gold hist-museum-room-badge">
+              <span class="hist-lang-es">SALA IV • AUTOEVALUACIÓN HISTÓRICA</span>
+              <span class="hist-lang-en" style="display:none;">GALLERY IV • HISTORICAL EVALUATION</span>
+            </span>
+          </div>
+          <div id="hist-quiz-container" class="hist-quiz-container">
+            <!-- Interfaz del cuestionario inyectada y gestionada por quiz.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SALA V: CAJA "MI REFLEXIÓN" (REFLEXIÓN EDITORIAL PERSONAL & LEGADO)
+           =================================================================== -->
+      <section class="historia-reflexion-section hist-museum-room" id="historia-reflexion-section" aria-labelledby="reflexion-heading" data-room="reflection">
+        <div class="reading-container">
+          <div class="hist-room-kicker-wrap" style="margin-bottom: 1rem;">
+            <span class="badge badge-gold hist-museum-room-badge">
+              <span class="hist-lang-es">SALA V • SALA DE REFLEXIÓN &amp; LEGADO</span>
+              <span class="hist-lang-en" style="display:none;">GALLERY V • REFLECTION &amp; LEGACY</span>
+            </span>
+          </div>
+          <aside class="reflection-box" id="mi-reflexion">
+            <h2 class="reflection-title" id="reflexion-heading">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span class="hist-lang-es">Mi reflexión editorial</span>
+              <span class="hist-lang-en" style="display:none;">Editorial Reflection</span>
+            </h2>
+            <div class="reflection-body">
+              <p class="hist-lang-p-es">
+                Reconstruir la trayectoria histórica de la tauromaquia a través de sus fuentes primarias revela una verdad fundamental: el espectáculo del toro nunca fue una tradición estática ni unívoca, sino un campo de permanente tensión entre la consagración cultural y el cuestionamiento ético. Desde las prevenciones alfonsíes de <em>Las Siete Partidas</em> en el siglo XIII y las bulas papales de Pío V en el XVI, hasta la revolución estética de Juan Belmonte y las complejas resoluciones competenciales del Tribunal Constitucional en el siglo XXI, cada época ha redefinido sus límites. Lejos de reducir el debate a simplificaciones maniqueas, la historia nos enseña que el destino de las manifestaciones culturales se forja en el diálogo crítico entre su peso patrimonial, la sensibilidad moral de su sociedad y el marco de las libertades democráticas.
+              </p>
+              <p class="hist-lang-p-en" style="display:none;">
+                Reconstructing the historical trajectory of tauromaquia through its primary sources reveals a fundamental truth: bullfighting has never been a static or unanimous tradition, but rather an arena of continuous tension between cultural consecration and ethical scrutiny. From the 13th-century strictures of <em>Las Siete Partidas</em> and Pius V's 16th-century papal bulls, to Juan Belmonte's aesthetic revolution and the 21st-century jurisprudence of Spain's Constitutional Court, every era has reshaped its boundaries. Rather than reducing the debate to binary simplifications, history demonstrates that the evolution of cultural expressions is forged in the critical dialogue between inherited heritage, changing moral sensibilities, and democratic governance.
+              </p>
+            </div>
+            <div class="reflexion-author-sig">
+              <span class="hist-lang-es">— Sukrish, Responsable de la Sección 1: La Historia</span>
+              <span class="hist-lang-en" style="display:none;">— Sukrish, Lead Author, Section 1: History</span>
+            </div>
+          </aside>
         </div>
       </section>
 

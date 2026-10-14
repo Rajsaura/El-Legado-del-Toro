@@ -10,6 +10,7 @@
  * - map.js: Cartografía histórica interactiva y geografía de la lidia.
  * - quiz.js: Cuestionario histórico interactivo con evaluación y retroalimentación.
  * - Coordinación bilingüe sincrónica (ES / EN) en toda la sección.
+ * - Navegador de Salas del Museo (Section Navigator) y seguimiento de scroll.
  * ==========================================================================
  */
 
@@ -90,9 +91,106 @@
     }
   };
 
+  /**
+   * Inicializa el observador de intersección para rastrear la sala activa del museo.
+   */
+  function initMuseumSectionObserver() {
+    var navPills = document.querySelectorAll('.hist-museum-pill');
+    if (!navPills.length) return;
+
+    var roomIds = [
+      'hist-journey-container',
+      'hist-map-section',
+      'historia-referencias-section',
+      'hist-quiz-section',
+      'historia-reflexion-section'
+    ];
+
+    var roomElements = roomIds.map(function (id) {
+      return document.getElementById(id);
+    }).filter(function (el) {
+      return el !== null;
+    });
+
+    if (!roomElements.length) return;
+
+    function setActivePill(activeId) {
+      navPills.forEach(function (pill) {
+        var targetSection = pill.getAttribute('data-section') || (pill.getAttribute('href') ? pill.getAttribute('href').replace('#', '') : '');
+        if (targetSection === activeId) {
+          pill.classList.add('hist-museum-active');
+          pill.setAttribute('aria-selected', 'true');
+          pill.setAttribute('aria-current', 'page');
+          var pillsContainer = pill.parentElement;
+          if (pillsContainer && pillsContainer.scrollWidth > pillsContainer.clientWidth) {
+            var pillLeft = pill.offsetLeft;
+            var pillWidth = pill.offsetWidth;
+            var containerWidth = pillsContainer.clientWidth;
+            pillsContainer.scrollTo({
+              left: pillLeft - containerWidth / 2 + pillWidth / 2,
+              behavior: 'smooth'
+            });
+          }
+        } else {
+          pill.classList.remove('hist-museum-active');
+          pill.setAttribute('aria-selected', 'false');
+          pill.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            setActivePill(entry.target.id);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: 0
+      });
+
+      roomElements.forEach(function (el) {
+        observer.observe(el);
+      });
+    } else {
+      window.addEventListener('scroll', function () {
+        var scrollPos = window.scrollY + 180;
+        var currentActiveId = roomIds[0];
+        roomElements.forEach(function (el) {
+          if (el.offsetTop <= scrollPos) {
+            currentActiveId = el.id;
+          }
+        });
+        setActivePill(currentActiveId);
+      }, { passive: true });
+    }
+
+    // Interacción por clic en las píldoras del navegador
+    navPills.forEach(function (pill) {
+      pill.addEventListener('click', function (e) {
+        var href = pill.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        var targetEl = document.getElementById(href.substring(1));
+        if (targetEl) {
+          e.preventDefault();
+          setActivePill(targetEl.id);
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          targetEl.setAttribute('tabindex', '-1');
+          try {
+            targetEl.focus({ preventScroll: true });
+          } catch (err) {}
+        }
+      });
+    });
+  }
+
   // Inicialización y manejo de enlaces internos de navegación accesible
   document.addEventListener('DOMContentLoaded', function () {
     applyLanguage(currentLang);
+    initMuseumSectionObserver();
 
     // Enlaces de ancla internos: asegurar foco accesible en saltos
     document.addEventListener('click', function (e) {

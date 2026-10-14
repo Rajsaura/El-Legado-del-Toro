@@ -31,6 +31,7 @@
   <script src="intro.js" defer></script>
   <script src="journey.js" defer></script>
   <script src="map.js" defer></script>
+  <script src="quiz.js" defer></script>
 </head>
 <body>
 
@@ -298,30 +299,13 @@
         </div>
       </section>
 
-      <section id="hist-quiz-section" class="hist-quiz-section" aria-labelledby="hist-quiz-title">
+      <!-- ===================================================================
+           6. CUESTIONARIO HISTÓRICO INTERACTIVO (FASE 6)
+           =================================================================== -->
+      <section id="hist-quiz-section" class="hist-quiz-section" aria-labelledby="hist-quiz-main-heading">
         <div class="site-container">
-          <div class="hist-quiz-card-placeholder">
-            <div class="hist-quiz-badge-wrap">
-              <span class="hist-quiz-badge">Próximamente • Autoevaluación</span>
-            </div>
-            <h2 class="hist-quiz-title" id="hist-quiz-title">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-              </svg>
-              Cuestionario Histórico [Espacio Reservado]
-            </h2>
-            <p class="hist-quiz-desc">
-              Espacio reservado para el cuestionario interactivo de 5 preguntas sobre las épocas, transformaciones sociales y debates jurídicos de la tauromaquia.
-            </p>
-            <div class="hist-quiz-indicators" aria-hidden="true">
-              <span class="hist-quiz-dot"></span>
-              <span class="hist-quiz-dot"></span>
-              <span class="hist-quiz-dot"></span>
-              <span class="hist-quiz-dot"></span>
-              <span class="hist-quiz-dot"></span>
-            </div>
+          <div id="hist-quiz-container" class="hist-quiz-container">
+            <!-- Interfaz del cuestionario inyectada y gestionada por quiz.js -->
           </div>
         </div>
       </section>

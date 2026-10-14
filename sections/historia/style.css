@@ -301,52 +301,131 @@
   color: #FCFAF6;
 }
 
-/* Capas de fondo con degradados por época (crossfade con scroll) */
+/* Capas de fondo cinemáticas y degradados por época */
 .hist-stage-backdrop-wrap {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
+  background: #0d0404;
 }
 
-.hist-era-bg {
+/* 1. Contenedor del escenario cinemático con soporte para paralaje */
+.hist-cinema-stage {
+  position: absolute;
+  top: -24px;
+  bottom: -24px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.15s ease-out;
+}
+
+/* Capa individual por cada evento histórico con desvanecimiento cruzado */
+.hist-cinema-layer {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.75s ease;
   will-change: opacity;
 }
 
-.hist-era-bg.hist-bg-active {
+.hist-cinema-layer.hist-cinema-active {
   opacity: 1;
+  visibility: visible;
+  z-index: 2;
 }
 
-/* Degradados temáticos de cada época */
-.hist-era-bg-0 { /* Orígenes */
-  background: radial-gradient(ellipse at 50% 35%, rgba(184, 115, 51, 0.32) 0%, rgba(18, 10, 6, 0.98) 72%), linear-gradient(180deg, #160a04 0%, #0c0502 100%);
+/* Imagen histórica con efecto Ken Burns suave y pausado */
+.hist-cinema-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 10s cubic-bezier(0.12, 0.88, 0.2, 1);
+  will-change: transform;
+  filter: saturate(1.06) contrast(1.04);
 }
 
-.hist-era-bg-1 { /* Nobleza y prohibiciones */
-  background: radial-gradient(ellipse at 50% 35%, rgba(153, 27, 27, 0.35) 0%, rgba(18, 5, 5, 0.98) 72%), linear-gradient(180deg, #180505 0%, #0a0202 100%);
+.hist-cinema-layer.hist-cinema-active .hist-cinema-img {
+  transform: scale(1.05);
 }
 
-.hist-era-bg-2 { /* El toreo a pie */
-  background: radial-gradient(ellipse at 50% 35%, rgba(201, 151, 0, 0.32) 0%, rgba(20, 12, 4, 0.98) 72%), linear-gradient(180deg, #1d1203 0%, #0d0801 100%);
+/* 2. Overlay oscuro translúcido: contraste cinematográfico y alta legibilidad */
+.hist-cinema-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: 
+    /* Gradiente vertical para proteger HUD superior y controles inferiores */
+    linear-gradient(180deg, 
+      rgba(10, 3, 3, 0.84) 0%, 
+      rgba(14, 5, 5, 0.48) 16%, 
+      rgba(16, 6, 6, 0.54) 50%, 
+      rgba(14, 5, 5, 0.62) 84%, 
+      rgba(10, 3, 3, 0.92) 100%
+    ),
+    /* Viñeta radial oscura para enmarcar la tarjeta central */
+    radial-gradient(ellipse at 50% 50%, 
+      rgba(20, 8, 7, 0.38) 0%, 
+      rgba(12, 4, 4, 0.82) 82%
+    );
 }
 
-.hist-era-bg-3 { /* Edad de Oro */
-  background: radial-gradient(ellipse at 50% 35%, rgba(234, 179, 8, 0.38) 0%, rgba(24, 14, 4, 0.98) 72%), linear-gradient(180deg, #1c1102 0%, #0a0601 100%);
+/* 3. Degradados temáticos por época como tintes cromáticos suaves */
+.hist-era-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: opacity;
+  mix-blend-mode: soft-light;
 }
 
-.hist-era-bg-4 { /* Leyes y debate */
-  background: radial-gradient(ellipse at 50% 35%, rgba(110, 95, 130, 0.32) 0%, rgba(16, 14, 18, 0.98) 72%), linear-gradient(180deg, #141216 0%, #080709 100%);
+.hist-era-bg.hist-bg-active {
+  opacity: 0.7;
 }
 
+/* Tintes cromáticos de cada época */
+.hist-era-bg-0 { /* Orígenes - Bronce y albero */
+  background: radial-gradient(ellipse at 50% 38%, rgba(212, 126, 46, 0.5) 0%, rgba(30, 16, 8, 0.8) 75%);
+}
+
+.hist-era-bg-1 { /* Nobleza y prohibiciones - Borgoña y carmesí */
+  background: radial-gradient(ellipse at 50% 38%, rgba(185, 28, 28, 0.52) 0%, rgba(35, 10, 10, 0.8) 75%);
+}
+
+.hist-era-bg-2 { /* El toreo a pie - Oro y albero */
+  background: radial-gradient(ellipse at 50% 38%, rgba(217, 163, 10, 0.5) 0%, rgba(35, 20, 5, 0.8) 75%);
+}
+
+.hist-era-bg-3 { /* Edad de Oro - Ámbar dorado */
+  background: radial-gradient(ellipse at 50% 38%, rgba(245, 180, 20, 0.52) 0%, rgba(35, 20, 5, 0.8) 75%);
+}
+
+.hist-era-bg-4 { /* Leyes y debate - Púrpura noche y pizarra */
+  background: radial-gradient(ellipse at 50% 38%, rgba(139, 92, 246, 0.38) 0%, rgba(20, 18, 26, 0.8) 75%);
+}
+
+/* 4. Viñeta perimetral de sombra cinemática profunda */
 .hist-stage-vignette {
   position: absolute;
   inset: 0;
-  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.85);
+  z-index: 5;
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.85);
   pointer-events: none;
 }
 
@@ -480,12 +559,12 @@
 .hist-stage-card {
   position: absolute;
   width: 100%;
-  background: rgba(22, 10, 8, 0.94);
-  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: rgba(22, 10, 8, 0.88);
+  border: 1px solid rgba(224, 179, 45, 0.38);
   border-radius: var(--radius-xl);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.18);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.78), 0 0 28px rgba(201, 151, 0, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: clamp(1.4rem, 3vw, 2.2rem);
   color: #FCFAF6;
   opacity: 0;
@@ -579,6 +658,42 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+}
+
+/* Botón Anterior <- */
+.hist-btn-prev {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-gold-light);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-prev:hover:not(:disabled) {
+  background: rgba(224, 179, 45, 0.2);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 14px rgba(201, 151, 0, 0.25);
+}
+
+.hist-btn-prev:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.hist-btn-prev:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
 }
 
 /* Botón Continuar -> */
@@ -1151,6 +1266,28 @@
     width: 10px;
     height: 10px;
   }
+
+  .hist-cinema-stage {
+    top: -12px;
+    bottom: -12px;
+  }
+
+  .hist-cinema-img {
+    object-position: center 30%;
+  }
+
+  .hist-card-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+  }
+
+  .hist-btn-prev,
+  .hist-btn-continue,
+  .hist-btn-translate {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1160,8 +1297,25 @@
     transition: none !important;
   }
 
+  .hist-cinema-stage {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hist-cinema-layer {
+    transition: opacity 0.05s ease !important;
+  }
+
+  .hist-cinema-img {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
   .hist-era-link,
   .hist-btn-translate,
+  .hist-btn-prev,
+  .hist-btn-continue,
   .hist-source-link,
   .hist-vocab-tooltip,
   .hist-year-counter {

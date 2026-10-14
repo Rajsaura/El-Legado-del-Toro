@@ -66,7 +66,8 @@
       source: {
         label: 'Britannica, “Bullfighting: History”',
         url: 'https://www.britannica.com/sports/bullfighting/History'
-      }
+      },
+      image: 'assets/timeline/01-origenes-siglo-xi.png'
     },
 
     // 2. Nobleza y prohibiciones
@@ -82,7 +83,8 @@
       source: {
         label: 'Codina Segovia, dA. Derecho Animal 11/3 (2020)',
         url: 'https://doi.org/10.5565/rev/da.503'
-      }
+      },
+      image: 'assets/timeline/02-siete-partidas-alfonso-x.png'
     },
 
     // 3. Nobleza y prohibiciones
@@ -98,7 +100,8 @@
       source: {
         label: 'Britannica, “Bullfighting: History”',
         url: 'https://www.britannica.com/sports/bullfighting/History'
-      }
+      },
+      image: 'assets/timeline/03-bula-papal-pio-v.png'
     },
 
     // 4. El toreo a pie
@@ -114,7 +117,8 @@
       source: {
         label: 'Shubert, Death and Money in the Afternoon (Oxford UP)',
         url: 'https://academic.oup.com/book/47400'
-      }
+      },
+      image: 'assets/timeline/04-transicion-rejoneo-a-pie.png'
     },
 
     // 5. El toreo a pie
@@ -130,7 +134,8 @@
       source: {
         label: 'Real Maestranza de Ronda',
         url: 'https://www.rmcr.org/en/tauromachy/'
-      }
+      },
+      image: 'assets/timeline/05-maestranza-de-ronda.png'
     },
 
     // 6. El toreo a pie
@@ -146,7 +151,8 @@
       source: {
         label: 'Codina Segovia, dA. Derecho Animal (2020)',
         url: 'https://doi.org/10.5565/rev/da.503'
-      }
+      },
+      image: 'assets/timeline/06-carlos-iii-restricciones.png'
     },
 
     // 7. Edad de Oro (Belmonte revolucionario antes de la muerte de Joselito)
@@ -162,7 +168,8 @@
       source: {
         label: 'Britannica, “Juan Belmonte”',
         url: 'https://www.britannica.com/biography/Juan-Belmonte'
-      }
+      },
+      image: 'assets/timeline/07-belmonte-temple-estetico.png'
     },
 
     // 8. Edad de Oro
@@ -178,7 +185,8 @@
       source: {
         label: 'Britannica, “Joselito”',
         url: 'https://www.britannica.com/biography/Joselito'
-      }
+      },
+      image: 'assets/timeline/08-muerte-joselito-el-gallo.png'
     },
 
     // 9. Leyes y debate
@@ -194,7 +202,8 @@
       source: {
         label: 'UNED, artículo doctrinal sobre STC 177/2016',
         url: 'https://revistas.uned.es/index.php/RDUNED/article/download/22285/18215/45854'
-      }
+      },
+      image: 'assets/timeline/09-canarias-ley-1991.png'
     },
 
     // 10. Leyes y debate
@@ -210,7 +219,8 @@
       source: {
         label: 'UNED / Diario Oficial',
         url: 'https://revistas.uned.es/index.php/RDUNED/article/download/22285/18215/45854'
-      }
+      },
+      image: 'assets/timeline/10-cataluna-abolicion-2010.png'
     },
 
     // 11. Leyes y debate
@@ -226,7 +236,8 @@
       source: {
         label: 'BOE, Ley 18/2013',
         url: 'https://www.boe.es/eli/es/l/2013/11/12/18'
-      }
+      },
+      image: 'assets/timeline/11-ley-18-2013-patrimonio-cultural.png'
     },
 
     // 12. Leyes y debate
@@ -242,7 +253,8 @@
       source: {
         label: 'Congreso de los Diputados, Respuesta STC 177/2016',
         url: 'https://www.congreso.es/entradap/l12p/e4/e_0040859_n_000.pdf'
-      }
+      },
+      image: 'assets/timeline/12-sentencia-tc-177-2016.png'
     }
   ];
 
@@ -318,6 +330,13 @@
   let cardElements = [];
   let eraBgElements = [];
 
+  // Fondos cinemáticos dinámicos
+  let cinemaStageElement = null;
+  let cinemaLayerElements = [];
+  let activeCinemaIndex = 0;
+  let programmaticTargetIndex = null;
+  let programmaticScrollTimer = null;
+
   // Navegación superior y contador lateral
   let eraNavContainer = null;
   let yearCounterElement = null;
@@ -325,6 +344,41 @@
   // Control de scroll y animación
   let isTicking = false;
   let activeEventIndex = 0;
+
+  /**
+   * Pre-carga de imágenes de la cronología en segundo plano para evitar parpadeos.
+   */
+  function preloadTimelineImages() {
+    events.forEach(evt => {
+      if (evt.image) {
+        const img = new Image();
+        img.src = evt.image;
+      }
+    });
+  }
+
+  /**
+   * Actualiza la imagen cinemática activa con transición suave y sin parpadeos.
+   * @param {number} index - Índice del evento seleccionado
+   */
+  function setCinemaImage(index) {
+    if (index < 0 || index >= events.length) return;
+    if (activeCinemaIndex === index && cinemaLayerElements[index] && cinemaLayerElements[index].classList.contains('hist-cinema-active')) {
+      return;
+    }
+
+    activeCinemaIndex = index;
+
+    cinemaLayerElements.forEach((layer, idx) => {
+      if (idx === index) {
+        layer.classList.add('hist-cinema-active');
+        layer.setAttribute('aria-hidden', 'false');
+      } else {
+        layer.classList.remove('hist-cinema-active');
+        layer.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
 
   /**
    * Genera el HTML de una tarjeta individual para el pinned scroll stage.
@@ -389,6 +443,15 @@
                 <span class="hist-translate-label">EN / ES</span>
               </button>
 
+              <button type="button" 
+                      class="hist-btn-prev" 
+                      data-prev-index="${index - 1}" 
+                      aria-label="Evento anterior" 
+                      ${index === 0 ? 'disabled' : ''}>
+                <span aria-hidden="true">←</span>
+                <span>Anterior</span>
+              </button>
+
               <button type="button" class="hist-btn-continue" data-next-index="${index + 1}" aria-label="${continueLabel}">
                 <span>${continueLabel}</span>
               </button>
@@ -405,6 +468,22 @@
   function renderPinnedStage() {
     journeyContainer = document.getElementById('hist-journey-container');
     if (!journeyContainer) return;
+
+    // 0. Capas cinemáticas por evento (12 imágenes históricas)
+    const cinemaLayersHTML = events.map((evt, i) => `
+      <div class="hist-cinema-layer ${i === 0 ? 'hist-cinema-active' : ''}" 
+           id="hist-cinema-layer-${i}" 
+           data-index="${i}" 
+           role="img" 
+           aria-label="${evt.dateLabel}: ${evt.title}"
+           aria-hidden="${i === 0 ? 'false' : 'true'}">
+        <img src="${evt.image}" 
+             alt="${evt.title} (${evt.dateLabel})" 
+             class="hist-cinema-img" 
+             loading="${i === 0 ? 'eager' : 'lazy'}" 
+             decoding="async" />
+      </div>
+    `).join('');
 
     // 1. Fondos con degradados temáticos por época
     const backdropsHTML = ERAS.map((era, i) => `
@@ -431,10 +510,21 @@
     journeyContainer.innerHTML = `
       <div class="hist-stage" id="hist-stage" role="region" aria-label="Escenario interactivo de la historia">
         
-        <!-- Capas de degradados de época -->
+        <!-- Capas de fondos cinemáticos y degradados de época -->
         <div class="hist-stage-backdrop-wrap" aria-hidden="true">
+          <!-- 1. Capas cinemáticas con imágenes históricas -->
+          <div class="hist-cinema-stage" id="hist-cinema-stage">
+            ${cinemaLayersHTML}
+          </div>
+
+          <!-- 2. Overlay oscuro translúcido para garantizar legibilidad -->
+          <div class="hist-cinema-overlay" aria-hidden="true"></div>
+
+          <!-- 3. Degradados temáticos por época (tinte sutil) -->
           ${backdropsHTML}
-          <div class="hist-stage-vignette"></div>
+
+          <!-- 4. Viñeta perimetral de sombra cinemática -->
+          <div class="hist-stage-vignette" aria-hidden="true"></div>
         </div>
 
         <!-- HUD superior con época actual y año simple -->
@@ -495,6 +585,8 @@
     dotButtons = Array.from(document.querySelectorAll('.hist-dot'));
     cardElements = Array.from(document.querySelectorAll('.hist-stage-card'));
     eraBgElements = Array.from(document.querySelectorAll('.hist-era-bg'));
+    cinemaStageElement = document.getElementById('hist-cinema-stage');
+    cinemaLayerElements = Array.from(document.querySelectorAll('.hist-cinema-layer'));
     eraNavContainer = document.getElementById('hist-era-nav');
     yearCounterElement = document.getElementById('hist-year-counter');
 
@@ -695,6 +787,17 @@
         bg.style.opacity = '0';
       }
     });
+
+    // 7. Fondo cinemático dinámico y paralaje sutil
+    if (programmaticTargetIndex === null) {
+      setCinemaImage(activeEventIndex);
+    }
+
+    if (cinemaStageElement && state) {
+      // Paralaje sutil y contenido (+/- 14px a lo largo de todo el recorrido de scroll)
+      const parallaxY = (state.progress - 0.5) * 28;
+      cinemaStageElement.style.transform = `translate3d(0, ${parallaxY.toFixed(1)}px, 0)`;
+    }
   }
 
   /**
@@ -716,6 +819,17 @@
    */
   function scrollToEvent(targetIndex) {
     const clampedIndex = Math.max(0, Math.min(events.length - 1, targetIndex));
+    programmaticTargetIndex = clampedIndex;
+
+    // Cambiar inmediatamente el fondo cinemático al evento destino para un crossfade
+    // directo y limpio, evitando parpadeos por los eventos intermedios.
+    setCinemaImage(clampedIndex);
+
+    clearTimeout(programmaticScrollTimer);
+    programmaticScrollTimer = setTimeout(() => {
+      programmaticTargetIndex = null;
+    }, 700);
+
     const stepDistance = DWELL_LENGTH_PX + TRAVEL_LENGTH_PX;
     // Ubicar el scroll en el centro exacto del dwell para máxima holgura
     const targetOffset = clampedIndex * stepDistance + (DWELL_LENGTH_PX * 0.5);
@@ -745,6 +859,17 @@
         const index = parseInt(dot.getAttribute('data-index'), 10);
         if (!isNaN(index)) {
           scrollToEvent(index);
+        }
+        return;
+      }
+
+      // Clic en el botón "← Anterior" de la tarjeta
+      const prevBtn = e.target.closest('.hist-btn-prev');
+      if (prevBtn && !prevBtn.disabled) {
+        e.preventDefault();
+        const prevIndex = parseInt(prevBtn.getAttribute('data-prev-index'), 10);
+        if (!isNaN(prevIndex) && prevIndex >= 0) {
+          scrollToEvent(prevIndex);
         }
         return;
       }
@@ -953,6 +1078,7 @@
    * Inicialización global del módulo al cargar la página.
    */
   function init() {
+    preloadTimelineImages();
     renderPinnedStage();
     initNavigationControls();
     initKeyboardNavigation();

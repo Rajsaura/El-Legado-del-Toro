@@ -1003,45 +1003,419 @@
 }
 
 /* Tarjeta de Fuente Primaria Documental */
-.hist-primary-card {
-  background: linear-gradient(135deg, rgba(38, 14, 12, 0.85) 0%, rgba(24, 8, 7, 0.92) 100%);
-  border-left: 4px solid var(--color-gold);
-  border-top: 1px solid rgba(224, 179, 45, 0.25);
-  border-right: 1px solid rgba(224, 179, 45, 0.25);
-  border-bottom: 1px solid rgba(224, 179, 45, 0.25);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 1.15rem 1.4rem;
-  margin: 0.5rem 0;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+/* ==========================================================================
+   FASE 4: VISOR DE ARCHIVO HISTÓRICO DIGITAL (SOURCE VIEWER / PRIMARY DOSSIER)
+   ========================================================================== */
+
+.hist-archive-viewer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
 }
 
-.hist-primary-doc-title {
-  font-family: var(--font-serif-heading);
-  font-size: 0.92rem;
+.hist-source-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.4);
   color: var(--color-gold-light);
-  margin-bottom: 0.6rem;
+}
+
+.hist-source-type-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.hist-source-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
   letter-spacing: 0.02em;
 }
 
-.hist-primary-excerpt {
-  font-family: var(--font-serif-body);
-  font-style: italic;
-  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
-  line-height: 1.75;
-  color: #FCFAF6;
-  margin: 0 0 0.65rem;
-  padding-left: 0.5rem;
-  border-left: 2px solid rgba(224, 179, 45, 0.4);
+.hist-source-status-verified {
+  background: rgba(22, 101, 52, 0.25);
+  border: 1px solid rgba(74, 222, 128, 0.45);
+  color: #86efac;
 }
 
-.hist-primary-citation {
-  font-size: 0.78rem;
-  color: rgba(224, 179, 45, 0.85);
-  font-weight: 500;
-  text-align: right;
-  letter-spacing: 0.01em;
+.hist-source-status-warning {
+  background: rgba(180, 83, 9, 0.25);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fde047;
 }
+
+/* Rejilla de Metadatos Archivísticos */
+.hist-archive-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 1rem;
+  background: rgba(10, 3, 3, 0.6);
+  border: 1px solid rgba(224, 179, 45, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.95rem;
+  margin: 0.8rem 0;
+}
+
+.hist-archive-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hist-archive-meta-full {
+  grid-column: 1 / -1;
+  border-top: 1px dashed rgba(224, 179, 45, 0.15);
+  padding-top: 0.45rem;
+  margin-top: 0.2rem;
+}
+
+.hist-archive-meta-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(224, 179, 45, 0.85);
+  margin: 0;
+}
+
+.hist-archive-meta-value {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #FCFAF6;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Caja de Acreditación Jurídica / Histórica */
+.hist-archive-supports-box {
+  background: rgba(224, 179, 45, 0.07);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.65rem 0.85rem;
+  margin: 0.85rem 0;
+}
+
+.hist-archive-supports-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-light);
+  margin-bottom: 0.35rem;
+}
+
+.hist-archive-supports-text {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.92);
+  margin: 0;
+}
+
+/* Envoltorio del Extracto Textual en Pergamino */
+.hist-archive-excerpt-wrap {
+  background: rgba(18, 5, 5, 0.7);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  margin: 0.85rem 0;
+}
+
+.hist-excerpt-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(224, 179, 45, 0.75);
+  margin-bottom: 0.45rem;
+}
+
+/* Barra de Acciones del Archivo */
+.hist-archive-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.18);
+  flex-wrap: wrap;
+}
+
+.hist-btn-archive-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(201, 151, 0, 0.25) 0%, rgba(138, 103, 0, 0.35) 100%);
+  border: 1px solid var(--color-gold);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hist-btn-archive-link:hover {
+  background: linear-gradient(135deg, rgba(224, 179, 45, 0.4) 0%, rgba(166, 124, 0, 0.55) 100%);
+  color: #FFFDF9;
+  border-color: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(201, 151, 0, 0.35);
+}
+
+.hist-btn-archive-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-toggle-tech-sheet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-toggle-tech-sheet:hover {
+  background: rgba(224, 179, 45, 0.15);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+}
+
+.hist-btn-toggle-tech-sheet:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-tech-sheet-chevron {
+  font-size: 0.72rem;
+  transition: transform var(--transition-fast);
+}
+
+.hist-btn-toggle-tech-sheet[aria-expanded="true"] .hist-tech-sheet-chevron {
+  transform: rotate(180deg);
+}
+
+/* Ficha Técnica Archivística Desplegable */
+.hist-source-tech-sheet {
+  display: none;
+  margin-top: 0.85rem;
+  background: rgba(8, 2, 2, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.28);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
+  animation: histTechSheetIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hist-source-tech-sheet.hist-tech-sheet-open {
+  display: block;
+}
+
+@keyframes histTechSheetIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hist-tech-sheet-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.hist-tech-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+}
+
+.hist-tech-label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+}
+
+.hist-tech-value {
+  color: rgba(252, 250, 246, 0.88);
+  line-height: 1.5;
+}
+
+.hist-tech-note {
+  border-top: 1px dashed rgba(224, 179, 45, 0.15);
+  padding-top: 0.45rem;
+}
+
+/* Tarjetas de Bibliografía y Fuentes Contrastadas */
+.hist-refs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hist-ref-card {
+  background: rgba(18, 5, 5, 0.65);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.15rem;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.hist-ref-card:hover {
+  background: rgba(28, 8, 8, 0.8);
+  border-color: rgba(224, 179, 45, 0.45);
+}
+
+.hist-ref-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.hist-ref-badge {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  color: var(--color-gold-light);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-ref-year {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.hist-ref-citation {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #FCFAF6;
+  margin-bottom: 0.55rem;
+}
+
+.hist-ref-author {
+  color: var(--color-gold-light);
+}
+
+.hist-ref-work {
+  font-style: italic;
+  color: #FFFFFF;
+}
+
+.hist-ref-publisher {
+  color: rgba(252, 250, 246, 0.75);
+}
+
+.hist-ref-supports {
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 2px solid rgba(224, 179, 45, 0.5);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.45rem 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.hist-ref-supports-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  margin-bottom: 0.2rem;
+}
+
+.hist-ref-supports-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(252, 250, 246, 0.85);
+  margin: 0;
+}
+
+.hist-ref-actions {
+  margin-top: 0.55rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hist-ref-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hist-ref-link:hover {
+  color: #FFFFFF;
+  transform: translateX(2px);
+  text-decoration: underline;
+}
+
+.hist-ref-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
 
 /* Parrilla de Interpretación Histórica (Hechos vs Debate) */
 .hist-interp-grid {
@@ -1642,6 +2016,21 @@
    7. ADAPTACIONES MÓVILES Y ACCESIBILIDAD (PREFERS-REDUCED-MOTION)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
+  .hist-archive-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .hist-archive-viewer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hist-archive-action-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hist-btn-archive-link,
+  .hist-btn-toggle-tech-sheet {
+    justify-content: center;
+  }
   .hist-era-nav {
     padding: 0.45rem 0;
   }
@@ -1783,6 +2172,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hist-source-tech-sheet {
+    animation: none !important;
+  }
   .hist-card {
     opacity: 1 !important;
     transform: none !important;
@@ -1860,53 +2252,141 @@
   padding: var(--space-2xl) 0 var(--space-3xl);
 }
 
+/* ==========================================================================
+   DIRECTORIO DE ARCHIVO HISTÓRICO DIGITAL (FOOTER REFERENCES SECTION)
+   ========================================================================== */
 .referencias-wrapper {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(145deg, #180605 0%, #100303 60%, #080202 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.4rem, 3.5vw, 2.5rem);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .referencias-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--space-md);
-  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.25);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .referencias-title {
-  font-size: var(--text-xl);
-  color: var(--color-primary-dark);
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  color: var(--color-gold-light);
   margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.referencias-lead {
+  font-size: clamp(0.9rem, 1.6vw, 0.98rem);
+  line-height: 1.7;
+  color: rgba(252, 250, 246, 0.88);
+  margin-bottom: 1.8rem;
+  max-width: 860px;
 }
 
 .referencias-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.25rem;
 }
 
 .referencia-card {
-  padding: var(--space-md);
-  background: var(--color-bg-sand-light);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  background: rgba(28, 8, 7, 0.75);
+  border: 1px solid rgba(224, 179, 45, 0.28);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.referencia-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(224, 179, 45, 0.55);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.referencia-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .referencia-card-type {
-  font-size: var(--text-xs);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: var(--color-gold-dark);
+  color: var(--color-gold);
   font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.06em;
+  background: rgba(224, 179, 45, 0.12);
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.3);
 }
 
-.referencia-card-placeholder {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  font-style: italic;
+.referencia-card-institution {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(252, 250, 246, 0.65);
+  font-weight: 500;
+}
+
+.referencia-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  color: #FFFDF9;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.35;
+}
+
+.referencia-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.82);
+  margin-bottom: 0.85rem;
+  flex-grow: 1;
+}
+
+.referencia-card-meta {
+  font-size: 0.76rem;
+  color: rgba(224, 179, 45, 0.85);
+  border-top: 1px dashed rgba(224, 179, 45, 0.18);
+  padding-top: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.referencia-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.referencia-card-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+.referencia-card-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
 }

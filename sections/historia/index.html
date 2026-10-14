@@ -30,6 +30,7 @@
   <script src="script.js" defer></script>
   <script src="intro.js" defer></script>
   <script src="journey.js" defer></script>
+  <script src="map.js" defer></script>
 </head>
 <body>
 
@@ -193,6 +194,104 @@
       <!-- ===================================================================
            4. CUESTIONARIO HISTÓRICO (ESPACIO RESERVADO - NO CONSTRUIR AÚN)
            =================================================================== -->
+      <!-- ===================================================================
+           3. MAPA HISTÓRICO INTERACTIVO: GEOGRAFÍA DE LA TAUROMAQUIA (FASE 5)
+           =================================================================== -->
+      <section id="hist-map-section" class="hist-map-section" aria-labelledby="hist-map-title">
+        <div class="site-container">
+          
+          <!-- Cabecera de la Sección del Mapa -->
+          <div class="hist-map-header">
+            <div class="hist-map-kicker-wrap">
+              <span class="badge" id="hist-map-badge">Cartografía Histórica • Fase 5</span>
+              <span class="hist-map-kicker-meta" id="hist-map-meta">7 Sedes Fundacionales y Escenarios Legales</span>
+            </div>
+            
+            <h2 class="hist-map-title" id="hist-map-title">
+              <span class="hist-map-title-icon" aria-hidden="true">🗺️</span>
+              <span class="hist-map-title-es">Geografía Histórica de la Tauromaquia</span>
+              <span class="hist-map-title-en" aria-hidden="true" style="display:none;">Historical Geography of Tauromaquia</span>
+            </h2>
+
+            <p class="hist-map-desc">
+              <span class="hist-map-desc-es">Explore los escenarios clave donde se forjaron los tratados fundacionales, las plazas maestras de la lidia a pie, las tragedias que marcaron épocas y las sedes legislativas de los grandes debates jurídicos y constitucionales en España. Haga clic en cualquier punto del mapa o seleccione una sede de la lista.</span>
+              <span class="hist-map-desc-en" style="display:none;">Explore the key locations where foundational treatises were codified, master bullrings of lidia on foot were built, defining tragedies unfolded, and the legislative seats of Spain's major legal and constitutional debates convened. Click any landmark or choose from the directory.</span>
+            </p>
+
+            <!-- Filtros por categoría -->
+            <div class="hist-map-filters" role="tablist" aria-label="Filtros de sedes históricas">
+              <button type="button" class="hist-map-filter-btn hist-filter-active" data-filter="all" role="tab" aria-selected="true">
+                <span class="hist-filter-es">Todas las sedes (7)</span>
+                <span class="hist-filter-en" style="display:none;">All Locations (7)</span>
+              </button>
+              <button type="button" class="hist-map-filter-btn" data-filter="fundacional" role="tab" aria-selected="false">
+                <span class="hist-filter-es">🏛️ Sedes Fundacionales</span>
+                <span class="hist-filter-en" style="display:none;">🏛️ Foundational Seats</span>
+              </button>
+              <button type="button" class="hist-map-filter-btn" data-filter="escuelas" role="tab" aria-selected="false">
+                <span class="hist-filter-es">🎭 Escuelas y Estilos</span>
+                <span class="hist-filter-en" style="display:none;">🎭 Schools & Styles</span>
+              </button>
+              <button type="button" class="hist-map-filter-btn" data-filter="tragedias" role="tab" aria-selected="false">
+                <span class="hist-filter-es">🥀 Hitos Trágicos</span>
+                <span class="hist-filter-en" style="display:none;">🥀 Tragic Milestones</span>
+              </button>
+              <button type="button" class="hist-map-filter-btn" data-filter="legal" role="tab" aria-selected="false">
+                <span class="hist-filter-es">⚖️ Sedes Legales y Constitucionales</span>
+                <span class="hist-filter-en" style="display:none;">⚖️ Legal & Constitutional Seats</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Contenedor Principal: Rejilla Mapa + Directorio -->
+          <div class="hist-map-grid">
+            
+            <!-- Visor del Mapa SVG -->
+            <div class="hist-map-stage" id="hist-map-stage">
+              <div class="hist-map-viewport" id="hist-map-viewport" role="region" aria-label="Mapa cartográfico interactivo de España">
+                <!-- SVG Cartográfico Inyectado Dinámicamente por map.js -->
+              </div>
+
+              <!-- Barra de herramientas del mapa -->
+              <div class="hist-map-toolbar">
+                <span class="hist-map-legend-hint">
+                  <span aria-hidden="true">💡</span>
+                  <span class="hist-hint-es">Haga clic en un marcador para abrir su ficha histórica o saltar a la cronología.</span>
+                  <span class="hist-hint-en" style="display:none;">Click any marker to open its historical dossier or jump to the timeline.</span>
+                </span>
+                <button type="button" class="hist-map-reset-btn" id="hist-map-reset-btn" aria-label="Restablecer selección de sede">
+                  <span aria-hidden="true">↺</span>
+                  <span class="hist-reset-es">Restablecer selección</span>
+                  <span class="hist-reset-en" style="display:none;">Reset selection</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Directorio Accesible de Sedes (Accessible Sidebar / Cards) -->
+            <aside class="hist-map-sidebar" id="hist-map-sidebar" aria-label="Directorio accesible de sedes históricas">
+              <div class="hist-sidebar-header">
+                <h3 class="hist-sidebar-title">
+                  <span class="hist-sidebar-title-es">Directorio de Sedes Históricas</span>
+                  <span class="hist-sidebar-title-en" style="display:none;">Historical Locations Directory</span>
+                </h3>
+                <span class="hist-sidebar-count" id="hist-sidebar-count">7 sedes</span>
+              </div>
+
+              <div class="hist-locations-list" id="hist-locations-list" role="list">
+                <!-- Tarjetas de sedes generadas dinámicamente por map.js -->
+              </div>
+            </aside>
+
+          </div>
+
+          <!-- Panel de Detalle de la Sede Seleccionada (Location Detail Dossier) -->
+          <div class="hist-location-dossier" id="hist-location-dossier" aria-hidden="true" role="dialog" aria-labelledby="hist-dossier-title">
+            <!-- Contenido dinámico del dossier inyectado por map.js -->
+          </div>
+
+        </div>
+      </section>
+
       <section id="hist-quiz-section" class="hist-quiz-section" aria-labelledby="hist-quiz-title">
         <div class="site-container">
           <div class="hist-quiz-card-placeholder">

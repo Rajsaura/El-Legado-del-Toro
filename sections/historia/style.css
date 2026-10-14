@@ -2015,7 +2015,831 @@
 /* --------------------------------------------------------------------------
    7. ADAPTACIONES MÓVILES Y ACCESIBILIDAD (PREFERS-REDUCED-MOTION)
    -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   FASE 5: MAPA HISTÓRICO INTERACTIVO (GEOGRAFÍA DE LA TAUROMAQUIA)
+   ========================================================================== */
+
+.hist-map-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, #1a0607 0%, #100304 55%, #080202 100%);
+  border-top: 1px solid rgba(224, 179, 45, 0.28);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.28);
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  color: #FCFAF6;
+  overflow: hidden;
+}
+
+/* Cabecera del Mapa */
+.hist-map-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto clamp(1.8rem, 3.5vw, 2.8rem);
+}
+
+.hist-map-kicker-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hist-map-kicker-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+}
+
+.hist-map-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.25;
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hist-map-title-icon {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.hist-map-desc {
+  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+  line-height: 1.72;
+  color: rgba(252, 250, 246, 0.88);
+  margin: 0 0 1.5rem;
+}
+
+/* Barra de Filtros por Categoría */
+.hist-map-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.hist-map-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  color: rgba(252, 250, 246, 0.85);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-map-filter-btn:hover {
+  background: rgba(224, 179, 45, 0.18);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+}
+
+.hist-map-filter-btn.hist-filter-active {
+  background: linear-gradient(135deg, rgba(125, 22, 32, 0.85) 0%, rgba(55, 12, 14, 0.95) 100%);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(201, 151, 0, 0.25);
+}
+
+.hist-map-filter-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Rejilla Principal: Visor SVG + Directorio Lateral */
+.hist-map-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+  align-items: start;
+}
+
+/* Escenario del Mapa SVG */
+.hist-map-stage {
+  background: linear-gradient(160deg, #180607 0%, #100304 60%, #0a0202 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.hist-map-viewport {
+  position: relative;
+  width: 100%;
+}
+
+.hist-svg-map {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+/* Barra de herramientas inferior del mapa */
+.hist-map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background: rgba(14, 4, 4, 0.94);
+  border-top: 1px solid rgba(224, 179, 45, 0.2);
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hist-map-legend-hint {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: rgba(252, 250, 246, 0.75);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hist-map-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-map-reset-btn:hover {
+  background: rgba(224, 179, 45, 0.15);
+  color: #FFFFFF;
+}
+
+.hist-map-reset-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* MARCADORES SVG INTERACTIVOS */
+.hist-map-marker {
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  transform-origin: center;
+}
+
+.hist-map-marker:hover,
+.hist-map-marker:focus-visible {
+  transform: scale(1.18);
+}
+
+.hist-marker-pulse {
+  fill: none;
+  stroke: rgba(224, 179, 45, 0.8);
+  stroke-width: 1.5;
+  transform-origin: center;
+  animation: histMarkerPulse 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes histMarkerPulse {
+  0% {
+    r: 7px;
+    opacity: 0.9;
+    stroke: rgba(224, 179, 45, 0.9);
+  }
+  100% {
+    r: 22px;
+    opacity: 0;
+    stroke: rgba(224, 179, 45, 0);
+  }
+}
+
+.hist-marker-aura {
+  fill: rgba(201, 151, 0, 0.35);
+  transition: fill 0.2s ease;
+}
+
+.hist-marker-pin {
+  fill: var(--color-gold);
+  stroke: #FFFDF9;
+  stroke-width: 1.5;
+  transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+}
+
+.hist-map-marker:hover .hist-marker-pin,
+.hist-map-marker:focus-visible .hist-marker-pin {
+  fill: #FFFFFF;
+  stroke: var(--color-gold-light);
+}
+
+.hist-map-marker.hist-marker-selected .hist-marker-pin {
+  fill: #ffe066;
+  stroke: #FFFFFF;
+  stroke-width: 2.2;
+}
+
+.hist-map-marker.hist-marker-selected .hist-marker-aura {
+  fill: rgba(254, 240, 138, 0.6);
+}
+
+.hist-map-marker.hist-marker-dimmed {
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+/* Etiqueta flotante del marcador */
+.hist-marker-tag {
+  opacity: 0.88;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.hist-marker-tag-bg {
+  fill: rgba(14, 4, 4, 0.92);
+  stroke: rgba(224, 179, 45, 0.55);
+  stroke-width: 0.8;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
+}
+
+.hist-marker-tag-text {
+  fill: #FFFDF9;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hist-map-marker:hover .hist-marker-tag,
+.hist-map-marker:focus-visible .hist-marker-tag,
+.hist-map-marker.hist-marker-selected .hist-marker-tag {
+  opacity: 1;
+}
+
+.hist-map-marker.hist-marker-selected .hist-marker-tag-bg {
+  fill: rgba(60, 12, 14, 0.96);
+  stroke: var(--color-gold);
+  stroke-width: 1.2;
+}
+
+/* BARRA LATERAL: DIRECTORIO ACCESIBLE DE SEDES */
+.hist-map-sidebar {
+  background: linear-gradient(150deg, #180607 0%, #120404 60%, #0a0202 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.22);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.hist-sidebar-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  margin: 0;
+}
+
+.hist-sidebar-count {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+}
+
+.hist-locations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(224, 179, 45, 0.4) rgba(15, 5, 5, 0.6);
+}
+
+.hist-locations-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hist-locations-list::-webkit-scrollbar-track {
+  background: rgba(15, 5, 5, 0.6);
+  border-radius: 4px;
+}
+
+.hist-locations-list::-webkit-scrollbar-thumb {
+  background: rgba(224, 179, 45, 0.35);
+  border-radius: 4px;
+}
+
+.hist-locations-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(224, 179, 45, 0.65);
+}
+
+/* Tarjeta individual de sede en la lista */
+.hist-loc-card {
+  background: rgba(24, 8, 8, 0.75);
+  border: 1px solid rgba(224, 179, 45, 0.24);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.hist-loc-card:hover {
+  background: rgba(38, 12, 14, 0.9);
+  border-color: rgba(224, 179, 45, 0.55);
+  transform: translateX(3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.hist-loc-card:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-loc-card.hist-loc-selected {
+  background: linear-gradient(135deg, rgba(70, 15, 20, 0.95) 0%, rgba(35, 8, 10, 0.98) 100%);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 16px rgba(201, 151, 0, 0.3), inset 0 0 12px rgba(201, 151, 0, 0.1);
+}
+
+.hist-loc-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Badges de Categoría */
+.hist-loc-category-badge {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.14rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-badge-fundacional {
+  background: rgba(224, 179, 45, 0.14);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  color: var(--color-gold-light);
+}
+
+.hist-badge-escuelas {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  color: #e9d5ff;
+}
+
+.hist-badge-tragedias {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #fca5a5;
+}
+
+.hist-badge-legal {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #bfdbfe;
+}
+
+.hist-loc-era-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+.hist-loc-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: 0.95rem;
+  color: #FFFDF9;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  line-height: 1.35;
+}
+
+.hist-loc-card-region {
+  font-size: 0.76rem;
+  color: rgba(252, 250, 246, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.45rem;
+}
+
+.hist-loc-card-snippet {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(252, 250, 246, 0.85);
+  margin: 0 0 0.6rem;
+}
+
+.hist-loc-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed rgba(224, 179, 45, 0.2);
+  padding-top: 0.45rem;
+}
+
+.hist-loc-event-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hist-loc-arrow {
+  color: var(--color-gold-light);
+  font-size: 0.85rem;
+  transition: transform var(--transition-fast);
+}
+
+.hist-loc-card:hover .hist-loc-arrow {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   DOSSIER DE DETALLE DE LA SEDE (EXPANDABLE LOCATION DOSSIER)
+   ========================================================================== */
+.hist-location-dossier {
+  display: none;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  animation: histDossierSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hist-location-dossier.hist-dossier-open {
+  display: block;
+}
+
+@keyframes histDossierSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hist-dossier-card {
+  background: linear-gradient(155deg, #1c0809 0%, #130506 50%, #0c0203 100%);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.4rem, 3.5vw, 2.2rem);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(201, 151, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.hist-dossier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.25);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hist-dossier-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hist-dossier-era-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.18rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-dossier-close-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-gold-light);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-dossier-close-btn:hover {
+  background: rgba(185, 28, 28, 0.4);
+  border-color: #ef4444;
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+.hist-dossier-close-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-dossier-body {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  align-items: start;
+}
+
+/* Columna Izquierda: Imagen */
+.hist-dossier-media {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hist-dossier-img-wrap {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  background: #000;
+  aspect-ratio: 16 / 10;
+}
+
+.hist-dossier-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hist-dossier-caption {
+  font-size: 0.76rem;
+  font-style: italic;
+  color: rgba(252, 250, 246, 0.72);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Columna Derecha: Contenido */
+.hist-dossier-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-dossier-geo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.hist-dossier-region {
+  font-weight: 600;
+}
+
+.hist-dossier-coords {
+  color: rgba(252, 250, 246, 0.55);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+}
+
+.hist-dossier-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  color: #FFFDF9;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.85rem;
+}
+
+.hist-dossier-text {
+  font-size: clamp(0.88rem, 1.5vw, 0.95rem);
+  line-height: 1.75;
+  color: rgba(252, 250, 246, 0.9);
+  margin: 0 0 1.15rem;
+}
+
+/* Caja de Hito Vinculado */
+.hist-dossier-event-box {
+  background: rgba(224, 179, 45, 0.08);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.65rem 0.95rem;
+  margin-bottom: 1.15rem;
+}
+
+.hist-dossier-event-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-light);
+  margin-bottom: 0.25rem;
+}
+
+.hist-dossier-event-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* Fuentes Documentales */
+.hist-dossier-sources {
+  background: rgba(14, 4, 4, 0.7);
+  border: 1px solid rgba(224, 179, 45, 0.22);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.hist-dossier-source-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  margin-bottom: 0.35rem;
+}
+
+.hist-dossier-source-item {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(252, 250, 246, 0.85);
+}
+
+.hist-dossier-source-title {
+  color: #FFFDF9;
+  font-style: italic;
+}
+
+.hist-dossier-source-repo {
+  color: rgba(224, 179, 45, 0.85);
+  font-size: 0.74rem;
+}
+
+.hist-dossier-source-link {
+  display: inline-block;
+  margin-left: 0.4rem;
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  transition: color var(--transition-fast);
+}
+
+.hist-dossier-source-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+/* Botonera de Acciones */
+.hist-dossier-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hist-btn-jump-timeline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(125, 22, 32, 0.9) 0%, rgba(55, 12, 14, 0.95) 100%);
+  border: 1px solid var(--color-gold);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hist-btn-jump-timeline:hover {
+  background: linear-gradient(135deg, rgba(160, 28, 40, 0.95) 0%, rgba(75, 16, 18, 1) 100%);
+  border-color: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201, 151, 0, 0.3);
+}
+
+.hist-btn-jump-timeline:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-open-exhibit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-open-exhibit:hover {
+  background: rgba(224, 179, 45, 0.28);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.hist-btn-open-exhibit:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
+
+  .hist-map-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hist-dossier-body {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .hist-locations-list {
+    max-height: 380px;
+  }
+
+  .hist-btn-jump-timeline,
+  .hist-btn-open-exhibit {
+    width: 100%;
+    justify-content: center;
+  }
   .hist-archive-meta-grid {
     grid-template-columns: 1fr;
   }
@@ -2172,6 +2996,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
+  .hist-marker-pulse {
+    animation: none !important;
+  }
+
+  .hist-location-dossier,
+  .hist-map-marker,
+  .hist-loc-card,
+  .hist-btn-jump-timeline,
+  .hist-btn-open-exhibit {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
   .hist-source-tech-sheet {
     animation: none !important;
   }

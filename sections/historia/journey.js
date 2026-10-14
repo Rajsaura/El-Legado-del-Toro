@@ -2121,6 +2121,12 @@
         toggleCardTranslation(activeCard);
       }
     }
+
+    try {
+      window.dispatchEvent(new CustomEvent('historiaLanguageChange', { detail: { lang: exhibitLanguage } }));
+    } catch (e) {
+      // Ignore if CustomEvent dispatch fails in test environments
+    }
   }
 
   /**
@@ -2515,6 +2521,39 @@
 
     updateStage();
   }
+
+  // =========================================================================
+  // EXPORTAR API PÚBLICA DEL TIMELINE (Integración Mapa Histórico y Módulos)
+  // =========================================================================
+  window.historiaJourney = {
+    scrollToEvent: function (index) {
+      scrollToEvent(index);
+    },
+    openExhibit: function (index) {
+      openExhibit(index);
+    },
+    closeExhibit: function () {
+      closeExhibit();
+    },
+    getActiveIndex: function () {
+      return activeIndex;
+    },
+    getEvents: function () {
+      return events;
+    },
+    getEvent: function (index) {
+      return events[index] || null;
+    },
+    getEventsCount: function () {
+      return events.length;
+    },
+    getLanguage: function () {
+      return exhibitLanguage;
+    },
+    toggleLanguage: function () {
+      toggleExhibitLanguage();
+    }
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

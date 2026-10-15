@@ -1,56 +1,520 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sección 5: El Futuro - En construcción. Revista digital El Legado del Toro.">
-  <title>El Futuro (En Construcción) | El Legado del Toro</title>
-
-  <!-- Estilos compartidos -->
-  <link rel="stylesheet" href="../../css/shared.css">
-
-  <!-- Script de navegación -->
-  <script src="../../js/nav.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Sección 5: El Futuro. Ideas sencillas sobre el futuro de las fiestas de toros en España." name="description"/>
+<title>Escenarios 2050: ¿Cómo será el futuro? | El Legado del Toro</title>
+<!-- Estilos del proyecto: Compartidos primero, seguidos de los estilos específicos de la sección -->
+<link href="../../css/shared.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<!-- Scripts: Navegación compartida del proyecto y lógica interactiva de la sección -->
+<script defer="" src="../../js/nav.js"></script>
+<script defer="" src="script.js"></script>
 </head>
-<body>
-
-  <!-- Contenedor de la barra de navegación compartida -->
-  <div id="site-nav-container"></div>
-
-  <main id="main-content">
-    <div class="site-container">
-      <div class="construction-container">
-        <div class="construction-card">
-          <div class="construction-icon" aria-hidden="true">🔮</div>
-          <span class="badge badge-gold" style="margin-bottom: var(--space-sm);">Sección 05</span>
-          <h1 class="construction-title">El Futuro</h1>
-          <div class="construction-owner">Responsable: [Name]</div>
-          <p class="construction-desc">
-            Esta sección se encuentra en proceso de elaboración e investigación. Próximamente analizará las tendencias regulatorias, cambios demográficos y escenarios de transformación para la tauromaquia en el siglo XXI, con un <strong>simulador interactivo</strong>.
-          </p>
-          <a href="../../index.html" class="btn btn-primary" id="back-home-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Volver a la Portada
+<body class="futuro-body">
+<!-- Contenedor obligatorio para la inyección dinámica de la barra de navegación compartida -->
+<div id="site-nav-container"></div>
+<!-- Contenido principal de la Sección 5 -->
+<main class="futuro-main" id="main-content">
+<div class="site-container">
+<!-- ===================================================================
+           PARTE 1: INTRODUCCIÓN EDITORIAL Y HÉROE
+           =================================================================== -->
+<header aria-labelledby="futuro-hero-title" class="futuro-hero" id="futuro-intro">
+<div class="futuro-hero-badge-wrap">
+<span class="badge badge-gold" id="futuro-section-badge">Sección 05 • El futuro</span>
+</div>
+<h1 class="futuro-hero-title" id="futuro-hero-title">Escenarios 2050</h1>
+<p class="futuro-hero-subtitle" id="futuro-hero-subtitle">¿Cómo serán las fiestas de toros en el futuro?</p>
+<!-- Byline del estudiante -->
+<div class="futuro-byline-card" id="futuro-byline">
+<div class="byline-container">
+<div aria-hidden="true" class="byline-avatar">F</div>
+<div class="byline-info">
+<span class="byline-author" id="futuro-author-name">Por DURGESH TOMAR, Sección 5: El Futuro</span>
+<span class="byline-role">El futuro y una actividad interactiva</span>
+</div>
+</div>
+</div>
+<!-- Introducción editorial de la sección -->
+<div class="futuro-intro-card card" id="futuro-intro-card">
+<div class="futuro-intro-content" id="futuro-placeholder-intro">
+<span aria-hidden="true" class="badge badge-gold">Ideas para el año 2050</span>
+<h2 class="futuro-intro-title">Las fiestas de toros en el año 2050</h2>
+<p class="futuro-intro-lead">Las fiestas de toros son parte de la cultura de algunas zonas de España. Pero no todas las personas piensan igual. El Ministerio de Cultura pregunta a personas de 15 años o más sobre sus actividades culturales. Estos datos dicen qué hace la gente, pero no explican siempre por qué. <a href="https://www.cultura.gob.es/servicios-a-la-ciudadania/estadisticas/cultura/mc/ehpc.html" rel="noopener noreferrer" target="_blank">Ver la encuesta</a>.</p>
+<p class="futuro-intro-body">La Ley 18/2013 reconoce la tauromaquia como parte del patrimonio cultural de España. Esto no quiere decir que esté en una lista de la UNESCO ni que las fiestas nunca puedan cambiar. Las estadísticas cuentan las fiestas; las encuestas preguntan por actividades culturales. Son datos diferentes. Aquí veremos varias ideas para el año 2050. Son futuros posibles, no predicciones. <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2013-11837" rel="noopener noreferrer" target="_blank">Ley 18/2013</a> · <a href="https://www.cultura.gob.es/servicios-a-la-ciudadania/estadisticas/cultura/mc/culturabase/asuntos-taurinos/resultados-asuntos-taurinos.html" rel="noopener noreferrer" target="_blank">Datos sobre fiestas de toros</a>.</p>
+</div>
+</div>
+<!-- Imagen editorial de apertura (vectorial / original) -->
+<div class="futuro-hero-media" id="futuro-hero-media">
+<figure class="futuro-hero-figure">
+<div aria-label="Dibujo de una plaza y una ciudad en el futuro" class="futuro-media-canvas" id="futuro-hero-visual" role="img">
+<div class="futuro-visual-overlay">
+<span class="futuro-visual-tag">Año 2050</span>
+<span class="futuro-visual-caption">Del pasado al futuro</span>
+</div>
+</div>
+<figcaption class="futuro-media-caption">Imagen creada con CSS y SVG. </figcaption>
+</figure>
+</div>
+<!-- Botón de inicio hacia el simulador interactivo -->
+<div class="futuro-hero-action">
+<a class="btn btn-primary futuro-btn-start" href="#futuro-simulador" id="futuro-btn-start">
+<svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<circle cx="12" cy="12" r="10"></circle>
+<polygon points="10 8 16 12 10 16 10 8"></polygon>
+</svg>
+            Explorar el futuro
           </a>
-        </div>
-      </div>
-    </div>
-  </main>
+</div>
+</header>
+<!-- ===================================================================
+           PARTE 2: CINCO DECISIONES INTERACTIVAS (SIMULADOR PROSPECTIVO)
+           =================================================================== -->
+<section aria-labelledby="futuro-simulador-title" class="futuro-simulator-section" id="futuro-simulador">
+<div class="futuro-section-header">
+<span class="badge badge-gold">Hechos y fuentes</span>
+<h2 class="futuro-section-title" id="futuro-simulador-title">Cinco preguntas sobre el futuro</h2>
+<p class="futuro-section-desc">Hechos sobre las leyes, los edificios y la cultura. También vemos qué podría pasar en el futuro.</p>
+</div>
+<!-- Región accesible para anuncios en lectores de pantalla -->
+<div aria-atomic="true" aria-live="polite" class="futuro-sr-only" id="futuro-sr-announcer"></div>
+<!-- Marco del simulador -->
+<div class="futuro-simulator-card card" id="futuro-simulator-card">
+<!-- Barra de progreso e indicador de paso -->
+<div class="futuro-progress-wrapper" id="futuro-progress-wrapper">
+<div class="futuro-progress-header">
+<span class="futuro-step-label" id="futuro-step-label">Pregunta <strong id="futuro-current-step">01</strong> de <strong>05</strong></span>
+<span class="futuro-axis-label" id="futuro-axis-label">Eje 1: El futuro de la tradición</span>
+</div>
+<div aria-label="Progreso de las cinco preguntas" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" class="futuro-progress-track" id="futuro-progress-track" role="progressbar">
+<div class="futuro-progress-fill" id="futuro-progress-fill" style="width: 20%;"></div>
+</div>
+</div>
+<!-- Contenedor dinámico de la pregunta activa -->
+<div class="futuro-question-wrapper" id="futuro-question-wrapper">
+<h3 class="futuro-question-title" id="futuro-question-title">¿Qué debe pasar con las fiestas de toros en el futuro?</h3>
+<!-- Formulario accesible de opciones (Radio Group) -->
+<form class="futuro-options-form" id="futuro-decision-form" onsubmit="return false;">
+<fieldset class="futuro-options-fieldset" id="futuro-options-fieldset">
+<legend class="futuro-sr-only">Elige una respuesta.</legend>
+<div class="futuro-options-grid" id="futuro-options-grid">
+<!-- Opción A -->
+<label class="futuro-option-card" for="futuro-opt-0" id="futuro-card-opt-0">
+<input class="futuro-option-radio" id="futuro-opt-0" name="futuro-decision" type="radio" value="0"/>
+<div class="futuro-option-content">
+<span aria-hidden="true" class="futuro-option-letter">A</span>
+<div class="futuro-option-text">
+<strong class="futuro-option-heading" id="futuro-heading-opt-0">Seguir con las fiestas</strong>
+<p class="futuro-option-desc" id="futuro-desc-opt-0">Mantener las corridas y otras fiestas de toros. Enseñar esta tradición a las personas jóvenes.</p>
+</div>
+</div>
+</label>
+<!-- Opción B -->
+<label class="futuro-option-card" for="futuro-opt-1" id="futuro-card-opt-1">
+<input class="futuro-option-radio" id="futuro-opt-1" name="futuro-decision" type="radio" value="1"/>
+<div class="futuro-option-content">
+<span aria-hidden="true" class="futuro-option-letter">B</span>
+<div class="futuro-option-text">
+<strong class="futuro-option-heading" id="futuro-heading-opt-1">Que cada ciudad decida</strong>
+<p class="futuro-option-desc" id="futuro-desc-opt-1">Cada ciudad puede hablar con sus vecinos y decidir, según la ley, si quiere estas fiestas.</p>
+</div>
+</div>
+</label>
+<!-- Opción C -->
+<label class="futuro-option-card" for="futuro-opt-2" id="futuro-card-opt-2">
+<input class="futuro-option-radio" id="futuro-opt-2" name="futuro-decision" type="radio" value="2"/>
+<div class="futuro-option-content">
+<span aria-hidden="true" class="futuro-option-letter">C</span>
+<div class="futuro-option-text">
+<strong class="futuro-option-heading" id="futuro-heading-opt-2">Cambiar las fiestas poco a poco</strong>
+<p class="futuro-option-desc" id="futuro-desc-opt-2">Cambiar las fiestas de toros por otras actividades de arte y cultura.</p>
+</div>
+</div>
+</label>
+<!-- Opción D -->
+<label class="futuro-option-card" for="futuro-opt-3" id="futuro-card-opt-3">
+<input class="futuro-option-radio" id="futuro-opt-3" name="futuro-decision" type="radio" value="3"/>
+<div class="futuro-option-content">
+<span aria-hidden="true" class="futuro-option-letter">D</span>
+<div class="futuro-option-text">
+<strong class="futuro-option-heading" id="futuro-heading-opt-3">Hacer fiestas en menos plazas</strong>
+<p class="futuro-option-desc" id="futuro-desc-opt-3">Celebrar estas fiestas en menos plazas y seguir las normas de seguridad.</p>
+</div>
+</div>
+</label>
+</div>
+</fieldset>
+</form>
+<!-- Caja de dato de contexto real documentado -->
+<aside aria-label="Dato documentado de contexto" class="futuro-fact-box" id="futuro-fact-box">
+<div class="futuro-fact-header">
+<span class="futuro-fact-badge">📌 Dato documentado de contexto</span>
+</div>
+<p class="futuro-fact-text" id="futuro-fact-text">El Ministerio de Cultura pregunta a personas de 15 años o más por sus actividades culturales. Estos datos muestran qué hace la gente. Por sí solos, no dicen si las personas apoyan o no las fiestas de toros.</p>
+<div class="futuro-fact-source" id="futuro-fact-source">
+<span class="futuro-source-label">Fuente oficial:</span>
+<a class="futuro-source-val" href="https://www.cultura.gob.es/servicios-a-la-ciudadania/estadisticas/cultura/mc/ehpc.html" rel="noopener noreferrer" target="_blank">Ministerio de Cultura • Encuesta de Hábitos y Prácticas Culturales en España (metodología)</a>
+</div>
+</aside>
+</div>
+<!-- Controles de navegación del cuestionario -->
+<div class="futuro-controls-wrapper" id="futuro-controls-wrapper">
+<button class="btn btn-outline futuro-btn-nav" disabled="" id="futuro-btn-prev" type="button">
+<svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+              Anterior
+            </button>
+<span aria-live="polite" class="futuro-controls-hint" id="futuro-controls-hint">Elige una respuesta para continuar</span>
+<button class="btn btn-primary futuro-btn-nav" disabled="" id="futuro-btn-next" type="button">
+              Siguiente
+              <svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</button>
+</div>
+</div>
+</section>
+<!-- ===================================================================
+           PARTE 3: REVELACIÓN DEL ESCENARIO HIPOTÉTICO (RESULTADOS)
+           =================================================================== -->
+<section aria-labelledby="futuro-result-heading" class="futuro-results-section" hidden="" id="futuro-resultados">
+<div class="card futuro-result-card" id="futuro-result-card">
+<!-- Aviso metodológico OBLIGATORIO Y DESTACADO -->
+<div aria-label="Aviso metodológico fundamental" class="futuro-disclaimer-banner" role="note">
+<div aria-hidden="true" class="futuro-disclaimer-icon">⚠️</div>
+<div class="futuro-disclaimer-text">
+<strong class="futuro-disclaimer-bold">Escenario hipotético, no una predicción.</strong>
+<p class="futuro-disclaimer-sub">
+                El resultado resume la mayor puntuación del modelo, no mide opiniones colectivas ni asigna una
+                probabilidad. Las respuestas individuales no son representativas de la población.
+              </p>
+</div>
+</div>
+<!-- Encabezado del resultado -->
+<div class="futuro-result-header">
+<span class="badge badge-gold" id="futuro-result-badge">Futuro posible • Año 2050</span>
+<h2 class="futuro-result-title" id="futuro-result-heading">Tu futuro posible</h2>
+<p class="futuro-result-subtitle" id="futuro-result-subtitle">Un futuro posible según tus respuestas. No es una predicción.</p>
+</div>
+<!-- Visual editorial del escenario -->
+<figure class="futuro-result-figure" id="futuro-result-figure">
+<div aria-label="Dibujo de un futuro posible" class="futuro-result-media-canvas" id="futuro-result-canvas" role="img">
+<div class="futuro-result-badge-overlay" id="futuro-result-overlay-tag">Futuro posible</div>
+</div>
+<figcaption class="futuro-media-caption" id="futuro-result-caption">
+              Visualización conceptual del escenario hipotético.
+              <span class="futuro-media-credit" id="futuro-result-credit">Dibujo hecho con CSS y SVG; no tenemos datos de autoría o licencia.</span>
+</figcaption>
+</figure>
+<!-- Descripción del escenario proyectado -->
+<div class="futuro-result-desc-box card" id="futuro-result-desc-box">
+<h3 class="futuro-result-desc-title">Este es un futuro posible</h3>
+<p class="futuro-result-desc-text placeholder-desc">Este resultado muestra un futuro posible según tus respuestas. No dice qué pasará con seguridad.</p>
+</div>
+<!-- Análisis de correspondencia: Por qué recibiste este resultado -->
+<div class="futuro-result-analysis-grid">
+<div class="futuro-analysis-card card">
+<h3 class="futuro-analysis-heading">¿Por qué sale este resultado?</h3>
+<p class="futuro-analysis-text" id="futuro-result-rationale">Cada respuesta da puntos a uno o más futuros. El resultado tiene más puntos, pero no es una predicción ni una encuesta.</p>
+</div>
+<div class="futuro-analysis-card card">
+<h3 class="futuro-analysis-heading">Cómo influyen tus respuestas</h3>
+<ul class="futuro-influence-list" id="futuro-influence-list"><li class="futuro-influence-item">Pregunta 1: Las fiestas. Tus respuestas dan puntos a distintos futuros.</li><li class="futuro-influence-item">Pregunta 2: El dinero. Tus respuestas dan puntos a distintos futuros.</li><li class="futuro-influence-item">Pregunta 3: Los animales. Tus respuestas dan puntos a distintos futuros.</li><li class="futuro-influence-item">Pregunta 4: Las plazas. Tus respuestas dan puntos a distintos futuros.</li><li class="futuro-influence-item">Pregunta 5: La historia y la educación. Tus respuestas dan puntos a distintos futuros.</li></ul>
+</div>
+</div>
+<!-- Desglose de puntuación transparente -->
+<div class="futuro-score-breakdown-card card">
+<h3 class="futuro-breakdown-heading">Puntos de los cuatro futuros</h3>
+<p class="futuro-breakdown-desc">Estos puntos vienen de tus cinco respuestas. No son una predicción.</p>
+<div class="futuro-bars-container" id="futuro-bars-container">
+<!-- Barras de afinidad inyectadas dinámicamente por script.js -->
+<div class="futuro-bar-row">
+<span class="futuro-bar-name">Siguen las fiestas:</span>
+<div class="futuro-bar-track">
+<div class="futuro-bar-fill" style="width: 0%;"></div>
+</div>
+<span class="futuro-bar-val">0 puntos</span>
+</div>
+<div class="futuro-bar-row">
+<span class="futuro-bar-name">Cambian las fiestas:</span>
+<div class="futuro-bar-track">
+<div class="futuro-bar-fill" style="width: 0%;"></div>
+</div>
+<span class="futuro-bar-val">0 puntos</span>
+</div>
+<div class="futuro-bar-row">
+<span class="futuro-bar-name">Museos e historia:</span>
+<div class="futuro-bar-track">
+<div class="futuro-bar-fill" style="width: 0%;"></div>
+</div>
+<span class="futuro-bar-val">0 puntos</span>
+</div>
+<div class="futuro-bar-row">
+<span class="futuro-bar-name">Nuevos usos:</span>
+<div class="futuro-bar-track">
+<div class="futuro-bar-fill" style="width: 0%;"></div>
+</div>
+<span class="futuro-bar-val">0 puntos</span>
+</div>
+</div>
+</div>
+<!-- Botón de reinicio del simulador -->
+<div class="futuro-result-action">
+<button class="btn btn-outline futuro-btn-restart" id="futuro-btn-restart" type="button">Volver a empezar</button>
+</div>
+</div>
+</section>
+<!-- ===================================================================
+           PARTE 4: REALIDAD VERSUS POSIBILIDAD (TRES FICHAS DE INVESTIGACIÓN)
+           =================================================================== -->
+<section aria-labelledby="futuro-investigacion-title" class="futuro-research-section" id="futuro-investigacion">
+<div class="futuro-section-header">
+<span class="badge badge-gold">Evidencia y Análisis</span>
+<h2 class="futuro-section-title" id="futuro-investigacion-title">Hechos y posibles cambios</h2>
+<p class="futuro-section-desc">Aquí se presentan hechos conocidos y algunas ideas sobre lo que puede pasar en el futuro.</p>
+</div>
+<div class="futuro-research-grid">
+<!-- FICHA 1: Legislación y Patrimonio Cultural -->
+<article class="futuro-research-card card" id="futuro-card-ley">
+<div class="futuro-card-badge-wrap">
+<span class="badge">Ficha 01 • Marco Legislativo</span>
+</div>
+<h3 class="futuro-card-title">La ley y las fiestas de toros</h3>
+<!-- Hecho Documentado -->
+<div class="futuro-claim-block futuro-claim-fact">
+<div class="futuro-claim-header">
+<span aria-hidden="true" class="futuro-claim-icon">📜</span>
+<strong class="futuro-claim-title">Hecho conocido</strong>
+</div>
+<p class="futuro-claim-body">La Ley 18/2013 reconoce la tauromaquia como patrimonio cultural de España. Incluye corridas y otras fiestas relacionadas con los toros. La ley pide al Estado que ayude a conservar y dar a conocer esta cultura. No dice que la tauromaquia esté en una lista de la UNESCO. En 2016, el Tribunal Constitucional anuló una parte de una ley catalana que prohibía las corridas. La decisión trató sobre las competencias del Estado y de Cataluña.</p>
+</div>
+<!-- Posible Interpretación -->
+<div class="futuro-claim-block futuro-claim-interpretation">
+<div class="futuro-claim-header">
+<span aria-hidden="true" class="futuro-claim-icon">💡</span>
+<strong class="futuro-claim-title">Una idea posible</strong>
+</div>
+<p class="futuro-claim-body">Esta ley reconoce el valor cultural de la tauromaquia, pero no asegura que siempre haya público o dinero. Cataluña puede regular cómo se hacen los espectáculos y puede crear normas para proteger a los animales. La decisión de 2016 no trata todas las posibles reglas. La Ley 10/1991 también habla de las competencias sobre estos espectáculos.</p>
+</div>
+<!-- Fuente verificada -->
+<div class="futuro-claim-source">
+<strong class="futuro-source-title">Fuente:</strong>
+<div class="futuro-source-item">
+<a class="futuro-source-link" href="https://www.boe.es/buscar/act.php?id=BOE-A-2013-11837" rel="noopener noreferrer" target="_blank">BOE • Ley 18/2013, especialmente artículos 1 y 5</a>
+                · <a class="futuro-source-link" href="https://www.boe.es/buscar/doc.php?id=BOE-A-2016-11124" rel="noopener noreferrer" target="_blank">BOE • STC 177/2016 (recurso 7722-2010)</a>
+                · <a class="futuro-source-link" href="https://www.boe.es/buscar/act.php?id=BOE-A-1991-8266" rel="noopener noreferrer" target="_blank">BOE • Ley 10/1991</a>
+</div>
+</div>
+</article>
+<!-- FICHA 2: Reconversión arquitectónica de Las Arenas -->
+<article class="futuro-research-card card" id="futuro-card-arenas">
+<div class="futuro-card-badge-wrap">
+<span class="badge">Ficha 02 • Arquitectura y Espacio</span>
+</div>
+<h3 class="futuro-card-title">Las Arenas de Barcelona: un edificio con otro uso</h3>
+<!-- Hecho Documentado -->
+<div class="futuro-claim-block futuro-claim-fact">
+<div class="futuro-claim-header">
+<span aria-hidden="true" class="futuro-claim-icon">🏛️</span>
+<strong class="futuro-claim-title">Hecho conocido</strong>
+</div>
+<p class="futuro-claim-body">La web oficial de Las Arenas presenta hoy el edificio como un centro comercial. Este dato muestra su uso actual. Aquí no afirmamos la fecha de construcción, el nombre del arquitecto ni todos los detalles de su cambio de uso.</p>
+</div>
+<!-- Posible Interpretación -->
+<div class="futuro-claim-block futuro-claim-interpretation">
+<div class="futuro-claim-header">
+<span aria-hidden="true" class="futuro-claim-icon">💡</span>
+<strong class="futuro-claim-title">Una idea posible</strong>
+</div>
+<p class="futuro-claim-body">Este edificio muestra que una plaza puede tener otro uso. Pero cada edificio es diferente. Hay que pensar en el coste, la seguridad, el acceso, la historia del lugar y las necesidades de la gente.</p>
+</div>
+<!-- Fuente verificada -->
+<div class="futuro-claim-source">
+<strong class="futuro-source-title">Fuente:</strong>
+<div class="futuro-source-item">
+<a class="futuro-source-link" href="https://www.arenasdebarcelona.com/" rel="noopener noreferrer" target="_blank">Arenas de Barcelona • sitio oficial del centro</a>
+</div>
+</div>
+</article>
+<!-- FICHA 3: Museos taurinos y conservación de la memoria -->
+<article class="futuro-research-card card" id="futuro-card-museo">
+<div class="futuro-card-badge-wrap">
+<span class="badge">Ficha 03 • Patrimonio de Museo</span>
+</div>
+<h3 class="futuro-card-title">Museos y recuerdos de las fiestas de toros</h3>
+<!-- Hecho Documentado -->
+<div class="futuro-claim-block futuro-claim-fact">
+<div class="futuro-claim-header">
+<span aria-hidden="true" class="futuro-claim-icon">🖼️</span>
+<strong class="futuro-claim-title">Hecho conocido</strong>
+</div>
+<p class="futuro-claim-body">La Ley 16/1985 trata sobre la protección de lugares, documentos y objetos importantes para la historia de España. También habla de museos, archivos y bibliotecas públicas. Esta ley no nos dice el nombre ni la colección de cada museo de toros.</p>
+</div>
+<!-- Posible Interpretación -->
+<div class="futuro-claim-block futuro-claim-interpretation">
+<div class="futuro-claim-header">
+<span aria-hidden="true" class="futuro-claim-icon">💡</span>
+<strong class="futuro-claim-title">Una idea posible</strong>
+</div>
+<p class="futuro-claim-body">Los museos pueden guardar fotos, objetos y documentos sobre las fiestas de toros. Así, las personas pueden aprender sobre su historia y su arte. Esto puede hacerse si las fiestas continúan o si cambian. Un museo no acaba con el debate sobre los animales.</p>
+</div>
+<!-- Fuente verificada -->
+<div class="futuro-claim-source">
+<strong class="futuro-source-title">Fuente:</strong>
+<div class="futuro-source-item">
+<a class="futuro-source-link" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" rel="noopener noreferrer" target="_blank">BOE • Ley 16/1985 del Patrimonio Histórico Español</a>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- ===================================================================
+           PARTE 5: REFLEXIÓN PERSONAL, VOCABULARIO Y REFERENCIAS
+           =================================================================== -->
+<section aria-labelledby="futuro-reflexion-title" class="futuro-reflection-section" id="futuro-reflexion">
+<div class="futuro-section-header">
+<span class="badge badge-gold">Aparato Crítico y Metodología</span>
+<h2 class="futuro-section-title" id="futuro-reflexion-title">Mi opinión, palabras y fuentes</h2>
+<p class="futuro-section-desc">Lee estas ideas, aprende palabras nuevas y mira las fuentes.</p>
+</div>
+<!-- Caja de reflexión personal del estudiante -->
+<div class="reflection-box futuro-student-reflection" id="futuro-student-reflection">
+<h3 class="reflection-title">
+<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+</svg>
+            Mi reflexión
+          </h3>
 
-  <footer class="site-footer" id="site-footer">
-    <div class="site-container">
-      <div class="footer-content">
-        <div class="footer-brand">El Legado del Toro</div>
-        <p class="footer-subtitle">La Corrida de Toros: Arte, Cultura y Controversia</p>
-        <p class="footer-copy">
-          Proyecto colaborativo de revista digital • Sección 5: El Futuro
-        </p>
-      </div>
-    </div>
-  </footer>
+<div class="futuro-reflection-content" id="futuro-placeholder-reflection">
+  <span aria-hidden="true" class="badge badge-gold">Mi opinión</span>
+  <p class="futuro-reflection-lead">En esta página he aprendido cosas sobre las fiestas de toros y su futuro.</p>
+  <p class="futuro-reflection-body">En mi opinión, es importante escuchar a las personas y cuidar a los animales. También debemos pensar en la cultura y el trabajo. En el año 2050, las fiestas pueden ser diferentes.</p>
+</div>
 
+</div>
+<!-- Cuadro de control de vocabulario en español (Mínimo 25 términos) -->
+<div class="card futuro-vocabulary-card" id="futuro-vocabulario">
+<div class="futuro-card-badge-wrap">
+<span class="badge badge-gold">Palabras importantes</span>
+</div>
+<h3 class="futuro-vocab-title">25 palabras importantes en español</h3>
+<p class="futuro-vocab-desc">Palabras del tema con una explicación sencilla y una traducción al inglés.</p>
+<div class="futuro-table-responsive">
+<table aria-label="Tabla de 25 términos en español usados en la sección" class="futuro-vocab-table">
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">Término en español</th>
+<th scope="col">Tipo</th>
+<th scope="col">Significado sencillo (English)</th>
+<th scope="col">Dónde aparece</th>
+</tr>
+</thead>
+
+<tbody>
+<tr><td>01</td><td><strong>Representativas</strong></td><td>Adjetivo</td><td>Que muestran bien a un grupo de personas. (representative)</td><td>Resultados</td></tr>
+<tr><td>02</td><td><strong>Probabilidad</strong></td><td>Sustantivo</td><td>La posibilidad de que algo pase. (probability)</td><td>Aviso del simulador</td></tr>
+<tr><td>03</td><td><strong>Hipotético</strong></td><td>Adjetivo</td><td>Una idea para pensar; no es un hecho real. (hypothetical)</td><td>Simulador y resultados</td></tr>
+<tr><td>04</td><td><strong>Metodología</strong></td><td>Sustantivo</td><td>La forma de hacer un estudio. (methodology)</td><td>Fuente de la pregunta 1</td></tr>
+<tr><td>05</td><td><strong>Estadísticas</strong></td><td>Sustantivo plural</td><td>Números que muestran información. (statistics)</td><td>Introducción</td></tr>
+<tr><td>06</td><td><strong>Patrimonio cultural</strong></td><td>Expresión</td><td>Cultura importante que se quiere cuidar. (cultural heritage)</td><td>Introducción y ficha 1</td></tr>
+<tr><td>07</td><td><strong>Tauromaquia</strong></td><td>Sustantivo</td><td>Fiestas y actividades relacionadas con los toros. (bullfighting tradition)</td><td>Introducción y ficha 1</td></tr>
+<tr><td>08</td><td><strong>Competencias</strong></td><td>Sustantivo plural</td><td>Poderes o tareas de una institución. (powers/responsibilities)</td><td>Ficha 1</td></tr>
+<tr><td>09</td><td><strong>Tribunal Constitucional</strong></td><td>Nombre propio</td><td>Tribunal que decide si una ley respeta la Constitución. (Constitutional Court)</td><td>Ficha 1</td></tr>
+<tr><td>10</td><td><strong>Subvenciones</strong></td><td>Sustantivo plural</td><td>Ayudas de dinero para un proyecto. (grants)</td><td>Pregunta 2</td></tr>
+<tr><td>11</td><td><strong>Ventaja fiscal</strong></td><td>Expresión</td><td>Una regla que puede reducir los impuestos. (tax benefit)</td><td>Pregunta 2</td></tr>
+<tr><td>12</td><td><strong>Espectáculos taurinos</strong></td><td>Expresión</td><td>Eventos públicos relacionados con los toros. (bullfighting events)</td><td>Pregunta 3</td></tr>
+<tr><td>13</td><td><strong>Ganaderías</strong></td><td>Sustantivo plural</td><td>Lugares o empresas que crían animales. (livestock farms)</td><td>Pregunta 3</td></tr>
+<tr><td>14</td><td><strong>Archivos</strong></td><td>Sustantivo plural</td><td>Lugares donde se guardan documentos. (archives)</td><td>Resultados y ficha 3</td></tr>
+<tr><td>15</td><td><strong>Colección</strong></td><td>Sustantivo</td><td>Grupo de objetos que se guardan juntos. (collection)</td><td>Ficha 3</td></tr>
+<tr><td>16</td><td><strong>Convención</strong></td><td>Sustantivo</td><td>Acuerdo entre países. (convention)</td><td>Pregunta 5 y fuentes</td></tr>
+<tr><td>17</td><td><strong>Patrimonio histórico</strong></td><td>Expresión</td><td>Lugares y objetos importantes del pasado. (historical heritage)</td><td>Ficha 3 y fuentes</td></tr>
+<tr><td>18</td><td><strong>Centro comercial</strong></td><td>Expresión</td><td>Edificio con muchas tiendas. (shopping centre)</td><td>Pregunta 4 y ficha 2</td></tr>
+<tr><td>19</td><td><strong>Cambio de uso</strong></td><td>Expresión</td><td>Cuando un lugar empieza a tener otra función. (change of use)</td><td>Ficha 2</td></tr>
+<tr><td>20</td><td><strong>Predicción</strong></td><td>Sustantivo</td><td>Una idea sobre lo que pasará. (prediction)</td><td>Introducción y resultados</td></tr>
+<tr><td>21</td><td><strong>Encuesta</strong></td><td>Sustantivo</td><td>Preguntas para saber qué hace o piensa la gente. (survey)</td><td>Introducción y pregunta 1</td></tr>
+<tr><td>22</td><td><strong>Actividades culturales</strong></td><td>Expresión</td><td>Cosas que hace la gente relacionadas con la cultura. (cultural activities)</td><td>Introducción y pregunta 1</td></tr>
+<tr><td>23</td><td><strong>Normas de seguridad</strong></td><td>Expresión</td><td>Reglas para evitar peligros. (safety rules)</td><td>Pregunta 1</td></tr>
+<tr><td>24</td><td><strong>Ayudas públicas</strong></td><td>Expresión</td><td>Ayudas de dinero de una institución pública. (public aid)</td><td>Pregunta 2</td></tr>
+<tr><td>25</td><td><strong>Dinero público</strong></td><td>Expresión</td><td>Dinero del Estado o de otras instituciones públicas. (public money)</td><td>Pregunta 2</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sección de referencias y fuentes documentales -->
+<div class="references-section futuro-references-section" id="futuro-referencias">
+<div class="futuro-card-badge-wrap">
+<span class="badge">Fuentes</span>
+</div>
+<h3 class="placeholder-title">Fuentes de información</h3>
+<p class="placeholder-desc">Fuentes usadas para conocer las leyes, los datos culturales y el edificio de Las Arenas.</p>
+<ul class="references-list" id="futuro-ref-list">
+<li class="reference-item">
+<strong>1. Ley sobre la cultura taurina: </strong>
+              España. Jefatura del Estado. (2013). Ley 18/2013, de 12 de noviembre, para la regulación de la Tauromaquia
+              como patrimonio cultural. <em>Boletín Oficial del Estado</em>, núm. 272, de 13 de noviembre de 2013, pp.
+              91361-91364. Ref. <a class="futuro-source-link" href="https://www.boe.es/buscar/act.php?id=BOE-A-2013-11837" rel="noopener noreferrer" target="_blank">BOE-A-2013-11837</a>.
+            </li>
+<li class="reference-item">
+<strong>2. Decisión del Tribunal Constitucional: </strong>
+              España. Tribunal Constitucional. (2016). Sentencia 177/2016, de 20 de octubre (Pleno). Recurso de
+              inconstitucionalidad 7722-2010. <em>Boletín Oficial del Estado</em>.
+              <a class="futuro-source-link" href="https://www.boe.es/buscar/doc.php?id=BOE-A-2016-11124" rel="noopener noreferrer" target="_blank">BOE-A-2016-11124</a>.
+            </li>
+<li class="reference-item">
+<strong>3. Datos oficiales de cultura: </strong>
+              Ministerio de Cultura. <em>Encuesta de Hábitos y Prácticas Culturales en España</em> (información
+              metodológica) y <em>Estadística de Asuntos Taurinos. Resultados</em>, operaciones del Plan Estadístico
+              Nacional. Consulta: 13 de octubre de 2026.
+              <a class="futuro-source-link" href="https://www.cultura.gob.es/servicios-a-la-ciudadania/estadisticas/cultura/mc/ehpc.html" rel="noopener noreferrer" target="_blank">Encuesta y metodología</a> ·
+              <a class="futuro-source-link" href="https://www.cultura.gob.es/servicios-a-la-ciudadania/estadisticas/cultura/mc/culturabase/asuntos-taurinos/resultados-asuntos-taurinos.html" rel="noopener noreferrer" target="_blank">Resultados taurinos</a>.
+            </li>
+<li class="reference-item">
+<strong>4. Uso actual de Las Arenas: </strong>
+              Arenas de Barcelona. Sitio oficial del centro comercial.
+              <a class="futuro-source-link" href="https://www.arenasdebarcelona.com/" rel="noopener noreferrer" target="_blank">arenasdebarcelona.com</a>.
+            </li>
+<li class="reference-item">
+<strong>5. Historia y cultura: </strong>
+              España. Jefatura del Estado. (1985). Ley 16/1985, de 25 de junio, del Patrimonio Histórico Español.
+              <em>Boletín Oficial del Estado</em>.
+              <a class="futuro-source-link" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" rel="noopener noreferrer" target="_blank">BOE-A-1985-12534</a>. UNESCO. (2003).
+              <em>Convención para la Salvaguardia del Patrimonio Cultural Inmaterial</em>.
+              <a class="futuro-source-link" href="https://ich.unesco.org/en/convention" rel="noopener noreferrer" target="_blank">Texto de la Convención</a>.
+            </li>
+</ul>
+</div>
+<!-- Créditos y licencias de imágenes y recursos visuales -->
+<div class="card futuro-credits-card" id="futuro-creditos">
+<div class="futuro-card-badge-wrap">
+<span class="badge">Imágenes</span>
+</div>
+<h3 class="futuro-credits-title">Imágenes y licencias</h3>
+<ul class="futuro-credits-list">
+<li class="futuro-credit-item"><strong>Ilustración de apertura (Escenarios 2050):</strong> La imagen se crea con CSS. No tenemos información sobre su autoría o licencia.</li>
+<li class="futuro-credit-item"><strong>Visualizaciones de los escenarios hipotéticos (Parte 3):</strong> Los fondos usan colores creados con CSS. No tenemos información sobre una licencia.</li>
+<li class="futuro-credit-item"><strong>Iconografía y glifos:</strong> Los dibujos SVG están en el HTML. No tenemos información suficiente sobre su origen o licencia.</li>
+</ul>
+</div>
+</section>
+</div>
+</main>
+<!-- ===================================================================
+       PIE DE PÁGINA COMPARTIDO DEL SITIO
+       =================================================================== -->
+<footer class="site-footer" id="site-footer">
+<div class="site-container">
+<div class="footer-content">
+<div class="footer-brand">El Legado del Toro</div>
+<p class="footer-subtitle">Las fiestas de toros: arte, cultura y debate</p>
+<p class="footer-copy">Proyecto de clase • Sección 5: El futuro</p>
+</div>
+</div>
+</footer>
 </body>
 </html>

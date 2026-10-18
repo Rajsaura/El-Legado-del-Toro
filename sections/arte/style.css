@@ -1,0 +1,814 @@
+/* ==========================================================================
+   SECCIÓN 2: EL ARTE — ESTILOS PROPIOS
+   Archivo: sections/arte/style.css
+   Autor: Krishna Mishra | Por Krishna Mishra, Sección 2: El Arte
+   NOTA: Todos los selectores llevan prefijo `arte-`.
+         No se estilizan etiquetas HTML globales desnudas (body, h1, a, p...).
+         Se usan variables del sistema compartido (shared.css).
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.arte-hero {
+  position: relative;
+  padding: var(--space-3xl) 0 var(--space-2xl);
+  overflow: hidden;
+  text-align: center;
+}
+
+.arte-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.arte-hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(201, 151, 0, 0.04) 40px,
+      rgba(201, 151, 0, 0.04) 41px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(139, 30, 30, 0.03) 40px,
+      rgba(139, 30, 30, 0.03) 41px
+    );
+}
+
+.arte-hero-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(139, 30, 30, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.arte-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.arte-hero-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.arte-hero-ornament-line {
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.arte-hero-ornament-icon {
+  font-size: 1.2rem;
+  color: var(--color-gold);
+  animation: arte-pulse 3s ease-in-out infinite;
+}
+
+@keyframes arte-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.9); }
+}
+
+.arte-hero-badge-row {
+  margin-bottom: var(--space-sm);
+}
+
+.arte-section-badge {
+  display: inline-block;
+  font-family: var(--font-serif-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  background-color: var(--color-gold-subtle);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-gold);
+}
+
+.arte-hero-title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: var(--space-sm);
+  text-shadow: 0 2px 8px rgba(139, 30, 30, 0.1);
+}
+
+.arte-hero-subtitle {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+  font-style: italic;
+  color: var(--color-gold-dark);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.01em;
+}
+
+.arte-byline {
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+.arte-hero-lead {
+  max-width: 740px;
+  margin-inline: auto;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+}
+
+/* ==========================================================================
+   SECTION HEADER (label + title + intro)
+   ========================================================================== */
+
+.arte-gallery-section {
+  padding: var(--space-3xl) 0;
+}
+
+.arte-section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.arte-section-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.arte-section-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.arte-section-intro {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 580px;
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   FILTROS DE CATEGORÍA
+   ========================================================================== */
+
+.arte-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+
+.arte-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.15rem;
+  font-family: var(--font-sans-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.arte-filter-btn:hover {
+  border-color: var(--color-gold);
+  background-color: var(--color-gold-subtle);
+  color: var(--color-gold-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.arte-filter-btn--active,
+.arte-filter-btn[aria-pressed="true"] {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary-dark);
+  color: var(--color-surface);
+  box-shadow: 0 4px 12px rgba(139, 30, 30, 0.25);
+}
+
+.arte-filter-btn--active:hover,
+.arte-filter-btn[aria-pressed="true"]:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-surface);
+  border-color: var(--color-primary-dark);
+}
+
+.arte-filter-btn-icon {
+  font-size: 1em;
+}
+
+/* ==========================================================================
+   CONTADOR DE RESULTADOS
+   ========================================================================== */
+
+.arte-gallery-count {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xl);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   GRID DE GALERÍA
+   ========================================================================== */
+
+.arte-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+/* ==========================================================================
+   TARJETA DE OBRA (arte-card)
+   ========================================================================== */
+
+.arte-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+  position: relative;
+}
+
+.arte-card:hover,
+.arte-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-gold);
+  outline: none;
+}
+
+.arte-card:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Transition for show/hide during filter */
+.arte-card--hidden {
+  display: none;
+}
+
+.arte-card--entering {
+  animation: arte-card-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes arte-card-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── media area ── */
+.arte-card-media {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.arte-card-img-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+/* Placeholder visual para cada categoría */
+.arte-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform var(--transition-normal);
+}
+
+.arte-card:hover .arte-card-placeholder {
+  transform: scale(1.04);
+}
+
+/* Traje de Luces — grana y oro */
+.arte-placeholder-traje-1 {
+  background: linear-gradient(135deg, #8B1E1E 0%, #C99700 50%, #8B1E1E 100%);
+}
+
+.arte-placeholder-traje-2 {
+  background: linear-gradient(135deg, #6B4226 0%, #C4A261 50%, #4A2B12 100%);
+}
+
+.arte-placeholder-traje-3 {
+  background: linear-gradient(135deg, #1A3A6B 0%, #C99700 50%, #8B1E1E 100%);
+}
+
+/* Carteles Taurinos — naranja vibrante */
+.arte-placeholder-cartel-1 {
+  background: linear-gradient(135deg, #C0392B 0%, #F39C12 50%, #8E1A0E 100%);
+}
+
+.arte-placeholder-cartel-2 {
+  background: linear-gradient(135deg, #6C3483 0%, #D4AC0D 50%, #1A5276 100%);
+}
+
+.arte-placeholder-cartel-3 {
+  background: linear-gradient(135deg, #922B21 0%, #F1C40F 50%, #1B4F72 100%);
+}
+
+/* Plazas de Toros — albero y piedra */
+.arte-placeholder-plaza-1 {
+  background: linear-gradient(135deg, #D4AC7A 0%, #8B6914 50%, #C49A3C 100%);
+}
+
+.arte-placeholder-plaza-2 {
+  background: linear-gradient(135deg, #8B3A3A 0%, #D4AC7A 50%, #5C2E00 100%);
+}
+
+.arte-placeholder-plaza-3 {
+  background: linear-gradient(135deg, #7B8D8E 0%, #D4C39A 50%, #4A5568 100%);
+}
+
+/* Pintura Goya/Picasso — sepia y negro */
+.arte-placeholder-pintura-1 {
+  background: linear-gradient(135deg, #2C1810 0%, #8B6914 50%, #1A0A00 100%);
+}
+
+.arte-placeholder-pintura-2 {
+  background: linear-gradient(135deg, #1C1C1C 0%, #8B1E1E 50%, #2D2D2D 100%);
+}
+
+.arte-placeholder-pintura-3 {
+  background: linear-gradient(135deg, #0D0D0D 0%, #3A3A3A 50%, #1A1A1A 100%);
+}
+
+.arte-placeholder-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+
+.arte-placeholder-label {
+  font-family: var(--font-serif-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ── category badge on card ── */
+.arte-card-category-badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(139, 30, 30, 0.88);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.arte-card-category-badge--carteles {
+  background-color: rgba(192, 57, 43, 0.88);
+}
+
+.arte-card-category-badge--plazas {
+  background-color: rgba(108, 84, 30, 0.9);
+}
+
+.arte-card-category-badge--pintura {
+  background-color: rgba(28, 28, 28, 0.9);
+}
+
+/* ── card body ── */
+.arte-card-body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.arte-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: var(--text-lg);
+  color: var(--color-primary-dark);
+  line-height: 1.3;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.arte-card:hover .arte-card-title {
+  color: var(--color-primary);
+}
+
+.arte-card-meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.arte-card-excerpt {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.arte-card-btn {
+  align-self: flex-start;
+  margin-top: var(--space-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-sans-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+
+.arte-card-btn:hover {
+  color: var(--color-primary-dark);
+  gap: 0.5rem;
+}
+
+/* ==========================================================================
+   SIN RESULTADOS
+   ========================================================================== */
+
+.arte-no-results {
+  text-align: center;
+  padding: var(--space-3xl) 0;
+}
+
+.arte-no-results-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+  opacity: 0.5;
+}
+
+.arte-no-results-text {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   MI REFLEXIÓN (usa el .reflection-box de shared.css + extras propios)
+   ========================================================================== */
+
+.arte-reflection-section {
+  padding: 0 0 var(--space-2xl);
+}
+
+.arte-reflexion-footer {
+  margin-top: var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-sm);
+}
+
+.arte-reflexion-author {
+  font-family: var(--font-serif-heading);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   FUENTES Y CRÉDITOS (usa .references-section de shared.css + extras)
+   ========================================================================== */
+
+.arte-sources-section {
+  padding-bottom: var(--space-3xl);
+}
+
+.arte-references-title {
+  font-family: var(--font-serif-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-md);
+}
+
+/* ==========================================================================
+   MODAL DE INSPECCIÓN
+   ========================================================================== */
+
+.arte-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(18, 10, 10, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  overflow-y: auto;
+}
+
+/* hidden state */
+.arte-modal-backdrop[hidden] {
+  display: none;
+}
+
+/* open animation */
+.arte-modal-backdrop.arte-modal-backdrop--open {
+  animation: arte-backdrop-in 0.22s ease both;
+}
+
+@keyframes arte-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.arte-modal {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(18, 10, 10, 0.45);
+  width: 100%;
+  max-width: 820px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid var(--color-border);
+  animation: arte-modal-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes arte-modal-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── close button ── */
+.arte-modal-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-sand-muted);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.arte-modal-close:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary-dark);
+}
+
+/* ── header ── */
+.arte-modal-header {
+  padding: var(--space-xl) var(--space-xl) var(--space-md);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-right: 3.5rem; /* space for close btn */
+}
+
+.arte-modal-category {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  background-color: var(--color-gold-subtle);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.arte-modal-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.3rem, 3vw, 1.75rem);
+  color: var(--color-primary-dark);
+  line-height: 1.25;
+}
+
+/* ── body ── */
+.arte-modal-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+}
+
+/* ── visual panel ── */
+.arte-modal-visual {
+  flex-shrink: 0;
+}
+
+.arte-modal-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gold) 100%);
+  box-shadow: var(--shadow-md);
+}
+
+.arte-modal-placeholder-icon {
+  font-size: 4rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+/* ── meta DL ── */
+.arte-modal-meta {
+  margin-bottom: var(--space-lg);
+}
+
+.arte-modal-meta-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: var(--space-xs);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.arte-modal-meta-row:last-child {
+  border-bottom: none;
+}
+
+.arte-modal-meta-row dt {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.arte-modal-meta-row dd {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── description ── */
+.arte-modal-desc-title {
+  font-family: var(--font-serif-heading);
+  font-size: var(--text-lg);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.arte-modal-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+}
+
+/* ── footer ── */
+.arte-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--color-border-subtle);
+  background-color: var(--color-bg-sand-light);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.arte-modal-footer-note {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.arte-modal-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1.25rem;
+  font-family: var(--font-sans-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: #fff;
+  border: 1px solid var(--color-primary-dark);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.arte-modal-close-btn:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .arte-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  .arte-modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  .arte-modal-visual {
+    max-width: 220px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .arte-hero {
+    padding: var(--space-2xl) 0;
+  }
+
+  .arte-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .arte-filter-bar {
+    gap: var(--space-xs);
+  }
+
+  .arte-filter-btn {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .arte-modal {
+    border-radius: var(--radius-lg);
+  }
+
+  .arte-modal-header,
+  .arte-modal-body,
+  .arte-modal-footer {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  .arte-modal-meta-row {
+    grid-template-columns: 1fr;
+  }
+}

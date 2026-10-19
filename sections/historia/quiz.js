@@ -30,6 +30,7 @@
     {
       id: 'siete-partidas',
       timelineEventIndex: 1, // Hito 2: Las Siete Partidas (Siglo XIII)
+      mapLocation: null,
       categoryEs: 'Derecho Medieval & Corona de Castilla',
       categoryEn: 'Medieval Law & Crown of Castile',
       questionEs: '¿Cómo reguló el código medieval de Las Siete Partidas de Alfonso X el Sabio la lidia de fieras a cambio de precio o recompensa económica?',
@@ -65,6 +66,7 @@
     {
       id: 'transicion-a-pie',
       timelineEventIndex: 4, // Hito 5: Real Maestranza de Ronda (1785)
+      mapLocation: 'ronda',
       categoryEs: 'Siglo XVIII • Ilustración y Profesionalización',
       categoryEn: '18th Century • Enlightenment & Professionalization',
       questionEs: '¿Qué factores determinaron la transición del toreo caballeresco a caballo a la tauromaquia profesional a pie durante el siglo XVIII?',
@@ -100,6 +102,7 @@
     {
       id: 'juan-belmonte',
       timelineEventIndex: 6, // Hito 7: Temple Estético de Belmonte (1914)
+      mapLocation: 'sevilla',
       categoryEs: 'Edad de Oro • Revolución Estética',
       categoryEn: 'Golden Age • Aesthetic Revolution',
       questionEs: '¿Cuál fue la principal revolución estética y técnica introducida por Juan Belmonte en el toreo a principios del siglo XX?',
@@ -135,6 +138,7 @@
     {
       id: 'cataluna-2010',
       timelineEventIndex: 9, // Hito 10: Parlamento de Cataluña (2010 / 2012)
+      mapLocation: 'barcelona',
       categoryEs: 'Debate Contemporáneo • ILP Ciudadana',
       categoryEn: 'Contemporary Debate • Citizen ILP',
       questionEs: '¿Cuál fue el cauce legislativo y el origen de la votación parlamentaria de 2010 que aprobó la prohibición de las corridas de toros en Cataluña?',
@@ -170,6 +174,7 @@
     {
       id: 'stc-177-2016',
       timelineEventIndex: 11, // Hito 12: Sentencia STC 177/2016 (20 Oct 2016)
+      mapLocation: 'madrid',
       categoryEs: 'Jurisprudencia Constitucional • Competencias',
       categoryEn: 'Constitutional Jurisprudence • Jurisdictions',
       questionEs: '¿Qué doctrina jurídica vinculante estableció el Tribunal Constitucional en su Sentencia STC 177/2016 respecto a la Ley estatal 18/2013 y la prohibición catalana?',
@@ -357,6 +362,14 @@
     btnJumpMap: {
       es: '🗺️ Explorar Mapa de Sedes',
       en: '🗺️ Explore Historical Map'
+    },
+    btnReturnHall: {
+      es: '🏛️ Volver al Gran Vestíbulo',
+      en: '🏛️ Return to Central Hall'
+    },
+    inquiryLabel: {
+      es: (cur, total) => `CUESTIÓN ${cur}/${total}`,
+      en: (cur, total) => `INQUIRY ${cur}/${total}`
     }
   };
 
@@ -489,6 +502,11 @@
 
         <!-- Encabezado de la pregunta -->
         <div class="hist-quiz-q-header">
+          <div class="hist-card-museum-tag" style="margin-bottom: 0.55rem;">
+            <span class="hist-tag-room">🏛️ SALA IV</span>
+            <span class="hist-tag-divider" aria-hidden="true">•</span>
+            <span class="hist-tag-stop">${texts.inquiryLabel[isEn ? 'en' : 'es'](currentNumber, totalQuestions)}</span>
+          </div>
           <span class="hist-quiz-q-category">
             ${isEn ? q.categoryEn : q.categoryEs}
           </span>
@@ -547,10 +565,23 @@
               <span class="hist-feedback-title">
                 ${isCorrect ? (isEn ? texts.feedbackCorrect.en : texts.feedbackCorrect.es) : (isEn ? texts.feedbackIncorrect.en : texts.feedbackIncorrect.es)}
               </span>
-              <span class="hist-feedback-h-link">
-                ⏱️ ${isEn ? texts.timelineRefPrefix.en : texts.timelineRefPrefix.es} 
-                <strong>Hito ${q.timelineEventIndex + 1}</strong>
-              </span>
+              <div class="hist-feedback-links-row" style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+                <a href="sala-1-cronologia.html?lang=${currentLanguage}&event=${q.timelineEventIndex + 1}" 
+                   class="hist-feedback-h-link hist-milestone-jump-link" 
+                   data-timeline-event="${q.timelineEventIndex + 1}"
+                   style="text-decoration: underline; cursor: pointer;">
+                  ⏱️ ${isEn ? texts.timelineRefPrefix.en : texts.timelineRefPrefix.es} 
+                  <strong>Hito ${q.timelineEventIndex + 1} ↗</strong>
+                </a>
+                ${q.mapLocation ? `
+                  <a href="sala-2-cartografia.html?lang=${currentLanguage}&location=${q.mapLocation}" 
+                     class="hist-feedback-map-link hist-map-jump-link" 
+                     data-map-location="${q.mapLocation}"
+                     style="text-decoration: underline; cursor: pointer; font-size: 0.8rem; color: var(--color-gold-light, #f3d068);">
+                    🗺️ ${isEn ? 'Map: ' + q.mapLocation.toUpperCase() : 'Mapa: ' + q.mapLocation.toUpperCase()} ↗
+                  </a>
+                ` : ''}
+              </div>
             </div>
 
             <p class="hist-feedback-explanation">
@@ -676,7 +707,22 @@
                       ${isCorrect ? (isEn ? '✓ Correct' : '✓ Correcto') : (isEn ? '✗ Incorrect' : '✗ Incorrecto')}
                     </span>
                     <span class="hist-review-q-num">${isEn ? `Question ${idx + 1}` : `Pregunta ${idx + 1}`}</span>
-                    <span class="hist-review-h-ref">⏱️ Hito ${q.timelineEventIndex + 1}</span>
+                    <div class="hist-review-links-row" style="margin-left: auto; display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+                      <a href="sala-1-cronologia.html?lang=${currentLanguage}&event=${q.timelineEventIndex + 1}" 
+                         class="hist-review-h-ref hist-milestone-jump-link" 
+                         data-timeline-event="${q.timelineEventIndex + 1}"
+                         style="text-decoration: underline; cursor: pointer;">
+                        ⏱️ Hito ${q.timelineEventIndex + 1} ↗
+                      </a>
+                      ${q.mapLocation ? `
+                        <a href="sala-2-cartografia.html?lang=${currentLanguage}&location=${q.mapLocation}" 
+                           class="hist-review-map-ref hist-map-jump-link" 
+                           data-map-location="${q.mapLocation}"
+                           style="text-decoration: underline; cursor: pointer; font-size: 0.75rem; color: var(--color-gold-light, #f3d068);">
+                          🗺️ ${q.mapLocation.toUpperCase()} ↗
+                        </a>
+                      ` : ''}
+                    </div>
                   </div>
 
                   <h4 class="hist-review-q-title">${isEn ? q.questionEn : q.questionEs}</h4>
@@ -718,6 +764,10 @@
           <button type="button" class="hist-quiz-btn-secondary" id="hist-quiz-btn-map">
             <span>${isEn ? texts.btnJumpMap.en : texts.btnJumpMap.es}</span>
           </button>
+
+          <a href="#hist-museum-exterior" class="hist-quiz-btn-secondary hist-btn-room-return-hall" id="hist-quiz-btn-hall" aria-label="${isEn ? 'Return to Central Hall' : 'Volver al Gran Vestíbulo Central'}">
+            <span>${isEn ? texts.btnReturnHall.en : texts.btnReturnHall.es}</span>
+          </a>
         </div>
 
       </div>
@@ -736,10 +786,7 @@
     if (timelineBtn) {
       timelineBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const tlSec = document.getElementById('historia-timeline') || document.getElementById('journey-container');
-        if (tlSec) {
-          tlSec.scrollIntoView({ behavior: 'smooth' });
-        }
+        window.location.href = 'sala-1-cronologia.html?lang=' + encodeURIComponent(currentLanguage);
       });
     }
 
@@ -747,10 +794,15 @@
     if (mapBtn) {
       mapBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const mapSec = document.getElementById('hist-map-section');
-        if (mapSec) {
-          mapSec.scrollIntoView({ behavior: 'smooth' });
-        }
+        window.location.href = 'sala-2-cartografia.html?lang=' + encodeURIComponent(currentLanguage);
+      });
+    }
+
+    const hallBtn = document.getElementById('hist-quiz-btn-hall');
+    if (hallBtn) {
+      hallBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'index.html?lang=' + encodeURIComponent(currentLanguage) + '#hall';
       });
     }
   }
@@ -860,6 +912,15 @@
     }
 
     if (!quizContainerEl) return;
+
+    // Obtener idioma activo desde URL si está presente
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang === 'en' || urlLang === 'es') {
+        currentLanguage = urlLang;
+      }
+    } catch (e) {}
 
     // Obtener idioma activo de la cronología si está disponible
     if (window.historiaJourney && typeof window.historiaJourney.getLanguage === 'function') {

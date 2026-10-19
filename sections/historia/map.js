@@ -499,7 +499,7 @@
       return;
     }
 
-    locationsListEl.innerHTML = visibleLocations.map(loc => {
+    locationsListEl.innerHTML = visibleLocations.map((loc, index) => {
       const isSelected = loc.id === activeLocationId;
       const cityName = isEn ? loc.cityEn : loc.cityEs;
       const regionName = isEn ? loc.regionEn : loc.regionEs;
@@ -530,6 +530,11 @@
                  aria-label="${cityName}: ${titleName}">
           
           <div class="hist-loc-card-header">
+            <div class="hist-card-museum-tag">
+              <span class="hist-tag-room">🏛️ SALA II</span>
+              <span class="hist-tag-divider" aria-hidden="true">•</span>
+              <span class="hist-tag-stop">SEDE ${index + 1}/7</span>
+            </div>
             <span class="hist-loc-category-badge ${categoryBadgeClass}">${categoryLabel}</span>
             <span class="hist-loc-era-badge">${eraName}</span>
           </div>
@@ -609,6 +614,7 @@
       <div class="hist-dossier-card">
         <div class="hist-dossier-header">
           <div class="hist-dossier-badges">
+            <span class="hist-card-museum-tag">🏛️ SALA II • FICHA CARTOGRÁFICA</span>
             <span class="hist-loc-category-badge ${categoryBadgeClass}">${categoryLabel}</span>
             <span class="hist-dossier-era-badge">${eraName}</span>
           </div>
@@ -665,15 +671,20 @@
             <div class="hist-dossier-actions">
               <button type="button" class="hist-btn-jump-timeline" id="hist-btn-jump-timeline" data-event-index="${loc.timelineEventIndex}">
                 <span aria-hidden="true">🎯</span>
-                <span class="hist-jump-btn-es">Saltar al Hito ${loc.timelineEventIndex + 1} en la Cronología</span>
-                <span class="hist-jump-btn-en" style="display:none;">Jump to Milestone ${loc.timelineEventIndex + 1} in Timeline</span>
+                <span class="hist-jump-btn-es"${isEn ? ' style="display:none;"' : ''}>Saltar al Hito ${loc.timelineEventIndex + 1} en Sala I</span>
+                <span class="hist-jump-btn-en"${isEn ? '' : ' style="display:none;"'}>Jump to Milestone ${loc.timelineEventIndex + 1} in Sala I</span>
               </button>
 
               <button type="button" class="hist-btn-open-exhibit" id="hist-btn-open-exhibit" data-event-index="${loc.timelineEventIndex}">
                 <span aria-hidden="true">📜</span>
-                <span class="hist-exhibit-btn-es">Abrir Cédula Documental</span>
-                <span class="hist-exhibit-btn-en" style="display:none;">Open Historical Exhibit</span>
+                <span class="hist-exhibit-btn-es"${isEn ? ' style="display:none;"' : ''}>Abrir Cédula Documental</span>
+                <span class="hist-exhibit-btn-en"${isEn ? '' : ' style="display:none;"'}>Open Historical Exhibit</span>
               </button>
+
+              <a href="${document.getElementById('hist-journey-container') && !window.isSala2Standalone ? '#hist-museum-exterior' : 'index.html?lang=' + encodeURIComponent(currentLanguage) + '#hall'}" class="hist-btn-room-return-hall hist-dossier-return-btn" aria-label="${isEn ? 'Return to Grand Central Hall' : 'Volver al Gran Vestíbulo Central del Museo'}">
+                <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+                <span>${isEn ? 'Central Hall' : 'Vestíbulo'}</span>
+              </a>
             </div>
 
           </div>
@@ -738,21 +749,36 @@
   // 8. 🎯 INTEGRACIÓN BIDIRECCIONAL CON EL TIMELINE Y ARCHIVO DIGITAL
   // =========================================================================
   function jumpToTimelineEvent(index) {
+    var eventNumber = index + 1; // Mapeo exacto 0-based a 1-based (?event=1..12)
+    var journeyContainer = document.getElementById('hist-journey-container');
+
+    // Si la sala está en modo independiente o no tiene el contenedor incrustado, navegar a Sala I standalone
+    if (!journeyContainer || window.isSala2Standalone) {
+      window.location.href = 'sala-1-cronologia.html?lang=' + encodeURIComponent(currentLanguage) + '&event=' + encodeURIComponent(eventNumber);
+      return;
+    }
+
     if (window.historiaJourney && typeof window.historiaJourney.scrollToEvent === 'function') {
       window.historiaJourney.scrollToEvent(index);
     }
 
-    const journeyContainer = document.getElementById('hist-journey-container');
-    if (journeyContainer) {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      journeyContainer.scrollIntoView({
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-        block: 'start'
-      });
-    }
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    journeyContainer.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start'
+    });
   }
 
   function openTimelineExhibit(index) {
+    var eventNumber = index + 1; // Mapeo exacto 0-based a 1-based (?event=1..12)
+    var journeyContainer = document.getElementById('hist-journey-container');
+
+    // Si la sala está en modo independiente o no tiene el contenedor incrustado, navegar a Sala I standalone con exhibit=1
+    if (!journeyContainer || window.isSala2Standalone) {
+      window.location.href = 'sala-1-cronologia.html?lang=' + encodeURIComponent(currentLanguage) + '&event=' + encodeURIComponent(eventNumber) + '&exhibit=1';
+      return;
+    }
+
     if (window.historiaJourney && typeof window.historiaJourney.openExhibit === 'function') {
       window.historiaJourney.openExhibit(index);
     }
@@ -788,14 +814,16 @@
   }
 
   function applyFilter(category) {
-    activeFilter = category;
+    activeFilter = category || 'all';
 
-    filterButtons.forEach(btn => {
-      const bCat = btn.getAttribute('data-filter');
-      const isSelected = bCat === category;
-      btn.classList.toggle('hist-filter-active', isSelected);
-      btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-    });
+    if (filterButtons && filterButtons.length) {
+      filterButtons.forEach(btn => {
+        const bCat = btn.getAttribute('data-filter');
+        const isSelected = bCat === category;
+        btn.classList.toggle('hist-filter-active', isSelected);
+        btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      });
+    }
 
     renderSVGMap();
     renderLocationsList();
@@ -844,8 +872,18 @@
       return;
     }
 
-    if (window.historiaJourney && typeof window.historiaJourney.getLanguage === 'function') {
-      currentLanguage = window.historiaJourney.getLanguage();
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var urlLang = urlParams.get('lang');
+      if (urlLang === 'en' || urlLang === 'es') {
+        currentLanguage = urlLang;
+      } else if (window.historiaJourney && typeof window.historiaJourney.getLanguage === 'function') {
+        currentLanguage = window.historiaJourney.getLanguage();
+      }
+    } catch (e) {
+      if (window.historiaJourney && typeof window.historiaJourney.getLanguage === 'function') {
+        currentLanguage = window.historiaJourney.getLanguage();
+      }
     }
 
     window.addEventListener('historiaLanguageChange', (e) => {

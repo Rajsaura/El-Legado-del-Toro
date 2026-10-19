@@ -1222,8 +1222,9 @@
     const isLast = index === events.length - 1;
     const continueLabel = isLast ? 'Siguiente sección ↓' : 'Continuar →';
 
+    const isEn = exhibitLanguage === 'en';
     return `
-      <article class="hist-stage-card ${index === 0 ? 'hist-card-active' : ''}" 
+      <article class="hist-stage-card ${index === 0 ? 'hist-card-active' : ''} ${isEn ? 'hist-translated' : ''}" 
                id="hist-card-${event.id}" 
                data-index="${index}" 
                data-year="${event.year}" 
@@ -1234,6 +1235,11 @@
                aria-label="${event.title}">
         <div class="hist-card-inner">
           <div class="hist-card-topbar">
+            <div class="hist-card-museum-tag">
+              <span class="hist-tag-room">🏛️ SALA I</span>
+              <span class="hist-tag-divider" aria-hidden="true">•</span>
+              <span class="hist-tag-stop">HITO ${index + 1}/${events.length}</span>
+            </div>
             <span class="hist-card-era-badge">${event.era}</span>
             <div class="hist-badge-wrapper">
               <span class="hist-badge ${badgeClass}" tabindex="0" data-tooltip="${badgeTooltip}" aria-label="${badgeTooltip}">
@@ -1249,8 +1255,8 @@
           </div>
 
           <div class="hist-card-content">
-            <p class="hist-card-caption-es">${event.captionEs}</p>
-            <p class="hist-card-caption-en" aria-hidden="true">${event.captionEn}</p>
+            <p class="hist-card-caption-es" ${isEn ? 'aria-hidden="true"' : ''}>${event.captionEs}</p>
+            <p class="hist-card-caption-en" ${isEn ? '' : 'aria-hidden="true"'}>${event.captionEn}</p>
           </div>
 
           <!-- Botón de apertura de Cédula Histórica Expandible -->
@@ -1282,7 +1288,7 @@
             </div>
 
             <div class="hist-card-actions">
-              <button type="button" class="hist-btn-translate" aria-label="Alternar traducción EN / ES" title="Alternar idioma inglés / español">
+              <button type="button" class="hist-btn-translate" aria-label="Alternar traducción EN / ES" title="Alternar idioma inglés / español" ${isEn ? 'aria-pressed="true"' : ''}>
                 <span class="hist-translate-icon" aria-hidden="true">🌐</span>
                 <span class="hist-translate-label">EN / ES</span>
               </button>
@@ -1368,8 +1374,14 @@
         <header class="hist-stage-hud" id="hist-stage-hud">
           <div class="hist-hud-inner">
             <div class="hist-hud-left">
-              <span class="hist-hud-era-kicker">Época</span>
-              <h2 class="hist-hud-era-title" id="hist-hud-era-title">${events[0].era}</h2>
+              <div class="hist-hud-room-badge" aria-label="Sala I del Museo: Cronología">
+                <span class="hist-hud-room-icon" aria-hidden="true">🏛️</span>
+                <span class="hist-hud-room-text">SALA I</span>
+              </div>
+              <div class="hist-hud-era-wrap">
+                <span class="hist-hud-era-kicker">Época</span>
+                <h2 class="hist-hud-era-title" id="hist-hud-era-title">${events[0].era}</h2>
+              </div>
             </div>
 
             <div class="hist-hud-center">
@@ -1387,6 +1399,11 @@
                 </svg>
                 Desplaza
               </span>
+              <a href="#hist-museum-exterior" class="hist-btn-room-return-hall hist-hud-return-btn" aria-label="Volver al Gran Vestíbulo Central del Museo">
+                <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+                <span class="hist-lang-es">Vestíbulo</span>
+                <span class="hist-lang-en" style="display:none;">Central Hall</span>
+              </a>
             </div>
           </div>
         </header>
@@ -2108,19 +2125,30 @@
   }
 
   /**
+   * Sincroniza el idioma en todas las tarjetas de la cronología y la cédula histórica.
+   * @param {'es' | 'en'} targetLang
+   */
+  function syncAllCardsLanguage(targetLang) {
+    exhibitLanguage = targetLang === 'en' ? 'en' : 'es';
+    if (isExhibitOpen) {
+      renderExhibitContent(activeExhibitIndex);
+    }
+    cardElements.forEach(function (card) {
+      const isTranslated = card.classList.contains('hist-translated');
+      if (exhibitLanguage === 'en' && !isTranslated) {
+        toggleCardTranslation(card, false);
+      } else if (exhibitLanguage === 'es' && isTranslated) {
+        toggleCardTranslation(card, false);
+      }
+    });
+  }
+
+  /**
    * Alterna el idioma entre español e inglés dentro de la Cédula y tarjetas.
    */
   function toggleExhibitLanguage() {
-    exhibitLanguage = exhibitLanguage === 'es' ? 'en' : 'es';
-    renderExhibitContent(activeExhibitIndex);
-
-    const activeCard = cardElements[activeExhibitIndex];
-    if (activeCard) {
-      const isCardTranslated = activeCard.classList.contains('hist-translated');
-      if ((exhibitLanguage === 'en' && !isCardTranslated) || (exhibitLanguage === 'es' && isCardTranslated)) {
-        toggleCardTranslation(activeCard);
-      }
-    }
+    const nextLang = exhibitLanguage === 'es' ? 'en' : 'es';
+    syncAllCardsLanguage(nextLang);
 
     try {
       window.dispatchEvent(new CustomEvent('historiaLanguageChange', { detail: { lang: exhibitLanguage } }));
@@ -2332,19 +2360,8 @@
     }
 
     window.addEventListener('historiaLanguageChange', function (e) {
-      if (e.detail && e.detail.lang && e.detail.lang !== exhibitLanguage) {
-        exhibitLanguage = e.detail.lang;
-        if (isExhibitOpen) {
-          renderExhibitContent(activeExhibitIndex);
-        }
-        cardElements.forEach(function (card) {
-          const isTranslated = card.classList.contains('hist-translated');
-          if (exhibitLanguage === 'en' && !isTranslated) {
-            toggleCardTranslation(card, false);
-          } else if (exhibitLanguage === 'es' && isTranslated) {
-            toggleCardTranslation(card, false);
-          }
-        });
+      if (e.detail && e.detail.lang) {
+        syncAllCardsLanguage(e.detail.lang);
       }
     });
   }
@@ -2371,7 +2388,8 @@
     }
 
     if (broadcast) {
-      exhibitLanguage = card.classList.contains('hist-translated') ? 'en' : 'es';
+      const newLang = card.classList.contains('hist-translated') ? 'en' : 'es';
+      syncAllCardsLanguage(newLang);
       try {
         window.dispatchEvent(new CustomEvent('historiaLanguageChange', { detail: { lang: exhibitLanguage } }));
       } catch (err) {
@@ -2532,6 +2550,14 @@
    * Inicialización global del módulo al cargar la página.
    */
   function init() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam === 'en' || langParam === 'es') {
+        exhibitLanguage = langParam;
+      }
+    } catch (e) {}
+
     preloadTimelineImages();
     renderPinnedStage();
     initNavigationControls();
@@ -2581,8 +2607,8 @@
       toggleExhibitLanguage();
     },
     setLanguage: function (lang) {
-      if (lang && lang !== exhibitLanguage) {
-        toggleExhibitLanguage();
+      if (lang && (lang === 'en' || lang === 'es')) {
+        syncAllCardsLanguage(lang);
       }
     }
   };

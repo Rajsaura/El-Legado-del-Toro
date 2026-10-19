@@ -106,6 +106,1331 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   MUSEO HISTÓRICO VIRTUAL: FACHADA EXTERIOR Y PÓRTICO DE ENTRADA (PHASE 2)
+   -------------------------------------------------------------------------- */
+.hist-museum-exterior {
+  position: relative;
+  margin: 1.5rem 0 2.5rem;
+  padding: clamp(2rem, 4vw, 3.5rem) 0 2.5rem;
+  background: radial-gradient(ellipse at 50% 15%, rgba(68, 18, 24, 0.45) 0%, rgba(18, 5, 8, 0.95) 60%, #0a0204 100%);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(224, 179, 45, 0.2);
+  overflow: hidden;
+}
+
+.hist-exterior-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 2rem;
+  padding: 0 1.25rem;
+}
+
+.hist-exterior-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.9rem;
+}
+
+.hist-exterior-badge-icon {
+  font-size: 0.85rem;
+}
+
+.hist-exterior-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  color: #FFFDF9;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+.hist-exterior-subtitle {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-style: italic;
+  color: rgba(252, 250, 246, 0.82);
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+/* Switcher de vistas: Pórtico vs. Fachada */
+.hist-exterior-view-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(18, 5, 7, 0.9);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  gap: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hist-view-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(252, 250, 246, 0.75);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-height: 38px;
+}
+
+.hist-view-tab:hover {
+  color: #FFFFFF;
+  background: rgba(224, 179, 45, 0.15);
+  border-color: rgba(224, 179, 45, 0.3);
+}
+
+.hist-view-tab:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hist-view-tab.hist-view-tab-active,
+.hist-view-tab[aria-selected="true"] {
+  color: #140405;
+  background: linear-gradient(135deg, #F3D98B 0%, #D4AF37 50%, #B8891D 100%);
+  border-color: var(--color-gold-light);
+  box-shadow: 0 2px 10px rgba(201, 151, 0, 0.4);
+  font-weight: 700;
+}
+
+/* Tarjeta escénica del museo */
+.hist-exterior-stage-card {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  background: #0d0405;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(201, 151, 0, 0.12);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   FASE 2: ESCENARIO CINEMATOGRÁFICO EXTERIOR-A-ENTRADA (MILESTONE 1B)
+   Transición suave y continua:
+   Stage A: Fachada Panorámica Establecimiento (exterior-establishing.webp)
+   Stage B: Aproximación por el Patio Exterior (exterior-approach.webp)
+   Stage C: Puertas Cerradas -> Abriéndose -> Abiertas (entrance-doors-*.webp)
+   Stage D: Tránsito por el Umbral hacia la Galería Abovedada
+   ========================================================================== */
+
+.hist-cinematic-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1376 / 768;
+  overflow: hidden;
+  background-color: #0b0204;
+  user-select: none;
+  perspective: 1200px;
+}
+
+/* Capas cinemáticas superpuestas con aceleración por hardware */
+.hist-cine-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 1.0s ease-in-out, transform 4.0s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform-origin: 50% 50%;
+  transform: scale(1.0) translateY(0);
+  z-index: 1;
+}
+
+.hist-cine-layer.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.hist-cine-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   TRANSICIONES CINEMÁTICAS POR ETAPA (RESTRAINED CINEMATIC CAMERA MOVEMENTS)
+   -------------------------------------------------------------------------- */
+
+/* Stage A: Movimiento sutil y majestuoso hacia el patio */
+#cine-layer-establishing {
+  transform-origin: 50% 50%;
+  transition: opacity 1.0s ease-in-out, transform 4.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-establishing.is-active {
+  transform: scale(1.035) translateY(-0.8%);
+}
+
+/* Stage B: Aproximación pausada al pórtico */
+#cine-layer-approach {
+  transform-origin: 50% 50%;
+  transition: opacity 1.0s ease-in-out, transform 4.0s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-approach.is-active {
+  transform: scale(1.025) translateY(-0.5%);
+}
+
+/* Stage C: Puertas Cerradas -> Abriéndose -> Totalmente Abiertas
+   CÁMARA ESTACIONARIA: El marco arquitectónico de piedra, columnas y linternas
+   permanecen 100% fijos sin ningún zoom brusco mientras las hojas de cedro giran. */
+#cine-layer-doors-closed,
+#cine-layer-doors-opening {
+  transform-origin: 50% 50%;
+  transform: none !important;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.hist-cine-stage-moving #cine-layer-doors-closed.is-active,
+.hist-cine-stage-moving #cine-layer-doors-opening.is-active {
+  transform: none !important;
+}
+
+#cine-layer-doors-open {
+  transform-origin: 50% 50%;
+  transition: opacity 0.9s ease-in-out, transform 3.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Sólo tras estar completamente abiertas las puertas, se inicia un avance milimétrico */
+.hist-cine-stage-moving #cine-layer-doors-open.is-active {
+  transform: scale(1.02) translateY(-0.3%);
+}
+
+/* Stage D: Umbral y Paso al Interior Iluminado */
+#cine-layer-threshold {
+  transform-origin: 50% 50%;
+  transition: opacity 1.1s ease-in-out, transform 3.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-threshold.is-active {
+  transform: scale(1.03) translateY(-0.5%);
+}
+
+/* Capa del Corredor Abovedado */
+#cine-layer-corridor {
+  transform-origin: 50% 50%;
+  transition: opacity 1.2s ease-in-out, transform 3.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-corridor.is-active {
+  transform: scale(1.025) translateY(-0.4%);
+}
+
+/* Mezcla de luz exterior a interior (Atmospheric Light Blend) */
+.hist-cine-light-blend {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, rgba(255, 220, 140, 0.45) 0%, rgba(200, 130, 40, 0.2) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+  z-index: 6;
+}
+
+.hist-cine-light-blend.is-active {
+  opacity: 0.9;
+}
+
+/* Viñeta cinematográfica para mayor profundidad visual */
+.hist-cine-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 48%, rgba(8, 2, 4, 0.5) 82%, rgba(6, 1, 3, 0.85) 100%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* Overlay de cortesía en la fachada inicial (Stage A) */
+.hist-cine-overlay-initial {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hist-cine-stage-moving .hist-cine-overlay-initial {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.hist-cine-prompt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(14, 4, 6, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 179, 45, 0.5);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1.15rem;
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65), 0 0 16px rgba(201, 151, 0, 0.25);
+}
+
+.hist-prompt-icon {
+  font-size: 0.95rem;
+}
+
+/* Hotspot accesible sobre el pórtico central en la fachada */
+.hist-facade-hotspot-wrap {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.hist-cine-stage-moving .hist-facade-hotspot-wrap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hist-facade-hotspot-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  outline: none;
+  touch-action: manipulation;
+}
+
+.hist-hotspot-ring {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  animation: histHotspotPulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes histHotspotPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.hist-hotspot-core {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(224, 179, 45, 0.95), rgba(160, 28, 40, 0.95));
+  border: 2px solid #FFFDF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 16px rgba(224, 179, 45, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hist-facade-hotspot-btn:hover .hist-hotspot-core {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(224, 179, 45, 0.85);
+}
+
+.hist-facade-hotspot-btn:focus-visible .hist-hotspot-core {
+  outline: 3px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.hist-hotspot-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFDF9;
+  background: rgba(18, 5, 7, 0.92);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-gold);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Botón flotante para omitir recorrido en cualquier etapa */
+.hist-btn-skip-journey {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FFFDF9;
+  background: rgba(18, 5, 7, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  min-height: 40px;
+  touch-action: manipulation;
+}
+
+.hist-btn-skip-journey:hover {
+  background: rgba(45, 12, 16, 0.95);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 179, 45, 0.35);
+}
+
+.hist-btn-skip-journey:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Modo de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .hist-cine-layer {
+    transition: opacity 0.05s linear, transform 0.05s linear !important;
+    transform: none !important;
+  }
+  .hist-cine-stage-moving #cine-layer-establishing.is-active,
+  .hist-cine-stage-moving #cine-layer-approach.is-active,
+  .hist-cine-stage-moving #cine-layer-doors-closed.is-active,
+  .hist-cine-stage-moving #cine-layer-doors-opening.is-active,
+  .hist-cine-stage-moving #cine-layer-doors-open.is-active,
+  .hist-cine-stage-moving #cine-layer-threshold.is-active {
+    transform: none !important;
+  }
+  .hist-hotspot-ring {
+    animation: none !important;
+  }
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .hist-cinematic-stage {
+    aspect-ratio: 16 / 10;
+  }
+  .hist-hotspot-core {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  .hist-hotspot-label {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.65rem;
+  }
+  .hist-cine-prompt-badge {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.9rem;
+  }
+  .hist-btn-skip-journey {
+    top: 10px;
+    right: 10px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.72rem;
+    min-height: 36px;
+  }
+}
+
+/* Barra de Controles Accesibles */
+.hist-exterior-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  background: rgba(14, 4, 6, 0.96);
+  border-top: 1px solid rgba(224, 179, 45, 0.25);
+}
+
+.hist-btn-enter-museum {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #140405;
+  background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 50%, #B58416 100%);
+  border: 1px solid var(--color-gold-light);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.85rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 151, 0, 0.35);
+  transition: all 0.25s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.hist-btn-enter-museum:hover:not(:disabled) {
+  background: linear-gradient(135deg, #FFF0B8 0%, #E6C24F 50%, #C99622 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(201, 151, 0, 0.55);
+}
+
+.hist-btn-enter-museum:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.hist-btn-enter-museum:focus-visible {
+  outline: 3px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.hist-btn-enter-museum:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.hist-btn-enter-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(20, 4, 5, 0.3);
+  border-top-color: #140405;
+  border-radius: 50%;
+  animation: histBtnSpin 0.8s linear infinite;
+}
+
+@keyframes histBtnSpin {
+  to { transform: rotate(360deg); }
+}
+
+.hist-btn-enter-museum[aria-busy="true"] .hist-btn-enter-spinner {
+  display: inline-block;
+}
+
+.hist-btn-enter-museum[aria-busy="true"] .hist-btn-enter-icon {
+  display: none;
+}
+
+.hist-btn-skip-doors,
+.hist-btn-reset-doors {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.85);
+  background: rgba(30, 8, 11, 0.7);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.hist-btn-skip-doors:hover,
+.hist-btn-reset-doors:hover {
+  color: #FFFDF9;
+  background: rgba(55, 14, 18, 0.85);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+.hist-btn-skip-doors:focus-visible,
+.hist-btn-reset-doors:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hist-btn-explore-galleries {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #FFFDF9;
+  background: linear-gradient(135deg, rgba(160, 28, 40, 0.95), rgba(75, 14, 18, 0.95));
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.4rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 14px rgba(201, 151, 0, 0.3);
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.hist-btn-explore-galleries:hover {
+  background: linear-gradient(135deg, rgba(190, 35, 50, 1), rgba(95, 18, 24, 1));
+  border-color: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.45);
+}
+
+.hist-btn-explore-galleries:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-explore-arrow {
+  transition: transform 0.25s ease;
+}
+
+.hist-btn-explore-galleries:hover .hist-btn-explore-arrow {
+  transform: translateY(2px);
+}
+
+/* ==========================================================================
+   FASE 3: RECORRIDO CINEMATOGRÁFICO POR EL CORREDOR ABOVEDADO (2.5D CAMERA DOLLY)
+   ========================================================================== */
+
+/* Zoom 2.5D hacia el umbral del pórtico al iniciar la transición */
+.hist-portal-stage-zooming {
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease, opacity 1.2s ease;
+  transform: scale(1.38);
+  transform-origin: 50% 55%;
+  opacity: 0.15;
+  filter: blur(2px);
+}
+
+/* Vista 3: Escenario del Corredor Abovedado */
+.hist-corridor-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1376 / 768;
+  overflow: hidden;
+  background-color: #0c0305;
+  perspective: 1100px;
+  perspective-origin: 50% 50%;
+  user-select: none;
+}
+
+/* Rig de Cámara 2.5D con aceleración GPU */
+.hist-corridor-camera-rig {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  transform-origin: 50% 52%;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+  transition: transform 3.2s cubic-bezier(0.2, 0.8, 0.25, 1), filter 2.5s ease;
+  transform: scale(1.0) translateY(0) translateZ(0);
+}
+
+/* Movimiento de avance de la cámara (Dolly forward) */
+.hist-corridor-stage.hist-corridor-animating .hist-corridor-camera-rig {
+  transform: scale(1.24) translateY(-1.8%) translateZ(60px);
+}
+
+.hist-corridor-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.92) contrast(1.08);
+}
+
+/* Resplandor cálido de faroles de forja */
+.hist-corridor-lantern-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 48%, rgba(240, 185, 55, 0.28) 0%, rgba(180, 50, 20, 0.15) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: histLanternFlicker 3s infinite alternate ease-in-out;
+}
+
+@keyframes histLanternFlicker {
+  0% { opacity: 0.75; transform: scale(0.98); }
+  50% { opacity: 0.95; transform: scale(1.02); }
+  100% { opacity: 0.85; transform: scale(1); }
+}
+
+/* Haz de luz de cámara en movimiento */
+.hist-corridor-light-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 20%, rgba(255, 230, 150, 0.08) 50%, transparent 80%);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Viñeta cinematográfica para profundidad visual */
+.hist-corridor-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(8, 2, 4, 0.6) 80%, rgba(6, 1, 3, 0.92) 100%);
+  pointer-events: none;
+}
+
+/* Partículas y motas doradas suspendidas en el aire */
+.hist-corridor-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hist-mote {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 235, 170, 0.9) 0%, rgba(224, 179, 45, 0) 70%);
+  box-shadow: 0 0 6px rgba(224, 179, 45, 0.8);
+  opacity: 0.6;
+  animation: histMoteFloat 6s infinite ease-in-out;
+}
+
+.hist-mote-1 { top: 35%; left: 45%; animation-duration: 5.5s; animation-delay: 0s; }
+.hist-mote-2 { top: 55%; left: 52%; animation-duration: 7s; animation-delay: 1.2s; }
+.hist-mote-3 { top: 40%; left: 58%; animation-duration: 6.2s; animation-delay: 2.5s; }
+.hist-mote-4 { top: 62%; left: 42%; animation-duration: 8s; animation-delay: 0.8s; }
+.hist-mote-5 { top: 48%; left: 38%; animation-duration: 6.8s; animation-delay: 3.1s; }
+.hist-mote-6 { top: 30%; left: 55%; animation-duration: 7.4s; animation-delay: 1.8s; }
+
+@keyframes histMoteFloat {
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0.3; }
+  50% { transform: translateY(-18px) translateX(10px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-35px) translateX(-5px) scale(0.8); opacity: 0.2; }
+}
+
+/* HUD Cinematográfico del Corredor */
+.hist-corridor-hud {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  width: min(92%, 620px);
+  background: rgba(14, 4, 6, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1rem 1.4rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(201, 151, 0, 0.2);
+  text-align: center;
+  pointer-events: auto;
+}
+
+.hist-corridor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  margin-bottom: 0.35rem;
+}
+
+.hist-corridor-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E0B32D;
+  box-shadow: 0 0 10px #E0B32D;
+  animation: histDotPulse 1.4s infinite ease-in-out;
+}
+
+@keyframes histDotPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+.hist-corridor-caption {
+  font-family: var(--font-serif-heading);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #FFFDF9;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+}
+
+.hist-corridor-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hist-corridor-progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hist-corridor-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #B58416 0%, #D4AF37 50%, #F5DF98 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(224, 179, 45, 0.7);
+  transition: width 0.1s linear;
+}
+
+.hist-corridor-pct {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* Botón flotante para omitir recorrido */
+.hist-btn-skip-journey {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FFFDF9;
+  background: rgba(18, 5, 7, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  min-height: 40px;
+}
+
+.hist-btn-skip-journey:hover {
+  background: rgba(45, 12, 16, 0.95);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 179, 45, 0.35);
+}
+
+.hist-btn-skip-journey:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   FASE 3 & MILESTONE 1D: VESTÍBULO CENTRAL ARQUITECTÓNICO INTERACTIVO
+   ========================================================================== */
+.hist-central-hall-view {
+  position: relative;
+  width: 100%;
+}
+
+.hist-central-hall-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1376 / 768;
+  overflow: hidden;
+  background: #0d0305;
+  user-select: none;
+}
+
+.hist-hall-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.5s ease;
+  filter: brightness(1.02) contrast(1.04);
+}
+
+.hist-central-hall-view.hist-view-active .hist-hall-bg-img {
+  transform: scale(1.0);
+}
+
+/* Atmósfera luminosa y suave adaptada a la piedra calcárea de la rotonda */
+.hist-hall-ambient-bloom {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 16%, rgba(255, 242, 205, 0.22) 0%, rgba(224, 179, 45, 0.08) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hist-hall-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 48%, transparent 58%, rgba(13, 3, 5, 0.24) 85%, rgba(10, 2, 4, 0.42) 100%);
+  pointer-events: none;
+}
+
+/* Banner de orientación arquitectónica superior (flotante en la cúpula, no cubre las puertas) */
+.hist-hall-top-banner {
+  position: absolute;
+  top: clamp(8px, 1.8vw, 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.35rem 1.15rem;
+  background: rgba(14, 3, 5, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  max-width: min(92%, 620px);
+  pointer-events: auto;
+  animation: histHallBannerFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes histHallBannerFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.hist-hall-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.2rem;
+}
+
+.hist-hall-banner-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.2;
+  margin: 0.1rem 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+}
+
+.hist-hall-banner-instruction {
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 1.1vw, 0.78rem);
+  color: rgba(252, 250, 246, 0.85);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* Capa de puertas arquitectónicas interactivas */
+.hist-hall-doorways-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Cada portal arquitectónico */
+.hist-hall-doorway {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  border-radius: 6px 6px 2px 2px;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+/* Coordenadas precisas para cada una de las 5 puertas arquitectónicas */
+.hist-doorway-sala-1 {
+  left: 5.2%;
+  top: 48.0%;
+  width: 10.4%;
+  height: 35.5%;
+}
+
+.hist-doorway-sala-2 {
+  left: 26.2%;
+  top: 51.5%;
+  width: 9.2%;
+  height: 31.5%;
+}
+
+.hist-doorway-sala-3 {
+  left: 44.8%;
+  top: 52.0%;
+  width: 10.4%;
+  height: 30.5%;
+}
+
+.hist-doorway-sala-4 {
+  left: 64.4%;
+  top: 51.5%;
+  width: 9.2%;
+  height: 31.5%;
+}
+
+.hist-doorway-sala-5 {
+  left: 84.4%;
+  top: 48.0%;
+  width: 10.4%;
+  height: 35.5%;
+}
+
+/* Clave arquitectónica con número romano */
+.hist-doorway-keystone {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-family: var(--font-serif-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #160406;
+  background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 55%, #A87812 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7), 0 0 10px rgba(224, 179, 45, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 5;
+}
+
+/* Iluminación interior cálida de galería en hover/focus */
+.hist-doorway-aura {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 4px 0 0;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 65%, rgba(255, 225, 135, 0.35) 0%, rgba(224, 179, 45, 0.15) 55%, transparent 80%);
+  mix-blend-mode: screen;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Resplandor del marco de piedra */
+.hist-doorway-frame-glow {
+  position: absolute;
+  inset: -2px;
+  border: 1.5px solid transparent;
+  border-radius: 6px 6px 0 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: none;
+}
+
+/* Placa arquitectónica refinada en la base de la puerta */
+.hist-doorway-plaque {
+  position: relative;
+  width: calc(100% + 14px);
+  margin-left: -7px;
+  margin-bottom: -6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.3rem 0.35rem 0.4rem;
+  background: linear-gradient(180deg, rgba(22, 6, 9, 0.88) 0%, rgba(12, 3, 5, 0.96) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.42);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  z-index: 4;
+}
+
+.hist-doorway-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #F3D98B;
+  margin-bottom: 0.1rem;
+  white-space: nowrap;
+}
+
+.hist-doorway-title {
+  display: block;
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.78rem, 1.1vw, 0.92rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.15;
+  margin: 0 0 0.25rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hist-doorway-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: #FFFDF9;
+  transition: all 0.2s ease;
+}
+
+.hist-doorway-arrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  transition: transform 0.2s ease;
+}
+
+/* Micro-animaciones en hover */
+.hist-hall-doorway:hover {
+  transform: translateY(-4px);
+}
+
+.hist-hall-doorway:hover .hist-doorway-keystone {
+  transform: translateX(-50%) scale(1.12);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.65);
+}
+
+.hist-hall-doorway:hover .hist-doorway-aura {
+  opacity: 1;
+}
+
+.hist-hall-doorway:hover .hist-doorway-frame-glow {
+  border-color: rgba(224, 179, 45, 0.6);
+  box-shadow: 0 0 18px rgba(224, 179, 45, 0.25);
+}
+
+.hist-hall-doorway:hover .hist-doorway-plaque {
+  border-color: #E0B32D;
+  background: linear-gradient(180deg, rgba(30, 8, 12, 0.95) 0%, rgba(18, 4, 7, 0.98) 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85), 0 0 15px rgba(224, 179, 45, 0.3);
+}
+
+.hist-hall-doorway:hover .hist-doorway-cta {
+  background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 100%);
+  color: #140405;
+  border-color: #FFFDF9;
+}
+
+.hist-hall-doorway:hover .hist-doorway-arrow {
+  transform: translateX(3px);
+}
+
+/* Foco accesible para tecnologías de asistencia y navegación por teclado */
+.hist-hall-doorway:focus-visible {
+  outline: none;
+  transform: translateY(-4px);
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-frame-glow {
+  border-color: var(--color-gold-light, #F5DF98);
+  box-shadow: 0 0 20px rgba(224, 179, 45, 0.7);
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-keystone {
+  outline: 2px solid #FFF;
+  outline-offset: 2px;
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-plaque {
+  outline: 2px solid var(--color-gold-light, #F5DF98);
+  outline-offset: 2px;
+  border-color: #E0B32D;
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-aura {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   BOTONES DE RETORNO AL VESTÍBULO CENTRAL (DISPONIBLES EN CADA SALA)
+   ========================================================================== */
+.hist-btn-room-return-hall {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-light);
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.85rem;
+  text-decoration: none;
+  min-height: 48px;
+  min-width: 48px;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hist-btn-room-return-hall:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.3);
+}
+
+.hist-btn-room-return-hall:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-room-return-hall .hist-return-icon {
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CONTROLES SECUNDARIOS Y MÓVILES DEL VESTÍBULO CENTRAL
+   ========================================================================== */
+.hist-hall-controls-dock {
+  position: absolute;
+  bottom: clamp(6px, 1.5vw, 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(14, 3, 5, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full, 9999px);
+  padding: 0.35rem 0.65rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hist-btn-hall-dock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: clamp(0.68rem, 1vw, 0.76rem);
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.88);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-full, 9999px);
+  padding: 0.35rem 0.75rem;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  min-height: 32px;
+}
+
+.hist-btn-hall-dock:hover {
+  background: rgba(224, 179, 45, 0.2);
+  border-color: rgba(224, 179, 45, 0.6);
+  color: #FFFDF9;
+  transform: translateY(-1px);
+}
+
+.hist-btn-hall-dock:focus-visible {
+  outline: 2px solid var(--color-gold-light, #F5DF98);
+  outline-offset: 2px;
+}
+
+.hist-btn-hall-dock.hist-btn-hall-explore {
+  background: linear-gradient(135deg, rgba(224, 179, 45, 0.85) 0%, rgba(181, 132, 22, 0.95) 100%);
+  color: #140405;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hist-btn-hall-dock.hist-btn-hall-explore:hover {
+  background: linear-gradient(135deg, #FFF0B8 0%, #D4AF37 100%);
+  color: #140405;
+}
+
+/* Compatibilidad con clases secundarias */
+.hist-btn-hall-primary {
+  display: inline-flex;
+}
+.hist-btn-hall-secondary,
+.hist-btn-hall-tertiary {
+  display: inline-flex;
+}
+
+/* Selector móvil táctil inferior */
+.hist-hall-mobile-dock {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
    0. NAVEGADOR DE SALAS DEL MUSEO HISTÓRICO (HIST-MUSEUM-NAV)
    -------------------------------------------------------------------------- */
 .hist-museum-nav {
@@ -244,11 +1569,152 @@
 }
 
 .hist-room-kicker-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.hist-room-kicker-wrap .hist-btn-room-return-hall {
+  min-height: 38px;
+  padding: 0.35rem 0.85rem;
+}
+
+.hist-room-portal-header .hist-header-translate-btn {
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: var(--color-gold-light);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  min-height: 38px;
+  border-radius: var(--radius-full);
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.85rem;
-  flex-wrap: wrap;
+  gap: 0.35rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.hist-room-portal-header .hist-header-translate-btn:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.3);
+}
+
+.hist-room-portal-header .hist-header-translate-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   PÓRTICO ARQUITECTÓNICO DE SALA I: CRONOLOGÍA HISTÓRICA (PHASE 5)
+   ========================================================================== */
+.hist-room-entry-portal {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 15%, rgba(68, 16, 22, 0.45) 0%, rgba(20, 5, 7, 0.95) 75%, rgba(10, 2, 3, 0.98) 100%),
+              url('assets/museum/museum-exterior-bg.webp') center 18% / cover no-repeat;
+  background-blend-mode: overlay, normal;
+  border-top: 1px solid rgba(224, 179, 45, 0.4);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.3);
+  padding: clamp(2.5rem, 5vw, 4.2rem) 0 clamp(2rem, 4vw, 3.2rem);
+  box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 -20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hist-room-entry-portal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(224, 179, 45, 0.85) 50%, transparent 100%);
+}
+
+.hist-room-entry-sala-1 {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-room-portal-header {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hist-room-entry-sala-1 .hist-room-portal-header {
+  background-color: #1a0507;
+  background: #1a0507 linear-gradient(135deg, rgba(42, 10, 14, 0.98) 0%, rgba(24, 6, 8, 0.99) 55%, rgba(14, 3, 4, 1) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.55);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 4.5vw, 3.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 151, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-1 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+.hist-badge-curatorial {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.9);
+  background: rgba(45, 12, 16, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.85rem;
+  text-transform: uppercase;
+}
+
+.hist-room-portal-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.65rem, 3.6vw, 2.7rem);
+  font-weight: 800;
+  color: #FFFDF9;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin: 0.65rem 0 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 30px rgba(224, 179, 45, 0.25);
+}
+
+.hist-room-title-icon {
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  filter: drop-shadow(0 2px 8px rgba(224, 179, 45, 0.4));
+}
+
+.hist-room-portal-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+  line-height: 1.82;
+  color: rgba(252, 250, 246, 0.88);
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.hist-room-portal-desc em {
+  color: var(--color-gold-light);
+  font-style: italic;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------
@@ -677,6 +2143,38 @@
   letter-spacing: 0.04em;
 }
 
+/* Sala I HUD Room Badge & Return Button (Phase 5) */
+.hist-hud-room-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.14);
+  border: 1px solid rgba(224, 179, 45, 0.5);
+  border-radius: var(--radius-full);
+  padding: 0.22rem 0.65rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(224, 179, 45, 0.15);
+}
+
+.hist-hud-room-icon {
+  font-size: 0.78rem;
+}
+
+.hist-hud-return-btn {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.65rem;
+  min-height: 36px;
+  min-width: 36px;
+  gap: 0.3rem;
+  border-color: rgba(224, 179, 45, 0.4);
+}
+
 /* --------------------------------------------------------------------------
    ESCENARIO CENTRAL Y TARJETA DEL EVENTO (HIST-STAGE-CANVAS)
    -------------------------------------------------------------------------- */
@@ -743,6 +2241,34 @@
   justify-content: space-between;
   margin-bottom: var(--space-md);
   gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* Vitrine Museum Tag de Sala I en Tarjetas (Phase 5) */
+.hist-card-museum-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(45, 12, 16, 0.8);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.65rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hist-tag-divider {
+  color: rgba(224, 179, 45, 0.55);
+}
+
+.hist-tag-stop {
+  color: rgba(252, 250, 246, 0.88);
+  font-size: 0.65rem;
 }
 
 .hist-card-era-badge {
@@ -2885,7 +4411,7 @@
    -------------------------------------------------------------------------- */
 
 /* ==========================================================================
-   FASE 5: MAPA HISTÓRICO INTERACTIVO (GEOGRAFÍA DE LA TAUROMAQUIA)
+   FASE 6: SALA II — GALERÍA DE LA CARTOGRAFÍA HISTÓRICA (PHASE 6)
    ========================================================================== */
 
 .hist-map-section {
@@ -2893,9 +4419,57 @@
   background: radial-gradient(circle at 50% 20%, #1a0607 0%, #100304 55%, #080202 100%);
   border-top: 1px solid rgba(224, 179, 45, 0.28);
   border-bottom: 1px solid rgba(224, 179, 45, 0.28);
-  padding: clamp(3rem, 6vw, 5rem) 0;
+  padding: 0 0 clamp(3rem, 6vw, 5rem);
   color: #FCFAF6;
   overflow: hidden;
+}
+
+.hist-map-main-container {
+  padding-top: clamp(2rem, 4vw, 3.2rem);
+}
+
+/* Pórtico Arquitectónico de Sala II: Galería Cartográfica */
+.hist-room-entry-sala-2 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 56px;
+}
+
+.hist-room-entry-sala-2 .hist-room-portal-header {
+  background-color: #1a0507;
+  background: #1a0507 linear-gradient(135deg, rgba(40, 11, 15, 0.98) 0%, rgba(22, 6, 8, 0.99) 55%, rgba(12, 3, 4, 1) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.55);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 4.5vw, 3.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 151, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-2 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+.hist-room-entry-sala-2 .hist-map-kicker-meta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.75rem;
 }
 
 /* Cabecera del Mapa */
@@ -2948,43 +4522,48 @@
   margin: 0 0 1.5rem;
 }
 
-/* Barra de Filtros por Categoría */
+/* Barra de Filtros por Categoría (Sala II Filter Shelf) */
 .hist-map-filters {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  margin-top: 1.6rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.22);
 }
 
 .hist-map-filter-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.38rem 0.85rem;
+  gap: 0.45rem;
+  padding: 0.45rem 1.05rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(224, 179, 45, 0.3);
-  color: rgba(252, 250, 246, 0.85);
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  color: rgba(252, 250, 246, 0.9);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hist-map-filter-btn:hover {
-  background: rgba(224, 179, 45, 0.18);
+  background: rgba(55, 14, 18, 0.95);
   border-color: var(--color-gold);
   color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.28);
 }
 
 .hist-map-filter-btn.hist-filter-active {
-  background: linear-gradient(135deg, rgba(125, 22, 32, 0.85) 0%, rgba(55, 12, 14, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(145, 24, 36, 0.95) 0%, rgba(70, 14, 18, 0.98) 100%);
   border-color: var(--color-gold);
   color: #FFFFFF;
-  box-shadow: 0 2px 10px rgba(201, 151, 0, 0.25);
+  box-shadow: 0 4px 16px rgba(201, 151, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .hist-map-filter-btn:focus-visible {
@@ -3000,14 +4579,55 @@
   align-items: start;
 }
 
-/* Escenario del Mapa SVG */
+/* Escenario del Mapa SVG con Vitrina Museográfica de Sala II */
 .hist-map-stage {
   background: linear-gradient(160deg, #180607 0%, #100304 60%, #0a0202 100%);
-  border: 1px solid rgba(224, 179, 45, 0.35);
+  border: 1px solid rgba(224, 179, 45, 0.42);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.75), 
+    0 0 24px rgba(201, 151, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
   position: relative;
+}
+
+/* Placa de Vitrina Cartográfica de Sala II */
+.hist-map-vitrine-plate {
+  background: linear-gradient(180deg, rgba(32, 10, 12, 0.98) 0%, rgba(18, 5, 7, 0.98) 100%);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.35);
+  padding: 0.65rem 1.15rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+  position: relative;
+  z-index: 5;
+}
+
+.hist-vitrine-plate-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hist-vitrine-kicker {
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hist-vitrine-title {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: rgba(252, 250, 246, 0.78);
+  letter-spacing: 0.03em;
+  font-weight: 500;
 }
 
 .hist-map-viewport {
@@ -3291,6 +4911,23 @@
   background: linear-gradient(135deg, rgba(70, 15, 20, 0.95) 0%, rgba(35, 8, 10, 0.98) 100%);
   border-color: var(--color-gold);
   box-shadow: 0 0 16px rgba(201, 151, 0, 0.3), inset 0 0 12px rgba(201, 151, 0, 0.1);
+}
+
+/* Badges de Sala II en Directorio y Dossier (Phase 6) */
+.hist-card-museum-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-full);
 }
 
 .hist-loc-card-header {
@@ -3713,7 +5350,212 @@
   outline-offset: 2px;
 }
 
+/* Botón de retorno al vestíbulo en el dossier de Sala II (Phase 6) */
+.hist-dossier-return-btn {
+  font-size: 0.78rem;
+  padding: 0.5rem 1rem;
+  min-height: 40px;
+  background: rgba(24, 6, 8, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: var(--color-gold-light);
+  gap: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-dossier-return-btn:hover {
+  background: rgba(45, 12, 16, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFDF9;
+  transform: translateY(-1px);
+}
+
+.hist-dossier-return-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
+
+  /* Mobile styling for Museum Exterior & 3D Doors */
+  .hist-museum-exterior {
+    margin: 1rem 0 2rem;
+    padding: 1.5rem 0 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+  .hist-exterior-header {
+    margin-bottom: 1.25rem;
+    padding: 0 0.75rem;
+  }
+  .hist-exterior-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .hist-exterior-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 1rem;
+  }
+  .hist-btn-enter-museum,
+  .hist-btn-skip-doors,
+  .hist-btn-reset-doors,
+  .hist-btn-explore-galleries,
+  .hist-btn-start-corridor,
+  .hist-btn-hall-primary,
+  .hist-btn-hall-secondary,
+  .hist-btn-hall-tertiary {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.86rem;
+  }
+  .hist-doors-hint {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.65rem;
+  }
+  .hist-view-tab {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.72rem;
+  }
+
+  /* Mobile styling for Corridor & Central Hall (Milestone 1D) */
+  .hist-corridor-hud {
+    bottom: 12px;
+    width: calc(100% - 16px);
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-md, 8px);
+  }
+  .hist-corridor-caption {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  .hist-btn-skip-journey {
+    top: 10px;
+    right: 10px;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hist-hall-top-banner {
+    padding: 0.25rem 0.75rem;
+    max-width: 95%;
+  }
+  .hist-hall-banner-title {
+    font-size: 0.88rem;
+  }
+  .hist-hall-banner-instruction {
+    display: none;
+  }
+  .hist-hall-controls-dock {
+    gap: 0.35rem;
+    padding: 0.25rem 0.4rem;
+    bottom: 8px;
+  }
+  .hist-btn-hall-dock {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+    min-height: 28px;
+  }
+
+  /* Fix 1: Disposición adaptada en pantallas móviles estrechas (<= 390px) */
+  @media (max-width: 390px) {
+    .hist-hall-controls-dock {
+      position: static;
+      transform: none;
+      margin: 0.55rem auto 0.35rem;
+      width: fit-content;
+      max-width: calc(100% - 16px);
+      box-sizing: border-box;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: rgba(18, 5, 8, 0.94);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  /* Selector táctil horizontal accesible en móviles */
+  .hist-hall-mobile-dock {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.6rem;
+    padding: 0.75rem;
+    background: #0f0305;
+    border-top: 1px solid rgba(224, 179, 45, 0.25);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .hist-hall-mobile-card {
+    flex: 0 0 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.6rem 0.4rem;
+    background: rgba(25, 7, 10, 0.9);
+    border: 1px solid rgba(224, 179, 45, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    touch-action: manipulation;
+    position: relative;
+  }
+
+  .hist-hall-mobile-card:focus-visible {
+    outline: 2px solid var(--color-gold-light, #F5DF98);
+  }
+
+  .hist-mobile-card-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-family: var(--font-serif-heading);
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #160406;
+    background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 100%);
+    margin-bottom: 0.3rem;
+  }
+
+  .hist-mobile-card-title {
+    font-family: var(--font-serif-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #FFFDF9;
+    line-height: 1.15;
+    margin-bottom: 0.15rem;
+  }
+
+  .hist-mobile-card-sub {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    color: #F3D98B;
+  }
+  .hist-btn-room-return-hall {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+  }
+  .hist-room-entry-portal {
+    padding: 2.2rem 0 1.9rem;
+  }
+  .hist-room-portal-title {
+    font-size: 1.5rem;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .hist-hud-room-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+  .hist-hud-return-btn {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+  }
 
   .hist-map-grid {
     grid-template-columns: 1fr;
@@ -3729,9 +5571,32 @@
   }
 
   .hist-btn-jump-timeline,
-  .hist-btn-open-exhibit {
+  .hist-btn-open-exhibit,
+  .hist-dossier-return-btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .hist-vitrine-plate-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+  .hist-archive-footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .hist-archive-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hist-archive-filters {
+    gap: 0.35rem;
+  }
+  .hist-archive-filter-btn {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
   }
   .hist-archive-meta-grid {
     grid-template-columns: 1fr;
@@ -3912,6 +5777,58 @@
 
 }
 
+@media (max-width: 480px) {
+  .hist-hall-doorways-grid {
+    grid-template-columns: 1fr;
+  }
+  .hist-hall-doorway {
+    flex-direction: row;
+    min-height: 52px;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-md, 8px);
+    gap: 0.65rem;
+    align-items: center;
+  }
+  .hist-doorway-pediment {
+    width: auto;
+    padding: 0;
+  }
+  .hist-doorway-arch-molding {
+    display: none;
+  }
+  .hist-doorway-vista {
+    margin: 0;
+    width: 36px;
+    height: 36px;
+  }
+  .hist-vista-icon {
+    font-size: 1.1rem;
+  }
+  .hist-doorway-plaque {
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .hist-doorway-title {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  .hist-doorway-kicker {
+    margin-bottom: 0.1rem;
+  }
+  .hist-room-portal-title {
+    font-size: 1.3rem;
+  }
+  .hist-badge-curatorial {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.65rem;
+  }
+  .hist-room-portal-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .hist-marker-pulse {
@@ -3922,7 +5839,11 @@
   .hist-map-marker,
   .hist-loc-card,
   .hist-btn-jump-timeline,
-  .hist-btn-open-exhibit {
+  .hist-btn-open-exhibit,
+  .hist-dossier-return-btn,
+  .hist-archive-filter-btn,
+  .referencia-card,
+  .hist-archive-return-btn {
     transition: none !important;
     transform: none !important;
     animation: none !important;
@@ -3986,6 +5907,62 @@
     animation: none !important;
   }
 
+  /* Reduced motion for Museum Exterior & 3D Doors */
+  .hist-portal-door-left,
+  .hist-portal-door-right {
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+  }
+  .hist-doors-open .hist-portal-door-left,
+  .hist-doors-open .hist-portal-door-right {
+    transform: none !important;
+    opacity: 0 !important;
+  }
+  .hist-btn-enter-museum,
+  .hist-btn-skip-doors,
+  .hist-btn-reset-doors,
+  .hist-btn-explore-galleries,
+  .hist-view-tab,
+  .hist-doors-hint,
+  .hist-doors-welcome-banner,
+  .hist-corridor-glimpse-img,
+  .hist-interior-radiance,
+  .hist-hotspot-core,
+  .hist-portal-stage-zooming,
+  .hist-corridor-camera-rig,
+  .hist-corridor-stage.hist-corridor-animating .hist-corridor-camera-rig,
+  .hist-hall-bg-img,
+  .hist-hall-arrival-card,
+  .hist-mote,
+  .hist-corridor-lantern-glow,
+  .hist-corridor-pulse-dot,
+  .hist-btn-hall-primary,
+  .hist-btn-hall-secondary,
+  .hist-btn-hall-tertiary,
+  .hist-btn-start-corridor,
+  .hist-btn-skip-journey,
+  .hist-hall-doorway,
+  .hist-doorway-arrow,
+  .hist-doorway-vista,
+  .hist-vista-glow,
+  .hist-btn-room-return-hall,
+  .hist-hud-room-badge,
+  .hist-hud-return-btn {
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hist-corridor-particles {
+    display: none !important;
+  }
+  .hist-corridor-progress-fill {
+    transition: none !important;
+  }
+  .hist-hotspot-ring {
+    animation: none !important;
+    display: none !important;
+  }
+
 }
 
 /* Sala V: Caja de Reflexión Personal & Legado */
@@ -4033,52 +6010,135 @@
   font-weight: 600;
 }
 
-/* Sala III: Sección de Referencias y Archivo Histórico Digital */
+/* ==========================================================================
+   FASE 7: SALA III — GALERÍA DEL ARCHIVO HISTÓRICO DIGITAL (SALA III)
+   ========================================================================== */
+
 .historia-referencias-section {
-  padding: clamp(4.5rem, 7vw, 6.5rem) 0;
+  position: relative;
+  padding: 0 0 clamp(4rem, 6vw, 6rem);
   background: radial-gradient(ellipse at 50% 25%, #1d0608 0%, #100304 60%, #060102 100%);
   border-top: 1px solid rgba(224, 179, 45, 0.28);
   border-bottom: 1px solid rgba(224, 179, 45, 0.28);
+  overflow: hidden;
+}
+
+.hist-archive-main-container {
+  padding-top: clamp(2rem, 4vw, 3.2rem);
+}
+
+/* Pórtico Arquitectónico de Sala III: Archivo Histórico Digital */
+.hist-room-entry-sala-3 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 56px;
+}
+
+.hist-room-entry-sala-3 .hist-room-portal-header {
+  background-color: #1a0507;
+  background: #1a0507 linear-gradient(135deg, rgba(38, 10, 16, 0.98) 0%, rgba(20, 5, 8, 0.99) 55%, rgba(11, 3, 4, 1) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.55);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 4.5vw, 3.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 151, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-3 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+.hist-room-entry-sala-3 .hist-map-kicker-meta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.75rem;
+}
+
+/* Filtros Interactivos de Expedientes Documentales (Sala III Filter Shelf) */
+.hist-archive-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.22);
+}
+
+.hist-archive-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: var(--radius-full);
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  color: rgba(252, 250, 246, 0.9);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.hist-archive-filter-btn:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.28);
+}
+
+.hist-archive-filter-btn.hist-filter-active {
+  background: linear-gradient(135deg, rgba(145, 24, 36, 0.95) 0%, rgba(70, 14, 18, 0.98) 100%);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(201, 151, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hist-archive-filter-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Placa de Vitrina de Sala III */
+.hist-archive-vitrine-plate {
+  background: linear-gradient(180deg, rgba(34, 10, 13, 0.98) 0%, rgba(18, 5, 7, 0.98) 100%);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-lg, 12px) var(--radius-lg, 12px) 0 0;
+  padding: 0.75rem 1.25rem;
+  margin: -clamp(1.8rem, 4vw, 3rem) -clamp(1.8rem, 4vw, 3rem) 1.8rem -clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
 }
 
 /* ==========================================================================
    DIRECTORIO DE ARCHIVO HISTÓRICO DIGITAL (DIGITAL LIBRARY EXHIBIT)
    ========================================================================== */
 .referencias-wrapper {
-  background: linear-gradient(145deg, rgba(26, 7, 9, 0.94) 0%, rgba(14, 3, 4, 0.96) 60%, rgba(8, 2, 2, 0.98) 100%);
-  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: linear-gradient(145deg, rgba(28, 8, 10, 0.96) 0%, rgba(16, 4, 6, 0.98) 60%, rgba(10, 2, 3, 0.99) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.38);
   border-radius: var(--radius-xl, 16px);
   padding: clamp(1.8rem, 4vw, 3rem);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65), 0 0 24px rgba(201, 151, 0, 0.08);
-}
-
-.referencias-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(224, 179, 45, 0.25);
-  padding-bottom: 1.15rem;
-  margin-bottom: 1.4rem;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.referencias-title {
-  font-family: var(--font-serif-heading);
-  font-size: clamp(1.4rem, 2.7vw, 1.95rem);
-  color: var(--color-gold-light);
-  margin-bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.referencias-lead {
-  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
-  line-height: 1.75;
-  color: rgba(252, 250, 246, 0.9);
-  margin-bottom: 2rem;
-  max-width: 980px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .referencias-grid {
@@ -4089,20 +6149,20 @@
 
 .referencia-card {
   padding: 1.5rem;
-  background: linear-gradient(145deg, rgba(34, 9, 12, 0.88) 0%, rgba(18, 4, 6, 0.95) 100%);
-  border: 1px solid rgba(224, 179, 45, 0.3);
+  background: linear-gradient(145deg, rgba(34, 9, 12, 0.92) 0%, rgba(18, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
   border-left: 4px solid var(--color-gold);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .referencia-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(224, 179, 45, 0.65);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.65), 0 0 16px rgba(201, 151, 0, 0.2);
+  border-color: rgba(224, 179, 45, 0.7);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 151, 0, 0.22);
 }
 
 .referencia-card-top {
@@ -4111,6 +6171,7 @@
   justify-content: space-between;
   gap: 0.5rem;
   margin-bottom: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .referencia-card-type {
@@ -4155,7 +6216,23 @@
   color: rgba(224, 179, 45, 0.85);
   border-top: 1px dashed rgba(224, 179, 45, 0.18);
   padding-top: 0.6rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Enlace a Hitos Vinculados en Sala I */
+.hist-archive-milestone-ref {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.08);
+  border: 1px dashed rgba(224, 179, 45, 0.3);
+  border-radius: var(--radius-sm, 4px);
+  padding: 0.35rem 0.65rem;
+  margin: 0.5rem 0 0.85rem;
 }
 
 .referencia-card-link {
@@ -4182,6 +6259,53 @@
   outline-offset: 2px;
 }
 
+/* Pie Curatorial de Sala III y Botón de Retorno */
+.hist-archive-footer {
+  margin-top: 2.2rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.25);
+  padding-top: 1.4rem;
+}
+
+.hist-archive-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hist-archive-footer-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.75);
+  max-width: 720px;
+}
+
+.hist-archive-return-btn {
+  font-size: 0.82rem;
+  padding: 0.6rem 1.35rem;
+  min-height: 42px;
+  background: linear-gradient(135deg, rgba(65, 14, 18, 0.95), rgba(30, 6, 8, 0.98));
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.hist-archive-return-btn:hover {
+  background: linear-gradient(135deg, rgba(95, 20, 25, 1), rgba(45, 9, 12, 1));
+  border-color: var(--color-gold-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.35);
+}
+
 
 .hist-map-attribution {
   font-family: var(--font-sans);
@@ -4199,3 +6323,454 @@
 .hist-map-attribution a:hover {
   color: var(--color-gold-light);
 }
+
+/* ==========================================================================
+   SALA IV: PÓRTICO ARQUITECTÓNICO & GALERÍA DE LA EVALUACIÓN HISTÓRICA (PHASE 8)
+   ========================================================================== */
+.hist-room-entry-sala-4 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-room-entry-sala-4 .hist-room-portal-header {
+  background: linear-gradient(135deg, rgba(42, 10, 14, 0.96) 0%, rgba(24, 6, 8, 0.98) 55%, rgba(14, 3, 4, 0.99) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-4 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+/* Placa de Protocolo y Vitrina de Sala IV */
+.hist-quiz-vitrine-plate {
+  background: linear-gradient(180deg, rgba(34, 10, 13, 0.98) 0%, rgba(18, 5, 7, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-md, 8px);
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+}
+
+.hist-quiz-vitrine-plate-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hist-quiz-vitrine-plate .hist-vitrine-kicker {
+  font-family: var(--font-serif-heading, 'Cinzel', serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-gold, #c99700);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hist-quiz-vitrine-plate .hist-vitrine-sub {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  color: rgba(252, 250, 246, 0.78);
+  line-height: 1.5;
+}
+
+/* Pie Curatorial de Sala IV y Botón de Retorno */
+.hist-quiz-room-footer {
+  margin-top: 2.4rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.25);
+  padding-top: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-quiz-room-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hist-quiz-room-footer-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.75);
+  max-width: 720px;
+}
+
+.hist-quiz-return-btn {
+  font-size: 0.82rem;
+  padding: 0.6rem 1.35rem;
+  min-height: 42px;
+  background: linear-gradient(135deg, rgba(65, 14, 18, 0.95), rgba(30, 6, 8, 0.98));
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.hist-quiz-return-btn:hover {
+  background: linear-gradient(135deg, rgba(95, 20, 25, 1), rgba(45, 9, 12, 1));
+  border-color: var(--color-gold-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.35);
+}
+
+/* Responsividad para Salas I-IV (Móviles y Tablets) */
+@media (max-width: 768px) {
+  .hist-room-entry-sala-1 .hist-room-portal-header,
+  .hist-room-entry-sala-2 .hist-room-portal-header,
+  .hist-room-entry-sala-3 .hist-room-portal-header,
+  .hist-room-entry-sala-4 .hist-room-portal-header {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .hist-quiz-vitrine-plate {
+    padding: 0.75rem 1rem;
+  }
+
+  .hist-quiz-vitrine-plate .hist-vitrine-kicker {
+    font-size: 0.78rem;
+  }
+
+  .hist-quiz-room-footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .hist-quiz-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reducción de Movimiento Accesible para Salas I-IV */
+@media (prefers-reduced-motion: reduce) {
+  .hist-room-entry-sala-1,
+  .hist-room-entry-sala-2,
+  .hist-room-entry-sala-3,
+  .hist-room-entry-sala-4,
+  .hist-quiz-vitrine-plate,
+  .hist-quiz-return-btn {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   SALA V: PÓRTICO ARQUITECTÓNICO & GALERÍA DE LA REFLEXIÓN Y EL LEGADO (PHASE 9)
+   ========================================================================== */
+.hist-room-entry-sala-5 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-room-entry-sala-5 .hist-room-portal-header {
+  background: linear-gradient(135deg, rgba(38, 9, 13, 0.96) 0%, rgba(22, 5, 7, 0.98) 55%, rgba(12, 3, 4, 0.99) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-5 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+/* Placa de Síntesis Curatorial y Vitrina de Sala V */
+.hist-reflection-vitrine-plate {
+  background: linear-gradient(180deg, rgba(32, 8, 11, 0.98) 0%, rgba(16, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-md, 8px);
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+}
+
+.hist-reflection-vitrine-plate-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hist-reflection-vitrine-plate .hist-vitrine-kicker {
+  font-family: var(--font-serif-heading, 'Cinzel', serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-gold, #c99700);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hist-reflection-vitrine-plate .hist-vitrine-sub {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  color: rgba(252, 250, 246, 0.78);
+  line-height: 1.5;
+}
+
+/* Tríptico de Pilares de Interpretación Historiográfica */
+.hist-reflection-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hist-reflection-pillar-card {
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(34, 9, 12, 0.94) 0%, rgba(18, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius-lg, 12px);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hist-reflection-pillar-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(224, 179, 45, 0.65);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 151, 0, 0.18);
+}
+
+.hist-pillar-badge-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hist-pillar-room-link {
+  font-family: var(--font-serif-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+}
+
+.hist-pillar-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  color: #FFFDF9;
+  font-weight: 700;
+  margin: 0 0 0.65rem;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.hist-pillar-desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(252, 250, 246, 0.82);
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.hist-pillar-crosslink {
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.15);
+}
+
+.hist-pillar-link {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hist-pillar-link:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+  text-decoration: underline;
+}
+
+.hist-pillar-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Pie Curatorial de Clausura y Navegación de Sala V */
+.hist-reflection-room-footer {
+  margin-top: 2.8rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.28);
+  padding-top: 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-reflection-room-footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.hist-reflection-room-footer-text {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(252, 250, 246, 0.78);
+  max-width: 820px;
+}
+
+.hist-reflection-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hist-reflection-return-btn {
+  font-size: 0.84rem;
+  padding: 0.65rem 1.45rem;
+  min-height: 44px;
+  background: linear-gradient(135deg, rgba(65, 14, 18, 0.95), rgba(30, 6, 8, 0.98));
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.hist-reflection-return-btn:hover {
+  background: linear-gradient(135deg, rgba(95, 20, 25, 1), rgba(45, 9, 12, 1));
+  border-color: var(--color-gold-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.35);
+}
+
+.hist-reflection-reexplore-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hist-reexplore-pill {
+  font-family: var(--font-serif-display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.82);
+  background: rgba(30, 8, 12, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.hist-reexplore-pill:hover {
+  background: rgba(65, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.hist-reexplore-pill:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Responsividad para Sala V (Móviles y Tablets) */
+@media (max-width: 768px) {
+  .hist-room-entry-sala-5 .hist-room-portal-header {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .hist-reflection-vitrine-plate {
+    padding: 0.75rem 1rem;
+  }
+
+  .hist-reflection-vitrine-plate .hist-vitrine-kicker {
+    font-size: 0.78rem;
+  }
+
+  .hist-reflection-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hist-reflection-footer-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hist-reflection-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hist-reflection-reexplore-group {
+    justify-content: center;
+  }
+}
+
+/* Reducción de Movimiento Accesible para Sala V */
+@media (prefers-reduced-motion: reduce) {
+  .hist-room-entry-sala-5,
+  .hist-reflection-vitrine-plate,
+  .hist-reflection-pillar-card,
+  .hist-reflection-return-btn,
+  .hist-reexplore-pill {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+

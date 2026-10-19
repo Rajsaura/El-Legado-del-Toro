@@ -321,7 +321,7 @@
    * @param {boolean} immediate - Si es true, se descarta instantáneamente.
    */
   function dismissIntro(immediate = false) {
-    if (!isIntroActive) return;
+    if (!isIntroActive && !immediate) return;
     isIntroActive = false;
     isIntroFinished = true;
 
@@ -352,11 +352,17 @@
     // Restaurar el acceso por teclado al contenido principal
     setBackgroundInert(false);
 
-    // Devolver el foco al título principal de la sección
-    const pageTitle = document.getElementById('page-title');
-    if (pageTitle) {
-      pageTitle.setAttribute('tabindex', '-1');
-      pageTitle.focus();
+    // Devolver el foco al título principal de la sección solo si el usuario completó/saltó la intro manualmente
+    if (!immediate) {
+      const pageTitle = document.getElementById('page-title');
+      if (pageTitle) {
+        pageTitle.setAttribute('tabindex', '-1');
+        try {
+          pageTitle.focus({ preventScroll: true });
+        } catch (e) {
+          pageTitle.focus();
+        }
+      }
     }
   }
 
@@ -514,6 +520,13 @@
     // Comprobación de preferencia de accesibilidad para reducción de movimiento
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
+      dismissIntro(true);
+      return;
+    }
+
+    // Si el visitante llega directamente con un enlace a una sala específica del museo
+    const currentHash = window.location.hash;
+    if (currentHash && currentHash !== '#' && currentHash !== '#historia-header') {
       dismissIntro(true);
       return;
     }

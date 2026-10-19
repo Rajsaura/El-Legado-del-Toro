@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sala IV: Autoevaluación Histórica - Cuestionario pedagógico interactivo sobre las fuentes primarias y evolución jurídica, estética y social de la tauromaquia. Revista digital El Legado del Toro.">
+  <title>Sala IV: Cuestionario Histórico | El Legado del Toro</title>
+
+  <!-- Estilos compartidos del proyecto y específicos de historia -->
+  <link rel="stylesheet" href="../../css/shared.css">
+  <link rel="stylesheet" href="style.css?v=20261018c">
+
+  <!-- Scripts: Navegación compartida, motor de cuestionario y controlador de Sala IV -->
+  <script src="../../js/nav.js?v=2" defer></script>
+  <script src="quiz.js?v=2" defer></script>
+  <script src="sala-4.js?v=2" defer></script>
+</head>
+<body>
+
+  <!-- Contenedor para inyección de la barra de navegación compartida -->
+  <div id="site-nav-container"></div>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+         PÓRTICO ARQUITECTÓNICO DE SALA IV: EVALUACIÓN HISTÓRICA
+         =================================================================== -->
+    <div class="hist-room-entry-portal hist-room-entry-sala-4" id="hist-room-entry-sala-4" aria-labelledby="hist-sala-4-heading">
+      <div class="site-container">
+        <div class="hist-room-portal-header">
+          <div class="hist-room-kicker-wrap">
+            <span class="badge badge-gold hist-museum-room-badge">
+              <span class="hist-lang-es">SALA IV • AUTOEVALUACIÓN HISTÓRICA</span>
+              <span class="hist-lang-en" style="display:none;">GALLERY IV • HISTORICAL EVALUATION</span>
+            </span>
+            <span class="badge hist-badge-curatorial" id="quiz-curatorial-badge">
+              <span class="hist-lang-es">Gabinete Pedagógico • 5 Preguntas Documentadas</span>
+              <span class="hist-lang-en" style="display:none;">Pedagogical Cabinet • 5 Documented Inquiries</span>
+            </span>
+            <span class="hist-map-kicker-meta" id="hist-quiz-meta">
+              <span class="hist-lang-es">Fuentes Primarias, Cotejo Historiográfico y Sentencias Vinculantes</span>
+              <span class="hist-lang-en" style="display:none;">Primary Sources, Historiographical Cross-Checks &amp; Binding Rulings</span>
+            </span>
+            <button type="button" class="hist-btn-translate hist-header-translate-btn" id="btn-toggle-language" aria-label="Cambiar idioma (ES / EN)">
+              <span class="hist-translate-icon" aria-hidden="true">🌐</span>
+              <span class="hist-translate-label">ES / EN</span>
+            </button>
+            <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+              <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+              <span class="hist-lang-es">Vestíbulo</span>
+              <span class="hist-lang-en" style="display:none;">Central Hall</span>
+            </a>
+          </div>
+
+          <h1 class="hist-room-portal-title" id="hist-sala-4-heading">
+            <span class="hist-room-title-icon" aria-hidden="true">🎯</span>
+            <span class="hist-lang-es">Galería de la Evaluación Histórica &amp; Debate Crítico</span>
+            <span class="hist-lang-en" style="display:none;">Historical Assessment &amp; Critical Debate Gallery</span>
+          </h1>
+
+          <p class="hist-room-portal-desc">
+            <span class="hist-lang-es">Espacio pedagógico e interactivo destinado a contrastar el conocimiento adquirido sobre la evolución jurídica, estética y social de la tauromaquia. A través de cinco cuestiones historiográficas contrastadas directamente con las fuentes primarias del Museo —desde Las Siete Partidas alfonsíes y las actas de Ronda hasta las resoluciones del Tribunal Constitucional—, el visitante puede examinar la complejidad histórica superando los tópicos y el reduccionismo simplificador.</span>
+            <span class="hist-lang-en" style="display:none;">Interactive pedagogical space designed to assess insights gained across the legal, aesthetic, and social evolution of tauromaquia. Through five historiographical inquiries cross-referenced directly with the Museum's primary sources — from Alfonso X's Siete Partidas and Ronda's archive records to the Constitutional Court's jurisprudence —, visitors are invited to critically examine historical complexity beyond superficial simplifications.</span>
+          </p>
+
+          <!-- Placa de Metodología y Vitrina de Evaluación -->
+          <div class="hist-quiz-vitrine-plate">
+            <div class="hist-quiz-vitrine-plate-header">
+              <span class="hist-vitrine-kicker">🏛️ SALA IV • PROTOCOLO DE EVALUACIÓN HISTORIOGRÁFICA</span>
+              <span class="hist-vitrine-sub">
+                <span class="hist-lang-es">Metodología de contraste: 5 cuestiones jurídicas, artísticas y competenciales vinculadas a las Salas I, II y III</span>
+                <span class="hist-lang-en" style="display:none;">Cross-checking methodology: 5 statutory, artistic, and jurisdictional questions linked to Galleries I, II &amp; III</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         SALA IV: CUESTIONARIO HISTÓRICO INTERACTIVO (GABINETE PEDAGÓGICO)
+         =================================================================== -->
+    <section id="hist-quiz-section" class="hist-quiz-section hist-museum-room" aria-labelledby="hist-sala-4-heading" data-room="quiz">
+      <div class="site-container">
+        
+        <!-- Contenedor inyectado dinámicamente por quiz.js -->
+        <div id="hist-quiz-container" class="hist-quiz-container"></div>
+
+        <!-- Pie Curatorial de Sala IV -->
+        <div class="hist-quiz-room-footer">
+          <div class="hist-quiz-room-footer-inner">
+            <div class="hist-quiz-room-footer-text">
+              <span class="hist-lang-es">Las cuestiones planteadas en este gabinete han sido formuladas con estricto apego a las fuentes primarias transcritas en la Galería del Archivo Digital. Para consultar los expedientes originales o reexaminar los hitos en el tiempo, utilice los accesos directos o regrese al Gran Vestíbulo.</span>
+              <span class="hist-lang-en" style="display:none;">The inquiries formulated in this cabinet have been designed with strict adherence to the primary sources transcribed in the Digital Archive Gallery. To inspect original records or re-examine milestones across time, use the shortcuts or return to the Central Hall.</span>
+            </div>
+            <div class="hist-quiz-room-footer-actions">
+              <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall hist-quiz-return-btn" aria-label="Volver al Gran Vestíbulo Central del Museo">
+                <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+                <span class="hist-lang-es">Volver al Gran Vestíbulo</span>
+                <span class="hist-lang-en" style="display:none;">Return to Central Hall</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIE DE PÁGINA DE SALA IV
+       =================================================================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="site-container">
+      <div class="footer-content">
+        <div class="footer-brand">El Legado del Toro</div>
+        <p class="footer-subtitle">
+          <span class="hist-lang-es">Sala IV • Cuestionario: Evaluación Histórica y Debate Crítico</span>
+          <span class="hist-lang-en" style="display:none;">Gallery IV • Historical Evaluation &amp; Critical Debate</span>
+        </p>
+        <div class="hist-reflection-footer-actions" style="margin-top: 1.5rem;">
+          <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+            <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+            <span class="hist-lang-es">Volver al Gran Vestíbulo Central</span>
+            <span class="hist-lang-en" style="display:none;">Return to Grand Central Hall</span>
+          </a>
+        </div>
+        <p class="footer-copy" style="margin-top: 1.5rem;">
+          <span class="hist-lang-es">Proyecto colaborativo de revista digital • Sección 1: La Historia (Sukrish)</span>
+          <span class="hist-lang-en" style="display:none;">Digital magazine collaborative project • Section 1: The History (Sukrish)</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

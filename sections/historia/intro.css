@@ -1,0 +1,631 @@
+/**
+ * ==========================================================================
+ * EL LEGADO DEL TORO - SECCIÓN 1: LA HISTORIA
+ * Archivo: sections/historia/intro.css
+ * 
+ * Estilos para la pantalla de introducción animada a pantalla completa:
+ * - Capa de superposición fija (Overlay) a pantalla completa con atmósfera teatral
+ * - Ciclo de galope cuadrúpedo realista basado en 8 poses anatómicas articuladas
+ * - Traslación horizontal acelerada y fluida (Cubic-Bezier)
+ * - Emisión de partículas de polvo sincronizada con el impacto de pezuñas en el suelo
+ * - Barra de progreso dorada sincronizada
+ * - Tipografía con revelado letra por letra (Cinzel, dorado y marfil)
+ * - Botones accesibles: "Saltar intro", "Entrar ↓" y "Repetir intro"
+ * - Diseño responsivo y soporte estricto para prefers-reduced-motion
+ * ==========================================================================
+ */
+
+/* --------------------------------------------------------------------------
+   1. CONTENEDOR PRINCIPAL DE LA INTRODUCCIÓN (FULL-SCREEN OVERLAY)
+   -------------------------------------------------------------------------- */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #0c0202;
+  /* Fondo atmosférico de arena/ruedo nocturno con viñeta profunda */
+  background: radial-gradient(circle at 50% 50%, #260707 0%, #150303 55%, #080101 100%);
+  color: var(--color-bg-sand-light, #FCFAF6);
+  /* Transición fluida para deslizar la cortina hacia arriba al entrar */
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1),
+              opacity 0.7s ease,
+              visibility 0.85s;
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+/* Estado descartado: la cortina sube y desaparece sin interferir en clics */
+.intro-screen.is-dismissed {
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Estado activo (al cargar o al pulsar "Repetir intro") */
+.intro-screen.is-active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Capa de textura sutil de ruido / arena en el fondo */
+.intro-backdrop-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(201, 151, 0, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(184, 50, 50, 0.2) 0%, transparent 45%);
+}
+
+/* --------------------------------------------------------------------------
+   2. BOTÓN "SALTAR INTRO" (VISIBLE DESDE EL INICIO)
+   -------------------------------------------------------------------------- */
+.intro-btn-skip {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  background: rgba(22, 6, 6, 0.75);
+  color: var(--color-gold-light, #E0B32D);
+  border: 1px solid var(--color-border-gold, rgba(201, 151, 0, 0.35));
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-sans-body, sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-fast, 0.18s ease);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.intro-btn-skip:hover {
+  background: var(--color-primary-dark, #5C1010);
+  border-color: var(--color-gold, #C99700);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-gold, 0 8px 24px rgba(201, 151, 0, 0.25));
+  transform: translateY(-2px);
+}
+
+.intro-btn-skip:focus-visible {
+  outline: 2px solid var(--color-gold-light, #E0B32D);
+  outline-offset: 3px;
+}
+
+.skip-icon {
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+
+.intro-btn-skip:hover .skip-icon {
+  transform: translateX(2px);
+}
+
+/* --------------------------------------------------------------------------
+   3. ESCENARIO CENTRAL Y TIPOGRAFÍA (STAGE & REVEALED TEXT)
+   -------------------------------------------------------------------------- */
+.intro-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  max-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Contenedor central de los tres renglones de texto */
+.intro-text-wrapper {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.25rem;
+  pointer-events: none;
+}
+
+/* Línea 1: LA HISTORIA (Grande, Cinzel) */
+.intro-line-1 {
+  font-family: var(--font-serif-display, 'Cinzel', Georgia, serif);
+  font-size: clamp(2.6rem, 7.5vw, 5.25rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0 0 0.85rem 0;
+  color: var(--color-bg-sand-light, #FCFAF6);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Línea 2: Por Sukrish */
+.intro-line-2 {
+  font-family: var(--font-serif-heading, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.2rem, 3.2vw, 2rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.65rem 0;
+  color: var(--color-gold-light, #E0B32D);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Línea 3: Registration No: 25BDS1058 */
+.intro-line-3 {
+  font-family: var(--font-sans-body, sans-serif);
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+  color: #D6CBC1;
+  opacity: 0.95;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Letras individuales envueltas para el revelado gradual */
+.intro-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px) scale(0.92);
+  filter: blur(6px);
+  transition: opacity 0.32s ease,
+              transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.32s ease,
+              text-shadow 0.32s ease;
+  will-change: opacity, transform, filter;
+}
+
+/* Espacio entre palabras */
+.intro-char.char-space {
+  display: inline-block;
+  width: 0.35em;
+}
+
+/* Estado de la letra una vez cruzada por el toro */
+.intro-char.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Resplandor especial dorado en la línea 1 al revelarse */
+.intro-line-1 .intro-char.is-revealed {
+  text-shadow: 0 0 16px rgba(224, 179, 45, 0.45), 0 4px 18px rgba(0, 0, 0, 0.85);
+}
+
+.intro-line-2 .intro-char.is-revealed {
+  text-shadow: 0 0 12px rgba(201, 151, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   4. PISTA DEL TORO Y CORREDOR CINEMÁTICO (BULL TRACK & RUNNER)
+   -------------------------------------------------------------------------- */
+.intro-bull-track {
+  position: relative;
+  width: 100vw;
+  height: 155px;
+  overflow: visible;
+  pointer-events: none;
+  margin: 0.25rem 0 1.25rem 0;
+}
+
+/* Contenedor del toro que se desplaza de izquierda a derecha */
+.intro-bull-runner {
+  position: absolute;
+  top: 0;
+  left: -260px; /* Posición de partida fuera del margen izquierdo */
+  width: 220px;
+  height: 147px;
+  will-change: left, transform;
+}
+
+/* 
+   Animación transversal con aceleración cinética suave (Cubic-Bezier):
+   Comienza con arranque deliberado y gana impulso continuo hasta cruzar la pantalla.
+*/
+.intro-screen.is-playing .intro-bull-runner {
+  animation: bullTraverse var(--intro-duration, 5.8s) cubic-bezier(0.38, 0.05, 0.22, 1) forwards;
+}
+
+@keyframes bullTraverse {
+  0% {
+    left: -260px;
+  }
+  100% {
+    left: calc(100vw + 80px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. CONTENEDOR Y CONTROL DE FRAMES DEL TORO (8 FRAMES TRANSPARENTES)
+   -------------------------------------------------------------------------- */
+.bull-sprite-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  filter: drop-shadow(0 0 10px rgba(224, 179, 45, 0.75))
+          drop-shadow(0 0 22px rgba(201, 151, 0, 0.45))
+          drop-shadow(2px 5px 8px rgba(0, 0, 0, 0.8));
+  transition: transform 0.05s ease-out;
+}
+
+/* Cada cuadro individual pre-renderizado */
+.bull-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Cuadro activo en el ciclo de galope */
+.bull-frame.is-active {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   6. PARTÍCULAS DE POLVO DE ALBERO (DUST PARTICLES POR CONTACTO)
+   -------------------------------------------------------------------------- */
+.intro-dust-container {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.intro-dust-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(224, 179, 45, 0.85) 0%, rgba(201, 151, 0, 0.45) 45%, rgba(139, 30, 30, 0) 100%);
+  animation: dustPuff 0.85s ease-out forwards;
+  filter: blur(2.5px);
+  will-change: transform, opacity;
+}
+
+@keyframes dustPuff {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-38px, -24px) scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. LÍNEA DE PROGRESO DORADA (GOLD PROGRESS LINE)
+   -------------------------------------------------------------------------- */
+.intro-progress-bar-container {
+  position: relative;
+  width: min(92vw, 880px);
+  height: 3px;
+  background: rgba(226, 218, 203, 0.15);
+  border-radius: var(--radius-full, 9999px);
+  overflow: visible;
+  margin: 0.5rem auto 2.25rem auto;
+}
+
+.intro-progress-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(90deg, var(--color-gold-dark, #996F00), var(--color-gold, #C99700) 45%, var(--color-gold-light, #E0B32D) 85%, #FFFDF9 100%);
+  box-shadow: 0 0 14px rgba(224, 179, 45, 0.8), 0 0 4px #FFFFFF;
+  will-change: width;
+}
+
+/* 
+   Llenado de barra sincronizado con la aceleración del toro:
+   Misma curva cubic-bezier y duración dinámica.
+*/
+.intro-screen.is-playing .intro-progress-line {
+  animation: fillProgress var(--intro-duration, 5.8s) cubic-bezier(0.38, 0.05, 0.22, 1) forwards;
+}
+
+@keyframes fillProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Destello en la punta de la barra de progreso */
+.intro-progress-line::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #FFFDF9;
+  box-shadow: 0 0 10px #E0B32D, 0 0 18px #C99700;
+}
+
+/* --------------------------------------------------------------------------
+   8. BOTÓN "ENTRAR ↓" (FADE-IN AL CONCLUIR EL RECORRIDO)
+   -------------------------------------------------------------------------- */
+.intro-actions {
+  position: relative;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-btn-enter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 2.25rem;
+  background: linear-gradient(135deg, var(--color-primary, #8B1E1E), var(--color-primary-dark, #5C1010));
+  color: #FFFFFF;
+  border: 1.5px solid var(--color-gold, #C99700);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-serif-display, 'Cinzel', serif);
+  font-size: var(--text-base, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 18px rgba(201, 151, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.65s ease,
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.65s,
+              background 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* Cuando el toro completa su recorrido (is-finished) */
+.intro-screen.is-finished .intro-btn-enter {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  animation: enterPulse 2.4s infinite ease-in-out;
+}
+
+@keyframes enterPulse {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 18px rgba(201, 151, 0, 0.35);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8), 0 0 28px rgba(224, 179, 45, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+.intro-btn-enter:hover {
+  background: linear-gradient(135deg, var(--color-primary-light, #B83232), var(--color-primary, #8B1E1E));
+  border-color: var(--color-gold-light, #E0B32D);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 32px rgba(224, 179, 45, 0.75);
+}
+
+.intro-btn-enter:focus-visible {
+  outline: 3px solid var(--color-gold-light, #E0B32D);
+  outline-offset: 4px;
+}
+
+.enter-arrow {
+  font-size: 1.15rem;
+  transition: transform 0.25s ease;
+  color: var(--color-gold-light, #E0B32D);
+}
+
+.intro-btn-enter:hover .enter-arrow {
+  transform: translateY(3px);
+}
+
+/* --------------------------------------------------------------------------
+   9. BOTÓN "REPETIR INTRO" (EN LA PÁGINA PRINCIPAL)
+   -------------------------------------------------------------------------- */
+.btn-replay-intro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  background: transparent;
+  color: var(--color-text-secondary, #574F4A);
+  border: 1px solid var(--color-border, #E2DACB);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-sans-body, sans-serif);
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.18s ease);
+  margin-left: 0.5rem;
+}
+
+.btn-replay-intro:hover {
+  background: var(--color-surface, #FFFFFF);
+  color: var(--color-primary, #8B1E1E);
+  border-color: var(--color-gold, #C99700);
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(35, 31, 32, 0.04));
+  transform: translateY(-1px);
+}
+
+.btn-replay-intro:focus-visible {
+  outline: 2px solid var(--color-gold, #C99700);
+  outline-offset: 2px;
+}
+
+.btn-replay-intro svg {
+  transition: transform 0.4s ease;
+}
+
+.btn-replay-intro:hover svg {
+  transform: rotate(-180deg);
+}
+
+/* --------------------------------------------------------------------------
+   10. CLASES AUXILIARES DE ACCESIBILIDAD
+   -------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. RESPONSIVE DESIGN (DISPOSITIVOS MÓVILES Y TABLETS)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .intro-stage {
+    padding: 1.5rem 1rem;
+  }
+
+  .intro-text-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-line-1 {
+    font-size: clamp(2rem, 9vw, 3.25rem);
+    letter-spacing: 0.08em;
+  }
+
+  .intro-line-2 {
+    font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+  }
+
+  .intro-line-3 {
+    font-size: clamp(0.75rem, 3.2vw, 0.9rem);
+    letter-spacing: 0.1em;
+  }
+
+  .intro-bull-track {
+    height: 110px;
+    margin: 0 0 1rem 0;
+  }
+
+  .intro-bull-runner {
+    width: 175px;
+    height: 100px;
+    left: -200px;
+  }
+
+  @keyframes bullTraverse {
+    0% {
+      left: -200px;
+    }
+    100% {
+      left: calc(100vw + 50px);
+    }
+  }
+
+  .intro-btn-skip {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.75rem;
+  }
+
+  .intro-btn-enter {
+    padding: 0.75rem 1.75rem;
+    font-size: var(--text-sm, 0.875rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-bull-runner {
+    width: 145px;
+    height: 82px;
+    left: -160px;
+  }
+
+  @keyframes bullTraverse {
+    0% {
+      left: -160px;
+    }
+    100% {
+      left: calc(100vw + 40px);
+    }
+  }
+
+  .intro-progress-bar-container {
+    margin-bottom: 1.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. PREFERS-REDUCED-MOTION (ACCESIBILIDAD PARA MOVIMIENTO REDUCIDO)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .intro-screen,
+  .intro-bull-runner,
+  .bull-animation-container,
+  .bull-pose,
+  .intro-progress-line,
+  .intro-dust-particle,
+  .intro-btn-enter {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Los caracteres se muestran sin transiciones en modo reducido */
+  .intro-char {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .intro-btn-enter {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+}

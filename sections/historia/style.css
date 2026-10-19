@@ -12,6 +12,11 @@
 }
 
 .historia-badge-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
   margin-bottom: var(--space-md);
 }
 
@@ -95,75 +100,5897 @@
   line-height: 1.8;
 }
 
-/* Contenedor de la Línea de Tiempo */
-.historia-timeline-section {
-  padding: var(--space-2xl) 0;
+/* ==========================================================================
+   VIAJE EN EL TIEMPO - CRONOLOGÍA INTERACTIVA (SCROLL-DRIVEN JOURNEY)
+   Todos los nuevos identificadores y clases llevan el prefijo hist-
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   MUSEO HISTÓRICO VIRTUAL: FACHADA EXTERIOR Y PÓRTICO DE ENTRADA (PHASE 2)
+   -------------------------------------------------------------------------- */
+.hist-museum-exterior {
+  position: relative;
+  margin: 1.5rem 0 2.5rem;
+  padding: clamp(2rem, 4vw, 3.5rem) 0 2.5rem;
+  background: radial-gradient(ellipse at 50% 15%, rgba(68, 18, 24, 0.45) 0%, rgba(18, 5, 8, 0.95) 60%, #0a0204 100%);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(224, 179, 45, 0.2);
+  overflow: hidden;
 }
 
-.section-heading-wrapper {
+.hist-exterior-header {
   text-align: center;
-  margin-bottom: var(--space-2xl);
+  max-width: 820px;
+  margin: 0 auto 2rem;
+  padding: 0 1.25rem;
 }
 
-.section-label {
-  font-size: var(--text-xs);
-  color: var(--color-gold-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+.hist-exterior-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.9rem;
+}
+
+.hist-exterior-badge-icon {
+  font-size: 0.85rem;
+}
+
+.hist-exterior-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  color: #FFFDF9;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+.hist-exterior-subtitle {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-style: italic;
+  color: rgba(252, 250, 246, 0.82);
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+/* Switcher de vistas: Pórtico vs. Fachada */
+.hist-exterior-view-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(18, 5, 7, 0.9);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  gap: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hist-view-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(252, 250, 246, 0.75);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-height: 38px;
+}
+
+.hist-view-tab:hover {
+  color: #FFFFFF;
+  background: rgba(224, 179, 45, 0.15);
+  border-color: rgba(224, 179, 45, 0.3);
+}
+
+.hist-view-tab:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hist-view-tab.hist-view-tab-active,
+.hist-view-tab[aria-selected="true"] {
+  color: #140405;
+  background: linear-gradient(135deg, #F3D98B 0%, #D4AF37 50%, #B8891D 100%);
+  border-color: var(--color-gold-light);
+  box-shadow: 0 2px 10px rgba(201, 151, 0, 0.4);
+  font-weight: 700;
+}
+
+/* Tarjeta escénica del museo */
+.hist-exterior-stage-card {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  background: #0d0405;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(201, 151, 0, 0.12);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   FASE 2: ESCENARIO CINEMATOGRÁFICO EXTERIOR-A-ENTRADA (MILESTONE 1B)
+   Transición suave y continua:
+   Stage A: Fachada Panorámica Establecimiento (exterior-establishing.webp)
+   Stage B: Aproximación por el Patio Exterior (exterior-approach.webp)
+   Stage C: Puertas Cerradas -> Abriéndose -> Abiertas (entrance-doors-*.webp)
+   Stage D: Tránsito por el Umbral hacia la Galería Abovedada
+   ========================================================================== */
+
+.hist-cinematic-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1376 / 768;
+  overflow: hidden;
+  background-color: #0b0204;
+  user-select: none;
+  perspective: 1200px;
+}
+
+/* Capas cinemáticas superpuestas con aceleración por hardware */
+.hist-cine-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 1.0s ease-in-out, transform 4.0s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform-origin: 50% 50%;
+  transform: scale(1.0) translateY(0);
+  z-index: 1;
+}
+
+.hist-cine-layer.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.hist-cine-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin-bottom: var(--space-xs);
 }
 
-.section-title {
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-  color: var(--color-primary-dark);
+/* --------------------------------------------------------------------------
+   TRANSICIONES CINEMÁTICAS POR ETAPA (RESTRAINED CINEMATIC CAMERA MOVEMENTS)
+   -------------------------------------------------------------------------- */
+
+/* Stage A: Movimiento sutil y majestuoso hacia el patio */
+#cine-layer-establishing {
+  transform-origin: 50% 50%;
+  transition: opacity 1.0s ease-in-out, transform 4.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.timeline-container-wrapper {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-2xl);
-  box-shadow: var(--shadow-sm);
-  min-height: 380px;
+.hist-cine-stage-moving #cine-layer-establishing.is-active {
+  transform: scale(1.035) translateY(-0.8%);
+}
+
+/* Stage B: Aproximación pausada al pórtico */
+#cine-layer-approach {
+  transform-origin: 50% 50%;
+  transition: opacity 1.0s ease-in-out, transform 4.0s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-approach.is-active {
+  transform: scale(1.025) translateY(-0.5%);
+}
+
+/* Stage C: Puertas Cerradas -> Abriéndose -> Totalmente Abiertas
+   CÁMARA ESTACIONARIA: El marco arquitectónico de piedra, columnas y linternas
+   permanecen 100% fijos sin ningún zoom brusco mientras las hojas de cedro giran. */
+#cine-layer-doors-closed,
+#cine-layer-doors-opening {
+  transform-origin: 50% 50%;
+  transform: none !important;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.hist-cine-stage-moving #cine-layer-doors-closed.is-active,
+.hist-cine-stage-moving #cine-layer-doors-opening.is-active {
+  transform: none !important;
+}
+
+#cine-layer-doors-open {
+  transform-origin: 50% 50%;
+  transition: opacity 0.9s ease-in-out, transform 3.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Sólo tras estar completamente abiertas las puertas, se inicia un avance milimétrico */
+.hist-cine-stage-moving #cine-layer-doors-open.is-active {
+  transform: scale(1.02) translateY(-0.3%);
+}
+
+/* Stage D: Umbral y Paso al Interior Iluminado */
+#cine-layer-threshold {
+  transform-origin: 50% 50%;
+  transition: opacity 1.1s ease-in-out, transform 3.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-threshold.is-active {
+  transform: scale(1.03) translateY(-0.5%);
+}
+
+/* Capa del Corredor Abovedado */
+#cine-layer-corridor {
+  transform-origin: 50% 50%;
+  transition: opacity 1.2s ease-in-out, transform 3.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hist-cine-stage-moving #cine-layer-corridor.is-active {
+  transform: scale(1.025) translateY(-0.4%);
+}
+
+/* Mezcla de luz exterior a interior (Atmospheric Light Blend) */
+.hist-cine-light-blend {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, rgba(255, 220, 140, 0.45) 0%, rgba(200, 130, 40, 0.2) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+  z-index: 6;
+}
+
+.hist-cine-light-blend.is-active {
+  opacity: 0.9;
+}
+
+/* Viñeta cinematográfica para mayor profundidad visual */
+.hist-cine-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 48%, rgba(8, 2, 4, 0.5) 82%, rgba(6, 1, 3, 0.85) 100%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* Overlay de cortesía en la fachada inicial (Stage A) */
+.hist-cine-overlay-initial {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hist-cine-stage-moving .hist-cine-overlay-initial {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.hist-cine-prompt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(14, 4, 6, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 179, 45, 0.5);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1.15rem;
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65), 0 0 16px rgba(201, 151, 0, 0.25);
+}
+
+.hist-prompt-icon {
+  font-size: 0.95rem;
+}
+
+/* Hotspot accesible sobre el pórtico central en la fachada */
+.hist-facade-hotspot-wrap {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.hist-cine-stage-moving .hist-facade-hotspot-wrap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hist-facade-hotspot-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  outline: none;
+  touch-action: manipulation;
+}
+
+.hist-hotspot-ring {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  animation: histHotspotPulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes histHotspotPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.hist-hotspot-core {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(224, 179, 45, 0.95), rgba(160, 28, 40, 0.95));
+  border: 2px solid #FFFDF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 16px rgba(224, 179, 45, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hist-facade-hotspot-btn:hover .hist-hotspot-core {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(224, 179, 45, 0.85);
+}
+
+.hist-facade-hotspot-btn:focus-visible .hist-hotspot-core {
+  outline: 3px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.hist-hotspot-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFDF9;
+  background: rgba(18, 5, 7, 0.92);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-gold);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Botón flotante para omitir recorrido en cualquier etapa */
+.hist-btn-skip-journey {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FFFDF9;
+  background: rgba(18, 5, 7, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  min-height: 40px;
+  touch-action: manipulation;
+}
+
+.hist-btn-skip-journey:hover {
+  background: rgba(45, 12, 16, 0.95);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 179, 45, 0.35);
+}
+
+.hist-btn-skip-journey:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Modo de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .hist-cine-layer {
+    transition: opacity 0.05s linear, transform 0.05s linear !important;
+    transform: none !important;
+  }
+  .hist-cine-stage-moving #cine-layer-establishing.is-active,
+  .hist-cine-stage-moving #cine-layer-approach.is-active,
+  .hist-cine-stage-moving #cine-layer-doors-closed.is-active,
+  .hist-cine-stage-moving #cine-layer-doors-opening.is-active,
+  .hist-cine-stage-moving #cine-layer-doors-open.is-active,
+  .hist-cine-stage-moving #cine-layer-threshold.is-active {
+    transform: none !important;
+  }
+  .hist-hotspot-ring {
+    animation: none !important;
+  }
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .hist-cinematic-stage {
+    aspect-ratio: 16 / 10;
+  }
+  .hist-hotspot-core {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  .hist-hotspot-label {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.65rem;
+  }
+  .hist-cine-prompt-badge {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.9rem;
+  }
+  .hist-btn-skip-journey {
+    top: 10px;
+    right: 10px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.72rem;
+    min-height: 36px;
+  }
+}
+
+/* Barra de Controles Accesibles */
+.hist-exterior-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  background: rgba(14, 4, 6, 0.96);
+  border-top: 1px solid rgba(224, 179, 45, 0.25);
+}
+
+.hist-btn-enter-museum {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #140405;
+  background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 50%, #B58416 100%);
+  border: 1px solid var(--color-gold-light);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.85rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 151, 0, 0.35);
+  transition: all 0.25s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.hist-btn-enter-museum:hover:not(:disabled) {
+  background: linear-gradient(135deg, #FFF0B8 0%, #E6C24F 50%, #C99622 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(201, 151, 0, 0.55);
+}
+
+.hist-btn-enter-museum:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.hist-btn-enter-museum:focus-visible {
+  outline: 3px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.hist-btn-enter-museum:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.hist-btn-enter-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(20, 4, 5, 0.3);
+  border-top-color: #140405;
+  border-radius: 50%;
+  animation: histBtnSpin 0.8s linear infinite;
+}
+
+@keyframes histBtnSpin {
+  to { transform: rotate(360deg); }
+}
+
+.hist-btn-enter-museum[aria-busy="true"] .hist-btn-enter-spinner {
+  display: inline-block;
+}
+
+.hist-btn-enter-museum[aria-busy="true"] .hist-btn-enter-icon {
+  display: none;
+}
+
+.hist-btn-skip-doors,
+.hist-btn-reset-doors {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.85);
+  background: rgba(30, 8, 11, 0.7);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.hist-btn-skip-doors:hover,
+.hist-btn-reset-doors:hover {
+  color: #FFFDF9;
+  background: rgba(55, 14, 18, 0.85);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+.hist-btn-skip-doors:focus-visible,
+.hist-btn-reset-doors:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hist-btn-explore-galleries {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #FFFDF9;
+  background: linear-gradient(135deg, rgba(160, 28, 40, 0.95), rgba(75, 14, 18, 0.95));
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.4rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 14px rgba(201, 151, 0, 0.3);
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.hist-btn-explore-galleries:hover {
+  background: linear-gradient(135deg, rgba(190, 35, 50, 1), rgba(95, 18, 24, 1));
+  border-color: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.45);
+}
+
+.hist-btn-explore-galleries:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-explore-arrow {
+  transition: transform 0.25s ease;
+}
+
+.hist-btn-explore-galleries:hover .hist-btn-explore-arrow {
+  transform: translateY(2px);
+}
+
+/* ==========================================================================
+   FASE 3: RECORRIDO CINEMATOGRÁFICO POR EL CORREDOR ABOVEDADO (2.5D CAMERA DOLLY)
+   ========================================================================== */
+
+/* Zoom 2.5D hacia el umbral del pórtico al iniciar la transición */
+.hist-portal-stage-zooming {
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease, opacity 1.2s ease;
+  transform: scale(1.38);
+  transform-origin: 50% 55%;
+  opacity: 0.15;
+  filter: blur(2px);
+}
+
+/* Vista 3: Escenario del Corredor Abovedado */
+.hist-corridor-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1376 / 768;
+  overflow: hidden;
+  background-color: #0c0305;
+  perspective: 1100px;
+  perspective-origin: 50% 50%;
+  user-select: none;
+}
+
+/* Rig de Cámara 2.5D con aceleración GPU */
+.hist-corridor-camera-rig {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  transform-origin: 50% 52%;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+  transition: transform 3.2s cubic-bezier(0.2, 0.8, 0.25, 1), filter 2.5s ease;
+  transform: scale(1.0) translateY(0) translateZ(0);
+}
+
+/* Movimiento de avance de la cámara (Dolly forward) */
+.hist-corridor-stage.hist-corridor-animating .hist-corridor-camera-rig {
+  transform: scale(1.24) translateY(-1.8%) translateZ(60px);
+}
+
+.hist-corridor-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.92) contrast(1.08);
+}
+
+/* Resplandor cálido de faroles de forja */
+.hist-corridor-lantern-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 48%, rgba(240, 185, 55, 0.28) 0%, rgba(180, 50, 20, 0.15) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: histLanternFlicker 3s infinite alternate ease-in-out;
+}
+
+@keyframes histLanternFlicker {
+  0% { opacity: 0.75; transform: scale(0.98); }
+  50% { opacity: 0.95; transform: scale(1.02); }
+  100% { opacity: 0.85; transform: scale(1); }
+}
+
+/* Haz de luz de cámara en movimiento */
+.hist-corridor-light-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 20%, rgba(255, 230, 150, 0.08) 50%, transparent 80%);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Viñeta cinematográfica para profundidad visual */
+.hist-corridor-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(8, 2, 4, 0.6) 80%, rgba(6, 1, 3, 0.92) 100%);
+  pointer-events: none;
+}
+
+/* Partículas y motas doradas suspendidas en el aire */
+.hist-corridor-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hist-mote {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 235, 170, 0.9) 0%, rgba(224, 179, 45, 0) 70%);
+  box-shadow: 0 0 6px rgba(224, 179, 45, 0.8);
+  opacity: 0.6;
+  animation: histMoteFloat 6s infinite ease-in-out;
+}
+
+.hist-mote-1 { top: 35%; left: 45%; animation-duration: 5.5s; animation-delay: 0s; }
+.hist-mote-2 { top: 55%; left: 52%; animation-duration: 7s; animation-delay: 1.2s; }
+.hist-mote-3 { top: 40%; left: 58%; animation-duration: 6.2s; animation-delay: 2.5s; }
+.hist-mote-4 { top: 62%; left: 42%; animation-duration: 8s; animation-delay: 0.8s; }
+.hist-mote-5 { top: 48%; left: 38%; animation-duration: 6.8s; animation-delay: 3.1s; }
+.hist-mote-6 { top: 30%; left: 55%; animation-duration: 7.4s; animation-delay: 1.8s; }
+
+@keyframes histMoteFloat {
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0.3; }
+  50% { transform: translateY(-18px) translateX(10px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-35px) translateX(-5px) scale(0.8); opacity: 0.2; }
+}
+
+/* HUD Cinematográfico del Corredor */
+.hist-corridor-hud {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  width: min(92%, 620px);
+  background: rgba(14, 4, 6, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1rem 1.4rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(201, 151, 0, 0.2);
+  text-align: center;
+  pointer-events: auto;
+}
+
+.hist-corridor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  margin-bottom: 0.35rem;
+}
+
+.hist-corridor-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E0B32D;
+  box-shadow: 0 0 10px #E0B32D;
+  animation: histDotPulse 1.4s infinite ease-in-out;
+}
+
+@keyframes histDotPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+.hist-corridor-caption {
+  font-family: var(--font-serif-heading);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #FFFDF9;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+}
+
+.hist-corridor-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hist-corridor-progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hist-corridor-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #B58416 0%, #D4AF37 50%, #F5DF98 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(224, 179, 45, 0.7);
+  transition: width 0.1s linear;
+}
+
+.hist-corridor-pct {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* Botón flotante para omitir recorrido */
+.hist-btn-skip-journey {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FFFDF9;
+  background: rgba(18, 5, 7, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  min-height: 40px;
+}
+
+.hist-btn-skip-journey:hover {
+  background: rgba(45, 12, 16, 0.95);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 179, 45, 0.35);
+}
+
+.hist-btn-skip-journey:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   FASE 3 & MILESTONE 1D: VESTÍBULO CENTRAL ARQUITECTÓNICO INTERACTIVO
+   ========================================================================== */
+.hist-central-hall-view {
+  position: relative;
+  width: 100%;
+}
+
+.hist-central-hall-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1376 / 768;
+  overflow: hidden;
+  background: #0d0305;
+  user-select: none;
+}
+
+.hist-hall-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.5s ease;
+  filter: brightness(1.02) contrast(1.04);
+}
+
+.hist-central-hall-view.hist-view-active .hist-hall-bg-img {
+  transform: scale(1.0);
+}
+
+/* Atmósfera luminosa y suave adaptada a la piedra calcárea de la rotonda */
+.hist-hall-ambient-bloom {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 16%, rgba(255, 242, 205, 0.22) 0%, rgba(224, 179, 45, 0.08) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hist-hall-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 48%, transparent 58%, rgba(13, 3, 5, 0.24) 85%, rgba(10, 2, 4, 0.42) 100%);
+  pointer-events: none;
+}
+
+/* Banner de orientación arquitectónica superior (flotante en la cúpula, no cubre las puertas) */
+.hist-hall-top-banner {
+  position: absolute;
+  top: clamp(8px, 1.8vw, 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.35rem 1.15rem;
+  background: rgba(14, 3, 5, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  max-width: min(92%, 620px);
+  pointer-events: auto;
+  animation: histHallBannerFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes histHallBannerFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.hist-hall-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.2rem;
+}
+
+.hist-hall-banner-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.2;
+  margin: 0.1rem 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+}
+
+.hist-hall-banner-instruction {
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 1.1vw, 0.78rem);
+  color: rgba(252, 250, 246, 0.85);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* Capa de puertas arquitectónicas interactivas */
+.hist-hall-doorways-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Cada portal arquitectónico */
+.hist-hall-doorway {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  border-radius: 6px 6px 2px 2px;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+/* Coordenadas precisas para cada una de las 5 puertas arquitectónicas */
+.hist-doorway-sala-1 {
+  left: 5.2%;
+  top: 48.0%;
+  width: 10.4%;
+  height: 35.5%;
+}
+
+.hist-doorway-sala-2 {
+  left: 26.2%;
+  top: 51.5%;
+  width: 9.2%;
+  height: 31.5%;
+}
+
+.hist-doorway-sala-3 {
+  left: 44.8%;
+  top: 52.0%;
+  width: 10.4%;
+  height: 30.5%;
+}
+
+.hist-doorway-sala-4 {
+  left: 64.4%;
+  top: 51.5%;
+  width: 9.2%;
+  height: 31.5%;
+}
+
+.hist-doorway-sala-5 {
+  left: 84.4%;
+  top: 48.0%;
+  width: 10.4%;
+  height: 35.5%;
+}
+
+/* Clave arquitectónica con número romano */
+.hist-doorway-keystone {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-family: var(--font-serif-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #160406;
+  background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 55%, #A87812 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7), 0 0 10px rgba(224, 179, 45, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 5;
+}
+
+/* Iluminación interior cálida de galería en hover/focus */
+.hist-doorway-aura {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 4px 0 0;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 65%, rgba(255, 225, 135, 0.35) 0%, rgba(224, 179, 45, 0.15) 55%, transparent 80%);
+  mix-blend-mode: screen;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Resplandor del marco de piedra */
+.hist-doorway-frame-glow {
+  position: absolute;
+  inset: -2px;
+  border: 1.5px solid transparent;
+  border-radius: 6px 6px 0 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: none;
+}
+
+/* Placa arquitectónica refinada en la base de la puerta */
+.hist-doorway-plaque {
+  position: relative;
+  width: calc(100% + 14px);
+  margin-left: -7px;
+  margin-bottom: -6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.3rem 0.35rem 0.4rem;
+  background: linear-gradient(180deg, rgba(22, 6, 9, 0.88) 0%, rgba(12, 3, 5, 0.96) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.42);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  z-index: 4;
+}
+
+.hist-doorway-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #F3D98B;
+  margin-bottom: 0.1rem;
+  white-space: nowrap;
+}
+
+.hist-doorway-title {
+  display: block;
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.78rem, 1.1vw, 0.92rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.15;
+  margin: 0 0 0.25rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hist-doorway-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: #FFFDF9;
+  transition: all 0.2s ease;
+}
+
+.hist-doorway-arrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  transition: transform 0.2s ease;
+}
+
+/* Micro-animaciones en hover */
+.hist-hall-doorway:hover {
+  transform: translateY(-4px);
+}
+
+.hist-hall-doorway:hover .hist-doorway-keystone {
+  transform: translateX(-50%) scale(1.12);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.65);
+}
+
+.hist-hall-doorway:hover .hist-doorway-aura {
+  opacity: 1;
+}
+
+.hist-hall-doorway:hover .hist-doorway-frame-glow {
+  border-color: rgba(224, 179, 45, 0.6);
+  box-shadow: 0 0 18px rgba(224, 179, 45, 0.25);
+}
+
+.hist-hall-doorway:hover .hist-doorway-plaque {
+  border-color: #E0B32D;
+  background: linear-gradient(180deg, rgba(30, 8, 12, 0.95) 0%, rgba(18, 4, 7, 0.98) 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85), 0 0 15px rgba(224, 179, 45, 0.3);
+}
+
+.hist-hall-doorway:hover .hist-doorway-cta {
+  background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 100%);
+  color: #140405;
+  border-color: #FFFDF9;
+}
+
+.hist-hall-doorway:hover .hist-doorway-arrow {
+  transform: translateX(3px);
+}
+
+/* Foco accesible para tecnologías de asistencia y navegación por teclado */
+.hist-hall-doorway:focus-visible {
+  outline: none;
+  transform: translateY(-4px);
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-frame-glow {
+  border-color: var(--color-gold-light, #F5DF98);
+  box-shadow: 0 0 20px rgba(224, 179, 45, 0.7);
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-keystone {
+  outline: 2px solid #FFF;
+  outline-offset: 2px;
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-plaque {
+  outline: 2px solid var(--color-gold-light, #F5DF98);
+  outline-offset: 2px;
+  border-color: #E0B32D;
+}
+
+.hist-hall-doorway:focus-visible .hist-doorway-aura {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   BOTONES DE RETORNO AL VESTÍBULO CENTRAL (DISPONIBLES EN CADA SALA)
+   ========================================================================== */
+.hist-btn-room-return-hall {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-light);
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.85rem;
+  text-decoration: none;
+  min-height: 48px;
+  min-width: 48px;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hist-btn-room-return-hall:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.3);
+}
+
+.hist-btn-room-return-hall:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-room-return-hall .hist-return-icon {
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CONTROLES SECUNDARIOS Y MÓVILES DEL VESTÍBULO CENTRAL
+   ========================================================================== */
+.hist-hall-controls-dock {
+  position: absolute;
+  bottom: clamp(6px, 1.5vw, 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(14, 3, 5, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full, 9999px);
+  padding: 0.35rem 0.65rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hist-btn-hall-dock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: clamp(0.68rem, 1vw, 0.76rem);
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.88);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-full, 9999px);
+  padding: 0.35rem 0.75rem;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  min-height: 32px;
+}
+
+.hist-btn-hall-dock:hover {
+  background: rgba(224, 179, 45, 0.2);
+  border-color: rgba(224, 179, 45, 0.6);
+  color: #FFFDF9;
+  transform: translateY(-1px);
+}
+
+.hist-btn-hall-dock:focus-visible {
+  outline: 2px solid var(--color-gold-light, #F5DF98);
+  outline-offset: 2px;
+}
+
+.hist-btn-hall-dock.hist-btn-hall-explore {
+  background: linear-gradient(135deg, rgba(224, 179, 45, 0.85) 0%, rgba(181, 132, 22, 0.95) 100%);
+  color: #140405;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hist-btn-hall-dock.hist-btn-hall-explore:hover {
+  background: linear-gradient(135deg, #FFF0B8 0%, #D4AF37 100%);
+  color: #140405;
+}
+
+/* Compatibilidad con clases secundarias */
+.hist-btn-hall-primary {
+  display: inline-flex;
+}
+.hist-btn-hall-secondary,
+.hist-btn-hall-tertiary {
+  display: inline-flex;
+}
+
+/* Selector móvil táctil inferior */
+.hist-hall-mobile-dock {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   0. NAVEGADOR DE SALAS DEL MUSEO HISTÓRICO (HIST-MUSEUM-NAV)
+   -------------------------------------------------------------------------- */
+.hist-museum-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(18, 5, 6, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.35);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
+  padding: 0.5rem 0;
+  transition: all 0.25s ease;
+}
+
+.hist-museum-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hist-museum-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-serif-display);
+  font-size: var(--text-xs);
+  color: var(--color-gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hist-museum-nav-icon {
+  font-size: 1rem;
+}
+
+.hist-museum-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0;
+}
+
+.hist-museum-nav-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.hist-museum-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(252, 250, 246, 0.75);
+  background: rgba(30, 8, 10, 0.6);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-full);
+  padding: 0.38rem 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  min-height: 38px;
+}
+
+.hist-museum-pill:hover {
+  color: #FFFDF9;
+  background: rgba(48, 12, 16, 0.85);
+  border-color: rgba(224, 179, 45, 0.6);
+  box-shadow: 0 0 12px rgba(201, 151, 0, 0.25);
+  transform: translateY(-1px);
+}
+
+.hist-museum-pill:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-museum-pill.hist-museum-active,
+.hist-museum-pill[aria-selected="true"] {
+  color: #FFFDF9;
+  background: linear-gradient(135deg, rgba(72, 16, 22, 0.95), rgba(36, 8, 11, 0.95));
+  border-color: var(--color-gold);
+  box-shadow: 0 0 16px rgba(201, 151, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.hist-museum-pill-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  background: rgba(201, 151, 0, 0.15);
+  border-radius: 50%;
+  width: 1.35rem;
+  height: 1.35rem;
+  line-height: 1;
+}
+
+.hist-museum-pill.hist-museum-active .hist-museum-pill-num {
+  background: var(--color-gold);
+  color: #140404;
+}
+
+/* Clases de Salas del Museo (Curated Museum Galleries) */
+.hist-museum-room {
+  position: relative;
+  scroll-margin-top: 56px;
+}
+
+.hist-museum-room-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, rgba(201, 151, 0, 0.22), rgba(120, 90, 0, 0.28));
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-full);
+  color: var(--color-gold-light);
+  box-shadow: 0 0 12px rgba(201, 151, 0, 0.18);
+}
+
+.hist-room-kicker-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.hist-room-kicker-wrap .hist-btn-room-return-hall {
+  min-height: 38px;
+  padding: 0.35rem 0.85rem;
+}
+
+.hist-room-portal-header .hist-header-translate-btn {
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: var(--color-gold-light);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  min-height: 38px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.hist-room-portal-header .hist-header-translate-btn:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.3);
+}
+
+.hist-room-portal-header .hist-header-translate-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   PÓRTICO ARQUITECTÓNICO DE SALA I: CRONOLOGÍA HISTÓRICA (PHASE 5)
+   ========================================================================== */
+.hist-room-entry-portal {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 15%, rgba(68, 16, 22, 0.45) 0%, rgba(20, 5, 7, 0.95) 75%, rgba(10, 2, 3, 0.98) 100%),
+              url('assets/museum/museum-exterior-bg.webp') center 18% / cover no-repeat;
+  background-blend-mode: overlay, normal;
+  border-top: 1px solid rgba(224, 179, 45, 0.4);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.3);
+  padding: clamp(2.5rem, 5vw, 4.2rem) 0 clamp(2rem, 4vw, 3.2rem);
+  box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 -20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hist-room-entry-portal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(224, 179, 45, 0.85) 50%, transparent 100%);
+}
+
+.hist-room-entry-sala-1 {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-room-portal-header {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hist-room-entry-sala-1 .hist-room-portal-header {
+  background-color: #1a0507;
+  background: #1a0507 linear-gradient(135deg, rgba(42, 10, 14, 0.98) 0%, rgba(24, 6, 8, 0.99) 55%, rgba(14, 3, 4, 1) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.55);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 4.5vw, 3.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 151, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-1 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+.hist-badge-curatorial {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.9);
+  background: rgba(45, 12, 16, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.85rem;
+  text-transform: uppercase;
+}
+
+.hist-room-portal-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.65rem, 3.6vw, 2.7rem);
+  font-weight: 800;
+  color: #FFFDF9;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin: 0.65rem 0 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 30px rgba(224, 179, 45, 0.25);
+}
+
+.hist-room-title-icon {
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  filter: drop-shadow(0 2px 8px rgba(224, 179, 45, 0.4));
+}
+
+.hist-room-portal-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+  line-height: 1.82;
+  color: rgba(252, 250, 246, 0.88);
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.hist-room-portal-desc em {
+  color: var(--color-gold-light);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   1. MENÚ FIJO DE NAVEGACIÓN POR ÉPOCAS (HIST-ERA-NAV)
+   -------------------------------------------------------------------------- */
+.hist-era-nav {
+  position: sticky;
+  top: 48px;
+  z-index: 90;
+  background: rgba(24, 7, 7, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border-gold);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  padding: 0.6rem 0;
+  transition: all var(--transition-fast);
+}
+
+.hist-era-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hist-era-nav-title {
+  font-family: var(--font-serif-display);
+  font-size: var(--text-xs);
+  color: var(--color-gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.hist-era-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0;
+}
+
+.hist-era-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.hist-era-link {
+  font-family: var(--font-serif-display);
+  font-size: var(--text-xs);
+  color: var(--color-bg-sand-light);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(226, 218, 203, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.hist-era-link:hover {
+  background: rgba(201, 151, 0, 0.2);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+}
+
+.hist-era-link.hist-active {
+  background: var(--color-gold);
+  border-color: var(--color-gold-light);
+  color: #120404;
+  font-weight: 700;
+  box-shadow: var(--shadow-gold);
+}
+
+.hist-era-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. CONTADOR DE FECHA / AÑO LATERAL ADHESIVO (STICKY HUD COUNTER)
+   -------------------------------------------------------------------------- */
+.hist-year-counter {
+  position: fixed;
+  right: 24px;
+  bottom: 28px;
+  z-index: 85;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hist-year-counter.hist-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hist-year-badge {
+  background: rgba(18, 4, 4, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(201, 151, 0, 0.25);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  pointer-events: auto;
+}
+
+.hist-year-heading {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.hist-year-era {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hist-year-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(224, 179, 45, 0.35);
+}
+
+.hist-year-value {
+  font-family: var(--font-serif-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #FFFDF9;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.hist-year-value.hist-flip {
+  animation: histFlip 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes histFlip {
+  0% {
+    transform: translateY(-8px) scale(0.9);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. STAGE PINNED SCROLL DE PANTALLA COMPLETA (HIST-JOURNEY-CONTAINER & STAGE)
+   -------------------------------------------------------------------------- */
+.hist-journey-container {
+  width: 100%;
+  position: relative;
+  /* Altura total calculada dinámicamente en journey.js basada en:
+     (events.length - 1) * (DWELL + TRAVEL) + DWELL + 100vh */
+  margin: 0;
+  padding: 0;
+}
+
+/* Escenario fijo a pantalla completa */
+.hist-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 20;
+  background: #120404;
+  color: #FCFAF6;
+}
+
+/* Capas de fondo cinemáticas y degradados por época */
+.hist-stage-backdrop-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  background: #0d0404;
+}
+
+/* 1. Contenedor del escenario cinemático con soporte para paralaje */
+.hist-cinema-stage {
+  position: absolute;
+  top: -24px;
+  bottom: -24px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.15s ease-out;
+}
+
+/* Capa individual por cada evento histórico con desvanecimiento cruzado */
+.hist-cinema-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.75s ease;
+  will-change: opacity;
+}
+
+.hist-cinema-layer.hist-cinema-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* Imagen histórica con efecto Ken Burns suave y pausado */
+.hist-cinema-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 10s cubic-bezier(0.12, 0.88, 0.2, 1);
+  will-change: transform;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.hist-cinema-layer.hist-cinema-active .hist-cinema-img {
+  transform: scale(1.05);
+}
+
+/* 2. Overlay oscuro translúcido: contraste cinematográfico y alta legibilidad */
+.hist-cinema-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: 
+    /* Gradiente vertical para proteger HUD superior y controles inferiores */
+    linear-gradient(180deg, 
+      rgba(10, 3, 3, 0.84) 0%, 
+      rgba(14, 5, 5, 0.48) 16%, 
+      rgba(16, 6, 6, 0.54) 50%, 
+      rgba(14, 5, 5, 0.62) 84%, 
+      rgba(10, 3, 3, 0.92) 100%
+    ),
+    /* Viñeta radial oscura para enmarcar la tarjeta central */
+    radial-gradient(ellipse at 50% 50%, 
+      rgba(20, 8, 7, 0.38) 0%, 
+      rgba(12, 4, 4, 0.82) 82%
+    );
+}
+
+/* 3. Degradados temáticos por época como tintes cromáticos suaves */
+.hist-era-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: opacity;
+  mix-blend-mode: soft-light;
+}
+
+.hist-era-bg.hist-bg-active {
+  opacity: 0.7;
+}
+
+/* Tintes cromáticos de cada época */
+.hist-era-bg-0 { /* Orígenes - Bronce y albero */
+  background: radial-gradient(ellipse at 50% 38%, rgba(212, 126, 46, 0.5) 0%, rgba(30, 16, 8, 0.8) 75%);
+}
+
+.hist-era-bg-1 { /* Nobleza y prohibiciones - Borgoña y carmesí */
+  background: radial-gradient(ellipse at 50% 38%, rgba(185, 28, 28, 0.52) 0%, rgba(35, 10, 10, 0.8) 75%);
+}
+
+.hist-era-bg-2 { /* El toreo a pie - Oro y albero */
+  background: radial-gradient(ellipse at 50% 38%, rgba(217, 163, 10, 0.5) 0%, rgba(35, 20, 5, 0.8) 75%);
+}
+
+.hist-era-bg-3 { /* Edad de Oro - Ámbar dorado */
+  background: radial-gradient(ellipse at 50% 38%, rgba(245, 180, 20, 0.52) 0%, rgba(35, 20, 5, 0.8) 75%);
+}
+
+.hist-era-bg-4 { /* Leyes y debate - Púrpura noche y pizarra */
+  background: radial-gradient(ellipse at 50% 38%, rgba(139, 92, 246, 0.38) 0%, rgba(20, 18, 26, 0.8) 75%);
+}
+
+/* 4. Viñeta perimetral de sombra cinemática profunda */
+.hist-stage-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   HUD SUPERIOR DEL STAGE (ÉPOCA, CONTADOR SIMPLE Y AÑO)
+   -------------------------------------------------------------------------- */
+.hist-stage-hud {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 3vw, 2.5rem) 0.5rem;
+}
+
+.hist-hud-inner {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0.6rem 1.2rem;
+  background: rgba(18, 4, 4, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hist-hud-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hist-hud-era-kicker {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.hist-hud-era-title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  font-weight: 800;
+  color: var(--color-gold-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hist-hud-center {
+  display: flex;
+  align-items: center;
+}
+
+.hist-stage-year-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.85rem;
+}
+
+.hist-stage-year-icon {
+  font-size: 0.75rem;
+}
+
+.hist-stage-year-num {
+  font-family: var(--font-serif-display);
+  font-size: clamp(0.82rem, 1.6vw, 0.98rem);
+  font-weight: 800;
+  color: #FFFDF9;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.hist-hud-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hist-hud-counter {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hist-hud-scroll-hint {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  letter-spacing: 0.04em;
+}
+
+/* Sala I HUD Room Badge & Return Button (Phase 5) */
+.hist-hud-room-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.14);
+  border: 1px solid rgba(224, 179, 45, 0.5);
+  border-radius: var(--radius-full);
+  padding: 0.22rem 0.65rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(224, 179, 45, 0.15);
+}
+
+.hist-hud-room-icon {
+  font-size: 0.78rem;
+}
+
+.hist-hud-return-btn {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.65rem;
+  min-height: 36px;
+  min-width: 36px;
+  gap: 0.3rem;
+  border-color: rgba(224, 179, 45, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   ESCENARIO CENTRAL Y TARJETA DEL EVENTO (HIST-STAGE-CANVAS)
+   -------------------------------------------------------------------------- */
+.hist-stage-canvas {
+  position: relative;
+  z-index: 10;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem clamp(1rem, 3vw, 2.5rem);
+  max-width: 100%;
+}
+
+.hist-stage-card-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tarjeta individual en el stage */
+.hist-stage-card {
+  position: absolute;
+  width: 100%;
+  background: rgba(22, 10, 8, 0.88);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.78), 0 0 28px rgba(201, 151, 0, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  color: #FCFAF6;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease, border-color 0.2s ease;
+  outline: none;
+}
+
+.hist-stage-card.hist-card-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.hist-stage-card:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.hist-stage-card .hist-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hist-stage-card .hist-card-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* Vitrine Museum Tag de Sala I en Tarjetas (Phase 5) */
+.hist-card-museum-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(45, 12, 16, 0.8);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.65rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hist-tag-divider {
+  color: rgba(224, 179, 45, 0.55);
+}
+
+.hist-tag-stop {
+  color: rgba(252, 250, 246, 0.88);
+  font-size: 0.65rem;
+}
+
+.hist-card-era-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.14);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-card-heading-group {
+  margin-bottom: var(--space-md);
+}
+
+.hist-stage-card .hist-card-date {
+  font-family: var(--font-serif-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.hist-stage-card .hist-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.hist-stage-card .hist-card-content {
+  flex: 1 1 auto;
+  font-size: clamp(0.88rem, 1.6vw, 0.98rem);
+  line-height: 1.75;
+  color: rgba(252, 250, 246, 0.92);
+  margin-bottom: var(--space-md);
+}
+
+
+/* Fila del botón "Descubrir el contexto" en la tarjeta */
+.hist-card-exhibit-row {
+  margin: 0.2rem 0 0.85rem;
+}
+
+.hist-btn-exhibit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  background: linear-gradient(135deg, rgba(80, 15, 20, 0.55) 0%, rgba(28, 8, 8, 0.75) 100%);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hist-btn-exhibit:hover {
+  background: linear-gradient(135deg, rgba(125, 22, 32, 0.75) 0%, rgba(45, 12, 12, 0.9) 100%);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(201, 151, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hist-btn-exhibit:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-exhibit-btn-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.hist-exhibit-btn-chevron {
+  font-size: 0.75rem;
+  transition: transform var(--transition-fast);
+  opacity: 0.8;
+}
+
+.hist-btn-exhibit:hover .hist-exhibit-btn-chevron {
+  transform: translateY(2px);
+  opacity: 1;
+}
+
+/* Soporte bilingüe en el botón de cédula histórica */
+.hist-exhibit-btn-text-en {
+  display: none;
+}
+
+.hist-stage-card.hist-translated .hist-exhibit-btn-text-es {
+  display: none;
+}
+
+.hist-stage-card.hist-translated .hist-exhibit-btn-text-en {
+  display: inline;
+}
+
+.hist-stage-card .hist-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(224, 179, 45, 0.2);
+}
+
+.hist-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Botón Anterior <- */
+.hist-btn-prev {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-gold-light);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-prev:hover:not(:disabled) {
+  background: rgba(224, 179, 45, 0.2);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 14px rgba(201, 151, 0, 0.25);
+}
+
+.hist-btn-prev:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.hist-btn-prev:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Botón Continuar -> */
+.hist-btn-continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-gold-light);
+  background: var(--color-gold);
+  color: #120404;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.35);
+}
+
+.hist-btn-continue:hover {
+  background: var(--color-gold-light);
+  transform: translateX(3px);
+  box-shadow: 0 6px 18px rgba(224, 179, 45, 0.55);
+}
+
+.hist-btn-continue:focus-visible {
+  outline: 2px solid #FFF;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   CÉDULA HISTÓRICA EXPANDIBLE (HISTORICAL EXHIBIT MODAL / DOSSIER)
+   ========================================================================== */
+.hist-exhibit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease;
+}
+
+.hist-exhibit-modal.hist-exhibit-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Telón de fondo (Backdrop) */
+.hist-exhibit-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 2, 2, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+}
+
+/* Diálogo contenedor (Dossier) */
+.hist-exhibit-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(175deg, #1c0806 0%, #130504 45%, #0a0202 100%);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-xl);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.85), 
+    0 0 35px rgba(201, 151, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: #FCFAF6;
+  overflow: hidden;
+  transform: translateY(22px) scale(0.97);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.hist-exhibit-modal.hist-exhibit-active .hist-exhibit-dialog {
+  transform: translateY(0) scale(1);
+}
+
+/* Cabecera del Dossier */
+.hist-exhibit-header {
+  padding: clamp(1rem, 2.5vw, 1.4rem) clamp(1.2rem, 3vw, 2rem) 1rem;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.22);
+  background: rgba(22, 8, 7, 0.95);
+}
+
+.hist-exhibit-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hist-exhibit-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hist-exhibit-era-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.16);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-exhibit-date-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-exhibit-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hist-exhibit-close-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--color-gold-light);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-exhibit-close-btn:hover {
+  background: rgba(185, 28, 28, 0.4);
+  border-color: #ef4444;
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+.hist-exhibit-close-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-exhibit-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Cuerpo Scrollable */
+.hist-exhibit-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(224, 179, 45, 0.5) rgba(15, 5, 5, 0.6);
+}
+
+.hist-exhibit-body::-webkit-scrollbar {
+  width: 7px;
+}
+
+.hist-exhibit-body::-webkit-scrollbar-track {
+  background: rgba(15, 5, 5, 0.6);
+}
+
+.hist-exhibit-body::-webkit-scrollbar-thumb {
+  background: rgba(224, 179, 45, 0.4);
+  border-radius: 4px;
+}
+
+.hist-exhibit-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(224, 179, 45, 0.7);
+}
+
+/* Secciones individuales */
+.hist-exhibit-section {
+  margin-bottom: clamp(1.4rem, 2.8vw, 2rem);
+}
+
+.hist-exhibit-sec-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 700;
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.2);
+  padding-bottom: 0.45rem;
+  margin: 0 0 0.85rem;
+}
+
+.hist-sec-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.hist-exhibit-sec-text {
+  font-size: clamp(0.88rem, 1.5vw, 0.95rem);
+  line-height: 1.78;
+  color: rgba(252, 250, 246, 0.92);
+}
+
+.hist-exhibit-sec-text p {
+  margin: 0;
+}
+
+/* Tarjeta de Fuente Primaria Documental */
+/* ==========================================================================
+   FASE 4: VISOR DE ARCHIVO HISTÓRICO DIGITAL (SOURCE VIEWER / PRIMARY DOSSIER)
+   ========================================================================== */
+
+.hist-archive-viewer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hist-source-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  color: var(--color-gold-light);
+}
+
+.hist-source-type-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.hist-source-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+}
+
+.hist-source-status-verified {
+  background: rgba(22, 101, 52, 0.25);
+  border: 1px solid rgba(74, 222, 128, 0.45);
+  color: #86efac;
+}
+
+.hist-source-status-warning {
+  background: rgba(180, 83, 9, 0.25);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fde047;
+}
+
+/* Rejilla de Metadatos Archivísticos */
+.hist-archive-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 1rem;
+  background: rgba(10, 3, 3, 0.6);
+  border: 1px solid rgba(224, 179, 45, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.95rem;
+  margin: 0.8rem 0;
+}
+
+.hist-archive-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hist-archive-meta-full {
+  grid-column: 1 / -1;
+  border-top: 1px dashed rgba(224, 179, 45, 0.15);
+  padding-top: 0.45rem;
+  margin-top: 0.2rem;
+}
+
+.hist-archive-meta-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(224, 179, 45, 0.85);
+  margin: 0;
+}
+
+.hist-archive-meta-value {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #FCFAF6;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Caja de Acreditación Jurídica / Histórica */
+.hist-archive-supports-box {
+  background: rgba(224, 179, 45, 0.07);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.65rem 0.85rem;
+  margin: 0.85rem 0;
+}
+
+.hist-archive-supports-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-light);
+  margin-bottom: 0.35rem;
+}
+
+.hist-archive-supports-text {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.92);
+  margin: 0;
+}
+
+/* Envoltorio del Extracto Textual en Pergamino */
+.hist-archive-excerpt-wrap {
+  background: rgba(18, 5, 5, 0.7);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  margin: 0.85rem 0;
+}
+
+.hist-excerpt-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(224, 179, 45, 0.75);
+  margin-bottom: 0.45rem;
+}
+
+/* Barra de Acciones del Archivo */
+.hist-archive-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.18);
+  flex-wrap: wrap;
+}
+
+.hist-btn-archive-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(201, 151, 0, 0.25) 0%, rgba(138, 103, 0, 0.35) 100%);
+  border: 1px solid var(--color-gold);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hist-btn-archive-link:hover {
+  background: linear-gradient(135deg, rgba(224, 179, 45, 0.4) 0%, rgba(166, 124, 0, 0.55) 100%);
+  color: #FFFDF9;
+  border-color: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(201, 151, 0, 0.35);
+}
+
+.hist-btn-archive-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-toggle-tech-sheet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-toggle-tech-sheet:hover {
+  background: rgba(224, 179, 45, 0.15);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+}
+
+.hist-btn-toggle-tech-sheet:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-tech-sheet-chevron {
+  font-size: 0.72rem;
+  transition: transform var(--transition-fast);
+}
+
+.hist-btn-toggle-tech-sheet[aria-expanded="true"] .hist-tech-sheet-chevron {
+  transform: rotate(180deg);
+}
+
+/* Ficha Técnica Archivística Desplegable */
+.hist-source-tech-sheet {
+  display: none;
+  margin-top: 0.85rem;
+  background: rgba(8, 2, 2, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.28);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
+  animation: histTechSheetIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hist-source-tech-sheet.hist-tech-sheet-open {
+  display: block;
+}
+
+@keyframes histTechSheetIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hist-tech-sheet-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.hist-tech-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+}
+
+.hist-tech-label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+}
+
+.hist-tech-value {
+  color: rgba(252, 250, 246, 0.88);
+  line-height: 1.5;
+}
+
+.hist-tech-note {
+  border-top: 1px dashed rgba(224, 179, 45, 0.15);
+  padding-top: 0.45rem;
+}
+
+/* Tarjetas de Bibliografía y Fuentes Contrastadas */
+.hist-refs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hist-ref-card {
+  background: rgba(18, 5, 5, 0.65);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.15rem;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.hist-ref-card:hover {
+  background: rgba(28, 8, 8, 0.8);
+  border-color: rgba(224, 179, 45, 0.45);
+}
+
+.hist-ref-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.hist-ref-badge {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  color: var(--color-gold-light);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-ref-year {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.hist-ref-citation {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #FCFAF6;
+  margin-bottom: 0.55rem;
+}
+
+.hist-ref-author {
+  color: var(--color-gold-light);
+}
+
+.hist-ref-work {
+  font-style: italic;
+  color: #FFFFFF;
+}
+
+.hist-ref-publisher {
+  color: rgba(252, 250, 246, 0.75);
+}
+
+.hist-ref-supports {
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 2px solid rgba(224, 179, 45, 0.5);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.45rem 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.hist-ref-supports-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  margin-bottom: 0.2rem;
+}
+
+.hist-ref-supports-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(252, 250, 246, 0.85);
+  margin: 0;
+}
+
+.hist-ref-actions {
+  margin-top: 0.55rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hist-ref-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hist-ref-link:hover {
+  color: #FFFFFF;
+  transform: translateX(2px);
+  text-decoration: underline;
+}
+
+.hist-ref-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+
+/* Parrilla de Interpretación Histórica (Hechos vs Debate) */
+.hist-interp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.hist-interp-col {
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-interp-facts {
+  background: rgba(14, 28, 16, 0.45);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.hist-interp-debate {
+  background: rgba(38, 20, 12, 0.45);
+  border: 1px solid rgba(245, 158, 11, 0.32);
+}
+
+.hist-interp-subheading {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  margin: 0 0 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hist-interp-facts .hist-interp-subheading {
+  color: #86efac;
+}
+
+.hist-interp-debate .hist-interp-subheading {
+  color: #fde047;
+}
+
+.hist-interp-dot-fact {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.hist-interp-dot-debate {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #eab308;
+  box-shadow: 0 0 8px rgba(234, 179, 8, 0.6);
+}
+
+.hist-interp-text {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(252, 250, 246, 0.9);
+}
+
+.hist-interp-text p {
+  margin: 0;
+}
+
+/* Lista de Fuentes y Referencias */
+.hist-refs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hist-ref-item {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.85);
+}
+
+.hist-ref-item::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+  font-size: 0.9rem;
+}
+
+.hist-ref-author {
+  font-weight: 700;
+  color: var(--color-gold-light);
+}
+
+.hist-ref-work {
+  font-style: italic;
+  color: #FFFFFF;
+}
+
+.hist-ref-publisher {
+  color: rgba(252, 250, 246, 0.75);
+}
+
+.hist-ref-link {
+  display: inline-block;
+  margin-left: 0.35rem;
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.hist-ref-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+/* Pie de la Cédula */
+.hist-exhibit-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem clamp(1.2rem, 3vw, 2rem);
+  border-top: 1px solid rgba(224, 179, 45, 0.22);
+  background: rgba(14, 5, 4, 0.96);
+}
+
+.hist-exhibit-nav-count {
+  font-family: var(--font-serif-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   BARRA INFERIOR DE PROGRESO Y PUNTOS (HIST-STAGE-BOTTOM-BAR)
+   -------------------------------------------------------------------------- */
+.hist-stage-bottom-bar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 0.5rem clamp(1rem, 3vw, 2.5rem) clamp(1rem, 2.5vw, 1.8rem);
+}
+
+.hist-bottom-bar-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.hist-dots-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.6rem 0;
+}
+
+.hist-dots-line-bg {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  z-index: 1;
+}
+
+.hist-dots-line-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold-light));
+  border-radius: var(--radius-full);
+  transition: width 0.12s linear;
+}
+
+.hist-dot {
+  position: relative;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+}
+
+.hist-dot-marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #38241D;
+  border: 2px solid #6E5343;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hist-dot:hover .hist-dot-marker,
+.hist-dot:focus-visible .hist-dot-marker {
+  transform: scale(1.35);
+  background: var(--color-gold);
+  border-color: #FFFFFF;
+}
+
+.hist-dot.hist-dot-passed .hist-dot-marker {
+  background: var(--color-gold);
+  border-color: var(--color-gold-light);
+}
+
+.hist-dot.hist-dot-active .hist-dot-marker {
+  width: 14px;
+  height: 14px;
+  background: var(--color-gold-light);
+  border-color: #FFFFFF;
+  box-shadow: 0 0 12px var(--color-gold), 0 0 20px rgba(224, 179, 45, 0.7);
+  transform: scale(1.25);
+}
+
+/* Tooltip emergente en cada dot */
+.hist-dot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #120404;
+  color: #FFFDF9;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.hist-dot:hover .hist-dot-tooltip,
+.hist-dot:focus-visible .hist-dot-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Badges de Hecho vs Interpretación */
+.hist-badge-wrapper {
   position: relative;
 }
 
-.timeline-placeholder-content {
-  border: 2px dashed var(--color-border);
+.hist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+  cursor: help;
+  user-select: none;
+}
+
+.hist-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Hecho: dato documental comprobado */
+.hist-badge-fact {
+  background: rgba(34, 112, 62, 0.12);
+  color: #1A6335;
+  border: 1px solid rgba(34, 112, 62, 0.3);
+}
+.hist-badge-fact .hist-badge-dot {
+  background: #1A6335;
+}
+
+.hist-era-nobleza .hist-badge-fact,
+.hist-era-edad-oro .hist-badge-fact {
+  background: rgba(46, 204, 113, 0.18);
+  color: #4ADE80;
+  border-color: rgba(74, 222, 128, 0.35);
+}
+.hist-era-nobleza .hist-badge-fact .hist-badge-dot,
+.hist-era-edad-oro .hist-badge-fact .hist-badge-dot {
+  background: #4ADE80;
+}
+
+/* Interpretación: lectura historiográfica */
+.hist-badge-interp {
+  background: rgba(201, 151, 0, 0.15);
+  color: #996F00;
+  border: 1px solid rgba(201, 151, 0, 0.35);
+}
+.hist-badge-interp .hist-badge-dot {
+  background: #C99700;
+}
+
+.hist-era-nobleza .hist-badge-interp,
+.hist-era-edad-oro .hist-badge-interp {
+  background: rgba(234, 179, 8, 0.2);
+  color: #FACC15;
+  border-color: rgba(250, 204, 21, 0.4);
+}
+.hist-era-nobleza .hist-badge-interp .hist-badge-dot,
+.hist-era-edad-oro .hist-badge-interp .hist-badge-dot {
+  background: #FACC15;
+}
+
+/* Tooltip nativo CSS en el badge */
+.hist-badge[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: #140404;
+  color: #FFFFFF;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.hist-badge:hover[data-tooltip]::after,
+.hist-badge:focus-visible[data-tooltip]::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hist-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.35;
+  margin: 0 0 var(--space-md);
+}
+
+.hist-card-content {
+  flex: 1 1 auto;
+  font-size: var(--text-sm);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+.hist-card-caption-es {
+  display: block;
+}
+
+.hist-card-caption-en {
+  display: none;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+/* Estado de traducción al inglés */
+.hist-card.hist-translated .hist-card-caption-es {
+  display: none;
+}
+
+.hist-card.hist-translated .hist-card-caption-en {
+  display: block;
+  animation: histFadeIn 0.25s ease-out;
+}
+
+@keyframes histFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pie de la tarjeta: Fuente y Botón de traducción */
+.hist-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.hist-source-container {
+  display: flex;
+  align-items: center;
+}
+
+.hist-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.hist-source-link:hover {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+.hist-source-link:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hist-btn-translate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-translate:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+}
+
+.hist-card.hist-translated .hist-btn-translate {
+  background: var(--color-gold-subtle);
+  border-color: var(--color-gold);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+.hist-btn-translate:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. GLOSARIO DE VOCABULARIO Y TOOLTIPS INTERACTIVOS (HIST-VOCAB)
+   -------------------------------------------------------------------------- */
+.hist-vocab {
+  border-bottom: 2px dashed var(--color-gold);
+  color: inherit;
+  font-weight: 600;
+  cursor: help;
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: background var(--transition-fast);
+}
+
+.hist-vocab:hover,
+.hist-vocab:focus {
+  background: var(--color-gold-subtle);
+  outline: none;
+}
+
+/* Tooltip flotante global inyectado en el DOM */
+.hist-vocab-tooltip {
+  position: absolute;
+  z-index: 1000;
+  max-width: 280px;
+  background: #140404;
+  color: #FCFAF6;
+  border: 1px solid var(--color-gold);
   border-radius: var(--radius-md);
-  padding: var(--space-2xl) var(--space-xl);
+  padding: 0.65rem 0.95rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65), 0 0 16px rgba(201, 151, 0, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.hist-vocab-tooltip.hist-tooltip-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: none;
+}
+
+.hist-tooltip-title {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  color: var(--color-gold-light);
+  font-size: var(--text-sm);
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.3);
+  padding-bottom: 0.2rem;
+}
+
+.hist-tooltip-def {
+  color: rgba(252, 250, 246, 0.92);
+}
+
+/* --------------------------------------------------------------------------
+   6. SECCIÓN DE CUESTIONARIO HISTÓRICO INTERACTIVO (FASE 6)
+   -------------------------------------------------------------------------- */
+.hist-quiz-section {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+  position: relative;
+  background: radial-gradient(circle at 50% 15%, rgba(60, 12, 16, 0.45) 0%, rgba(12, 3, 4, 0.98) 85%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hist-quiz-container {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Tarjeta Principal del Cuestionario (Estética Borgoña & Oro Antiguo) */
+.hist-quiz-card {
+  background: linear-gradient(145deg, rgba(32, 8, 10, 0.96) 0%, rgba(18, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 24px rgba(224, 179, 45, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hist-quiz-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+/* 1. Vista de Introducción */
+.hist-quiz-header-banner {
   text-align: center;
-  background-color: var(--color-bg-sand-light);
+  margin-bottom: 2rem;
+}
+
+.hist-quiz-category-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-gold-light, #f3d068);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+}
+
+.hist-quiz-main-heading {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  color: #FFFDF9;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.hist-quiz-heading-icon {
+  font-size: 1.6rem;
+}
+
+.hist-quiz-intro-lead {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: rgba(252, 250, 246, 0.85);
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.hist-quiz-intro-topics-wrap {
+  background: rgba(10, 2, 3, 0.55);
+  border: 1px solid rgba(224, 179, 45, 0.2);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.5rem clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 2rem;
+}
+
+.hist-quiz-topics-subheading {
+  font-family: var(--font-serif-heading);
+  font-size: 1.1rem;
+  color: var(--color-gold-light, #f3d068);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.hist-quiz-topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hist-quiz-topic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: rgba(252, 250, 246, 0.9);
+  line-height: 1.55;
+}
+
+.hist-quiz-topic-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  margin-top: -1px;
+}
+
+.hist-quiz-intro-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hist-quiz-intro-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hist-quiz-meta-pill {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(252, 250, 246, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+/* 2. Vista de Pregunta Activa */
+.hist-quiz-topbar {
+  margin-bottom: 1.75rem;
+}
+
+.hist-quiz-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.hist-quiz-step-count {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-light, #f3d068);
+}
+
+.hist-quiz-score-badge {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.8);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.hist-quiz-progress-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(224, 179, 45, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  position: relative;
+}
+
+.hist-quiz-progress-bar-fill {
+  height: 100%;
+  width: var(--quiz-progress, 20%);
+  background: linear-gradient(90deg, #c99700 0%, #f3d068 100%);
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hist-quiz-dots-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hist-quiz-step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(224, 179, 45, 0.35);
+  transition: all 0.25s ease;
+}
+
+.hist-quiz-step-dot.hist-dot-active {
+  background: var(--color-gold-light, #f3d068);
+  border-color: #FFFFFF;
+  box-shadow: 0 0 8px rgba(243, 208, 104, 0.6);
+  transform: scale(1.25);
+}
+
+.hist-quiz-step-dot.hist-dot-correct {
+  background: #22c55e;
+  border-color: #86efac;
+}
+
+.hist-quiz-step-dot.hist-dot-incorrect {
+  background: #ef4444;
+  border-color: #fca5a5;
+}
+
+.hist-quiz-q-header {
+  margin-bottom: 1.5rem;
+}
+
+.hist-quiz-q-category {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-light, #f3d068);
+  margin-bottom: 0.5rem;
+}
+
+.hist-quiz-q-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  color: #FFFDF9;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Grupo de Opciones */
+.hist-quiz-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.hist-quiz-option-btn {
+  width: 100%;
+  min-height: 56px;
+  background: rgba(35, 9, 12, 0.65);
+  border: 1.5px solid rgba(224, 179, 45, 0.25);
+  border-radius: var(--radius-lg, 12px);
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  position: relative;
+}
+
+.hist-quiz-option-btn:hover:not(:disabled) {
+  background: rgba(65, 16, 20, 0.85);
+  border-color: var(--color-gold, #c99700);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.hist-quiz-option-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light, #f3d068);
+  outline-offset: 2px;
+}
+
+.hist-option-letter {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  color: var(--color-gold-light, #f3d068);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.hist-option-text {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #FFFDF9;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.hist-option-status-icon {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Estados de acierto / error de las opciones */
+.hist-quiz-option-btn.hist-option-correct {
+  background: rgba(20, 83, 45, 0.55);
+  border-color: #22c55e;
+  box-shadow: 0 0 16px rgba(34, 197, 94, 0.3);
+}
+
+.hist-quiz-option-btn.hist-option-correct .hist-option-letter {
+  background: #22c55e;
+  border-color: #86efac;
+  color: #FFFFFF;
+}
+
+.hist-status-correct {
+  color: #4ade80;
+}
+
+.hist-quiz-option-btn.hist-option-incorrect {
+  background: rgba(127, 29, 29, 0.55);
+  border-color: #ef4444;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.3);
+}
+
+.hist-quiz-option-btn.hist-option-incorrect .hist-option-letter {
+  background: #ef4444;
+  border-color: #fca5a5;
+  color: #FFFFFF;
+}
+
+.hist-status-incorrect {
+  color: #f87171;
+}
+
+.hist-quiz-option-btn.hist-option-dimmed {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Panel de Feedback Inmediato */
+.hist-quiz-feedback-box {
+  display: none;
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  animation: histFeedbackFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes histFeedbackFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hist-quiz-feedback-box.hist-feedback-visible {
+  display: block;
+}
+
+.hist-quiz-feedback-box.hist-feedback-success {
+  background: rgba(15, 45, 25, 0.75);
+  border: 1.5px solid rgba(34, 197, 94, 0.55);
+}
+
+.hist-quiz-feedback-box.hist-feedback-error {
+  background: rgba(55, 14, 18, 0.75);
+  border: 1.5px solid rgba(239, 68, 68, 0.55);
+}
+
+.hist-feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.hist-feedback-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.hist-feedback-success .hist-feedback-title {
+  color: #4ade80;
+}
+
+.hist-feedback-error .hist-feedback-title {
+  color: #f87171;
+}
+
+.hist-feedback-h-link {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-gold-light, #f3d068);
+}
+
+.hist-feedback-explanation {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: #FFFDF9;
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+}
+
+.hist-feedback-source {
+  border-left: 3px solid var(--color-gold, #c99700);
+  padding-left: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: rgba(252, 250, 246, 0.85);
+  line-height: 1.45;
+}
+
+.hist-feedback-source-tag {
+  display: block;
+  font-weight: 700;
+  color: var(--color-gold-light, #f3d068);
+  margin-bottom: 0.2rem;
+}
+
+.hist-quiz-action-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hist-quiz-hint-text {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: rgba(252, 250, 246, 0.6);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Botones del Cuestionario */
+.hist-quiz-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-gold, #c99700) 0%, #e0b32d 100%);
+  color: #1a0406;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(201, 151, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.hist-quiz-btn-primary:hover {
+  background: linear-gradient(135deg, #e0b32d 0%, #f3d068 100%);
+  box-shadow: 0 6px 18px rgba(201, 151, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.hist-quiz-btn-primary:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+.hist-quiz-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(30, 8, 10, 0.6);
+  color: var(--color-gold-light, #f3d068);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.hist-quiz-btn-secondary:hover {
+  background: rgba(60, 15, 20, 0.85);
+  border-color: var(--color-gold, #c99700);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.hist-quiz-btn-secondary:focus-visible {
+  outline: 2px solid var(--color-gold-light, #f3d068);
+  outline-offset: 2px;
+}
+
+/* 3. Vista de Resultados y Balance Final */
+.hist-results-summary-box {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.2);
+  padding-bottom: 2rem;
+}
+
+.hist-results-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-light, #f3d068);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  padding: 0.35rem 1.1rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.hist-results-heading {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  color: #FFFDF9;
+  margin-bottom: 1.5rem;
+}
+
+.hist-results-score-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  background: radial-gradient(circle, rgba(50, 12, 16, 0.95) 0%, rgba(20, 4, 6, 0.98) 100%);
+  border: 3px solid var(--color-gold, #c99700);
+  box-shadow: 0 0 24px rgba(224, 179, 45, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-md);
 }
 
-.timeline-skeleton-badges {
+.hist-score-number {
+  font-family: var(--font-serif-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-gold-light, #f3d068);
+  line-height: 1;
+}
+
+.hist-score-total {
+  font-size: 1.1rem;
+  color: rgba(252, 250, 246, 0.7);
+}
+
+.hist-score-pct {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FFFDF9;
+  margin-top: 0.25rem;
+}
+
+.hist-results-lead-desc {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFDF9;
+  margin-bottom: 0.5rem;
+}
+
+.hist-results-eval-msg {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: rgba(252, 250, 246, 0.85);
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Sección de Revisión de Preguntas */
+.hist-quiz-review-section {
+  margin-bottom: 2.5rem;
+}
+
+.hist-review-subheading {
+  font-family: var(--font-serif-heading);
+  font-size: 1.25rem;
+  color: var(--color-gold-light, #f3d068);
+  margin-bottom: 1.25rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  justify-content: center;
-  margin-top: var(--space-md);
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.epoch-badge {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  padding: 0.4rem 0.9rem;
+.hist-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hist-review-item {
+  background: rgba(14, 3, 4, 0.6);
+  border: 1px solid rgba(224, 179, 45, 0.2);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.25rem clamp(1rem, 2.5vw, 1.5rem);
+  position: relative;
+}
+
+.hist-review-item.hist-review-correct {
+  border-left: 4px solid #22c55e;
+}
+
+.hist-review-item.hist-review-wrong {
+  border-left: 4px solid #ef4444;
+}
+
+.hist-review-item-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.hist-review-status-pill {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+}
+
+.hist-review-status-pill.pill-correct {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.hist-review-status-pill.pill-wrong {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.hist-review-q-num {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.7);
+}
+
+.hist-review-h-ref {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-gold-light, #f3d068);
+  margin-left: auto;
+}
+
+.hist-review-q-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  color: #FFFDF9;
+  line-height: 1.45;
+  margin: 0 0 0.85rem 0;
+}
+
+.hist-review-answers-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hist-review-ans-row {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.hist-review-ans-row.text-correct {
+  color: #86efac;
+}
+
+.hist-review-ans-row.text-wrong {
+  color: #fca5a5;
+}
+
+.hist-review-ans-row.text-canonical {
+  color: var(--color-gold-light, #f3d068);
+  border-top: 1px dashed rgba(224, 179, 45, 0.25);
+  padding-top: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.hist-review-explanation {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: rgba(252, 250, 246, 0.85);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Barra de acciones finales */
+.hist-results-actions-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Adaptaciones para móviles y accesibilidad */
+@media (max-width: 768px) {
+  .hist-quiz-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .hist-quiz-progress-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .hist-quiz-score-badge {
+    align-self: flex-start;
+  }
+
+  .hist-feedback-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hist-results-actions-toolbar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hist-quiz-btn-primary,
+  .hist-quiz-btn-secondary {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hist-quiz-card,
+  .hist-quiz-option-btn,
+  .hist-quiz-progress-bar-fill,
+  .hist-quiz-feedback-box,
+  .hist-quiz-btn-primary,
+  .hist-quiz-btn-secondary {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. ADAPTACIONES MÓVILES Y ACCESIBILIDAD (PREFERS-REDUCED-MOTION)
+   -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   FASE 6: SALA II — GALERÍA DE LA CARTOGRAFÍA HISTÓRICA (PHASE 6)
+   ========================================================================== */
+
+.hist-map-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, #1a0607 0%, #100304 55%, #080202 100%);
+  border-top: 1px solid rgba(224, 179, 45, 0.28);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.28);
+  padding: 0 0 clamp(3rem, 6vw, 5rem);
+  color: #FCFAF6;
+  overflow: hidden;
+}
+
+.hist-map-main-container {
+  padding-top: clamp(2rem, 4vw, 3.2rem);
+}
+
+/* Pórtico Arquitectónico de Sala II: Galería Cartográfica */
+.hist-room-entry-sala-2 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 56px;
+}
+
+.hist-room-entry-sala-2 .hist-room-portal-header {
+  background-color: #1a0507;
+  background: #1a0507 linear-gradient(135deg, rgba(40, 11, 15, 0.98) 0%, rgba(22, 6, 8, 0.99) 55%, rgba(12, 3, 4, 1) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.55);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 4.5vw, 3.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 151, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-2 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+.hist-room-entry-sala-2 .hist-map-kicker-meta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.32);
   border-radius: var(--radius-full);
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
+  padding: 0.28rem 0.75rem;
+}
+
+/* Cabecera del Mapa */
+.hist-map-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto clamp(1.8rem, 3.5vw, 2.8rem);
+}
+
+.hist-map-kicker-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hist-map-kicker-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+}
+
+.hist-map-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: #FFFDF9;
+  line-height: 1.25;
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hist-map-title-icon {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.hist-map-desc {
+  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+  line-height: 1.72;
+  color: rgba(252, 250, 246, 0.88);
+  margin: 0 0 1.5rem;
+}
+
+/* Barra de Filtros por Categoría (Sala II Filter Shelf) */
+.hist-map-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.22);
+}
+
+.hist-map-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: var(--radius-full);
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  color: rgba(252, 250, 246, 0.9);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.hist-map-filter-btn:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.28);
+}
+
+.hist-map-filter-btn.hist-filter-active {
+  background: linear-gradient(135deg, rgba(145, 24, 36, 0.95) 0%, rgba(70, 14, 18, 0.98) 100%);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(201, 151, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hist-map-filter-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Rejilla Principal: Visor SVG + Directorio Lateral */
+.hist-map-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+  align-items: start;
+}
+
+/* Escenario del Mapa SVG con Vitrina Museográfica de Sala II */
+.hist-map-stage {
+  background: linear-gradient(160deg, #180607 0%, #100304 60%, #0a0202 100%);
+  border: 1px solid rgba(224, 179, 45, 0.42);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.75), 
+    0 0 24px rgba(201, 151, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Placa de Vitrina Cartográfica de Sala II */
+.hist-map-vitrine-plate {
+  background: linear-gradient(180deg, rgba(32, 10, 12, 0.98) 0%, rgba(18, 5, 7, 0.98) 100%);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.35);
+  padding: 0.65rem 1.15rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+  position: relative;
+  z-index: 5;
+}
+
+.hist-vitrine-plate-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hist-vitrine-kicker {
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hist-vitrine-title {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: rgba(252, 250, 246, 0.78);
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+
+.hist-map-viewport {
+  position: relative;
+  width: 100%;
+}
+
+.hist-svg-map {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+/* Barra de herramientas inferior del mapa */
+.hist-map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background: rgba(14, 4, 4, 0.94);
+  border-top: 1px solid rgba(224, 179, 45, 0.2);
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hist-map-legend-hint {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: rgba(252, 250, 246, 0.75);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hist-map-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-map-reset-btn:hover {
+  background: rgba(224, 179, 45, 0.15);
+  color: #FFFFFF;
+}
+
+.hist-map-reset-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* MARCADORES SVG INTERACTIVOS (Arquitectura de hitbox fija y no vibrante) */
+.hist-map-marker {
+  cursor: pointer;
+  outline: none;
+  /* Ningún transform en hover sobre el grupo: la geometría se mantiene 100% rígida */
+  transition: opacity 0.25s ease;
+}
+
+/* 1. Hitbox invisible de interacción (ÚNICO elemento que recibe eventos de ratón) */
+.hist-marker-hitbox {
+  cursor: pointer;
+  pointer-events: all !important;
+  fill: transparent;
+}
+
+.hist-map-marker:focus-visible .hist-marker-hitbox {
+  stroke: var(--color-gold-light, #f3d068);
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+/* 2. Todos los elementos visuales decorativos NO interceptan eventos de ratón */
+.hist-marker-pulse,
+.hist-marker-aura,
+.hist-marker-pin,
+.hist-marker-icon,
+.hist-marker-tag,
+.hist-marker-tag-bg,
+.hist-marker-tag-text {
+  pointer-events: none !important;
+}
+
+/* Pulso animado decorativo */
+.hist-marker-pulse {
+  fill: none;
+  stroke: rgba(224, 179, 45, 0.75);
+  stroke-width: 1.5;
+  animation: histMarkerPulse 2.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes histMarkerPulse {
+  0% {
+    r: 6.5px;
+    opacity: 0.9;
+    stroke: rgba(224, 179, 45, 0.9);
+  }
+  100% {
+    r: 22px;
+    opacity: 0;
+    stroke: rgba(224, 179, 45, 0);
+  }
+}
+
+.hist-marker-aura {
+  fill: rgba(201, 151, 0, 0.35);
+  transition: fill 0.2s ease;
+}
+
+.hist-marker-pin {
+  fill: var(--color-gold, #c99700);
+  stroke: #FFFDF9;
+  stroke-width: 1.5;
+  transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+}
+
+/* Feedback visual de hover/foco: SOLO color y brillo, CERO cambio geométrico */
+.hist-map-marker:hover .hist-marker-pin,
+.hist-map-marker:focus-visible .hist-marker-pin {
+  fill: #FFFFFF;
+  stroke: var(--color-gold-light, #f3d068);
+  stroke-width: 2px;
+}
+
+.hist-map-marker:hover .hist-marker-aura,
+.hist-map-marker:focus-visible .hist-marker-aura {
+  fill: rgba(254, 240, 138, 0.55);
+}
+
+.hist-map-marker.hist-marker-selected .hist-marker-pin {
+  fill: #ffe066;
+  stroke: #FFFFFF;
+  stroke-width: 2.2px;
+}
+
+.hist-map-marker.hist-marker-selected .hist-marker-aura {
+  fill: rgba(254, 240, 138, 0.75);
+}
+
+.hist-map-marker.hist-marker-dimmed {
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+/* Etiqueta flotante de la ciudad */
+.hist-marker-tag {
+  opacity: 0.88;
+  transition: opacity 0.2s ease;
+}
+
+.hist-marker-tag-bg {
+  fill: rgba(14, 4, 4, 0.92);
+  stroke: rgba(224, 179, 45, 0.55);
+  stroke-width: 0.8;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
+}
+
+.hist-marker-tag-text {
+  fill: #FFFDF9;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hist-map-marker:hover .hist-marker-tag,
+.hist-map-marker:focus-visible .hist-marker-tag,
+.hist-map-marker.hist-marker-selected .hist-marker-tag {
+  opacity: 1;
+}
+
+.hist-map-marker.hist-marker-selected .hist-marker-tag-bg {
+  fill: rgba(60, 12, 14, 0.96);
+  stroke: var(--color-gold, #c99700);
+  stroke-width: 1.2;
+}
+
+/* BARRA LATERAL: DIRECTORIO ACCESIBLE DE SEDES */
+.hist-map-sidebar {
+  background: linear-gradient(150deg, #180607 0%, #120404 60%, #0a0202 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.22);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.hist-sidebar-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  margin: 0;
+}
+
+.hist-sidebar-count {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.3);
+}
+
+.hist-locations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(224, 179, 45, 0.4) rgba(15, 5, 5, 0.6);
+}
+
+.hist-locations-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hist-locations-list::-webkit-scrollbar-track {
+  background: rgba(15, 5, 5, 0.6);
+  border-radius: 4px;
+}
+
+.hist-locations-list::-webkit-scrollbar-thumb {
+  background: rgba(224, 179, 45, 0.35);
+  border-radius: 4px;
+}
+
+.hist-locations-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(224, 179, 45, 0.65);
+}
+
+/* Tarjeta individual de sede en la lista */
+.hist-loc-card {
+  background: rgba(24, 8, 8, 0.75);
+  border: 1px solid rgba(224, 179, 45, 0.24);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.hist-loc-card:hover {
+  background: rgba(38, 12, 14, 0.9);
+  border-color: rgba(224, 179, 45, 0.55);
+  transform: translateX(3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.hist-loc-card:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-loc-card.hist-loc-selected {
+  background: linear-gradient(135deg, rgba(70, 15, 20, 0.95) 0%, rgba(35, 8, 10, 0.98) 100%);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 16px rgba(201, 151, 0, 0.3), inset 0 0 12px rgba(201, 151, 0, 0.1);
+}
+
+/* Badges de Sala II en Directorio y Dossier (Phase 6) */
+.hist-card-museum-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-loc-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Badges de Categoría */
+.hist-loc-category-badge {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.14rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-badge-fundacional {
+  background: rgba(224, 179, 45, 0.14);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  color: var(--color-gold-light);
+}
+
+.hist-badge-escuelas {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  color: #e9d5ff;
+}
+
+.hist-badge-tragedias {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #fca5a5;
+}
+
+.hist-badge-legal {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #bfdbfe;
+}
+
+.hist-loc-era-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+.hist-loc-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: 0.95rem;
+  color: #FFFDF9;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  line-height: 1.35;
+}
+
+.hist-loc-card-region {
+  font-size: 0.76rem;
+  color: rgba(252, 250, 246, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.45rem;
+}
+
+.hist-loc-card-snippet {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(252, 250, 246, 0.85);
+  margin: 0 0 0.6rem;
+}
+
+.hist-loc-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed rgba(224, 179, 45, 0.2);
+  padding-top: 0.45rem;
+}
+
+.hist-loc-event-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hist-loc-arrow {
+  color: var(--color-gold-light);
+  font-size: 0.85rem;
+  transition: transform var(--transition-fast);
+}
+
+.hist-loc-card:hover .hist-loc-arrow {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   DOSSIER DE DETALLE DE LA SEDE (EXPANDABLE LOCATION DOSSIER)
+   ========================================================================== */
+.hist-location-dossier {
+  display: none;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  animation: histDossierSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hist-location-dossier.hist-dossier-open {
+  display: block;
+}
+
+@keyframes histDossierSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hist-dossier-card {
+  background: linear-gradient(155deg, #1c0809 0%, #130506 50%, #0c0203 100%);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.4rem, 3.5vw, 2.2rem);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(201, 151, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.hist-dossier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(224, 179, 45, 0.25);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hist-dossier-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hist-dossier-era-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.18rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.hist-dossier-close-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-gold-light);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-dossier-close-btn:hover {
+  background: rgba(185, 28, 28, 0.4);
+  border-color: #ef4444;
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+.hist-dossier-close-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-dossier-body {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  align-items: start;
+}
+
+/* Columna Izquierda: Imagen */
+.hist-dossier-media {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hist-dossier-img-wrap {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(224, 179, 45, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  background: #000;
+  aspect-ratio: 16 / 10;
+}
+
+.hist-dossier-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hist-dossier-caption {
+  font-size: 0.76rem;
+  font-style: italic;
+  color: rgba(252, 250, 246, 0.72);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Columna Derecha: Contenido */
+.hist-dossier-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-dossier-geo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.hist-dossier-region {
   font-weight: 600;
 }
 
-/* Caja de Reflexión Personal */
+.hist-dossier-coords {
+  color: rgba(252, 250, 246, 0.55);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+}
+
+.hist-dossier-title {
+  font-family: var(--font-serif-heading);
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  color: #FFFDF9;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.85rem;
+}
+
+.hist-dossier-text {
+  font-size: clamp(0.88rem, 1.5vw, 0.95rem);
+  line-height: 1.75;
+  color: rgba(252, 250, 246, 0.9);
+  margin: 0 0 1.15rem;
+}
+
+/* Caja de Hito Vinculado */
+.hist-dossier-event-box {
+  background: rgba(224, 179, 45, 0.08);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.65rem 0.95rem;
+  margin-bottom: 1.15rem;
+}
+
+.hist-dossier-event-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold-light);
+  margin-bottom: 0.25rem;
+}
+
+.hist-dossier-event-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* Fuentes Documentales */
+.hist-dossier-sources {
+  background: rgba(14, 4, 4, 0.7);
+  border: 1px solid rgba(224, 179, 45, 0.22);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.hist-dossier-source-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  margin-bottom: 0.35rem;
+}
+
+.hist-dossier-source-item {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(252, 250, 246, 0.85);
+}
+
+.hist-dossier-source-title {
+  color: #FFFDF9;
+  font-style: italic;
+}
+
+.hist-dossier-source-repo {
+  color: rgba(224, 179, 45, 0.85);
+  font-size: 0.74rem;
+}
+
+.hist-dossier-source-link {
+  display: inline-block;
+  margin-left: 0.4rem;
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  transition: color var(--transition-fast);
+}
+
+.hist-dossier-source-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+/* Botonera de Acciones */
+.hist-dossier-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hist-btn-jump-timeline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(125, 22, 32, 0.9) 0%, rgba(55, 12, 14, 0.95) 100%);
+  border: 1px solid var(--color-gold);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hist-btn-jump-timeline:hover {
+  background: linear-gradient(135deg, rgba(160, 28, 40, 0.95) 0%, rgba(75, 16, 18, 1) 100%);
+  border-color: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201, 151, 0, 0.3);
+}
+
+.hist-btn-jump-timeline:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+.hist-btn-open-exhibit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: rgba(224, 179, 45, 0.15);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: var(--color-gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-btn-open-exhibit:hover {
+  background: rgba(224, 179, 45, 0.28);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.hist-btn-open-exhibit:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Botón de retorno al vestíbulo en el dossier de Sala II (Phase 6) */
+.hist-dossier-return-btn {
+  font-size: 0.78rem;
+  padding: 0.5rem 1rem;
+  min-height: 40px;
+  background: rgba(24, 6, 8, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.45);
+  color: var(--color-gold-light);
+  gap: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hist-dossier-return-btn:hover {
+  background: rgba(45, 12, 16, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFDF9;
+  transform: translateY(-1px);
+}
+
+.hist-dossier-return-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+
+  /* Mobile styling for Museum Exterior & 3D Doors */
+  .hist-museum-exterior {
+    margin: 1rem 0 2rem;
+    padding: 1.5rem 0 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+  .hist-exterior-header {
+    margin-bottom: 1.25rem;
+    padding: 0 0.75rem;
+  }
+  .hist-exterior-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .hist-exterior-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 1rem;
+  }
+  .hist-btn-enter-museum,
+  .hist-btn-skip-doors,
+  .hist-btn-reset-doors,
+  .hist-btn-explore-galleries,
+  .hist-btn-start-corridor,
+  .hist-btn-hall-primary,
+  .hist-btn-hall-secondary,
+  .hist-btn-hall-tertiary {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.86rem;
+  }
+  .hist-doors-hint {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.65rem;
+  }
+  .hist-view-tab {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.72rem;
+  }
+
+  /* Mobile styling for Corridor & Central Hall (Milestone 1D) */
+  .hist-corridor-hud {
+    bottom: 12px;
+    width: calc(100% - 16px);
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-md, 8px);
+  }
+  .hist-corridor-caption {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  .hist-btn-skip-journey {
+    top: 10px;
+    right: 10px;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hist-hall-top-banner {
+    padding: 0.25rem 0.75rem;
+    max-width: 95%;
+  }
+  .hist-hall-banner-title {
+    font-size: 0.88rem;
+  }
+  .hist-hall-banner-instruction {
+    display: none;
+  }
+  .hist-hall-controls-dock {
+    gap: 0.35rem;
+    padding: 0.25rem 0.4rem;
+    bottom: 8px;
+  }
+  .hist-btn-hall-dock {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+    min-height: 28px;
+  }
+
+  /* Fix 1: Disposición adaptada en pantallas móviles estrechas (<= 390px) */
+  @media (max-width: 390px) {
+    .hist-hall-controls-dock {
+      position: static;
+      transform: none;
+      margin: 0.55rem auto 0.35rem;
+      width: fit-content;
+      max-width: calc(100% - 16px);
+      box-sizing: border-box;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: rgba(18, 5, 8, 0.94);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  /* Selector táctil horizontal accesible en móviles */
+  .hist-hall-mobile-dock {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.6rem;
+    padding: 0.75rem;
+    background: #0f0305;
+    border-top: 1px solid rgba(224, 179, 45, 0.25);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .hist-hall-mobile-card {
+    flex: 0 0 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.6rem 0.4rem;
+    background: rgba(25, 7, 10, 0.9);
+    border: 1px solid rgba(224, 179, 45, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    touch-action: manipulation;
+    position: relative;
+  }
+
+  .hist-hall-mobile-card:focus-visible {
+    outline: 2px solid var(--color-gold-light, #F5DF98);
+  }
+
+  .hist-mobile-card-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-family: var(--font-serif-heading);
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #160406;
+    background: linear-gradient(135deg, #F5DF98 0%, #D4AF37 100%);
+    margin-bottom: 0.3rem;
+  }
+
+  .hist-mobile-card-title {
+    font-family: var(--font-serif-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #FFFDF9;
+    line-height: 1.15;
+    margin-bottom: 0.15rem;
+  }
+
+  .hist-mobile-card-sub {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    color: #F3D98B;
+  }
+  .hist-btn-room-return-hall {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+  }
+  .hist-room-entry-portal {
+    padding: 2.2rem 0 1.9rem;
+  }
+  .hist-room-portal-title {
+    font-size: 1.5rem;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .hist-hud-room-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+  .hist-hud-return-btn {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .hist-map-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hist-dossier-body {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .hist-locations-list {
+    max-height: 380px;
+  }
+
+  .hist-btn-jump-timeline,
+  .hist-btn-open-exhibit,
+  .hist-dossier-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hist-vitrine-plate-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+  .hist-archive-footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .hist-archive-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hist-archive-filters {
+    gap: 0.35rem;
+  }
+  .hist-archive-filter-btn {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+  .hist-archive-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .hist-archive-viewer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hist-archive-action-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hist-btn-archive-link,
+  .hist-btn-toggle-tech-sheet {
+    justify-content: center;
+  }
+
+  .hist-museum-nav {
+    padding: 0.4rem 0;
+  }
+
+  .hist-museum-nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .hist-museum-nav-pills {
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+  }
+
+  .hist-museum-pill {
+    padding: 0.32rem 0.7rem;
+    font-size: 0.74rem;
+    min-height: 36px;
+  }
+
+  .hist-era-nav {
+    top: 76px;
+    padding: 0.45rem 0;
+  }
+
+  .hist-era-nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .hist-era-pills {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .hist-year-counter {
+    right: 12px;
+    bottom: 16px;
+  }
+
+  .hist-year-badge {
+    padding: 0.4rem 0.85rem;
+    gap: 0.45rem;
+  }
+
+  .hist-year-era {
+    max-width: 90px;
+    font-size: 0.65rem;
+  }
+
+  .hist-year-value {
+    font-size: 0.9rem;
+  }
+
+  .hist-cards-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Adaptaciones del Stage Pinned Scroll en pantallas móviles */
+  .hist-stage-hud {
+    padding: 0.5rem 0.8rem 0.25rem;
+  }
+  .hist-hud-inner {
+    padding: 0.35rem 0.75rem;
+    gap: 0.4rem;
+  }
+  .hist-hud-era-kicker,
+  .hist-hud-scroll-hint {
+    display: none;
+  }
+  .hist-stage-canvas {
+    padding: 0.25rem 0.8rem;
+  }
+  .hist-stage-card-wrap {
+    min-height: 320px;
+  }
+  .hist-stage-card {
+    padding: 1.15rem;
+    border-radius: var(--radius-lg);
+  }
+  .hist-stage-card .hist-card-title {
+    font-size: 1.2rem;
+  }
+  .hist-stage-card .hist-card-content {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  .hist-stage-bottom-bar {
+    padding: 0.35rem 0.8rem 0.8rem;
+  }
+  .hist-dot {
+    width: 24px;
+    height: 24px;
+  }
+  .hist-dot-marker {
+    width: 7px;
+    height: 7px;
+  }
+  .hist-dot.hist-dot-active .hist-dot-marker {
+    width: 10px;
+    height: 10px;
+  }
+
+  .hist-cinema-stage {
+    top: -12px;
+    bottom: -12px;
+  }
+
+  .hist-cinema-img {
+    object-position: center 30%;
+  }
+
+  .hist-card-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+  }
+
+  .hist-btn-prev,
+  .hist-btn-continue,
+  .hist-btn-translate {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .hist-interp-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .hist-exhibit-dialog {
+    max-height: 92vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .hist-exhibit-header-top {
+    gap: 0.35rem;
+  }
+
+  .hist-exhibit-title {
+    font-size: 1.15rem;
+  }
+
+  .hist-exhibit-body {
+    padding: 1rem 1.15rem;
+  }
+
+  .hist-exhibit-footer {
+    padding: 0.75rem 1rem;
+  }
+
+  .hist-btn-exhibit {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.85rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .hist-hall-doorways-grid {
+    grid-template-columns: 1fr;
+  }
+  .hist-hall-doorway {
+    flex-direction: row;
+    min-height: 52px;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-md, 8px);
+    gap: 0.65rem;
+    align-items: center;
+  }
+  .hist-doorway-pediment {
+    width: auto;
+    padding: 0;
+  }
+  .hist-doorway-arch-molding {
+    display: none;
+  }
+  .hist-doorway-vista {
+    margin: 0;
+    width: 36px;
+    height: 36px;
+  }
+  .hist-vista-icon {
+    font-size: 1.1rem;
+  }
+  .hist-doorway-plaque {
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .hist-doorway-title {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  .hist-doorway-kicker {
+    margin-bottom: 0.1rem;
+  }
+  .hist-room-portal-title {
+    font-size: 1.3rem;
+  }
+  .hist-badge-curatorial {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.65rem;
+  }
+  .hist-room-portal-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hist-marker-pulse {
+    animation: none !important;
+  }
+
+  .hist-location-dossier,
+  .hist-map-marker,
+  .hist-loc-card,
+  .hist-btn-jump-timeline,
+  .hist-btn-open-exhibit,
+  .hist-dossier-return-btn,
+  .hist-archive-filter-btn,
+  .referencia-card,
+  .hist-archive-return-btn {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hist-source-tech-sheet {
+    animation: none !important;
+  }
+  .hist-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hist-cinema-stage {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hist-cinema-layer {
+    transition: opacity 0.05s ease !important;
+  }
+
+  .hist-cinema-img {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hist-era-link,
+  .hist-btn-translate,
+  .hist-btn-prev,
+  .hist-btn-continue,
+  .hist-source-link,
+  .hist-vocab-tooltip,
+  .hist-year-counter {
+    transition: none !important;
+  }
+
+  .hist-year-value.hist-flip {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .hist-exhibit-modal,
+  .hist-exhibit-dialog,
+  .hist-btn-exhibit,
+  .hist-exhibit-close-btn,
+  .hist-quiz-card,
+  .hist-quiz-option,
+  .hist-quiz-bar-fill,
+  .hist-quiz-feedback,
+  .hist-quiz-results-card,
+  .hist-quiz-btn,
+  .hist-museum-nav,
+  .hist-museum-pill {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Reduced motion for Museum Exterior & 3D Doors */
+  .hist-portal-door-left,
+  .hist-portal-door-right {
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+  }
+  .hist-doors-open .hist-portal-door-left,
+  .hist-doors-open .hist-portal-door-right {
+    transform: none !important;
+    opacity: 0 !important;
+  }
+  .hist-btn-enter-museum,
+  .hist-btn-skip-doors,
+  .hist-btn-reset-doors,
+  .hist-btn-explore-galleries,
+  .hist-view-tab,
+  .hist-doors-hint,
+  .hist-doors-welcome-banner,
+  .hist-corridor-glimpse-img,
+  .hist-interior-radiance,
+  .hist-hotspot-core,
+  .hist-portal-stage-zooming,
+  .hist-corridor-camera-rig,
+  .hist-corridor-stage.hist-corridor-animating .hist-corridor-camera-rig,
+  .hist-hall-bg-img,
+  .hist-hall-arrival-card,
+  .hist-mote,
+  .hist-corridor-lantern-glow,
+  .hist-corridor-pulse-dot,
+  .hist-btn-hall-primary,
+  .hist-btn-hall-secondary,
+  .hist-btn-hall-tertiary,
+  .hist-btn-start-corridor,
+  .hist-btn-skip-journey,
+  .hist-hall-doorway,
+  .hist-doorway-arrow,
+  .hist-doorway-vista,
+  .hist-vista-glow,
+  .hist-btn-room-return-hall,
+  .hist-hud-room-badge,
+  .hist-hud-return-btn {
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hist-corridor-particles {
+    display: none !important;
+  }
+  .hist-corridor-progress-fill {
+    transition: none !important;
+  }
+  .hist-hotspot-ring {
+    animation: none !important;
+    display: none !important;
+  }
+
+}
+
+/* Sala V: Caja de Reflexión Personal & Legado */
 .historia-reflexion-section {
-  padding: var(--space-2xl) 0;
+  padding: clamp(4.5rem, 7vw, 6.5rem) 0;
+  background: radial-gradient(ellipse at 50% 30%, #200608 0%, #110304 65%, #070102 100%);
+  border-top: 1px solid rgba(224, 179, 45, 0.28);
+}
+
+.reflection-box {
+  background: linear-gradient(145deg, rgba(36, 9, 12, 0.92) 0%, rgba(18, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.4);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(201, 151, 0, 0.12);
+  position: relative;
+}
+
+.reflection-box::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px solid rgba(224, 179, 45, 0.18);
+  border-radius: calc(var(--radius-xl, 16px) - 4px);
+  pointer-events: none;
 }
 
 .reflexion-quote-mark {
@@ -179,62 +6006,771 @@
   gap: var(--space-sm);
   font-family: var(--font-serif-heading);
   font-style: italic;
-  color: var(--color-primary-dark);
+  color: var(--color-gold-light);
   font-weight: 600;
 }
 
-/* Sección de Referencias y Fuentes */
+/* ==========================================================================
+   FASE 7: SALA III — GALERÍA DEL ARCHIVO HISTÓRICO DIGITAL (SALA III)
+   ========================================================================== */
+
 .historia-referencias-section {
-  padding: var(--space-2xl) 0 var(--space-3xl);
+  position: relative;
+  padding: 0 0 clamp(4rem, 6vw, 6rem);
+  background: radial-gradient(ellipse at 50% 25%, #1d0608 0%, #100304 60%, #060102 100%);
+  border-top: 1px solid rgba(224, 179, 45, 0.28);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.28);
+  overflow: hidden;
 }
 
-.referencias-wrapper {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
+.hist-archive-main-container {
+  padding-top: clamp(2rem, 4vw, 3.2rem);
 }
 
-.referencias-header {
+/* Pórtico Arquitectónico de Sala III: Archivo Histórico Digital */
+.hist-room-entry-sala-3 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 56px;
+}
+
+.hist-room-entry-sala-3 .hist-room-portal-header {
+  background-color: #1a0507;
+  background: #1a0507 linear-gradient(135deg, rgba(38, 10, 16, 0.98) 0%, rgba(20, 5, 8, 0.99) 55%, rgba(11, 3, 4, 1) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.55);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(2rem, 4.5vw, 3.2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(201, 151, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-3 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+.hist-room-entry-sala-3 .hist-map-kicker-meta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.12);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.75rem;
+}
+
+/* Filtros Interactivos de Expedientes Documentales (Sala III Filter Shelf) */
+.hist-archive-filters {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--space-md);
-  margin-bottom: var(--space-lg);
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.22);
 }
 
-.referencias-title {
-  font-size: var(--text-xl);
-  color: var(--color-primary-dark);
-  margin-bottom: 0;
+.hist-archive-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: var(--radius-full);
+  background: rgba(22, 6, 8, 0.92);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  color: rgba(252, 250, 246, 0.9);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.hist-archive-filter-btn:hover {
+  background: rgba(55, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(224, 179, 45, 0.28);
+}
+
+.hist-archive-filter-btn.hist-filter-active {
+  background: linear-gradient(135deg, rgba(145, 24, 36, 0.95) 0%, rgba(70, 14, 18, 0.98) 100%);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(201, 151, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hist-archive-filter-btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Placa de Vitrina de Sala III */
+.hist-archive-vitrine-plate {
+  background: linear-gradient(180deg, rgba(34, 10, 13, 0.98) 0%, rgba(18, 5, 7, 0.98) 100%);
+  border-bottom: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-lg, 12px) var(--radius-lg, 12px) 0 0;
+  padding: 0.75rem 1.25rem;
+  margin: -clamp(1.8rem, 4vw, 3rem) -clamp(1.8rem, 4vw, 3rem) 1.8rem -clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+}
+
+/* ==========================================================================
+   DIRECTORIO DE ARCHIVO HISTÓRICO DIGITAL (DIGITAL LIBRARY EXHIBIT)
+   ========================================================================== */
+.referencias-wrapper {
+  background: linear-gradient(145deg, rgba(28, 8, 10, 0.96) 0%, rgba(16, 4, 6, 0.98) 60%, rgba(10, 2, 3, 0.99) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .referencias-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
 }
 
 .referencia-card {
-  padding: var(--space-md);
-  background: var(--color-bg-sand-light);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(34, 9, 12, 0.92) 0%, rgba(18, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-left: 4px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.referencia-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(224, 179, 45, 0.7);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 151, 0, 0.22);
+}
+
+.referencia-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .referencia-card-type {
-  font-size: var(--text-xs);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: var(--color-gold-dark);
+  color: var(--color-gold);
   font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.06em;
+  background: rgba(224, 179, 45, 0.12);
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.3);
 }
 
-.referencia-card-placeholder {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  font-style: italic;
+.referencia-card-institution {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(252, 250, 246, 0.65);
+  font-weight: 500;
 }
+
+.referencia-card-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  color: #FFFDF9;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.35;
+}
+
+.referencia-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.82);
+  margin-bottom: 0.85rem;
+  flex-grow: 1;
+}
+
+.referencia-card-meta {
+  font-size: 0.76rem;
+  color: rgba(224, 179, 45, 0.85);
+  border-top: 1px dashed rgba(224, 179, 45, 0.18);
+  padding-top: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Enlace a Hitos Vinculados en Sala I */
+.hist-archive-milestone-ref {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.08);
+  border: 1px dashed rgba(224, 179, 45, 0.3);
+  border-radius: var(--radius-sm, 4px);
+  padding: 0.35rem 0.65rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.referencia-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.referencia-card-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+.referencia-card-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Pie Curatorial de Sala III y Botón de Retorno */
+.hist-archive-footer {
+  margin-top: 2.2rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.25);
+  padding-top: 1.4rem;
+}
+
+.hist-archive-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hist-archive-footer-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.75);
+  max-width: 720px;
+}
+
+.hist-archive-return-btn {
+  font-size: 0.82rem;
+  padding: 0.6rem 1.35rem;
+  min-height: 42px;
+  background: linear-gradient(135deg, rgba(65, 14, 18, 0.95), rgba(30, 6, 8, 0.98));
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.hist-archive-return-btn:hover {
+  background: linear-gradient(135deg, rgba(95, 20, 25, 1), rgba(45, 9, 12, 1));
+  border-color: var(--color-gold-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.35);
+}
+
+
+.hist-map-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: rgba(252, 250, 246, 0.5);
+  text-align: right;
+  margin-top: 0.4rem;
+}
+
+.hist-map-attribution a {
+  color: rgba(224, 179, 45, 0.7);
+  text-decoration: underline;
+}
+
+.hist-map-attribution a:hover {
+  color: var(--color-gold-light);
+}
+
+/* ==========================================================================
+   SALA IV: PÓRTICO ARQUITECTÓNICO & GALERÍA DE LA EVALUACIÓN HISTÓRICA (PHASE 8)
+   ========================================================================== */
+.hist-room-entry-sala-4 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-room-entry-sala-4 .hist-room-portal-header {
+  background: linear-gradient(135deg, rgba(42, 10, 14, 0.96) 0%, rgba(24, 6, 8, 0.98) 55%, rgba(14, 3, 4, 0.99) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-4 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+/* Placa de Protocolo y Vitrina de Sala IV */
+.hist-quiz-vitrine-plate {
+  background: linear-gradient(180deg, rgba(34, 10, 13, 0.98) 0%, rgba(18, 5, 7, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-md, 8px);
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+}
+
+.hist-quiz-vitrine-plate-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hist-quiz-vitrine-plate .hist-vitrine-kicker {
+  font-family: var(--font-serif-heading, 'Cinzel', serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-gold, #c99700);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hist-quiz-vitrine-plate .hist-vitrine-sub {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  color: rgba(252, 250, 246, 0.78);
+  line-height: 1.5;
+}
+
+/* Pie Curatorial de Sala IV y Botón de Retorno */
+.hist-quiz-room-footer {
+  margin-top: 2.4rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.25);
+  padding-top: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-quiz-room-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hist-quiz-room-footer-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(252, 250, 246, 0.75);
+  max-width: 720px;
+}
+
+.hist-quiz-return-btn {
+  font-size: 0.82rem;
+  padding: 0.6rem 1.35rem;
+  min-height: 42px;
+  background: linear-gradient(135deg, rgba(65, 14, 18, 0.95), rgba(30, 6, 8, 0.98));
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.hist-quiz-return-btn:hover {
+  background: linear-gradient(135deg, rgba(95, 20, 25, 1), rgba(45, 9, 12, 1));
+  border-color: var(--color-gold-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.35);
+}
+
+/* Responsividad para Salas I-IV (Móviles y Tablets) */
+@media (max-width: 768px) {
+  .hist-room-entry-sala-1 .hist-room-portal-header,
+  .hist-room-entry-sala-2 .hist-room-portal-header,
+  .hist-room-entry-sala-3 .hist-room-portal-header,
+  .hist-room-entry-sala-4 .hist-room-portal-header {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .hist-quiz-vitrine-plate {
+    padding: 0.75rem 1rem;
+  }
+
+  .hist-quiz-vitrine-plate .hist-vitrine-kicker {
+    font-size: 0.78rem;
+  }
+
+  .hist-quiz-room-footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .hist-quiz-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reducción de Movimiento Accesible para Salas I-IV */
+@media (prefers-reduced-motion: reduce) {
+  .hist-room-entry-sala-1,
+  .hist-room-entry-sala-2,
+  .hist-room-entry-sala-3,
+  .hist-room-entry-sala-4,
+  .hist-quiz-vitrine-plate,
+  .hist-quiz-return-btn {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   SALA V: PÓRTICO ARQUITECTÓNICO & GALERÍA DE LA REFLEXIÓN Y EL LEGADO (PHASE 9)
+   ========================================================================== */
+.hist-room-entry-sala-5 {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-room-entry-sala-5 .hist-room-portal-header {
+  background: linear-gradient(135deg, rgba(38, 9, 13, 0.96) 0%, rgba(22, 5, 7, 0.98) 55%, rgba(12, 3, 4, 0.99) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.38);
+  border-radius: var(--radius-xl, 16px);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(201, 151, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.hist-room-entry-sala-5 .hist-room-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c99700) 25%, var(--color-gold-light, #f3d068) 50%, var(--color-gold, #c99700) 75%, transparent 100%);
+}
+
+/* Placa de Síntesis Curatorial y Vitrina de Sala V */
+.hist-reflection-vitrine-plate {
+  background: linear-gradient(180deg, rgba(32, 8, 11, 0.98) 0%, rgba(16, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.35);
+  border-radius: var(--radius-md, 8px);
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(224, 179, 45, 0.25);
+}
+
+.hist-reflection-vitrine-plate-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hist-reflection-vitrine-plate .hist-vitrine-kicker {
+  font-family: var(--font-serif-heading, 'Cinzel', serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-gold, #c99700);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hist-reflection-vitrine-plate .hist-vitrine-sub {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  color: rgba(252, 250, 246, 0.78);
+  line-height: 1.5;
+}
+
+/* Tríptico de Pilares de Interpretación Historiográfica */
+.hist-reflection-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hist-reflection-pillar-card {
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(34, 9, 12, 0.94) 0%, rgba(18, 4, 6, 0.98) 100%);
+  border: 1px solid rgba(224, 179, 45, 0.32);
+  border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius-lg, 12px);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hist-reflection-pillar-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(224, 179, 45, 0.65);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 151, 0, 0.18);
+}
+
+.hist-pillar-badge-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hist-pillar-room-link {
+  font-family: var(--font-serif-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-light);
+  background: rgba(224, 179, 45, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+}
+
+.hist-pillar-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  color: #FFFDF9;
+  font-weight: 700;
+  margin: 0 0 0.65rem;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.hist-pillar-desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(252, 250, 246, 0.82);
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.hist-pillar-crosslink {
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.15);
+}
+
+.hist-pillar-link {
+  font-family: var(--font-serif-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hist-pillar-link:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+  text-decoration: underline;
+}
+
+.hist-pillar-link:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Pie Curatorial de Clausura y Navegación de Sala V */
+.hist-reflection-room-footer {
+  margin-top: 2.8rem;
+  border-top: 1px solid rgba(224, 179, 45, 0.28);
+  padding-top: 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hist-reflection-room-footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.hist-reflection-room-footer-text {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(252, 250, 246, 0.78);
+  max-width: 820px;
+}
+
+.hist-reflection-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hist-reflection-return-btn {
+  font-size: 0.84rem;
+  padding: 0.65rem 1.45rem;
+  min-height: 44px;
+  background: linear-gradient(135deg, rgba(65, 14, 18, 0.95), rgba(30, 6, 8, 0.98));
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.hist-reflection-return-btn:hover {
+  background: linear-gradient(135deg, rgba(95, 20, 25, 1), rgba(45, 9, 12, 1));
+  border-color: var(--color-gold-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 151, 0, 0.35);
+}
+
+.hist-reflection-reexplore-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hist-reexplore-pill {
+  font-family: var(--font-serif-display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: rgba(252, 250, 246, 0.82);
+  background: rgba(30, 8, 12, 0.85);
+  border: 1px solid rgba(224, 179, 45, 0.25);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.hist-reexplore-pill:hover {
+  background: rgba(65, 14, 18, 0.95);
+  border-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.hist-reexplore-pill:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+/* Responsividad para Sala V (Móviles y Tablets) */
+@media (max-width: 768px) {
+  .hist-room-entry-sala-5 .hist-room-portal-header {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .hist-reflection-vitrine-plate {
+    padding: 0.75rem 1rem;
+  }
+
+  .hist-reflection-vitrine-plate .hist-vitrine-kicker {
+    font-size: 0.78rem;
+  }
+
+  .hist-reflection-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hist-reflection-footer-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hist-reflection-return-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hist-reflection-reexplore-group {
+    justify-content: center;
+  }
+}
+
+/* Reducción de Movimiento Accesible para Sala V */
+@media (prefers-reduced-motion: reduce) {
+  .hist-room-entry-sala-5,
+  .hist-reflection-vitrine-plate,
+  .hist-reflection-pillar-card,
+  .hist-reflection-return-btn,
+  .hist-reexplore-pill {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+

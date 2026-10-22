@@ -5,796 +5,507 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Sección 3: La Cultura — Del ruedo a la vida: palabras, arte y tradiciones de España. Revista digital El Legado del Toro.">
+    content="Sección 3: La Cultura — Del ruedo a la vida: expresiones, arte y tradiciones de España. Revista digital El Legado del Toro. Nivel A1.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>La Cultura — Del ruedo a la vida | El Legado del Toro</title>
 
   <!-- Estilos compartidos del proyecto y específicos de la sección -->
   <link rel="stylesheet" href="../../css/shared.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 
   <!-- Scripts: Navegación compartida y lógica interactiva de la sección -->
   <script src="../../js/nav.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=3" defer></script>
 </head>
 
 <body>
 
-  <!-- Contenedor para inyección de la barra de navegación compartida -->
+  <!-- Contenedor para inyección de la barra de navegación compartida del sitio -->
   <div id="site-nav-container"></div>
 
   <main id="main-content" class="cultura-main">
     <div class="site-container">
 
       <!-- ===================================================================
-           SECCIÓN A: HÉROE EDITORIAL Y PRESENTACIÓN
+           CABECERA / HERO SIMPLIFICADO
            =================================================================== -->
       <header class="cultura-hero" id="cultura-hero" aria-labelledby="cultura-title">
-        <div class="cultura-hero-badge-wrap">
-          <span class="badge badge-gold" id="cultura-section-badge">Sección 03 • Lengua, Arte y Antropología</span>
-        </div>
+        <div class="cultura-hero-top-row">
+          <div class="cultura-hero-headings">
+            <span class="badge badge-gold" id="cultura-section-badge">Sección 03 • Lengua, Arte y Tradición</span>
+            <h1 class="cultura-hero-title" id="cultura-title">La Cultura</h1>
+            <p class="cultura-hero-subtitle" id="cultura-subtitle">
+              Palabras, arte y tradiciones de España
+            </p>
+          </div>
 
-        <h1 class="cultura-hero-title" id="cultura-title">La Cultura</h1>
-
-        <p class="cultura-hero-subtitle" id="cultura-subtitle">
-          Del ruedo a la vida: palabras, arte y tradiciones de España
-        </p>
-
-        <!-- Byline del autor con placeholder para el estudiante -->
-        <div class="cultura-byline-card" id="cultura-byline">
-          <div class="cultura-byline-user">
-            <div class="cultura-byline-avatar" aria-hidden="true">C</div>
-            <div>
-              <span class="cultura-byline-name">Por Abhishek Kumar
-                , Sección 3: La Cultura</span>
-              <span class="cultura-byline-role">Investigación Cultural, Lengua &amp; Expresión Artística</span>
+          <div class="cultura-byline-card" id="cultura-byline">
+            <div class="cultura-byline-user">
+              <div class="cultura-byline-avatar" aria-hidden="true">C</div>
+              <div>
+                <span class="cultura-byline-name">Por Abhishek Kumar, Sección 3</span>
+                <span class="cultura-byline-role">Español Nivel 1 (A1) • Revista Digital</span>
+              </div>
             </div>
           </div>
-          <div class="cultura-byline-meta">
-            <span class="cultura-meta-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              Lectura: ~7 min
-            </span>
-            <span class="cultura-meta-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-              </svg>
-              Fuentes lexicográficas y académicas
-            </span>
-          </div>
         </div>
 
-        <!-- Introducción editorial con enfoque original: el ruedo trascendido a la vida cotidiana -->
         <div class="cultura-intro-card">
           <p>
-            Más allá de la arena de la plaza de toros, la tauromaquia ha dejado una huella profunda y singular en el
-            tejido cotidiano de España. A lo largo de los siglos, el rito taurino trascendió su espacio físico para
-            convertirse en un caudal inagotable de metáforas lingüísticas, giros idiomáticos, creaciones musicales,
-            litografías populares e inspiraciones poéticas que definieron gran parte del patrimonio cultural hispánico.
-          </p>
-          <p>
-            Al mismo tiempo, la sociedad española actual experimenta un momento de profunda transformación: mientras que
-            los modismos taurinos siguen vivos en la lengua diaria y las obras de arte se estudian en los museos, la
-            celebración física de las corridas suscita debates éticos sobre el respeto y el bienestar animal. Esta
-            sección explora cómo el toro y el ruedo han moldeado las palabras, la música y las artes plásticas,
-            analizando su legado cultural con una mirada crítica, reflexiva y plural.
+            En España, el mundo del toro ha dejado una huella importante en el idioma, la pintura y la música. En esta página aprendemos cinco expresiones populares, seis obras visuales y un cuestionario interactivo de forma clara y sencilla.
           </p>
         </div>
-
-        <!-- Botón de acción para desplazamiento suave al contenido -->
-        <div class="cultura-hero-action">
-          <a href="#cultura-quick-nav" class="cultura-btn-hero" id="cultura-hero-scroll-btn">
-            Descubrir la cultura
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </a>
-        </div>
-
-        <!-- Ilustración visual editorial principal -->
-        <figure class="cultura-hero-visual">
-          <img src="images/cultura-hero.svg"
-            alt="Composición artística editorial con arco monumental y silueta del toro bajo el sol" width="800"
-            height="500">
-          <figcaption class="cultura-hero-caption">
-            Ilustración editorial original: Arquería monumental, dehesa y el toro como símbolo antropológico e
-            identitario en España.
-          </figcaption>
-        </figure>
       </header>
 
-
       <!-- ===================================================================
-           EXPLORADOR CULTURAL (BARRA DE NAVEGACIÓN RÁPIDA INTERNA)
-           =================================================================== -->
-      <nav class="cultura-quick-nav-wrap" id="cultura-quick-nav"
-        aria-label="Navegación interna de la sección La Cultura">
-        <div class="cultura-quick-nav">
-          <a href="#cultura-palabras" class="cultura-quick-link">🗣️ Palabras del ruedo</a>
-          <a href="#cultura-arte" class="cultura-quick-link">🎨 Arte y símbolos</a>
-          <a href="#cultura-musica-lit" class="cultura-quick-link">🎺 Música y literatura</a>
-          <a href="#cultura-sabias-que" class="cultura-quick-link">💡 ¿Sabías que...?</a>
-          <a href="#cultura-quiz-section" class="cultura-quick-link">📝 Cuestionario</a>
-          <a href="#cultura-perspectiva" class="cultura-quick-link">⚖️ Perspectivas</a>
-          <a href="#cultura-reflexion" class="cultura-quick-link">✍️ Mi reflexión</a>
-          <a href="#cultura-fuentes" class="cultura-quick-link">📚 Fuentes</a>
-        </div>
-      </nav>
-
-
-      <!-- ===================================================================
-           SECCIÓN 1: "PALABRAS DEL RUEDO" (EXPLORADOR Y JUEGO DE ADIVINANZA)
+           SECCIÓN 1: PALABRAS DEL RUEDO (5 EXPRESIONES POPULARES)
            =================================================================== -->
       <section class="cultura-section" id="cultura-palabras" aria-labelledby="cultura-palabras-title">
         <div class="cultura-section-header">
-          <span class="cultura-section-badge">Huella Lingüística</span>
+          <span class="cultura-section-badge">Sección 1 • Vocabulario</span>
           <h2 class="cultura-section-title" id="cultura-palabras-title">Palabras del ruedo</h2>
           <p class="cultura-section-desc">
-            Expresiones taurinas que forman parte del lenguaje coloquial en España. Explora sus significados verificados
-            en el diccionario de la RAE o pon a prueba tu intuición en el juego de adivinanza.
+            Cinco expresiones que nacieron en las corridas y hoy se usan en las conversaciones diarias.
           </p>
         </div>
 
-        <div class="cultura-palabras-container">
-          <div class="cultura-palabras-intro-grid">
-            <div class="cultura-palabras-visual">
-              <img src="images/palabras-ruedo.svg"
-                alt="Ilustración de bocadillos de diálogo con modismos españoles y pluma" loading="lazy">
+        <!-- Cuadrícula limpia y directa con las cinco expresiones -->
+        <div class="cultura-expresiones-grid">
+
+          <!-- Expresión 1 -->
+          <article class="cultura-expr-card">
+            <div class="cultura-expr-top">
+              <span class="cultura-expr-icon" aria-hidden="true">🐂</span>
+              <h3 class="cultura-expr-title">Tomar el toro por los cuernos</h3>
             </div>
-            <div class="cultura-palabras-intro-text">
-              <p>
-                El castellano cuenta con decenas de expresiones que nacieron de las faenas taurinas y que hoy emplean a
-                diario personas que nunca han asistido a una corrida. La Real Academia Española (RAE) registra estas
-                frases hechas como testimonio del impacto que este rito tuvo en la imaginación y la comunicación social
-                de la península.
+            <div class="cultura-expr-body">
+              <p class="cultura-expr-significado">
+                <strong>Significado:</strong> Resolver un problema con valentía.
+              </p>
+              <p class="cultura-expr-ejemplo">
+                <strong>Ejemplo:</strong> «Tengo un examen difícil, pero voy a estudiar hoy.»
               </p>
             </div>
-          </div>
+          </article>
 
-          <!-- Conmutador interactivo de modo -->
-          <div class="cultura-modo-switcher">
-            <button type="button" class="cultura-btn-modo is-active" id="cultura-btn-modo-explorar">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-              Explorador de modismos
-            </button>
-            <button type="button" class="cultura-btn-modo" id="cultura-btn-modo-juego">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="10 8 16 12 10 16 10 8"></polygon>
-              </svg>
-              Modo juego: Adivina el significado
-            </button>
-          </div>
-
-          <!-- Modo 1: Explorador de Modismos (Pestañas) -->
-          <div id="cultura-explorer-wrap">
-            <div class="cultura-palabras-tabs" id="cultura-modismos-tabs" role="tablist"
-              aria-label="Modismos taurinos populares"></div>
-
-            <article class="cultura-palabras-card" id="cultura-modismo-card" aria-live="polite">
-              <div class="cultura-modismo-header">
-                <h3 class="cultura-modismo-title" id="cultura-modismo-titulo">«Tomar el toro por los cuernos»</h3>
-                <span class="cultura-modismo-badge" id="cultura-modismo-badge">Decisión y Valentía</span>
-              </div>
-
-              <div class="cultura-modismo-body-grid">
-                <div class="cultura-modismo-col">
-                  <div class="cultura-modismo-col-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    Significado literal en el ruedo
-                  </div>
-                  <p id="cultura-modismo-literal">
-                    Afrontar directamente al animal sujetándolo por las astas, la parte más peligrosa pero decisiva para
-                    frenar su embestida.
-                  </p>
-                </div>
-
-                <div class="cultura-modismo-col">
-                  <div class="cultura-modismo-col-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    Significado figurado en el habla diaria
-                  </div>
-                  <p id="cultura-modismo-figurado">
-                    Enfrentarse a un problema, dilema o dificultad con determinación, valentía y sin rodeos.
-                  </p>
-                </div>
-              </div>
-
-              <div class="cultura-modismo-ejemplo-box">
-                <div class="cultura-ejemplo-label">Ejemplo de uso en una conversación real:</div>
-                <p class="cultura-ejemplo-texto" id="cultura-modismo-ejemplo">
-                  «En vez de retrasar la preparación del examen de español, decidí tomar el toro por los cuernos y
-                  estudiar todos los temas este fin de semana.»
-                </p>
-              </div>
-
-              <div class="cultura-modismo-footer" id="cultura-modismo-fuente">
-                Fuente lexicográfica: <a href="https://dle.rae.es/toro" target="_blank" rel="noopener noreferrer">Real
-                  Academia Española — DLE</a>
-              </div>
-            </article>
-          </div>
-
-          <!-- Modo 2: Juego Interactivo de Adivinanza de Modismos -->
-          <div class="cultura-juego-container" id="cultura-juego-wrap" role="region" aria-live="polite">
-            <div class="cultura-juego-top-bar">
-              <span class="cultura-juego-ronda" id="cultura-juego-ronda">Expresión 1 de 5</span>
-              <span class="cultura-juego-score-badge" id="cultura-juego-score">Aciertos: 0 / 5</span>
+          <!-- Expresión 2 -->
+          <article class="cultura-expr-card">
+            <div class="cultura-expr-top">
+              <span class="cultura-expr-icon" aria-hidden="true">👀</span>
+              <h3 class="cultura-expr-title">Ver los toros desde la barrera</h3>
             </div>
-
-            <h3 class="cultura-juego-target-expr" id="cultura-juego-target-expr">Cargando expresión...</h3>
-
-            <div class="cultura-juego-options" id="cultura-juego-options"></div>
-
-            <div class="cultura-juego-feedback" id="cultura-juego-feedback"></div>
-
-            <div class="cultura-juego-actions">
-              <button type="button" class="cultura-btn-next-expr" id="cultura-btn-next-expr" style="display: none;">
-                Siguiente expresión →
-              </button>
+            <div class="cultura-expr-body">
+              <p class="cultura-expr-significado">
+                <strong>Significado:</strong> Mirar un problema sin participar.
+              </p>
+              <p class="cultura-expr-ejemplo">
+                <strong>Ejemplo:</strong> «Mis amigos discuten, pero yo no participo.»
+              </p>
             </div>
-          </div>
+          </article>
+
+          <!-- Expresión 3 -->
+          <article class="cultura-expr-card">
+            <div class="cultura-expr-top">
+              <span class="cultura-expr-icon" aria-hidden="true">🧣</span>
+              <h3 class="cultura-expr-title">Echar un capote</h3>
+            </div>
+            <div class="cultura-expr-body">
+              <p class="cultura-expr-significado">
+                <strong>Significado:</strong> Ayudar a otra persona.
+              </p>
+              <p class="cultura-expr-ejemplo">
+                <strong>Ejemplo:</strong> «Mi amigo me ayuda con los deberes.»
+              </p>
+            </div>
+          </article>
+
+          <!-- Expresión 4 -->
+          <article class="cultura-expr-card">
+            <div class="cultura-expr-top">
+              <span class="cultura-expr-icon" aria-hidden="true">⏱️</span>
+              <h3 class="cultura-expr-title">Estar al quite</h3>
+            </div>
+            <div class="cultura-expr-body">
+              <p class="cultura-expr-significado">
+                <strong>Significado:</strong> Ayudar en un momento difícil.
+              </p>
+              <p class="cultura-expr-ejemplo">
+                <strong>Ejemplo:</strong> «Mi profesora me ayuda cuando tengo preguntas.»
+              </p>
+            </div>
+          </article>
+
+          <!-- Expresión 5 -->
+          <article class="cultura-expr-card cultura-expr-card-wide">
+            <div class="cultura-expr-top">
+              <span class="cultura-expr-icon" aria-hidden="true">🔄</span>
+              <h3 class="cultura-expr-title">Cambiar de tercio</h3>
+            </div>
+            <div class="cultura-expr-body">
+              <p class="cultura-expr-significado">
+                <strong>Significado:</strong> Cambiar de tema o de actividad.
+              </p>
+              <p class="cultura-expr-ejemplo">
+                <strong>Ejemplo:</strong> «Hablemos de música y no de deberes.»
+              </p>
+            </div>
+          </article>
+
         </div>
       </section>
 
-
       <!-- ===================================================================
-           SECCIÓN 2: "ARTE Y SÍMBOLOS" (GALERÍA DE 6 TARJETAS + HOTSPOTS)
+           SECCIÓN 2: ARTE, MÚSICA Y LITERATURA (6 TARJETAS CON FOTOS GRANDES)
            =================================================================== -->
       <section class="cultura-section" id="cultura-arte" aria-labelledby="cultura-arte-title">
         <div class="cultura-section-header">
-          <span class="cultura-section-badge">Iconografía Española</span>
-          <h2 class="cultura-section-title" id="cultura-arte-title">Arte y símbolos</h2>
+          <span class="cultura-section-badge">Sección 2 • Galería Visual</span>
+          <h2 class="cultura-section-title" id="cultura-arte-title">Arte, música y literatura</h2>
           <p class="cultura-section-desc">
-            Seis manifestaciones visuales y sonoras que definieron la estética, el diseño gráfico, la moda y la
-            arquitectura en España. Haz clic en «Descubrir más» para abrir la ficha de investigación detallada.
+            Seis tarjetas con fotografías atractivas y oraciones cortas en español básico.
           </p>
         </div>
 
+        <!-- Cuadrícula 3x2 de tarjetas con fotos grandes y textos A1 -->
         <div class="cultura-arte-grid">
+
           <!-- Tarjeta 1: El traje de luces -->
           <article class="cultura-arte-card">
             <div class="cultura-card-media">
-              <img src="images/traje-de-luces.svg" alt="Ilustración del traje de luces con bordados en oro y alamares"
-                loading="lazy">
+              <img src="images/foto-traje-luces.jpg" alt="El traje de luces del torero con bordados dorados" loading="lazy">
             </div>
             <div class="cultura-card-body">
-              <span class="cultura-card-badge">Indumentaria</span>
               <h3 class="cultura-card-title">El traje de luces</h3>
               <p class="cultura-card-text">
-                Obra cumbre de la sastrería tradicional española. Bordado en canutillo de oro, plata y seda, su
-                confección manual puede tardar meses y pesar hasta 5 kilogramos.
+                Es un traje especial del torero. Tiene bordados de oro y plata.
               </p>
-              <button type="button" class="cultura-btn-descubrir" data-target="traje" aria-haspopup="dialog">
-                Descubrir más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
             </div>
           </article>
 
           <!-- Tarjeta 2: Los carteles taurinos -->
           <article class="cultura-arte-card">
             <div class="cultura-card-media">
-              <img src="images/carteles-taurinos.svg"
-                alt="Cartel litográfico tradicional de feria con tipografía clásica" loading="lazy">
+              <img src="images/foto-cartel-1898.jpg" alt="Cartel taurino histórico de colores vivos" loading="lazy">
             </div>
             <div class="cultura-card-body">
-              <span class="cultura-card-badge">Diseño Gráfico</span>
               <h3 class="cultura-card-title">Los carteles taurinos</h3>
               <p class="cultura-card-text">
-                Pioneros de la litografía y el cartel publicitario moderno en Europa. Sus audaces composiciones y
-                tipografías monumentales decoraron las paredes de ferias y pueblos.
+                Anuncian las corridas. Tienen colores vivos y letras grandes.
               </p>
-              <button type="button" class="cultura-btn-descubrir" data-target="carteles" aria-haspopup="dialog">
-                Descubrir más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
             </div>
           </article>
 
           <!-- Tarjeta 3: La plaza de toros -->
           <article class="cultura-arte-card">
             <div class="cultura-card-media">
-              <img src="images/la-plaza.svg"
-                alt="Fachada monumental neomudéjar de la plaza de toros con arcos de herradura" loading="lazy">
+              <img src="images/foto-las-ventas.jpg" alt="Plaza de toros circular de Las Ventas en Madrid" loading="lazy">
             </div>
             <div class="cultura-card-body">
-              <span class="cultura-card-badge">Arquitectura</span>
               <h3 class="cultura-card-title">La plaza de toros</h3>
               <p class="cultura-card-text">
-                Evolución del ruedo circular permanente y del estilo neomudéjar con ladrillo visto y arcos de herradura,
-                como la monumental Plaza de Las Ventas de Madrid.
+                Es un edificio redondo. Aquí se celebran las corridas.
               </p>
-              <button type="button" class="cultura-btn-descubrir" data-target="plaza" aria-haspopup="dialog">
-                Descubrir más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
             </div>
           </article>
 
-          <!-- Tarjeta 4: El toro en el arte plástico (Goya y Picasso) -->
+          <!-- Tarjeta 4: El toro en el arte -->
           <article class="cultura-arte-card">
             <div class="cultura-card-media">
-              <img src="images/goya-picasso.svg" alt="Grabado y trazos cubistas en homenaje a Goya y Picasso"
-                loading="lazy">
+              <img src="images/foto-goya-tauromaquia.jpg" alt="Grabado clásico de Goya representando al toro" loading="lazy">
             </div>
             <div class="cultura-card-body">
-              <span class="cultura-card-badge">Pintura y Escultura</span>
               <h3 class="cultura-card-title">El toro en el arte</h3>
               <p class="cultura-card-text">
-                Fascinación creativa en Francisco de Goya con su serie de aguafuertes <em>La Tauromaquia</em> (1816) y
-                en Pablo Picasso a través del cubismo y el grabado universal.
+                Goya y Picasso hicieron obras relacionadas con los toros.
               </p>
-              <button type="button" class="cultura-btn-descubrir" data-target="arte_plastico" aria-haspopup="dialog">
-                Descubrir más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
             </div>
           </article>
 
           <!-- Tarjeta 5: La música y el pasodoble -->
           <article class="cultura-arte-card">
             <div class="cultura-card-media">
-              <img src="images/la-tradicion.svg" alt="Guitarra española, notas de pasodoble y abanico festivo"
-                loading="lazy">
+              <img src="images/foto-guitarra-pasodoble.jpg" alt="Guitarra española tocando un pasodoble tradicional" loading="lazy">
             </div>
             <div class="cultura-card-body">
-              <span class="cultura-card-badge">Música Popular</span>
               <h3 class="cultura-card-title">La música y el pasodoble</h3>
               <p class="cultura-card-text">
-                Banda sonora identitaria de las fiestas patronales españolas. Compás binario de origen marcial que
-                alcanzó renombre universal en el siglo XX.
+                El pasodoble es una música tradicional española.
               </p>
-              <button type="button" class="cultura-btn-descubrir" data-target="musica" aria-haspopup="dialog">
-                Descubrir más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
             </div>
           </article>
 
-          <!-- Tarjeta 6: La literatura y la poesía -->
+          <!-- Tarjeta 6: La literatura -->
           <article class="cultura-arte-card">
             <div class="cultura-card-media">
-              <img src="images/arte-literatura.svg"
-                alt="Libro de poesía y pluma dorada en homenaje a Federico García Lorca" loading="lazy">
+              <img src="images/foto-lorca.jpg" alt="Retrato del escritor Federico García Lorca" loading="lazy">
             </div>
             <div class="cultura-card-body">
-              <span class="cultura-card-badge">Poesía y Letras</span>
-              <h3 class="cultura-card-title">La literatura y el verso</h3>
+              <h3 class="cultura-card-title">La literatura</h3>
               <p class="cultura-card-text">
-                Eje de inspiración para la Generación del 27, plasmado en la conmovedora elegía de Federico García Lorca
-                y los relatos de Ernest Hemingway.
+                Lorca y Hemingway escribieron sobre el mundo del toro.
               </p>
-              <button type="button" class="cultura-btn-descubrir" data-target="literatura" aria-haspopup="dialog">
-                Descubrir más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
-            </div>
-          </article>
-        </div>
-
-        <!-- Experiencia interactiva: "Descubre los detalles" (Hotspots de Sastrería) -->
-        <div class="cultura-hotspot-showcase">
-          <div class="cultura-hotspot-header">
-            <span class="cultura-section-badge">Exploración en Detalle</span>
-            <h3 class="cultura-section-title" style="font-size: var(--text-2xl);">Descubre los secretos de la sastrería
-              taurina</h3>
-            <p class="cultura-section-desc" style="font-size: var(--text-sm);">
-              Haz clic en los puntos numerados o en los botones inferiores para analizar la artesanía del traje de
-              luces.
-            </p>
-          </div>
-
-          <div class="cultura-hotspot-grid">
-            <div class="cultura-hotspot-visual">
-              <img src="images/detalles-traje.svg"
-                alt="Diagrama interactivo de los puntos de confección artesanal del traje de luces" loading="lazy">
-            </div>
-
-            <div class="cultura-hotspot-details-panel">
-              <div class="cultura-hotspot-nav" role="tablist" aria-label="Puntos del traje de luces">
-                <button type="button" class="cultura-btn-hotspot-nav is-active" data-hotspot="1">Punto 1:
-                  Hombreras</button>
-                <button type="button" class="cultura-btn-hotspot-nav" data-hotspot="2">Punto 2: Bordados</button>
-                <button type="button" class="cultura-btn-hotspot-nav" data-hotspot="3">Punto 3: Chaleco</button>
-                <button type="button" class="cultura-btn-hotspot-nav" data-hotspot="4">Punto 4: Seda</button>
-              </div>
-
-              <h4 class="cultura-hotspot-info-title" id="cultura-hotspot-title">Alamares y Hombreras de Oro</h4>
-              <p class="cultura-hotspot-info-text" id="cultura-hotspot-text">
-                Las hombreras abombadas están rematadas con alamares y flecos de oro macizo en cordonería espiral. No
-                solo tienen una función ornamental suntuosa, sino que añaden prestancia al porte del torero y aportan
-                rigidez a los hombros durante los lances con el capote.
-              </p>
-              <div class="cultura-hotspot-info-cite" id="cultura-hotspot-cite">
-                Documentación técnica: <strong>Museo del Traje de Madrid</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ===================================================================
-           SECCIÓN 3: "MÚSICA Y LITERATURA" (OBRAS CULTURALES INVESTIGADAS)
-           =================================================================== -->
-      <section class="cultura-section" id="cultura-musica-lit" aria-labelledby="cultura-musica-title">
-        <div class="cultura-section-header">
-          <span class="cultura-section-badge">Creación y Letras</span>
-          <h2 class="cultura-section-title" id="cultura-musica-title">Música y literatura</h2>
-          <p class="cultura-section-desc">
-            Ejemplos contrastados de composiciones musicales y obras literarias que convirtieron la tauromaquia en
-            metáfora universal.
-          </p>
-        </div>
-
-        <div class="cultura-musica-lit-container">
-          <!-- Bloque de Música -->
-          <article class="cultura-musica-box">
-            <div class="cultura-sub-header">
-              <div class="cultura-sub-icon" aria-hidden="true">🎺</div>
-              <div>
-                <span class="cultura-sub-tag">Composiciones Populares</span>
-                <h3 class="cultura-sub-title">El Pasodoble Taurino</h3>
-              </div>
-            </div>
-
-            <div class="cultura-work-item">
-              <div class="cultura-work-title">«España Cañí» (1925)</div>
-              <div class="cultura-work-author">Compositor: Pascual Marquina Narro</div>
-              <p class="cultura-work-desc">
-                Concebida como una obra instrumental marcial y festiva, esta pieza se consolidó como el estándar musical
-                para el paseíllo y las faenas en ruedos de todo el mundo, integrándose también en fiestas populares y
-                celebraciones de danza internacional.
-              </p>
-              <div class="cultura-work-cite">
-                Fuente: <a href="https://datos.bne.es/obra/XX2063858.html" target="_blank"
-                  rel="noopener noreferrer">Biblioteca Nacional de España (BNE)</a>
-              </div>
-            </div>
-
-            <div class="cultura-work-item">
-              <div class="cultura-work-title">«Suspiros de España» (1902)</div>
-              <div class="cultura-work-author">Compositor: Antonio Álvarez Alonso</div>
-              <p class="cultura-work-desc">
-                Estrenado en Cartagena, este pasodoble evoca la nostalgia patriótica y el ambiente castizo, siendo
-                interpretado por bandas municipales en desfiles tradicionales y festejos patronales.
-              </p>
-              <div class="cultura-work-cite">
-                Fuente: <a href="https://www.bne.es" target="_blank" rel="noopener noreferrer">Archivo de Música de la
-                  BNE</a>
-              </div>
             </div>
           </article>
 
-          <!-- Bloque de Literatura -->
-          <article class="cultura-literatura-box">
-            <div class="cultura-sub-header">
-              <div class="cultura-sub-icon" aria-hidden="true">📜</div>
-              <div>
-                <span class="cultura-sub-tag">Poesía y Narrativa</span>
-                <h3 class="cultura-sub-title">La Tragedia Poética</h3>
-              </div>
-            </div>
-
-            <div class="cultura-work-item">
-              <div class="cultura-work-title">«Llanto por Ignacio Sánchez Mejías» (1935)</div>
-              <div class="cultura-work-author">Poeta: Federico García Lorca (Generación del 27)</div>
-              <p class="cultura-work-desc">
-                Considerada una de las mayores elegías líricas de la lengua española. Lorca inmortalizó el trágico
-                estribillo <em>«a las cinco de la tarde»</em> para llorar la muerte de su íntimo amigo torero e
-                intelectual, explorando el misterio del dolor y la fragilidad humana.
-              </p>
-              <div class="cultura-work-cite">
-                Fuente: <a href="https://cvc.cervantes.es" target="_blank" rel="noopener noreferrer">Centro Virtual
-                  Cervantes</a>
-              </div>
-            </div>
-
-            <div class="cultura-work-item">
-              <div class="cultura-work-title">«Muerte en la tarde» (1932)</div>
-              <div class="cultura-work-author">Escritor: Ernest Hemingway (Premio Nobel)</div>
-              <p class="cultura-work-desc">
-                Tratado testimonial en el que el autor estadounidense analiza la lidia no como un deporte, sino como una
-                tragedia ceremonial sobre el honor, la muerte y el valor ante el peligro.
-              </p>
-              <div class="cultura-work-cite">
-                Fuente: <a href="https://cvc.cervantes.es" target="_blank" rel="noopener noreferrer">Estudios hispánicos
-                  / Instituto Cervantes</a>
-              </div>
-            </div>
-          </article>
         </div>
       </section>
 
-
       <!-- ===================================================================
-           SECCIÓN 4: "¿SABÍAS QUE...?" (DATOS CULTURALES INTERACTIVOS)
-           =================================================================== -->
-      <section class="cultura-section" id="cultura-sabias-que" aria-labelledby="cultura-sabias-title">
-        <div class="cultura-section-header">
-          <span class="cultura-section-badge">Curiosidades Contrastadas</span>
-          <h2 class="cultura-section-title" id="cultura-sabias-title">¿Sabías que...?</h2>
-          <p class="cultura-section-desc">
-            Datos singulares sobre la lengua, el arte y la historia cultural de España contrastados con fuentes
-            documentales reales.
-          </p>
-        </div>
-
-        <div class="cultura-facts-card">
-          <div class="cultura-facts-icon" aria-hidden="true">✦</div>
-          <span class="cultura-facts-counter" id="cultura-fact-counter">Dato cultural 1 de 5</span>
-
-          <div class="cultura-facts-display" id="cultura-facts-display" aria-live="polite">
-            <blockquote class="cultura-facts-text" id="cultura-fact-text">
-              Cargando dato cultural...
-            </blockquote>
-          </div>
-
-          <div class="cultura-facts-source-badge" id="cultura-fact-source"></div>
-
-          <div>
-            <button type="button" class="cultura-btn-facts" id="cultura-next-fact-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-              Descubrir otro dato
-            </button>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ===================================================================
-           SECCIÓN 5: CUESTIONARIO INTERACTIVO (QUIZ MEJORADO)
+           SECCIÓN 3: CUESTIONARIO (5 PREGUNTAS INTERACTIVAS Y FÁCILES DE LEER)
            =================================================================== -->
       <section class="cultura-section" id="cultura-quiz-section" aria-labelledby="cultura-quiz-title">
         <div class="cultura-section-header">
-          <span class="cultura-section-badge">Evaluación Interactiva</span>
-          <h2 class="cultura-section-title" id="cultura-quiz-title">Pon a prueba tus conocimientos</h2>
+          <span class="cultura-section-badge">Sección 3 • Autoevaluación</span>
+          <h2 class="cultura-section-title" id="cultura-quiz-title">Cuestionario</h2>
           <p class="cultura-section-desc">
-            Demuestra lo que has aprendido sobre los modismos del español, las obras de arte y las tradiciones
-            culturales respondiendo a estas cinco preguntas.
+            Cinco preguntas interactivas para comprobar lo aprendido en español sencillo.
           </p>
         </div>
 
-        <div class="cultura-quiz-wrapper">
-          <div class="cultura-quiz-bar">
-            <span class="cultura-quiz-status">Cuestionario Cultural de 5 Preguntas</span>
-            <span class="cultura-quiz-score-badge" id="cultura-score-badge" aria-live="polite">Puntuación: 0 / 5</span>
+        <div class="cultura-quiz-vertical-list">
+
+          <!-- Pregunta 1 -->
+          <article class="cultura-quiz-q-card" id="cultura-quiz-card-1">
+            <h3 class="cultura-question-title">1. ¿Qué significa la expresión «ver los toros desde la barrera»?</h3>
+            <div class="cultura-options-grid" role="radiogroup" aria-label="Pregunta 1">
+              <label class="cultura-radio-label" for="q1-opt0">
+                <input type="radio" name="quiz-q1" id="q1-opt0" value="0" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">A</span>
+                <span class="cultura-radio-text">Comprar las entradas más baratas en la plaza.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q1-opt1">
+                <input type="radio" name="quiz-q1" id="q1-opt1" value="1" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">B</span>
+                <span class="cultura-radio-text">Mirar un problema desde un lugar seguro, sin participar.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q1-opt2">
+                <input type="radio" name="quiz-q1" id="q1-opt2" value="2" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">C</span>
+                <span class="cultura-radio-text">Trabajar como voluntario en una fiesta popular.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q1-opt3">
+                <input type="radio" name="quiz-q1" id="q1-opt3" value="3" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">D</span>
+                <span class="cultura-radio-text">Ignorar las normas de tráfico en una ciudad.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+            </div>
+            <div class="cultura-feedback-box" id="cultura-feedback-1" aria-live="polite"></div>
+          </article>
+
+          <!-- Pregunta 2 -->
+          <article class="cultura-quiz-q-card" id="cultura-quiz-card-2">
+            <h3 class="cultura-question-title">2. ¿Por qué se llama «traje de luces» la ropa del torero?</h3>
+            <div class="cultura-options-grid" role="radiogroup" aria-label="Pregunta 2">
+              <label class="cultura-radio-label" for="q2-opt0">
+                <input type="radio" name="quiz-q2" id="q2-opt0" value="0" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">A</span>
+                <span class="cultura-radio-text">Porque los bordados de oro y plata brillan con la luz del sol.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q2-opt1">
+                <input type="radio" name="quiz-q2" id="q2-opt1" value="1" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">B</span>
+                <span class="cultura-radio-text">Porque tiene pequeñas bombillas eléctricas en las hombreras.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q2-opt2">
+                <input type="radio" name="quiz-q2" id="q2-opt2" value="2" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">C</span>
+                <span class="cultura-radio-text">Porque solo se usa en corridas de noche.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q2-opt3">
+                <input type="radio" name="quiz-q2" id="q2-opt3" value="3" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">D</span>
+                <span class="cultura-radio-text">Por el color blanco de la camisa.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+            </div>
+            <div class="cultura-feedback-box" id="cultura-feedback-2" aria-live="polite"></div>
+          </article>
+
+          <!-- Pregunta 3 -->
+          <article class="cultura-quiz-q-card" id="cultura-quiz-card-3">
+            <h3 class="cultura-question-title">3. ¿Qué autor español escribió el poema «Llanto por Ignacio Sánchez Mejías»?</h3>
+            <div class="cultura-options-grid" role="radiogroup" aria-label="Pregunta 3">
+              <label class="cultura-radio-label" for="q3-opt0">
+                <input type="radio" name="quiz-q3" id="q3-opt0" value="0" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">A</span>
+                <span class="cultura-radio-text">Antonio Machado.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q3-opt1">
+                <input type="radio" name="quiz-q3" id="q3-opt1" value="1" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">B</span>
+                <span class="cultura-radio-text">Federico García Lorca.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q3-opt2">
+                <input type="radio" name="quiz-q3" id="q3-opt2" value="2" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">C</span>
+                <span class="cultura-radio-text">Miguel de Cervantes.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q3-opt3">
+                <input type="radio" name="quiz-q3" id="q3-opt3" value="3" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">D</span>
+                <span class="cultura-radio-text">Gustavo Adolfo Bécquer.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+            </div>
+            <div class="cultura-feedback-box" id="cultura-feedback-3" aria-live="polite"></div>
+          </article>
+
+          <!-- Pregunta 4 -->
+          <article class="cultura-quiz-q-card" id="cultura-quiz-card-4">
+            <h3 class="cultura-question-title">4. ¿Qué estilo de arquitectura tiene la Plaza de Las Ventas en Madrid?</h3>
+            <div class="cultura-options-grid" role="radiogroup" aria-label="Pregunta 4">
+              <label class="cultura-radio-label" for="q4-opt0">
+                <input type="radio" name="quiz-q4" id="q4-opt0" value="0" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">A</span>
+                <span class="cultura-radio-text">Estilo neomudéjar, con ladrillo visto y arcos de herradura.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q4-opt1">
+                <input type="radio" name="quiz-q4" id="q4-opt1" value="1" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">B</span>
+                <span class="cultura-radio-text">Estilo gótico, con grandes ventanas de colores.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q4-opt2">
+                <input type="radio" name="quiz-q4" id="q4-opt2" value="2" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">C</span>
+                <span class="cultura-radio-text">Estilo barroco, con muchas columnas de mármol.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q4-opt3">
+                <input type="radio" name="quiz-q4" id="q4-opt3" value="3" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">D</span>
+                <span class="cultura-radio-text">Estilo moderno, de cristal y metal.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+            </div>
+            <div class="cultura-feedback-box" id="cultura-feedback-4" aria-live="polite"></div>
+          </article>
+
+          <!-- Pregunta 5 -->
+          <article class="cultura-quiz-q-card" id="cultura-quiz-card-5">
+            <h3 class="cultura-question-title">5. En una conversación, si alguien dice «te voy a echar un capote», ¿qué significa?</h3>
+            <div class="cultura-options-grid" role="radiogroup" aria-label="Pregunta 5">
+              <label class="cultura-radio-label" for="q5-opt0">
+                <input type="radio" name="quiz-q5" id="q5-opt0" value="0" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">A</span>
+                <span class="cultura-radio-text">Te ofrece una chaqueta para no tener frío.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q5-opt1">
+                <input type="radio" name="quiz-q5" id="q5-opt1" value="1" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">B</span>
+                <span class="cultura-radio-text">Quiere empezar una discusión contigo.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q5-opt2">
+                <input type="radio" name="quiz-q5" id="q5-opt2" value="2" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">C</span>
+                <span class="cultura-radio-text">Te ofrece su ayuda en un momento difícil.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+              <label class="cultura-radio-label" for="q5-opt3">
+                <input type="radio" name="quiz-q5" id="q5-opt3" value="3" class="cultura-radio-input">
+                <span class="cultura-radio-custom" aria-hidden="true">D</span>
+                <span class="cultura-radio-text">Te pide dinero prestado.</span>
+                <span class="cultura-radio-status" aria-hidden="true"></span>
+              </label>
+            </div>
+            <div class="cultura-feedback-box" id="cultura-feedback-5" aria-live="polite"></div>
+          </article>
+
+          <!-- Acciones del cuestionario: Comprobar respuestas -->
+          <div class="cultura-quiz-actions-bar">
+            <button type="button" class="cultura-btn-comprobar" id="cultura-btn-comprobar">
+              Comprobar respuestas
+            </button>
+            <button type="button" class="cultura-btn-reset-quiz" id="cultura-btn-reset-quiz" style="display: none;">
+              Reiniciar cuestionario
+            </button>
           </div>
 
-          <!-- Contenedor inyectado dinámicamente por script.js -->
-          <div class="cultura-quiz-list" id="cultura-quiz-container"></div>
-
-          <!-- Tarjeta de resultado final con medalla -->
+          <!-- Tarjeta de resultado final -->
           <div class="cultura-quiz-result" id="cultura-quiz-result" role="region" aria-live="polite">
-            <span class="cultura-badge-honor" id="cultura-badge-honor">Insignia Cultural</span>
+            <span class="cultura-badge-honor" id="cultura-badge-honor">Resultado</span>
             <h3 class="cultura-quiz-result-title">¡Cuestionario Completado!</h3>
             <div class="cultura-quiz-result-score" id="cultura-final-score">0 / 5</div>
             <p class="cultura-quiz-result-msg" id="cultura-final-msg"></p>
-            <button type="button" class="cultura-btn-reset" id="cultura-quiz-reset-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="1 4 1 10 7 10"></polyline>
-                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-              </svg>
-              Volver a intentar
-            </button>
           </div>
+
         </div>
       </section>
 
-
       <!-- ===================================================================
-           SECCIÓN 6: UNA TRADICIÓN CON DIFERENTES PERSPECTIVAS
+           SECCIÓN 4: MI REFLEXIÓN Y FUENTES (2 COLUMNAS COMPACTAS)
            =================================================================== -->
-      <section class="cultura-section" id="cultura-perspectiva" aria-labelledby="cultura-perspectiva-title">
+      <section class="cultura-section" id="cultura-cierre" aria-labelledby="cultura-cierre-title">
         <div class="cultura-section-header">
-          <span class="cultura-section-badge">Reflexión Equilibrada</span>
-          <h2 class="cultura-section-title" id="cultura-perspectiva-title">Una tradición con diferentes perspectivas
-          </h2>
-          <p class="cultura-section-desc">
-            El legado lingüístico y artístico en diálogo con las sensibilidades éticas de la España contemporánea.
-          </p>
+          <span class="cultura-section-badge">Sección 4 • Conclusión</span>
+          <h2 class="cultura-section-title" id="cultura-cierre-title">Mi reflexión y fuentes</h2>
         </div>
 
-        <div class="cultura-perspective-card">
-          <div class="cultura-perspective-grid">
-            <div class="cultura-perspective-col tradicion">
-              <h3 class="cultura-perspective-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-                Patrimonio lingüístico y memoria viva
-              </h3>
+        <div class="cultura-bottom-grid">
+
+          <!-- Mi reflexión personal -->
+          <article class="cultura-reflection-card" id="cultura-reflexion">
+            <span class="cultura-reflection-ribbon">Mi reflexión</span>
+            <h3 class="cultura-card-title-sm">Reflexión personal del estudiante</h3>
+            <div class="cultura-reflection-text">
               <p>
-                Quienes aprecian el valor cultural de la tauromaquia señalan que sus huellas son inseparables del idioma
-                castellano, el arte de Goya y Lorca y las fiestas patronales que vertebran la memoria colectiva de
-                pueblos y ciudades. Argumentan que entender estas expresiones es indispensable para comprender la
-                identidad histórica de España y el respeto tradicional hacia el toro bravo en el ecosistema natural de
-                la dehesa.
+                Al realizar este proyecto, he aprendido más sobre la cultura española, especialmente sobre sus expresiones populares, su arte, su música y su literatura. Me ha parecido interesante descubrir cómo algunas expresiones relacionadas con el mundo taurino también se utilizan en la vida cotidiana. También he comprendido que las tradiciones pueden tener diferentes significados para distintas personas. Este proyecto me ha ayudado a conocer mejor la riqueza y la diversidad de la cultura española.
               </p>
             </div>
+            <details class="cultura-prompts-details">
+              <summary>Ver preguntas guía de la presentación</summary>
+              <ul>
+                <li>¿Qué expresiones populares aprendí?</li>
+                <li>¿Qué obra artística me pareció más interesante?</li>
+                <li>¿Por qué existen opiniones diferentes sobre esta tradición?</li>
+                <li>¿Cómo me ayudó este proyecto a mejorar mi español?</li>
+              </ul>
+            </details>
+          </article>
 
-            <div class="cultura-perspective-col etica">
-              <h3 class="cultura-perspective-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path
-                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
-                  </path>
-                </svg>
-                Bienestar animal y valores contemporáneos
-              </h3>
-              <p>
-                Por otra parte, un amplio sector de la ciudadanía y movimientos de defensa animal destacan que el
-                respeto hacia las creaciones artísticas del pasado no debe confundirse con la continuidad del festejo en
-                la actualidad. Sostienen que el sufrimiento y la muerte del animal en el ruedo son contrarios a los
-                principios éticos modernos de empatía, y que la cultura española evoluciona hacia formas de celebración
-                que no impliquen maltrato.
-              </p>
-            </div>
-          </div>
-
-          <p class="cultura-perspective-note">
-            <em>Nota editorial:</em> El análisis pormenorizado de los sondeos de opinión y las leyes autonómicas se
-            aborda en la <strong>Sección 4: La Controversia</strong> a cargo de nuestro compañero de equipo.
-          </p>
-        </div>
-      </section>
-
-
-      <!-- ===================================================================
-           SECCIÓN 7: "MI REFLEXIÓN" (ESPACIO RESERVADO PARA EL ESTUDIANTE)
-           =================================================================== -->
-      <section class="cultura-section" id="cultura-reflexion" aria-labelledby="cultura-reflexion-title">
-        <div class="cultura-section-header">
-          <span class="cultura-section-badge">Cuaderno de Aprendizaje</span>
-          <h2 class="cultura-section-title" id="cultura-reflexion-title">Mi reflexión</h2>
-          <p class="cultura-section-desc">
-            Valoración personal sobre los aprendizajes culturales y lingüísticos alcanzados en esta investigación.
-          </p>
-        </div>
-
-        <div class="cultura-reflection-card">
-          <span class="cultura-reflection-ribbon">Espacio de Autoría Estudiantil</span>
-
-          <div class="cultura-reflection-prompts">
-            <div class="cultura-prompts-title">Preguntas guía para orientar tu redacción personal:</div>
-            <ul>
-              <li>¿Qué he aprendido sobre el origen de los modismos españoles como «tomar el toro por los cuernos»?</li>
-              <li>¿Qué manifestación artística (pintura, música, arquitectura o literatura) me ha parecido más
-                fascinante?</li>
-              <li>¿Cómo conviven en la sociedad española contemporánea el apego a las tradiciones y la preocupación por
-                el bienestar animal?</li>
-              <li>¿Cómo ha enriquecido esta investigación mi conocimiento del idioma español y mi forma de pensar?</li>
+          <!-- Fuentes y créditos -->
+          <article class="cultura-sources-card" id="cultura-fuentes">
+            <span class="cultura-reflection-ribbon" style="background: var(--color-primary);">Fuentes fiables</span>
+            <h3 class="cultura-card-title-sm">Fuentes consultadas y créditos</h3>
+            <ul class="cultura-sources-list">
+              <li>
+                <strong>Real Academia Española (RAE):</strong> Diccionario (DLE) — Expresiones taurinas y lemas.
+                <a href="https://dle.rae.es" target="_blank" rel="noopener noreferrer">dle.rae.es</a>
+              </li>
+              <li>
+                <strong>Biblioteca Nacional de España (BNE):</strong> Grabaciones musicales y carteles de feria.
+                <a href="https://www.bne.es" target="_blank" rel="noopener noreferrer">bne.es</a>
+              </li>
+              <li>
+                <strong>Instituto Cervantes:</strong> Textos sobre literatura hispánica (Lorca y Hemingway).
+                <a href="https://cvc.cervantes.es" target="_blank" rel="noopener noreferrer">cvc.cervantes.es</a>
+              </li>
+              <li>
+                <strong>Museo del Prado &amp; Museo del Traje:</strong> Obras de Goya y técnica del traje de luces.
+                <a href="https://www.museodelprado.es" target="_blank" rel="noopener noreferrer">museodelprado.es</a>
+              </li>
+              <li>
+                <strong>Créditos de imágenes:</strong> Fotografías históricas del proyecto (Uso educativo / Dominio público) e ilustraciones originales (CC BY 4.0).
+              </li>
             </ul>
-          </div>
+          </article>
 
-          <div class="cultura-reflection-text">
-            <p>
-              Al realizar este proyecto, he aprendido más sobre la cultura española, especialmente sobre sus expresiones
-              populares, su arte, su música y su literatura. Me ha parecido interesante descubrir cómo algunas
-              expresiones relacionadas con el mundo taurino también se utilizan en la vida cotidiana. También he
-              comprendido que las tradiciones pueden tener diferentes significados para distintas personas. Este proyecto
-              me ha ayudado a conocer mejor la riqueza y la diversidad de la cultura española.
-            </p>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ===================================================================
-           SECCIÓN 8: FUENTES Y CRÉDITOS
-           =================================================================== -->
-      <section class="cultura-section" id="cultura-fuentes" aria-labelledby="cultura-fuentes-title">
-        <div class="cultura-section-header">
-          <span class="cultura-section-badge">Rigor Académico</span>
-          <h2 class="cultura-section-title" id="cultura-fuentes-title">Fuentes y créditos</h2>
-          <p class="cultura-section-desc">
-            Diccionarios oficiales, instituciones culturales consultadas y atribución de recursos gráficos.
-          </p>
-        </div>
-
-        <div class="cultura-sources-container">
-          <div class="cultura-sources-grid">
-            <!-- Fuentes Documentales e Institucionales -->
-            <div class="cultura-sources-col">
-              <h3>Fuentes lexicográficas e institucionales</h3>
-              <ul class="cultura-sources-list">
-                <li>
-                  <strong>Real Academia Española (RAE)</strong>
-                  <em>Diccionario de la lengua española (DLE)</em> — Registro oficial y etimológico de locuciones
-                  taurinas de uso habitual.
-                  <br><a href="https://dle.rae.es" target="_blank" rel="noopener noreferrer">https://dle.rae.es</a>
-                </li>
-                <li>
-                  <strong>Biblioteca Nacional de España (BNE)</strong>
-                  Fondo de partituras de pasodobles (*España Cañí*, Pascual Marquina, 1925) y colección litográfica de
-                  carteles de feria.
-                  <br><a href="https://www.bne.es" target="_blank" rel="noopener noreferrer">https://www.bne.es</a>
-                </li>
-                <li>
-                  <strong>Instituto Cervantes — Centro Virtual Cervantes</strong>
-                  Monográficos literarios sobre Federico García Lorca (*Llanto por Ignacio Sánchez Mejías*) y
-                  tradiciones hispánicas.
-                  <br><a href="https://cvc.cervantes.es" target="_blank"
-                    rel="noopener noreferrer">https://cvc.cervantes.es</a>
-                </li>
-                <li>
-                  <strong>Museo Nacional del Prado & Museo del Traje</strong>
-                  Grabados de Francisco de Goya (*La Tauromaquia*, 1816) y ficha técnica de sastrería del traje de
-                  luces.
-                  <br><a href="https://www.museodelprado.es" target="_blank"
-                    rel="noopener noreferrer">https://www.museodelprado.es</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Créditos Visuales y Licencias -->
-            <div class="cultura-sources-col">
-              <h3>Créditos visuales y licencias de autoría</h3>
-              <ul class="cultura-sources-list">
-                <li>
-                  <strong>Ilustraciones Vectoriales Originales</strong>
-                  Composiciones para héroe, modismos, indumentaria, carteles, plaza, detalles y literatura creadas para
-                  <em>El Legado del Toro</em>.
-                  <span class="cultura-license-badge">Licencia CC BY 4.0</span>
-                </li>
-                <li>
-                  <strong>Iconos y Recursos Gráficos</strong>
-                  Iconografía SVG temática integrada directamente en el documento.
-                  <span class="cultura-license-badge">Dominio Público / MIT</span>
-                </li>
-                <li>
-                  <strong>Tipografías del Sistema</strong>
-                  <em>Cinzel</em>, <em>Playfair Display</em> y <em>Plus Jakarta Sans</em> vía Google Fonts.
-                  <span class="cultura-license-badge">Open Font License (OFL)</span>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -805,34 +516,11 @@
        CONTROL FLOTANTE "VOLVER ARRIBA"
        =================================================================== -->
   <button type="button" class="cultura-back-to-top" id="cultura-back-to-top" aria-label="Volver arriba de la página">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
-
-  <!-- ===================================================================
-       MODAL ACCESIBLE PARA DETALLE DE LAS TARJETAS CULTURALES
-       =================================================================== -->
-  <div class="cultura-modal-backdrop" id="cultura-modal" role="dialog" aria-modal="true" aria-hidden="true"
-    aria-labelledby="cultura-modal-title">
-    <div class="cultura-modal-dialog">
-      <button type="button" class="cultura-modal-close-btn" id="cultura-modal-close"
-        aria-label="Cerrar ventana de detalle">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <div class="cultura-modal-header">
-        <span class="cultura-modal-badge" id="cultura-modal-badge">Detalle Cultural</span>
-        <h3 class="cultura-modal-title" id="cultura-modal-title"></h3>
-      </div>
-      <div class="cultura-modal-content" id="cultura-modal-body"></div>
-      <div class="cultura-modal-source" id="cultura-modal-source"></div>
-    </div>
-  </div>
 
   <!-- Pie de página compartido del proyecto -->
   <footer class="site-footer" id="site-footer">

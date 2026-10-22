@@ -116,6 +116,8 @@
   transition: background 0.2s, color 0.2s;
 }
 .arte-filter-btn.active,
+.arte-filter-btn.arte-active,
+.arte-filter-btn[aria-pressed="true"],
 .arte-filter-btn:hover {
   background: var(--color-primary);
   color: #fff;
@@ -136,6 +138,10 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
+}
+.arte-card[hidden],
+.arte-card.arte-hidden {
+  display: none !important;
 }
 .arte-card:focus-within,
 .arte-card:hover {
@@ -214,6 +220,10 @@
   margin: 2rem 0;
   font-size: 1.25rem;
   color: var(--color-primary);
+}
+.arte-no-results[hidden],
+.arte-no-results.arte-hidden {
+  display: none !important;
 }
 
 /* Lightbox Modal */

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sección 2: El Arte — La influencia de la tauromaquia en el traje de luces, los carteles taurinos, las plazas de toros y la pintura de Goya y Picasso. Galería interactiva.">
+  <meta name="description" content="Sección 2: El Arte — La influencia de la tauromaquia en el traje de luces, los carteles históricos, las plazas de toros y la pintura de Goya y Picasso. Galería interactiva categorizada.">
   <title>El Arte | El Legado del Toro</title>
   <link rel="stylesheet" href="../../css/shared.css">
   <link rel="stylesheet" href="style.css">
@@ -13,8 +13,6 @@
 <body>
   <div id="site-nav-container"></div>
   <main id="main-content">
-
-    <!-- HERO -->
     <section class="arte-hero" id="arte-hero" aria-labelledby="arte-hero-title">
       <div class="arte-hero-bg" aria-hidden="true">
         <div class="arte-hero-bg-pattern"></div>
@@ -39,12 +37,10 @@
           </div>
         </div>
         <p class="arte-hero-lead" id="arte-hero-lead">
-          Desde los pinceles atormentados de Goya hasta la mirada cubista de Picasso, desde la seda bordada del traje de luces hasta los carteles taurinos de la Belle Époque, la corrida de toros ha dejado una huella imborrable en el patrimonio artístico de la humanidad. Esta galería explora cuatro dimensiones visuales que demuestran cómo la tauromaquia trasciende el ruedo para convertirse en arte puro.
+          Desde los pinceles atormentados de Goya hasta la mirada cubista de Picasso, desde la seda bordada del traje de luces hasta los carteles históricos de la Belle Époque, la corrida de toros ha dejado una huella imborrable en el patrimonio artístico de la humanidad. Esta galería explora cuatro dimensiones visuales que demuestran cómo la tauromaquia trasciende el ruedo para convertirse en arte puro.
         </p>
       </div>
     </section>
-
-    <!-- GALERÍA -->
     <section class="arte-gallery-section" id="arte-gallery" aria-labelledby="arte-gallery-heading">
       <div class="site-container">
         <div class="arte-section-header">
@@ -52,405 +48,81 @@
           <h2 class="arte-section-title" id="arte-gallery-heading">Cuatro Dimensiones del Arte Taurino</h2>
           <p class="arte-section-intro">Selecciona una categoría para filtrar las obras. Haz clic en cualquier pieza para explorarla en detalle.</p>
         </div>
-
-        <!-- FILTROS -->
         <div class="arte-filter-bar" role="group" aria-label="Filtrar galería por categoría" id="arte-filter-bar">
-          <button class="arte-filter-btn arte-filter-btn--active" data-filter="all" id="arte-filter-all" aria-pressed="true">
-            <span class="arte-filter-btn-icon" aria-hidden="true">◈</span> Todas
-          </button>
-          <button class="arte-filter-btn" data-filter="traje" id="arte-filter-traje" aria-pressed="false">
-            <span class="arte-filter-btn-icon" aria-hidden="true">🧵</span> Traje de Luces
-          </button>
-          <button class="arte-filter-btn" data-filter="carteles" id="arte-filter-carteles" aria-pressed="false">
-            <span class="arte-filter-btn-icon" aria-hidden="true">🎨</span> Carteles Taurinos
-          </button>
-          <button class="arte-filter-btn" data-filter="plazas" id="arte-filter-plazas" aria-pressed="false">
-            <span class="arte-filter-btn-icon" aria-hidden="true">🏟️</span> Plazas de Toros
-          </button>
-          <button class="arte-filter-btn" data-filter="pintura" id="arte-filter-pintura" aria-pressed="false">
-            <span class="arte-filter-btn-icon" aria-hidden="true">🖼️</span> Pintura
-          </button>
+          <button class="arte-filter-btn active" data-filter="all" id="arte-filter-all" aria-pressed="true"><span class="arte-filter-btn-icon" aria-hidden="true">◈</span> Todas las Obras</button>
+          <button class="arte-filter-btn" data-filter="traje" id="arte-filter-traje" aria-pressed="false"><span class="arte-filter-btn-icon" aria-hidden="true">🧵</span> Traje de Luces</button>
+          <button class="arte-filter-btn" data-filter="carteles" id="arte-filter-carteles" aria-pressed="false"><span class="arte-filter-btn-icon" aria-hidden="true">🎨</span> Carteles Históricos</button>
+          <button class="arte-filter-btn" data-filter="plazas" id="arte-filter-plazas" aria-pressed="false"><span class="arte-filter-btn-icon" aria-hidden="true">🏟️</span> Plazas de Toros</button>
+          <button class="arte-filter-btn" data-filter="pintura" id="arte-filter-pintura" aria-pressed="false"><span class="arte-filter-btn-icon" aria-hidden="true">🖼️</span> Pintura y Grabado</button>
         </div>
-
-        <div class="arte-gallery-count" id="arte-gallery-count" aria-live="polite" aria-atomic="true">
-          <span id="arte-count-number">12</span> obras en exhibición
-        </div>
-
-        <!-- GRID -->
+        <div class="arte-gallery-count" id="arte-gallery-count" aria-live="polite" aria-atomic="true"><span id="arte-count-number">12</span> obras en exhibición</div>
         <div class="arte-gallery-grid" id="arte-gallery-grid" role="list" aria-label="Galería de arte taurino">
-
-          <!-- TRAJE 1 -->
-          <article class="arte-card" data-category="traje" id="arte-card-1" role="listitem" tabindex="0"
-            data-title="El Traje de Luces Clásico" data-year="Siglo XIX – presente" data-origin="España"
-            data-medium="Seda, oro y lentejuelas bordadas a mano"
-            data-desc="El traje de luces (terno) es la vestimenta ritual del torero, construida con miles de lentejuelas y bordados de hilo de oro. Su peso puede superar los 5 kg. Cada traje requiere entre 200 y 400 horas de trabajo artesanal. Los colores tienen significados simbólicos: el grana y oro es el favorito de los grandes maestros. La confección sigue técnicas heredadas de los gremios sevillanos del siglo XVIII."
-            data-museum="Museo Taurino de Madrid">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-traje-1">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🧵</span>
-                  <span class="arte-placeholder-label">Traje de Luces</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge" aria-hidden="true">Traje de Luces</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">El Traje de Luces Clásico</h3>
-              <p class="arte-card-meta">Siglo XIX – presente · España</p>
-              <p class="arte-card-excerpt">Más de 400 horas de bordado artesanal en seda, hilo de oro y lentejuelas que brillan como constelaciones bajo el sol andaluz.</p>
-              <button class="arte-card-btn" id="arte-card-btn-1">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="traje" id="arte-card-1" role="listitem" tabindex="0" data-title="El Traje de Luces Clásico" data-year="Siglo XIX – presente" data-origin="Sevilla, España" data-medium="Seda, hilo de oro y lentejuelas bordadas a mano" data-technique="Bordado artesanal sevillano — costura grana y oro" data-context="El traje de luces —o terno— es la vestimenta ritual del matador de toros. Su chaquetilla y taleguilla están cubiertas de miles de lentejuelas y bordados de hilo de oro que pueden superar los 5 kg de peso. Cada prenda requiere entre 200 y 400 horas de trabajo artesanal en los talleres de los gremios sevillanos. El albero del ruedo refleja el destello dorado de la seda bajo el sol de Andalucía." data-museum="Museo Taurino de Madrid">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/traje_luces_classic_1792658899163.jpg" alt="Traje de Luces clásico grana y oro expuesto en maniquí de museo — chaquetilla y taleguilla bordadas" loading="lazy"></div><div class="arte-card-category-badge" aria-hidden="true">Traje de Luces</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">El Traje de Luces Clásico</h3><p class="arte-card-meta">Siglo XIX – presente · Sevilla, España</p><p class="arte-card-excerpt">Más de 400 horas de bordado artesanal en seda, hilo de oro y lentejuelas que brillan como constelaciones bajo el sol andaluz del ruedo.</p><button class="arte-card-btn" id="arte-card-btn-1">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- TRAJE 2 -->
-          <article class="arte-card" data-category="traje" id="arte-card-2" role="listitem" tabindex="0"
-            data-title="Traje de Corto Campero" data-year="c. 1850 – presente" data-origin="Andalucía, España"
-            data-medium="Ante, cuero y bordado de plata"
-            data-desc="El traje campero es la vestimenta tradicional del rejoneo y los rejoneadores a caballo. Combina la elegancia ecuestre con la funcionalidad del trabajo en el campo. La chaquetilla corta bordada, el sombrero ancho y la faja de seda distinguen al torero a caballo. Su estética ha influido en la moda española del siglo XX y XXI."
-            data-museum="Colección privada, Sevilla">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-traje-2">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🎠</span>
-                  <span class="arte-placeholder-label">Traje Campero</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge" aria-hidden="true">Traje de Luces</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">Traje de Corto Campero</h3>
-              <p class="arte-card-meta">c. 1850 – presente · Andalucía</p>
-              <p class="arte-card-excerpt">La elegancia ecuestre del rejoneo plasmada en ante, cuero y plata: el atuendo que une tradición campera y arte taurino.</p>
-              <button class="arte-card-btn" id="arte-card-btn-2">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="traje" id="arte-card-2" role="listitem" tabindex="0" data-title="Traje de Corto Campero" data-year="c. 1850 – presente" data-origin="Andalucía, España" data-medium="Ante, cuero y bordado de plata" data-technique="Sastrería ecuestre andaluza — chaquetilla corta bordada" data-context="El traje campero es la indumentaria del rejoneo y los rejoneadores a caballo. La chaquetilla corta bordada, el sombrero ancho cordobés y la faja de seda distinguen al torero ecuestre. Su estética une la elegancia campera con la funcionalidad del trabajo a caballo. Ha influido profundamente en la moda española del siglo XX y XXI, y se exhibe en las ferias ecuestres de toda Andalucía." data-museum="Colección privada, Sevilla">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/traje_campero_rejoneo_1792658981187.jpg" alt="Rejoneador con traje de corto campero sobre caballo blanco en paisaje andaluz al atardecer" loading="lazy"></div><div class="arte-card-category-badge" aria-hidden="true">Traje de Luces</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">Traje de Corto Campero</h3><p class="arte-card-meta">c. 1850 – presente · Andalucía</p><p class="arte-card-excerpt">La elegancia ecuestre del rejoneo plasmada en ante, cuero y plata: el atuendo que une tradición campera y arte taurino.</p><button class="arte-card-btn" id="arte-card-btn-2">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- TRAJE 3 -->
-          <article class="arte-card" data-category="traje" id="arte-card-3" role="listitem" tabindex="0"
-            data-title="El Capote de Paseo" data-year="Siglo XVIII – presente" data-origin="Sevilla, España"
-            data-medium="Seda, oro, grana y azul"
-            data-desc="El capote de paseo es la capa ceremonial que el torero lleva al hacer el paseíllo. No se usa en la lidia, sino como símbolo de gala. Cada capote es único: bordado a mano por maestros artesanos, suele contener imágenes religiosas o escenas taurinas de enorme valor pictórico. Los más valiosos se conservan como obras de arte."
-            data-museum="Real Maestranza de Caballería de Sevilla">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-traje-3">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🌟</span>
-                  <span class="arte-placeholder-label">Capote de Paseo</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge" aria-hidden="true">Traje de Luces</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">El Capote de Paseo</h3>
-              <p class="arte-card-meta">Siglo XVIII – presente · Sevilla</p>
-              <p class="arte-card-excerpt">El capote ceremonial del paseíllo: tapiz de seda bordado en oro que narra en hilos la devoción y el ritual del toreo.</p>
-              <button class="arte-card-btn" id="arte-card-btn-3">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="traje" id="arte-card-3" role="listitem" tabindex="0" data-title="El Capote de Paseo" data-year="Siglo XVIII – presente" data-origin="Sevilla, España" data-medium="Seda, oro, grana y azul" data-technique="Bordado en oro de ley sobre seda — iconografía religiosa" data-context="El capote de paseo es la capa ceremonial que el matador lleva durante el paseíllo. No se usa en la lidia sino como símbolo de gala. Cada capote es único: bordado a mano por maestros artesanos, suele contener imágenes religiosas —la Virgen María, santos patronos— o escenas taurinas de enorme valor pictórico. Los ejemplares históricos de la Real Maestranza de Sevilla se conservan como auténticas obras de arte textil." data-museum="Real Maestranza de Caballería de Sevilla">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/capote_paseo_bordado_1792658995212.jpg" alt="Capote de paseo bordado en oro con imagen de la Virgen María, expuesto en vitrina de museo" loading="lazy"></div><div class="arte-card-category-badge" aria-hidden="true">Traje de Luces</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">El Capote de Paseo</h3><p class="arte-card-meta">Siglo XVIII – presente · Sevilla</p><p class="arte-card-excerpt">El capote ceremonial del paseíllo: tapiz de seda bordado en oro que narra en hilos la devoción y el ritual del toreo.</p><button class="arte-card-btn" id="arte-card-btn-3">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- CARTEL 1 -->
-          <article class="arte-card" data-category="carteles" id="arte-card-4" role="listitem" tabindex="0"
-            data-title="Cartel de la Feria de Abril de Sevilla" data-year="c. 1900" data-origin="Sevilla, España"
-            data-medium="Litografía cromática sobre papel"
-            data-desc="Los carteles taurinos de la Feria de Abril representan una de las cimas del cartelismo español. A principios del siglo XX artistas como Juan Bueno, Chicle y Ruano Llopis desarrollaron un estilo propio: grandes formatos, colores vibrantes y composiciones dinámicas que capturaban la emoción de la lidia. Estos carteles son hoy piezas de coleccionismo con valor de mercado elevado."
-            data-museum="Archivo Municipal de Sevilla">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-cartel-1">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🖼️</span>
-                  <span class="arte-placeholder-label">Cartel Feria de Abril</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--carteles" aria-hidden="true">Carteles Taurinos</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">Cartel de la Feria de Abril de Sevilla</h3>
-              <p class="arte-card-meta">c. 1900 · Sevilla</p>
-              <p class="arte-card-excerpt">Litografía cromática en gran formato: la expresión más vibrante del cartelismo taurino como arte popular de masas.</p>
-              <button class="arte-card-btn" id="arte-card-btn-4">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="carteles" id="arte-card-4" role="listitem" tabindex="0" data-title="Cartel de la Feria de Abril de Sevilla" data-year="c. 1900" data-origin="Sevilla, España" data-medium="Litografía cromática sobre papel" data-technique="Litografía — impresión cromática histórica en gran formato" data-context="Los carteles históricos de la Feria de Abril representan una de las cimas del cartelismo español. A principios del siglo XX artistas como Juan Bueno y Chicle desarrollaron un estilo propio: grandes formatos, colores vibrantes y composiciones dinámicas que capturaban la emoción de la lidia. La litografía cromática permitía reproducir hasta doce colores superpuestos. Estos carteles son hoy piezas de coleccionismo con alto valor de mercado." data-museum="Archivo Municipal de Sevilla">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/cartel_historico_feria_1792658915150.jpg" alt="Cartel histórico Plaza de Toros de Sevilla Feria de Abril 1900, litografía cromática con matador y toro en el ruedo" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--carteles" aria-hidden="true">Carteles Históricos</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">Cartel de la Feria de Abril de Sevilla</h3><p class="arte-card-meta">c. 1900 · Sevilla, España</p><p class="arte-card-excerpt">Litografía cromática histórica en gran formato: la expresión más vibrante del cartelismo taurino como arte popular de masas.</p><button class="arte-card-btn" id="arte-card-btn-4">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- CARTEL 2 -->
-          <article class="arte-card" data-category="carteles" id="arte-card-5" role="listitem" tabindex="0"
-            data-title="Cartel Art Nouveau de Corrida" data-year="c. 1905–1915" data-origin="Barcelona, España"
-            data-medium="Litografía con técnica Art Nouveau"
-            data-desc="La influencia del Art Nouveau o Modernismo Catalán se hizo sentir en los carteles taurinos de las primeras décadas del siglo XX. Las líneas sinuosas, las formas orgánicas y los colores planos características del estilo de Alphonse Mucha se aplicaron a la representación del torero y el toro, generando una fusión única de estética europea y tradición española."
-            data-museum="Museu Nacional d'Art de Catalunya">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-cartel-2">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🌸</span>
-                  <span class="arte-placeholder-label">Art Nouveau Taurino</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--carteles" aria-hidden="true">Carteles Taurinos</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">Cartel Art Nouveau de Corrida</h3>
-              <p class="arte-card-meta">c. 1905–1915 · Barcelona</p>
-              <p class="arte-card-excerpt">Líneas sinuosas y paletas vienesas al servicio del arte taurino: cuando el Modernismo Catalán abrazó la corrida.</p>
-              <button class="arte-card-btn" id="arte-card-btn-5">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="carteles" id="arte-card-5" role="listitem" tabindex="0" data-title="Cartel Art Nouveau de Corrida" data-year="c. 1905–1915" data-origin="Barcelona, España" data-medium="Litografía con técnica Art Nouveau" data-technique="Litografía modernista — líneas sinuosas y paleta plana" data-context="La influencia del Art Nouveau o Modernismo Catalán se hizo sentir en los carteles históricos taurinos de las primeras décadas del siglo XX. Las líneas sinuosas, las formas orgánicas y los colores planos característicos del estilo de Alphonse Mucha se aplicaron a la representación del torero y el toro, generando una fusión única de estética europea y tradición española. La Plaza de Toros Monumental de Barcelona fue uno de los epicentros de este movimiento." data-museum="Museu Nacional d'Art de Catalunya">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/cartel_art_nouveau_toros_1792659009751.jpg" alt="Cartel Art Nouveau Gran Festival Taurino Barcelona 1910, torero y toro en composición modernista decorativa" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--carteles" aria-hidden="true">Carteles Históricos</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">Cartel Art Nouveau de Corrida</h3><p class="arte-card-meta">c. 1905–1915 · Barcelona</p><p class="arte-card-excerpt">Líneas sinuosas y paletas modernistas al servicio del arte taurino: cuando el Modernismo Catalán abrazó la corrida histórica.</p><button class="arte-card-btn" id="arte-card-btn-5">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- CARTEL 3 -->
-          <article class="arte-card" data-category="carteles" id="arte-card-6" role="listitem" tabindex="0"
-            data-title="Cartel Taurino de Ruano Llopis" data-year="c. 1920–1950" data-origin="Valencia, España"
-            data-medium="Litografía y gouache"
-            data-desc="Carlos Ruano Llopis (1878–1950) es considerado el maestro indiscutible del cartelismo taurino español. Sus obras se distinguen por una luminosidad excepcional, la captación dinámica del movimiento y una técnica que fusiona el realismo académico con la expresividad popular. Sus carteles de ferias en toda España son auténticas obras de arte impreso."
-            data-museum="Museu Taurí de Valencia">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-cartel-3">
-                  <span class="arte-placeholder-icon" aria-hidden="true">⚡</span>
-                  <span class="arte-placeholder-label">Ruano Llopis</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--carteles" aria-hidden="true">Carteles Taurinos</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">Cartel Taurino de Ruano Llopis</h3>
-              <p class="arte-card-meta">c. 1920–1950 · Valencia</p>
-              <p class="arte-card-excerpt">El maestro indiscutible del cartelismo: movimiento, luz y drama taurino capturados en gouache y litografía.</p>
-              <button class="arte-card-btn" id="arte-card-btn-6">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="carteles" id="arte-card-6" role="listitem" tabindex="0" data-title="Cartel Taurino — Estilo Ruano Llopis" data-year="c. 1920–1950" data-origin="Valencia, España" data-medium="Litografía y gouache" data-technique="Gouache y litografía — realismo académico con expresividad popular" data-context="Carlos Ruano Llopis (1878–1950) es considerado el maestro indiscutible del cartelismo taurino español. Sus obras históricas se distinguen por una luminosidad excepcional, la captación dinámica del movimiento y una técnica que fusiona el realismo académico con la expresividad popular. Trabajó con gouache sobre cartón para crear los originales que luego se transferían a litografía. Sus carteles de ferias en toda España son auténticas obras de arte impreso históricas." data-museum="Museu Taurí de Valencia">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/cartel_historico_feria_1792658915150.jpg" alt="Cartel taurino histórico en estilo académico realista, torero frente al toro en el albero" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--carteles" aria-hidden="true">Carteles Históricos</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">Cartel Taurino — Estilo Ruano Llopis</h3><p class="arte-card-meta">c. 1920–1950 · Valencia</p><p class="arte-card-excerpt">El maestro indiscutible del cartelismo histórico: movimiento, luz y drama taurino capturados en gouache y litografía.</p><button class="arte-card-btn" id="arte-card-btn-6">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- PLAZA 1 -->
-          <article class="arte-card" data-category="plazas" id="arte-card-7" role="listitem" tabindex="0"
-            data-title="La Real Maestranza de Sevilla" data-year="1761–1881" data-origin="Sevilla, España"
-            data-medium="Arquitectura barroca y neomudéjar"
-            data-desc="La Plaza de Toros de la Real Maestranza de Sevilla es la más antigua del mundo todavía en uso y fue construida entre 1761 y 1881. Con capacidad para 12.000 espectadores, su arquitectura barroca con detalles mudéjares la convierte en un monumento de primer orden. El color albero de la arena, el blanco de las gradas y el ocre de los tendidos crean una paleta única reconocida mundialmente."
-            data-museum="Real Maestranza de Caballería de Sevilla">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-plaza-1">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🏟️</span>
-                  <span class="arte-placeholder-label">Maestranza de Sevilla</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--plazas" aria-hidden="true">Plazas de Toros</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">La Real Maestranza de Sevilla</h3>
-              <p class="arte-card-meta">1761–1881 · Sevilla, España</p>
-              <p class="arte-card-excerpt">La más antigua del mundo en uso: su arquitectura barroca y mudéjar define el canon estético de la plaza de toros.</p>
-              <button class="arte-card-btn" id="arte-card-btn-7">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="plazas" id="arte-card-7" role="listitem" tabindex="0" data-title="La Real Maestranza de Sevilla" data-year="1761–1881" data-origin="Sevilla, España" data-medium="Arquitectura barroca y neomudéjar" data-technique="Arquitectura — barroco andaluz con ornamentación mudéjar" data-context="La Plaza de Toros de la Real Maestranza de Sevilla es la más antigua del mundo todavía en uso, construida entre 1761 y 1881. Con capacidad para 12.000 espectadores, su arquitectura barroca con detalles mudéjares la convierte en un monumento de primer orden. El color albero de la arena del ruedo, el blanco de las gradas y el ocre de los tendidos crean una paleta única reconocida mundialmente. La puerta del Príncipe se abre solo cuando un torero es indultado con los máximos honores." data-museum="Real Maestranza de Caballería de Sevilla">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/plaza_maestranza_sevilla_1792658931928.jpg" alt="Vista aérea interior de la Plaza de Toros de la Real Maestranza de Sevilla, ruedo de albero y arquitectura barroca blanca y ocre" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--plazas" aria-hidden="true">Plazas de Toros</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">La Real Maestranza de Sevilla</h3><p class="arte-card-meta">1761–1881 · Sevilla, España</p><p class="arte-card-excerpt">La más antigua del mundo en uso: su arquitectura barroca y mudéjar define el canon estético de la plaza de toros.</p><button class="arte-card-btn" id="arte-card-btn-7">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- PLAZA 2 -->
-          <article class="arte-card" data-category="plazas" id="arte-card-8" role="listitem" tabindex="0"
-            data-title="Las Ventas de Madrid" data-year="1929–1931" data-origin="Madrid, España"
-            data-medium="Arquitectura neomudéjar"
-            data-desc="La Plaza de Toros de Las Ventas, inaugurada en 1931, es la mayor del mundo con capacidad para 23.800 espectadores. Diseñada por José Espalíu en estilo neomudéjar, sus torres almenadas, arcos de herradura y revestimiento de cerámica sevillana la convierten en una joya de la arquitectura española del siglo XX. 'Matar en Madrid' significa el reconocimiento definitivo para cualquier torero."
-            data-museum="Museo Taurino de Madrid (Las Ventas)">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-plaza-2">
-                  <span class="arte-placeholder-icon" aria-hidden="true">⭐</span>
-                  <span class="arte-placeholder-label">Las Ventas, Madrid</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--plazas" aria-hidden="true">Plazas de Toros</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">Las Ventas de Madrid</h3>
-              <p class="arte-card-meta">1929–1931 · Madrid, España</p>
-              <p class="arte-card-excerpt">La catedral del toreo: 23.800 espectadores y un neomudéjar que define un siglo de arquitectura taurina.</p>
-              <button class="arte-card-btn" id="arte-card-btn-8">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="plazas" id="arte-card-8" role="listitem" tabindex="0" data-title="Las Ventas de Madrid" data-year="1929–1931" data-origin="Madrid, España" data-medium="Arquitectura neomudéjar" data-technique="Arquitectura — neomudejarismo con cerámica sevillana" data-context="La Plaza de Toros de Las Ventas, inaugurada en 1931, es la mayor del mundo con capacidad para 23.800 espectadores. Diseñada por José Espalíu en estilo neomudéjar, sus torres almenadas, arcos de herradura y revestimiento de cerámica sevillana la convierten en una joya de la arquitectura española del siglo XX. Matar en Madrid significa el reconocimiento definitivo para cualquier torero. El albero del ruedo brilla bajo el cielo castellano." data-museum="Museo Taurino de Madrid (Las Ventas)">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/las_ventas_madrid_arena_1792659023580.jpg" alt="Vista aérea de la Plaza de Toros de Las Ventas en Madrid, ruedo de albero y arquitectura neomudéjar de ladrillo rojo" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--plazas" aria-hidden="true">Plazas de Toros</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">Las Ventas de Madrid</h3><p class="arte-card-meta">1929–1931 · Madrid, España</p><p class="arte-card-excerpt">La catedral del toreo: 23.800 espectadores y un neomudéjar que define un siglo de arquitectura taurina.</p><button class="arte-card-btn" id="arte-card-btn-8">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- PLAZA 3 -->
-          <article class="arte-card" data-category="plazas" id="arte-card-9" role="listitem" tabindex="0"
-            data-title="Plaza de Toros de Ronda" data-year="1785" data-origin="Ronda, Málaga"
-            data-medium="Arquitectura neoclásica"
-            data-desc="La Plaza de Ronda, construida en 1785, es la segunda más antigua de España y tiene un especial significado histórico: en ella los hermanos Romero establecieron las reglas modernas del toreo a pie, que aún rigen hoy. Su arquitectura neoclásica con columnatas de piedra blanca y su privilegiada ubicación sobre el Tajo de Ronda la hacen única en el mundo."
-            data-museum="Real Maestranza de Caballería de Ronda">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-plaza-3">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🏔️</span>
-                  <span class="arte-placeholder-label">Plaza de Ronda</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--plazas" aria-hidden="true">Plazas de Toros</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">Plaza de Toros de Ronda</h3>
-              <p class="arte-card-meta">1785 · Ronda, Málaga</p>
-              <p class="arte-card-excerpt">Cuna del toreo moderno: donde los hermanos Romero codificaron las reglas que aún rigen el arte de lidiar.</p>
-              <button class="arte-card-btn" id="arte-card-btn-9">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="plazas" id="arte-card-9" role="listitem" tabindex="0" data-title="Plaza de Toros de Ronda" data-year="1785" data-origin="Ronda, Málaga" data-medium="Arquitectura neoclásica" data-technique="Arquitectura — neoclasicismo en piedra blanca caliza" data-context="La Plaza de Ronda, construida en 1785, es la segunda más antigua de España y tiene un especial significado histórico: en ella los hermanos Pedro y José Romero establecieron las reglas modernas del toreo a pie, que aún rigen hoy. Su arquitectura neoclásica con columnatas de piedra blanca caliza y su privilegiada ubicación sobre el Tajo de Ronda la hacen única en el mundo. El ruedo del albero de Ronda es considerado el más perfecto del arte taurino clásico." data-museum="Real Maestranza de Caballería de Ronda">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/plaza_ronda_neoclasica_1792659074657.jpg" alt="Interior de la Plaza de Toros de Ronda con columnatas neoclásicas de piedra blanca y el Tajo al fondo" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--plazas" aria-hidden="true">Plazas de Toros</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">Plaza de Toros de Ronda</h3><p class="arte-card-meta">1785 · Ronda, Málaga</p><p class="arte-card-excerpt">Cuna del toreo moderno: donde los hermanos Romero codificaron las reglas que aún rigen el arte de lidiar.</p><button class="arte-card-btn" id="arte-card-btn-9">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- PINTURA 1 -->
-          <article class="arte-card" data-category="pintura" id="arte-card-10" role="listitem" tabindex="0"
-            data-title="La Tauromaquia — Francisco de Goya" data-year="1815–1816" data-origin="Madrid, España"
-            data-medium="Aguafuerte y aguatinta"
-            data-desc="La Tauromaquia de Francisco de Goya (1746–1828) es una serie de 33 grabados publicada en 1816 que constituye la primera gran obra artística monográfica sobre la corrida de toros. Goya no retrata el espectáculo de forma idealizada, sino que captura el riesgo, la brutalidad y la belleza de la lidia con una técnica de aguafuerte magistral. La serie incluye escenas históricas y legendarias del toreo español."
-            data-museum="Museo del Prado, Madrid">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-pintura-1">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🖌️</span>
-                  <span class="arte-placeholder-label">Goya — Tauromaquia</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--pintura" aria-hidden="true">Pintura</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">La Tauromaquia — Francisco de Goya</h3>
-              <p class="arte-card-meta">1815–1816 · Madrid, España</p>
-              <p class="arte-card-excerpt">33 grabados en aguafuerte que redefinen la mirada artística sobre la corrida: Goya como primer cronista visual del toreo.</p>
-              <button class="arte-card-btn" id="arte-card-btn-10">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="pintura" id="arte-card-10" role="listitem" tabindex="0" data-title="La Tauromaquia — Francisco de Goya" data-year="1815–1816" data-origin="Madrid, España" data-medium="Aguafuerte y aguatinta" data-technique="Grabado — aguafuerte con aguatinta al barniz blando" data-context="La Tauromaquia de Francisco de Goya (1746–1828) es una serie de 33 grabados publicada en 1816. Goya no retrata el espectáculo de forma idealizada, sino que captura el riesgo, la brutalidad y la belleza de la lidia con una técnica magistral de aguafuerte y aguatinta. La litografía y el grabado le permitían explorar los contrastes dramáticos del ruedo con una precisión que la pintura al óleo no alcanzaba. Es la primera gran obra artística monográfica sobre la corrida." data-museum="Museo del Prado, Madrid">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/goya_tauromaquia_grabado_1792658945066.jpg" alt="Grabado de La Tauromaquia de Goya, lámina 16, aguafuerte y aguatinta, torero frente al toro en el ruedo" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--pintura" aria-hidden="true">Pintura y Grabado</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">La Tauromaquia — Francisco de Goya</h3><p class="arte-card-meta">1815–1816 · Madrid, España</p><p class="arte-card-excerpt">33 grabados en aguafuerte que redefinen la mirada artística sobre la corrida: Goya como primer cronista visual del toreo.</p><button class="arte-card-btn" id="arte-card-btn-10">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- PINTURA 2 -->
-          <article class="arte-card" data-category="pintura" id="arte-card-11" role="listitem" tabindex="0"
-            data-title="La Tauromachia — Pablo Picasso" data-year="1957–1959" data-origin="Cannes, Francia"
-            data-medium="Linograbados sobre papel"
-            data-desc="Pablo Picasso (1881–1973), malagueño de nacimiento, mantuvo durante toda su vida una relación apasionada con la corrida de toros. Sus linograbados de 1957–1959 sobre la Tauromachia representan la fusión entre la tradición andaluza de su infancia y el lenguaje cubista que él mismo inventó. Las figuras del toro y el torero se descomponen en planos geométricos sin perder su fuerza expresiva."
-            data-museum="Musée Picasso, París / Antibes">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-pintura-2">
-                  <span class="arte-placeholder-icon" aria-hidden="true">◻️</span>
-                  <span class="arte-placeholder-label">Picasso — Tauromachie</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--pintura" aria-hidden="true">Pintura</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">La Tauromachia — Pablo Picasso</h3>
-              <p class="arte-card-meta">1957–1959 · Cannes, Francia</p>
-              <p class="arte-card-excerpt">El cubismo al servicio del toro: Picasso descompone en planos la eterna danza entre el hombre y la bestia.</p>
-              <button class="arte-card-btn" id="arte-card-btn-11">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="pintura" id="arte-card-11" role="listitem" tabindex="0" data-title="La Tauromachie — Pablo Picasso" data-year="1957–1959" data-origin="Cannes, Francia" data-medium="Linograbados sobre papel" data-technique="Linograbado — técnica cubista con planos geométricos" data-context="Pablo Picasso (1881–1973), malagueño de nacimiento, mantuvo durante toda su vida una relación apasionada con la corrida de toros. Sus linograbados de 1957–1959 sobre la Tauromachie representan la fusión entre la tradición andaluza de su infancia y el lenguaje cubista que él mismo inventó. Las figuras del toro y el torero se descomponen en planos geométricos sin perder su fuerza expresiva. La técnica del linograbado permite audaces contrastes de color plano que refuerzan el drama del ruedo." data-museum="Musée Picasso, París / Antibes">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/picasso_tauromachie_cubist_1792659093092.jpg" alt="Linograbado cubista mostrando matador y toro en el ruedo, planos geométricos en rojo azul amarillo y negro" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--pintura" aria-hidden="true">Pintura y Grabado</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">La Tauromachie — Pablo Picasso</h3><p class="arte-card-meta">1957–1959 · Cannes, Francia</p><p class="arte-card-excerpt">El cubismo al servicio del toro: Picasso descompone en planos la eterna danza entre el hombre y la bestia en el ruedo.</p><button class="arte-card-btn" id="arte-card-btn-11">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
-          <!-- PINTURA 3 -->
-          <article class="arte-card" data-category="pintura" id="arte-card-12" role="listitem" tabindex="0"
-            data-title="El Toro en el Guernica — Pablo Picasso" data-year="1937" data-origin="París, Francia"
-            data-medium="Óleo sobre lienzo, 349 × 776 cm"
-            data-desc="En el Guernica (1937), Picasso incluye un toro en el ángulo superior izquierdo que permanece imperturbable ante la escena de horror del bombardeo de la ciudad vasca. Este toro ha sido objeto de múltiples interpretaciones: ¿representa la brutalidad fascista? ¿La resistencia del pueblo español? ¿La supervivencia de la cultura ante la barbarie? El debate continúa hasta hoy, convirtiendo al toro de Picasso en uno de los símbolos más debatidos del arte del siglo XX."
-            data-museum="Museo Reina Sofía, Madrid">
-            <div class="arte-card-media">
-              <div class="arte-card-img-wrapper">
-                <div class="arte-card-placeholder arte-placeholder-pintura-3">
-                  <span class="arte-placeholder-icon" aria-hidden="true">🐂</span>
-                  <span class="arte-placeholder-label">Guernica — El Toro</span>
-                </div>
-              </div>
-              <div class="arte-card-category-badge arte-card-category-badge--pintura" aria-hidden="true">Pintura</div>
-            </div>
-            <div class="arte-card-body">
-              <h3 class="arte-card-title">El Toro en el Guernica — Picasso</h3>
-              <p class="arte-card-meta">1937 · París, Francia</p>
-              <p class="arte-card-excerpt">El toro imperturbable del Guernica: símbolo de resistencia, brutalidad o cultura, el ícono más debatido del arte del siglo XX.</p>
-              <button class="arte-card-btn" id="arte-card-btn-12">Inspeccionar obra <span aria-hidden="true">→</span></button>
-            </div>
+          <article class="arte-card" data-category="pintura" id="arte-card-12" role="listitem" tabindex="0" data-title="El Toro en el Guernica — Pablo Picasso" data-year="1937" data-origin="París, Francia" data-medium="Óleo sobre lienzo, 349 × 776 cm" data-technique="Óleo sobre lienzo — expresionismo cubista monocromático" data-context="En el Guernica (1937), Picasso incluye un toro en el ángulo superior izquierdo que permanece imperturbable ante la escena de horror del bombardeo de la ciudad vasca. Este toro ha sido objeto de múltiples interpretaciones: representa la brutalidad fascista, la resistencia del pueblo español, o la supervivencia de la cultura ante la barbarie. El debate continúa hasta hoy, convirtiendo al toro de Picasso en uno de los símbolos más debatidos del arte del siglo XX. El ruedo simbólico se convierte aquí en arena de guerra." data-museum="Museo Reina Sofía, Madrid">
+            <div class="arte-card-media"><div class="arte-card-img-wrapper"><img class="arte-card-img" src="img/picasso_guernica_bull_detail_1792659109789.jpg" alt="Detalle del Guernica de Picasso mostrando el toro en el ángulo superior izquierdo, óleo en blanco negro y gris" loading="lazy"></div><div class="arte-card-category-badge arte-card-category-badge--pintura" aria-hidden="true">Pintura y Grabado</div></div>
+            <div class="arte-card-body"><h3 class="arte-card-title">El Toro en el Guernica — Picasso</h3><p class="arte-card-meta">1937 · París, Francia</p><p class="arte-card-excerpt">El toro imperturbable del Guernica: símbolo de resistencia, brutalidad o cultura, el ícono más debatido del arte del siglo XX.</p><button class="arte-card-btn" id="arte-card-btn-12">Inspeccionar obra <span aria-hidden="true">→</span></button></div>
           </article>
-
         </div>
-
-        <div class="arte-no-results" id="arte-no-results" hidden aria-live="polite">
-          <span class="arte-no-results-icon" aria-hidden="true">🎨</span>
-          <p class="arte-no-results-text">No hay obras en esta categoría.</p>
-        </div>
+        <div class="arte-no-results" id="arte-no-results" hidden aria-live="polite"><span class="arte-no-results-icon" aria-hidden="true">🎨</span><p class="arte-no-results-text">No hay obras en esta categoría.</p></div>
       </div>
     </section>
-
-    <!-- MI REFLEXIÓN -->
     <section class="arte-reflection-section" id="arte-reflexion" aria-labelledby="arte-reflexion-title">
-      <div class="site-container">
-        <div class="reflection-box">
-          <h2 class="reflection-title" id="arte-reflexion-title">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            Mi Reflexión
-          </h2>
-          <p>Investigar el arte taurino me ha permitido descubrir que la corrida de toros no puede reducirse a un simple espectáculo: es un sistema simbólico complejo que ha generado algunas de las obras más importantes de la historia del arte occidental. Goya encontró en la tauromaquia un espejo donde reflejar la violencia y la gracia de la condición humana; Picasso la utilizó como lenguaje universal para hablar de guerra, identidad y resistencia.</p>
-          <p>Lo que más me ha sorprendido es la coherencia estética que existe entre todas estas formas de arte taurino: el traje de luces, el cartel, la plaza y la pintura comparten una misma paleta —el rojo, el oro, el negro— y una misma tensión dramática. Es como si el arte hubiera reconocido en la corrida una fuente inagotable de contrastes: vida y muerte, belleza y brutalidad, tradición e innovación.</p>
-          <p>Esta investigación me ha llevado a comprender que el debate sobre la tauromaquia no puede hacerse de forma honesta sin considerar su dimensión artística. Independientemente de la posición ética de cada uno, negar su valor cultural sería negar una parte fundamental del patrimonio artístico de la humanidad.</p>
-          <footer class="arte-reflexion-footer">
-            <cite class="arte-reflexion-author">— Krishna Mishra, Sección 2: El Arte</cite>
-          </footer>
-        </div>
-      </div>
+      <div class="site-container"><div class="reflection-box"><h2 class="reflection-title" id="arte-reflexion-title"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Mi Reflexión</h2><p>Investigar el arte taurino me ha permitido descubrir que la corrida de toros no puede reducirse a un simple espectáculo: es un sistema simbólico complejo que ha generado algunas de las obras más importantes de la historia del arte occidental. Goya encontró en la tauromaquia un espejo donde reflejar la violencia y la gracia de la condición humana; Picasso la utilizó como lenguaje universal para hablar de guerra, identidad y resistencia.</p><p>Lo que más me ha sorprendido es la coherencia estética que existe entre todas estas formas de arte taurino: el traje de luces con su chaquetilla bordada en oro, el cartel histórico con su litografía cromática, la plaza con su albero dorado y el grabado en aguafuerte comparten una misma paleta —el rojo, el oro, el negro— y una misma tensión dramática. Es como si el arte hubiera reconocido en la corrida una fuente inagotable de contrastes: vida y muerte, belleza y brutalidad, tradición e innovación.</p><p>Esta investigación me ha llevado a comprender que el debate sobre la tauromaquia no puede hacerse de forma honesta sin considerar su dimensión artística. Independientemente de la posición ética de cada uno, negar su valor cultural sería negar una parte fundamental del patrimonio artístico de la humanidad.</p><footer class="arte-reflexion-footer"><cite class="arte-reflexion-author">— Krishna Mishra, Sección 2: El Arte</cite></footer></div></div>
     </section>
-
-    <!-- FUENTES Y CRÉDITOS -->
     <section class="arte-sources-section" id="arte-fuentes" aria-labelledby="arte-fuentes-title">
-      <div class="site-container">
-        <div class="references-section arte-references">
-          <h2 class="arte-references-title" id="arte-fuentes-title">Fuentes y Créditos de Imágenes</h2>
-          <ul class="references-list" id="arte-fuentes-list">
-            <li class="reference-item"><strong>Goya, F.</strong> (1816). <em>La Tauromaquia</em> [Serie de grabados]. Museo del Prado, Madrid.</li>
-            <li class="reference-item"><strong>Picasso, P.</strong> (1957–1959). <em>La Tauromachia</em> [Linograbados]. Musée Picasso, París.</li>
-            <li class="reference-item"><strong>Picasso, P.</strong> (1937). <em>Guernica</em> [Óleo sobre lienzo]. Museo Reina Sofía, Madrid.</li>
-            <li class="reference-item"><strong>Real Maestranza de Caballería de Sevilla.</strong> (2024). <em>Historia de la plaza y colección de trajes</em>.</li>
-            <li class="reference-item"><strong>Museo Taurino de Madrid.</strong> (2024). <em>Colección permanente: trajes, carteles y arte taurino</em>. Las Ventas, Madrid.</li>
-            <li class="reference-item"><strong>Ruano Llopis, C.</strong> (c. 1920–1950). <em>Carteles taurinos</em> [Litografía y gouache]. Museu Taurí de Valencia.</li>
-            <li class="reference-item"><strong>Archivo Municipal de Sevilla.</strong> (2023). <em>Carteles de la Feria de Abril, 1880–1950</em>.</li>
-            <li class="reference-item"><strong>García-Baquero González, A.</strong> (1992). <em>Toros y toreros en la Sevilla del siglo XIX</em>. Sevilla: Diputación Provincial.</li>
-            <li class="reference-item"><strong>Tuchman, M.</strong> (1982). <em>Picasso and the Bull</em>. Arts Magazine, 56(9), 70–75.</li>
-            <li class="reference-item"><em>Todas las imágenes de la galería son representaciones con fines educativos. Los derechos pertenecen a sus respectivos museos e instituciones.</em></li>
-          </ul>
-        </div>
-      </div>
+      <div class="site-container"><div class="references-section arte-references"><h2 class="arte-references-title" id="arte-fuentes-title">Fuentes y Créditos de Imágenes</h2><ul class="references-list" id="arte-fuentes-list"><li class="reference-item"><strong>Goya, F.</strong> (1816). <em>La Tauromaquia</em> [Serie de 33 grabados en aguafuerte y aguatinta]. Museo del Prado, Madrid.</li><li class="reference-item"><strong>Picasso, P.</strong> (1957–1959). <em>La Tauromachie</em> [Linograbados]. Musée Picasso, París / Antibes.</li><li class="reference-item"><strong>Picasso, P.</strong> (1937). <em>Guernica</em> [Óleo sobre lienzo, 349 × 776 cm]. Museo Reina Sofía, Madrid.</li><li class="reference-item"><strong>Real Maestranza de Caballería de Sevilla.</strong> (2024). <em>Historia de la plaza, trajes de luces y capotes de paseo</em>.</li><li class="reference-item"><strong>Museo Taurino de Madrid.</strong> (2024). <em>Colección permanente: trajes, carteles históricos y arte taurino</em>. Las Ventas, Madrid.</li><li class="reference-item"><strong>Ruano Llopis, C.</strong> (c. 1920–1950). <em>Carteles taurinos históricos</em> [Litografía y gouache]. Museu Taurí de Valencia.</li><li class="reference-item"><strong>Archivo Municipal de Sevilla.</strong> (2023). <em>Carteles históricos de la Feria de Abril, 1880–1950</em>. Colección digital.</li><li class="reference-item"><strong>García-Baquero González, A.</strong> (1992). <em>Toros y toreros en la Sevilla del siglo XIX</em>. Sevilla: Diputación Provincial.</li><li class="reference-item"><strong>Tuchman, M.</strong> (1982). <em>Picasso and the Bull</em>. Arts Magazine, 56(9), 70–75.</li><li class="reference-item"><em>Las imágenes de la galería son recreaciones ilustrativas con fines educativos generadas mediante IA. Los derechos de las obras originales pertenecen a sus respectivos museos e instituciones.</em></li></ul></div></div>
     </section>
-
   </main>
-
-  <footer class="site-footer" id="site-footer">
-    <div class="site-container">
-      <div class="footer-content">
-        <div class="footer-brand">El Legado del Toro</div>
-        <p class="footer-subtitle">La Corrida de Toros: Arte, Cultura y Controversia</p>
-        <p class="footer-copy">Proyecto colaborativo de revista digital · Sección 2: El Arte · Por Krishna Mishra · Edición 2026</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- MODAL -->
-  <div class="arte-modal-backdrop" id="arte-modal-backdrop" role="dialog" aria-modal="true"
-       aria-labelledby="arte-modal-title" aria-describedby="arte-modal-desc" hidden>
-    <div class="arte-modal" id="arte-modal">
-      <button class="arte-modal-close" id="arte-modal-close" aria-label="Cerrar detalle de obra">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-      <div class="arte-modal-header">
-        <span class="arte-modal-category" id="arte-modal-category"></span>
-        <h2 class="arte-modal-title" id="arte-modal-title"></h2>
-      </div>
-      <div class="arte-modal-body">
-        <div class="arte-modal-visual" id="arte-modal-visual" aria-hidden="true">
-          <div class="arte-modal-placeholder" id="arte-modal-placeholder">
-            <span class="arte-modal-placeholder-icon" id="arte-modal-icon"></span>
-          </div>
-        </div>
-        <div class="arte-modal-info">
-          <dl class="arte-modal-meta" id="arte-modal-meta" aria-label="Información de la obra">
-            <div class="arte-modal-meta-row"><dt>Época</dt><dd id="arte-modal-year"></dd></div>
-            <div class="arte-modal-meta-row"><dt>Origen</dt><dd id="arte-modal-origin"></dd></div>
-            <div class="arte-modal-meta-row"><dt>Técnica / Medio</dt><dd id="arte-modal-medium"></dd></div>
-            <div class="arte-modal-meta-row"><dt>Colección</dt><dd id="arte-modal-museum"></dd></div>
-          </dl>
-          <div class="arte-modal-description" id="arte-modal-desc">
-            <h3 class="arte-modal-desc-title">Descripción</h3>
-            <p id="arte-modal-desc-text"></p>
-          </div>
-        </div>
-      </div>
-      <div class="arte-modal-footer">
-        <span class="arte-modal-footer-note">Fuente educativa — El Legado del Toro · Sección 2: El Arte</span>
-        <button class="arte-modal-close-btn" id="arte-modal-close-btn">Cerrar <span aria-hidden="true">✕</span></button>
-      </div>
+  <footer class="site-footer" id="site-footer"><div class="site-container"><div class="footer-content"><div class="footer-brand">El Legado del Toro</div><p class="footer-subtitle">La Corrida de Toros: Arte, Cultura y Controversia</p><p class="footer-copy">Proyecto colaborativo de revista digital · Sección 2: El Arte · Por Krishna Mishra · Edición 2026</p></div></div></footer>
+  <div class="arte-lightbox-modal" id="arte-lightbox-modal" role="dialog" aria-modal="true" aria-labelledby="arte-lightbox-title" aria-describedby="arte-lightbox-desc" hidden>
+    <div class="arte-lightbox-panel" id="arte-lightbox-panel">
+      <button class="arte-lightbox-close-btn" id="arte-lightbox-close" aria-label="Cerrar detalle de obra"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      <div class="arte-lightbox-header"><span class="arte-lightbox-category-tag" id="arte-lightbox-category"></span><h2 class="arte-lightbox-title" id="arte-lightbox-title"></h2></div>
+      <div class="arte-lightbox-body"><div class="arte-lightbox-img-container" id="arte-lightbox-img-container"><img class="arte-lightbox-img" id="arte-lightbox-img" src="" alt="" loading="eager"><div class="arte-lightbox-img-fallback" id="arte-lightbox-img-fallback" aria-hidden="true"><span class="arte-lightbox-fallback-icon" id="arte-lightbox-fallback-icon"></span></div></div><div class="arte-lightbox-info" id="arte-lightbox-desc"><dl class="arte-lightbox-meta" aria-label="Información técnica de la obra"><div class="arte-lightbox-meta-row"><dt>Época</dt><dd id="arte-lightbox-year"></dd></div><div class="arte-lightbox-meta-row"><dt>Origen</dt><dd id="arte-lightbox-origin"></dd></div><div class="arte-lightbox-meta-row"><dt>Técnica artística</dt><dd id="arte-lightbox-technique"></dd></div><div class="arte-lightbox-meta-row"><dt>Soporte / Medio</dt><dd id="arte-lightbox-medium"></dd></div><div class="arte-lightbox-meta-row"><dt>Colección</dt><dd id="arte-lightbox-museum"></dd></div></dl><div class="arte-lightbox-context"><h3 class="arte-lightbox-context-title">Contexto Histórico</h3><p id="arte-lightbox-context-text"></p></div></div></div><div class="arte-lightbox-footer"><span class="arte-lightbox-footer-note">Fuente educativa — El Legado del Toro · Sección 2: El Arte</span><button class="arte-lightbox-footer-close" id="arte-lightbox-footer-close">Cerrar <span aria-hidden="true">✕</span></button></div>
     </div>
   </div>
-
 </body>
 </html>

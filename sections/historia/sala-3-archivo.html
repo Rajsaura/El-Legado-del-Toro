@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sala III: Archivo Histórico Digital - Gabinete de investigación documental y repositorio crítico de textos jurídicos, tratados canónicos, sentencias y doctrina. Revista digital El Legado del Toro.">
+  <title>Sala III: Archivo Histórico Digital | El Legado del Toro</title>
+
+  <!-- Estilos compartidos del proyecto y específicos de historia -->
+  <link rel="stylesheet" href="../../css/shared.css">
+  <link rel="stylesheet" href="style.css?v=20261018c">
+
+  <!-- Scripts: Navegación compartida y controlador dedicado de Sala III -->
+  <script src="../../js/nav.js?v=2" defer></script>
+  <script src="sala-3.js?v=2" defer></script>
+</head>
+<body>
+
+  <!-- Contenedor para inyección de la barra de navegación compartida -->
+  <div id="site-nav-container"></div>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+         PÓRTICO ARQUITECTÓNICO DE SALA III: ARCHIVO HISTÓRICO DIGITAL
+         =================================================================== -->
+    <div class="hist-room-entry-portal hist-room-entry-sala-3" id="hist-room-entry-sala-3" aria-labelledby="referencias-heading">
+      <div class="site-container">
+        <div class="hist-room-portal-header">
+          <div class="hist-room-kicker-wrap">
+            <span class="badge badge-gold hist-museum-room-badge">
+              <span class="hist-lang-es">SALA III • ARCHIVO HISTÓRICO DIGITAL</span>
+              <span class="hist-lang-en" style="display:none;">GALLERY III • DIGITAL ARCHIVE</span>
+            </span>
+            <span class="badge hist-badge-curatorial" id="references-badge">
+              <span class="hist-lang-es">Fondo Documental Cotejado • 4 Cédulas Archivísticas</span>
+              <span class="hist-lang-en" style="display:none;">Verified Document Repository • 4 Archival Exhibits</span>
+            </span>
+            <span class="hist-map-kicker-meta" id="hist-archive-meta">
+              <span class="hist-lang-es">Fuentes Primarias, BOE, Jurisprudencia y Tratados BNE</span>
+              <span class="hist-lang-en" style="display:none;">Primary Sources, BOE, Jurisprudence &amp; BNE Treatises</span>
+            </span>
+            <button type="button" class="hist-btn-translate hist-header-translate-btn" id="btn-toggle-language" aria-label="Cambiar idioma (ES / EN)">
+              <span class="hist-translate-icon" aria-hidden="true">🌐</span>
+              <span class="hist-translate-label">ES / EN</span>
+            </button>
+            <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+              <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+              <span class="hist-lang-es">Vestíbulo</span>
+              <span class="hist-lang-en" style="display:none;">Central Hall</span>
+            </a>
+          </div>
+
+          <h1 class="hist-room-portal-title" id="referencias-heading">
+            <span class="hist-room-title-icon" aria-hidden="true">📜</span>
+            <span class="hist-lang-es">Galería del Archivo Histórico Digital &amp; Fondos Documentales</span>
+            <span class="hist-lang-en" style="display:none;">Digital Historical Archive &amp; Document Repositories Gallery</span>
+          </h1>
+
+          <p class="hist-room-portal-desc">
+            <span class="hist-lang-es">Gabinete de investigación documental y repositorio crítico de los textos jurídicos, tratados canónicos, sentencias constitucionales y repertorios hemerográficos custodiados en los archivos estatales e institucionales. Esta colección reúne los testimonios diplomáticos y bibliográficos fidedignos que sustentan la reconstrucción histórica del museo virtual, con enlaces directos a sus ediciones facsímiles y expedientes oficiales digitalizados.</span>
+            <span class="hist-lang-en" style="display:none;">Documentary research cabinet and critical repository of statutory codices, canonical treatises, constitutional rulings, and press archives preserved across state and institutional holdings. This collection brings together authoritative diplomatic and bibliographical records supporting the virtual museum's historical reconstruction, with direct links to facsimile editions and official digitized dossiers.</span>
+          </p>
+
+          <!-- Filtros interactivos del Archivo -->
+          <div class="hist-archive-filters" role="tablist" aria-label="Filtros de expedientes documentales">
+            <button type="button" class="hist-archive-filter-btn hist-filter-active" data-filter="all" role="tab" aria-selected="true" id="filter-tab-all">
+              <span class="hist-lang-es">Todos los expedientes (4)</span>
+              <span class="hist-lang-en" style="display:none;">All Exhibits (4)</span>
+            </button>
+            <button type="button" class="hist-archive-filter-btn" data-filter="legal" role="tab" aria-selected="false" id="filter-tab-legal">
+              <span class="hist-lang-es">📜 Corpus Legal y Bulas</span>
+              <span class="hist-lang-en" style="display:none;">📜 Statutory Law &amp; Bulls</span>
+            </button>
+            <button type="button" class="hist-archive-filter-btn" data-filter="tratado" role="tab" aria-selected="false" id="filter-tab-tratado">
+              <span class="hist-lang-es">📖 Tratados Canónicos</span>
+              <span class="hist-lang-en" style="display:none;">📖 Canonical Treatises</span>
+            </button>
+            <button type="button" class="hist-archive-filter-btn" data-filter="jurisprudencia" role="tab" aria-selected="false" id="filter-tab-jurisprudencia">
+              <span class="hist-lang-es">⚖️ Jurisprudencia TC</span>
+              <span class="hist-lang-en" style="display:none;">⚖️ Constitutional Court</span>
+            </button>
+            <button type="button" class="hist-archive-filter-btn" data-filter="doctrina" role="tab" aria-selected="false" id="filter-tab-doctrina">
+              <span class="hist-lang-es">📰 Hemeroteca y Doctrina</span>
+              <span class="hist-lang-en" style="display:none;">📰 Press &amp; Scholarship</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         SALA III: ARCHIVO HISTÓRICO DIGITAL (BIBLIOGRAFÍA Y FONDOS DOCUMENTALES)
+         =================================================================== -->
+    <section class="historia-referencias-section hist-museum-room" id="historia-referencias-section" aria-labelledby="referencias-heading" data-room="archive">
+      <div class="site-container hist-archive-main-container">
+        <div class="referencias-wrapper" id="referencias-container">
+          
+          <!-- Placa de Vitrina de la Sala de Investigación -->
+          <div class="hist-archive-vitrine-plate" aria-hidden="true">
+            <div class="hist-vitrine-plate-inner">
+              <span class="hist-vitrine-kicker">🏛️ SALA III • GABINETE DE INVESTIGACIÓN Y FONDOS CUSTODIADOS</span>
+              <span class="hist-vitrine-title">
+                <span class="hist-lang-es">Repositorios Oficiales: BOE • BNE • Tribunal Constitucional • Archivo Apostólico Vaticano</span>
+                <span class="hist-lang-en" style="display:none;">Official Repositories: BOE • BNE • Constitutional Court • Vatican Apostolic Archive</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="referencias-grid" id="hist-referencias-grid">
+            
+            <!-- Cédula 1: Corpus Jurídico Histórico & Bulas Pontificias -->
+            <article class="referencia-card" data-category="legal" id="ref-card-legal">
+              <div class="referencia-card-top">
+                <div class="hist-card-museum-tag">
+                  <span class="hist-tag-room">🏛️ SALA III</span>
+                  <span class="hist-tag-divider" aria-hidden="true">•</span>
+                  <span class="hist-tag-stop">EXPEDIENTE 1/4</span>
+                </div>
+                <span class="referencia-card-type">
+                  <span class="hist-lang-es">Cuerpo Legal Histórico</span>
+                  <span class="hist-lang-en" style="display:none;">Historical Statutory Body</span>
+                </span>
+                <span class="referencia-card-institution">BOE / BNE / Santa Sede</span>
+              </div>
+              <h3 class="referencia-card-title">
+                <span class="hist-lang-es">Las Siete Partidas &amp; Bula De Salute Gregis (1256–1567)</span>
+                <span class="hist-lang-en" style="display:none;">Las Siete Partidas &amp; Papal Bull De Salute Gregis (1256–1567)</span>
+              </h3>
+              <p class="referencia-card-desc">
+                <span class="hist-lang-es">Texto crítico de las leyes alfonsíes (Partida VII, Tít. VI, Ley 4 sobre la infamia jurídica del alanceamiento por precio; Partida I, Tít. V, Ley 57 sobre clérigos) y la bula de Pío V que prohibió los lances bajo excomunión reservada, bloqueada por Felipe II y mitigada sucesivamente por Gregorio XIII (1575) y Clemente VIII (1596).</span>
+                <span class="hist-lang-en" style="display:none;">Critical text of the Alphonsine code (Partida VII, Title VI, Law 4 on the legal infamy of mercenary bull-spearing; Partida I, Title V, Law 57 on clerics) and the papal bull of Pius V banning bullfights under reserved excommunication, countered by Philip II and successively eased by Gregory XIII (1575) and Clement VIII (1596).</span>
+              </p>
+              <div class="referencia-card-meta">
+                <strong>
+                  <span class="hist-lang-es">Fondos:</span>
+                  <span class="hist-lang-en" style="display:none;">Holdings:</span>
+                </strong> 
+                <span class="hist-lang-es">Biblioteca Jurídica Digital del BOE (ELI: PUB-LH-1974-51) y Bullarium Romanum (Tom. IV, Pars III).</span>
+                <span class="hist-lang-en" style="display:none;">Official State Gazette Law Library (ELI: PUB-LH-1974-51) and Bullarium Romanum (Vol. IV, Part III).</span>
+              </div>
+              <div class="hist-archive-milestone-ref">
+                <span aria-hidden="true">🎯</span>
+                <span class="hist-lang-es">Vinculado a Sala I: Hitos 2 y 3 (Las Siete Partidas y Bula De Salute Gregis)</span>
+                <span class="hist-lang-en" style="display:none;">Linked to Gallery I: Milestones 2 &amp; 3 (Las Siete Partidas &amp; Papal Bull)</span>
+              </div>
+              <a href="https://www.boe.es/biblioteca_juridica/publicacion.php?id=PUB-LH-1974-51" target="_blank" rel="noopener noreferrer" class="referencia-card-link" aria-label="Consultar edición facsímil de Las Siete Partidas en el BOE" id="link-doc-boe">
+                <span class="hist-lang-es">Acceder al texto facsímil en el BOE ↗</span>
+                <span class="hist-lang-en" style="display:none;">Access Facsimile Edition at BOE ↗</span>
+              </a>
+            </article>
+
+            <!-- Cédula 2: Tratados Clásicos y Reales Maestranzas -->
+            <article class="referencia-card" data-category="tratado" id="ref-card-tratado">
+              <div class="referencia-card-top">
+                <div class="hist-card-museum-tag">
+                  <span class="hist-tag-room">🏛️ SALA III</span>
+                  <span class="hist-tag-divider" aria-hidden="true">•</span>
+                  <span class="hist-tag-stop">EXPEDIENTE 2/4</span>
+                </div>
+                <span class="referencia-card-type">
+                  <span class="hist-lang-es">Tratado Canónico</span>
+                  <span class="hist-lang-en" style="display:none;">Canonical Treatise</span>
+                </span>
+                <span class="referencia-card-institution">Biblioteca Nacional de España (BNE)</span>
+              </div>
+              <h3 class="referencia-card-title">
+                <span class="hist-lang-es">José Delgado «Pepe-Hillo»: La Tauromaquia (Cádiz, 1796)</span>
+                <span class="hist-lang-en" style="display:none;">José Delgado «Pepe-Hillo»: La Tauromaquia (Cádiz, 1796)</span>
+              </h3>
+              <p class="referencia-card-desc">
+                <span class="hist-lang-es">Tratado fundacional que codificó las suertes regladas del toreo a pie, la lidia por tercios y las reglas de protección de la cuadrilla. Cotejado junto con los libros de actas de la Real Maestranza de Caballería de Ronda (mayo 1785) y los informes de Gaspar Melchor de Jovellanos (1790) tras la Real Pragmática de Carlos III.</span>
+                <span class="hist-lang-en" style="display:none;">Foundational treatise codifying regulated foot bullfighting, the three-act structure (tercios), and entourage protection. Cross-referenced with the minute books of the Royal Cavalry of Ronda (May 1785) and the memorandums of Gaspar Melchor de Jovellanos (1790) following the Pragmatic Sanction of Charles III.</span>
+              </p>
+              <div class="referencia-card-meta">
+                <strong>
+                  <span class="hist-lang-es">Signatura BNE:</span>
+                  <span class="hist-lang-en" style="display:none;">BNE Shelfmark:</span>
+                </strong> R/12423 (Biblioteca Digital Hispánica, bdh0000038848).
+              </div>
+              <div class="hist-archive-milestone-ref">
+                <span aria-hidden="true">🎯</span>
+                <span class="hist-lang-es">Vinculado a Sala I: Hitos 4 y 5 (Toreo a pie y Real Maestranza de Ronda)</span>
+                <span class="hist-lang-en" style="display:none;">Linked to Gallery I: Milestones 4 &amp; 5 (Foot Bullfighting &amp; Ronda Cavalry)</span>
+              </div>
+              <a href="https://bdh.bne.es/bnesearch/detalle/bdh0000038848" target="_blank" rel="noopener noreferrer" class="referencia-card-link" aria-label="Abrir códice digitalizado de Pepe-Hillo en la Biblioteca Digital Hispánica" id="link-doc-bne">
+                <span class="hist-lang-es">Consultar ejemplar digitalizado en BNE ↗</span>
+                <span class="hist-lang-en" style="display:none;">Inspect Digitized Volume at BNE ↗</span>
+              </a>
+            </article>
+
+            <!-- Cédula 3: Jurisprudencia Constitucional Española -->
+            <article class="referencia-card" data-category="jurisprudencia" id="ref-card-jurisprudencia">
+              <div class="referencia-card-top">
+                <div class="hist-card-museum-tag">
+                  <span class="hist-tag-room">🏛️ SALA III</span>
+                  <span class="hist-tag-divider" aria-hidden="true">•</span>
+                  <span class="hist-tag-stop">EXPEDIENTE 3/4</span>
+                </div>
+                <span class="referencia-card-type">
+                  <span class="hist-lang-es">Jurisprudencia TC</span>
+                  <span class="hist-lang-en" style="display:none;">Constitutional Rulings</span>
+                </span>
+                <span class="referencia-card-institution">Tribunal Constitucional de España</span>
+              </div>
+              <h3 class="referencia-card-title">
+                <span class="hist-lang-es">Sentencia STC 177/2016 del Pleno (20 de Octubre de 2016)</span>
+                <span class="hist-lang-en" style="display:none;">Plenary Ruling STC 177/2016 (October 20, 2016)</span>
+              </h3>
+              <p class="referencia-card-desc">
+                <span class="hist-lang-es">Resolución del recurso de inconstitucionalidad 7722-2010 contra la Ley catalana 28/2010. Fija la doctrina vinculante sobre la concurrencia competencial: la protección autonómica del bienestar animal no puede anular ni prohibir una manifestación declarada patrimonio cultural del Estado (Arts. 149.1.28 y 149.2 CE). Incluye 3 votos particulares.</span>
+                <span class="hist-lang-en" style="display:none;">Resolution of constitutional challenge 7722-2010 against Catalan Law 28/2010. Sets binding doctrine on concurrent powers: regional animal welfare protection cannot nullify or ban an activity recognized as national cultural heritage (Arts. 149.1.28 &amp; 149.2 Spanish Constitution). Includes 3 dissenting opinions.</span>
+              </p>
+              <div class="referencia-card-meta">
+                <strong>
+                  <span class="hist-lang-es">Publicación oficial:</span>
+                  <span class="hist-lang-en" style="display:none;">Official Gazette:</span>
+                </strong> BOE núm. 286, de 26 de noviembre de 2016 (BOE-A-2016-11197).
+              </div>
+              <div class="hist-archive-milestone-ref">
+                <span aria-hidden="true">🎯</span>
+                <span class="hist-lang-es">Vinculado a Sala I: Hitos 10, 11 y 12 (Abolición catalana, Ley 18/2013 y STC 177/2016)</span>
+                <span class="hist-lang-en" style="display:none;">Linked to Gallery I: Milestones 10, 11 &amp; 12 (Catalan Ban, Law 18/2013 &amp; STC 177/2016)</span>
+              </div>
+              <a href="https://hj.tribunalconstitucional.es/es/Resolucion/Show/25134" target="_blank" rel="noopener noreferrer" class="referencia-card-link" aria-label="Consultar la Sentencia 177/2016 en la sede del Tribunal Constitucional" id="link-doc-tc">
+                <span class="hist-lang-es">Consultar resolución oficial en el TC ↗</span>
+                <span class="hist-lang-en" style="display:none;">Read Official Ruling at Constitutional Court ↗</span>
+              </a>
+            </article>
+
+            <!-- Cédula 4: Estudios Historiográficos y Crónicas de Época -->
+            <article class="referencia-card" data-category="doctrina" id="ref-card-doctrina">
+              <div class="referencia-card-top">
+                <div class="hist-card-museum-tag">
+                  <span class="hist-tag-room">🏛️ SALA III</span>
+                  <span class="hist-tag-divider" aria-hidden="true">•</span>
+                  <span class="hist-tag-stop">EXPEDIENTE 4/4</span>
+                </div>
+                <span class="referencia-card-type">
+                  <span class="hist-lang-es">Doctrina &amp; Hemeroteca</span>
+                  <span class="hist-lang-en" style="display:none;">Doctrine &amp; Press Archives</span>
+                </span>
+                <span class="referencia-card-institution">Hemeroteca BNE / CEPC / Dialnet</span>
+              </div>
+              <h3 class="referencia-card-title">
+                <span class="hist-lang-es">Hemeroteca de la Edad de Oro y Estudios del CEPC</span>
+                <span class="hist-lang-en" style="display:none;">Golden Age Press Archives &amp; CEPC Scholarly Studies</span>
+              </h3>
+              <p class="referencia-card-desc">
+                <span class="hist-lang-es">Colección hemerográfica del diario ABC y El Sol (mayo 1920) con los partes médicos de Talavera de la Reina; el ensayo biográfico clásico de Manuel Chaves Nogales (1934) sobre la revolución estética de Juan Belmonte; y los análisis doctrinales del Prof. Tomás-Ramón Fernández en la Revista de Administración Pública.</span>
+                <span class="hist-lang-en" style="display:none;">Press collection from ABC and El Sol (May 1920) including medical bulletins from Talavera de la Reina; Manuel Chaves Nogales' classic biography (1934) on Juan Belmonte's aesthetic revolution; and doctoral analyses by Prof. Tomás-Ramón Fernández in the Public Administration Review.</span>
+              </p>
+              <div class="referencia-card-meta">
+                <strong>
+                  <span class="hist-lang-es">Indexación:</span>
+                  <span class="hist-lang-en" style="display:none;">Indexing:</span>
+                </strong> Hemeroteca Digital BNE y Centro de Estudios Políticos y Constitucionales (Dialnet: 4962915).
+              </div>
+              <div class="hist-archive-milestone-ref">
+                <span aria-hidden="true">🎯</span>
+                <span class="hist-lang-es">Vinculado a Sala I: Hitos 7 y 8 (Temple de Belmonte y Joselito en Talavera)</span>
+                <span class="hist-lang-en" style="display:none;">Linked to Gallery I: Milestones 7 &amp; 8 (Belmonte's Style &amp; Joselito's Tragedy)</span>
+              </div>
+              <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=4962915" target="_blank" rel="noopener noreferrer" class="referencia-card-link" aria-label="Acceder al estudio doctrinal de Tomás-Ramón Fernández en Dialnet" id="link-doc-dialnet">
+                <span class="hist-lang-es">Acceder al estudio doctrinal en Dialnet ↗</span>
+                <span class="hist-lang-en" style="display:none;">Access Scholarly Paper at Dialnet ↗</span>
+              </a>
+            </article>
+
+          </div>
+
+          <!-- Pie Curatorial de Sala III -->
+          <div class="hist-archive-footer">
+            <div class="hist-archive-footer-inner">
+              <div class="hist-archive-footer-text">
+                <span class="hist-lang-es">Todos los documentos y códices han sido transcritos y confrontados con sus fuentes originales digitales. Para examinar la cronología interactiva o la cartografía geográfica, utilice las salas anteriores o vuelva al Gran Vestíbulo.</span>
+                <span class="hist-lang-en" style="display:none;">All documents and codices have been transcribed and cross-checked against authoritative digital sources. To explore the interactive timeline or geographical cartography, navigate to previous galleries or return to the Central Hall.</span>
+              </div>
+              <div class="hist-archive-footer-actions">
+                <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall hist-archive-return-btn" aria-label="Volver al Gran Vestíbulo Central del Museo" id="btn-archive-return-hall">
+                  <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+                  <span class="hist-lang-es">Volver al Gran Vestíbulo</span>
+                  <span class="hist-lang-en" style="display:none;">Return to Central Hall</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIE DE PÁGINA DE SALA III
+       =================================================================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="site-container">
+      <div class="footer-content">
+        <div class="footer-brand">El Legado del Toro</div>
+        <p class="footer-subtitle">
+          <span class="hist-lang-es">Sala III • Archivo Histórico Digital &amp; Fondos Documentales</span>
+          <span class="hist-lang-en" style="display:none;">Gallery III • Digital Historical Archive &amp; Document Repositories</span>
+        </p>
+        <div class="hist-reflection-footer-actions" style="margin-top: 1.5rem;">
+          <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+            <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+            <span class="hist-lang-es">Volver al Gran Vestíbulo Central</span>
+            <span class="hist-lang-en" style="display:none;">Return to Grand Central Hall</span>
+          </a>
+        </div>
+        <p class="footer-copy" style="margin-top: 1.5rem;">
+          <span class="hist-lang-es">Proyecto colaborativo de revista digital • Sección 1: La Historia (Sukrish)</span>
+          <span class="hist-lang-en" style="display:none;">Digital magazine collaborative project • Section 1: The History (Sukrish)</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

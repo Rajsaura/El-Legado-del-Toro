@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sala II: Cartografía Histórica - Geografía de la Tauromaquia en la Península Ibérica e Islas Canarias. Siete sedes históricas y escenarios legales fundamentales. Revista digital El Legado del Toro.">
+  <title>Sala II: Cartografía Histórica | El Legado del Toro</title>
+
+  <!-- Estilos compartidos del proyecto y específicos de historia -->
+  <link rel="stylesheet" href="../../css/shared.css">
+  <link rel="stylesheet" href="style.css?v=20261018e">
+
+  <!-- Scripts: Navegación compartida, motor cartográfico y controlador de Sala II -->
+  <script src="../../js/nav.js?v=2" defer></script>
+  <script src="map.js?v=20261018e" defer></script>
+  <script src="sala-2.js?v=20261018e" defer></script>
+</head>
+<body>
+
+  <!-- Contenedor para inyección de la barra de navegación compartida -->
+  <div id="site-nav-container"></div>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+         PÓRTICO ARQUITECTÓNICO DE SALA II: CARTOGRAFÍA HISTÓRICA
+         =================================================================== -->
+    <div class="hist-room-entry-portal hist-room-entry-sala-2" id="hist-room-entry-sala-2" aria-labelledby="hist-map-title">
+      <div class="site-container">
+        <div class="hist-room-portal-header">
+          <div class="hist-room-kicker-wrap">
+            <span class="badge badge-gold hist-museum-room-badge">
+              <span class="hist-lang-es">SALA II • CARTOGRAFÍA HISTÓRICA</span>
+              <span class="hist-lang-en" style="display:none;">GALLERY II • HISTORICAL CARTOGRAPHY</span>
+            </span>
+            <span class="badge hist-badge-curatorial" id="hist-map-badge">
+              <span class="hist-lang-es">Colección Cartográfica • 7 Sedes Geográficas</span>
+              <span class="hist-lang-en" style="display:none;">Cartographic Collection • 7 Geographic Sites</span>
+            </span>
+            <span class="hist-map-kicker-meta" id="hist-map-meta">
+              <span class="hist-lang-es">7 Sedes Fundacionales y Escenarios Legales</span>
+              <span class="hist-lang-en" style="display:none;">7 Foundational Seats &amp; Legal Arenas</span>
+            </span>
+            <button type="button" class="hist-btn-translate hist-header-translate-btn" id="btn-toggle-language" aria-label="Cambiar idioma (ES / EN)">
+              <span class="hist-translate-icon" aria-hidden="true">🌐</span>
+              <span class="hist-translate-label">ES / EN</span>
+            </button>
+            <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+              <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+              <span class="hist-lang-es">Vestíbulo</span>
+              <span class="hist-lang-en" style="display:none;">Central Hall</span>
+            </a>
+          </div>
+          
+          <h1 class="hist-room-portal-title" id="hist-map-title">
+            <span class="hist-room-title-icon" aria-hidden="true">🗺️</span>
+            <span class="hist-map-title-es">Galería de la Cartografía: Geografía Histórica</span>
+            <span class="hist-map-title-en" style="display:none;">Cartography Gallery: Historical Geography</span>
+          </h1>
+
+          <p class="hist-room-portal-desc">
+            <span class="hist-map-desc-es">Exposición corográfica de los escenarios capitales donde se fraguó la lidia en la península ibérica y el archipiélago canario. Desde las cortes bajomedievales de Toledo y las Reales Maestranzas de Ronda y Sevilla, hasta los cosos monumentales de Madrid y Barcelona y los hitos legislativos de Canarias. Seleccione cualquier hito cartográfico para examinar su legajo documental o saltar a la cronología de Sala I.</span>
+            <span class="hist-map-desc-en" style="display:none;">A chorographic exhibition of the capital arenas where bullfighting evolved across the Iberian Peninsula and the Canary Islands. From the high-medieval courts of Toledo and the Royal Cavalries of Ronda and Seville, to the monumental arenas of Madrid and Barcelona and the statutory milestones of the Canaries. Select any cartographic landmark to inspect its archival dossier or cross-link to the Sala I timeline.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         SALA II: MAPA HISTÓRICO INTERACTIVO: GEOGRAFÍA DE LA LIDIA
+         =================================================================== -->
+    <section id="hist-map-section" class="hist-map-section hist-museum-room" data-room="map" aria-labelledby="hist-map-title">
+      <div class="site-container hist-map-main-container">
+        
+        <!-- Contenedor Principal: Rejilla Mapa + Directorio -->
+        <div class="hist-map-grid">
+          
+          <!-- Visor del Mapa SVG -->
+          <div class="hist-map-stage" id="hist-map-stage">
+            <!-- Placa de Vitrina Museográfica de Sala II -->
+            <div class="hist-map-vitrine-plate" aria-hidden="true">
+              <div class="hist-vitrine-plate-inner">
+                <span class="hist-vitrine-kicker">🏛️ SALA II • CARTA COROGRÁFICA</span>
+                <span class="hist-vitrine-title">
+                  <span class="hist-lang-es">Península Ibérica e Islas Canarias • Proyección Conforme 1:50m</span>
+                  <span class="hist-lang-en" style="display:none;">Iberian Peninsula &amp; Canary Islands • Conformal Projection 1:50m</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="hist-map-viewport" id="hist-map-viewport" role="region" aria-label="Mapa cartográfico interactivo de España">
+              <!-- SVG Cartográfico Inyectado Dinámicamente por map.js -->
+            </div>
+
+            <!-- Barra de herramientas del mapa -->
+            <div class="hist-map-toolbar">
+              <span class="hist-map-legend-hint">
+                <span aria-hidden="true">💡</span>
+                <span class="hist-hint-es">Haga clic en un marcador para abrir su ficha histórica o saltar a la cronología.</span>
+                <span class="hist-hint-en" style="display:none;">Click any marker to open its historical dossier or jump to the timeline.</span>
+              </span>
+              <button type="button" class="hist-map-reset-btn" id="hist-map-reset-btn" aria-label="Restablecer selección de sede">
+                <span aria-hidden="true">↺</span>
+                <span class="hist-reset-es">Restablecer selección</span>
+                <span class="hist-reset-en" style="display:none;">Reset selection</span>
+              </button>
+            </div>
+
+            <!-- Atribución cartográfica oficial -->
+            <div class="hist-map-attribution" id="hist-map-attribution">
+              <span class="hist-attr-es">Cartografía base: <a href="https://www.naturalearthdata.com" target="_blank" rel="noopener noreferrer">Natural Earth</a> (Dominio Público 1:50m) • Proyección conforme local.</span>
+              <span class="hist-attr-en" style="display:none;">Base cartography: <a href="https://www.naturalearthdata.com" target="_blank" rel="noopener noreferrer">Natural Earth</a> (Public Domain 1:50m) • Local conformal projection.</span>
+            </div>
+          </div>
+
+          <!-- Directorio Accesible de Sedes (Accessible Sidebar / Cards) -->
+          <aside class="hist-map-sidebar" id="hist-map-sidebar" aria-label="Directorio accesible de sedes históricas">
+            <div class="hist-sidebar-header">
+              <h3 class="hist-sidebar-title">
+                <span class="hist-sidebar-title-es">Directorio de Sedes Históricas</span>
+                <span class="hist-sidebar-title-en" style="display:none;">Historical Locations Directory</span>
+              </h3>
+              <span class="hist-sidebar-count" id="hist-sidebar-count">7 sedes</span>
+            </div>
+
+            <div class="hist-locations-list" id="hist-locations-list" role="list">
+              <!-- Tarjetas de sedes generadas dinámicamente por map.js -->
+            </div>
+          </aside>
+
+        </div>
+
+        <!-- Panel de Detalle de la Sede Seleccionada (Location Detail Dossier) -->
+        <div class="hist-location-dossier" id="hist-location-dossier" aria-hidden="true" role="dialog" aria-labelledby="hist-dossier-title">
+          <!-- Contenido dinámico del dossier inyectado por map.js -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIE DE PÁGINA DE SALA II
+       =================================================================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="site-container">
+      <div class="footer-content">
+        <div class="footer-brand">El Legado del Toro</div>
+        <p class="footer-subtitle">
+          <span class="hist-lang-es">Sala II • Cartografía: Geografía de la Lidia en Iberia y Canarias</span>
+          <span class="hist-lang-en" style="display:none;">Gallery II • Cartography: Geography of Bullfighting in Iberia and Canary Islands</span>
+        </p>
+        <div class="hist-reflection-footer-actions" style="margin-top: 1.5rem;">
+          <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+            <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+            <span class="hist-lang-es">Volver al Gran Vestíbulo Central</span>
+            <span class="hist-lang-en" style="display:none;">Return to Grand Central Hall</span>
+          </a>
+        </div>
+        <p class="footer-copy" style="margin-top: 1.5rem;">
+          <span class="hist-lang-es">Proyecto colaborativo de revista digital • Sección 1: La Historia (Sukrish)</span>
+          <span class="hist-lang-en" style="display:none;">Digital magazine collaborative project • Section 1: The History (Sukrish)</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

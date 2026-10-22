@@ -8,13 +8,107 @@
 
   <!-- Estilos compartidos del proyecto y específicos de la sección -->
   <link rel="stylesheet" href="../../css/shared.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261018d">
+  <link rel="stylesheet" href="intro.css">
+
+  <!-- Preload de los 8 frames del toro para garantizar reproducción instantánea sin parpadeos -->
+  <link rel="preload" as="image" href="images/bull/bull-1.png">
+  <link rel="preload" as="image" href="images/bull/bull-2.png">
+  <link rel="preload" as="image" href="images/bull/bull-3.png">
+  <link rel="preload" as="image" href="images/bull/bull-4.png">
+  <link rel="preload" as="image" href="images/bull/bull-5.png">
+  <link rel="preload" as="image" href="images/bull/bull-6.png">
+  <link rel="preload" as="image" href="images/bull/bull-7.png">
+  <link rel="preload" as="image" href="images/bull/bull-8.png">
+
+  <!-- Preload de los assets cinemáticos del Museo Histórico -->
+  <link rel="preload" as="image" href="assets/museum/exterior-establishing.webp">
+  <link rel="preload" as="image" href="assets/museum/exterior-approach.webp">
+  <link rel="preload" as="image" href="assets/museum/entrance-doors-closed.webp">
+  <link rel="preload" as="image" href="assets/museum/entrance-doors-opening.webp">
+  <link rel="preload" as="image" href="assets/museum/entrance-doors-open.webp">
+  <link rel="preload" as="image" href="assets/museum/entrance-interior-threshold.webp">
+  <link rel="preload" as="image" href="assets/museum/corridor-bg.webp">
+  <link rel="preload" as="image" href="assets/museum/central-hall-bg.webp">
 
   <!-- Scripts -->
-  <script src="../../js/nav.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="../../js/nav.js?v=2" defer></script>
+  <script src="script.js?v=20261018d" defer></script>
+  <script src="intro.js?v=2" defer></script>
 </head>
 <body>
+
+  <!-- ===================================================================
+       INTRODUCCIÓN ANIMADA A PANTALLA COMPLETA (FULL-SCREEN ANIMATED INTRO)
+       =================================================================== -->
+  <aside id="intro-screen" class="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-describedby="intro-desc">
+    <div class="intro-backdrop-texture" aria-hidden="true"></div>
+
+    <!-- Botón Saltar Intro (accesible y visible desde el inicio) -->
+    <button type="button" id="btn-skip-intro" class="intro-btn-skip" aria-label="Saltar introducción e ir al contenido principal">
+      <span>Saltar intro</span>
+      <span class="skip-icon" aria-hidden="true">⏭</span>
+    </button>
+
+    <!-- Escenario central de la animación -->
+    <div class="intro-stage" id="intro-stage">
+
+      <!-- Tres líneas de texto reveladas progresivamente -->
+      <div class="intro-text-wrapper" id="intro-text-wrapper">
+        <h1 class="intro-line intro-line-1" id="intro-title" aria-label="LA HISTORIA">
+          <span class="sr-only">LA HISTORIA</span>
+          <span class="intro-letters-container" aria-hidden="true" data-text="LA HISTORIA"></span>
+        </h1>
+
+        <p class="intro-line intro-line-2" id="intro-author" aria-label="Por Sukrish">
+          <span class="sr-only">Por Sukrish</span>
+          <span class="intro-letters-container" aria-hidden="true" data-text="Por Sukrish"></span>
+        </p>
+
+        <p class="intro-line intro-line-3" id="intro-reg" aria-label="Registration No: 25BDS1058">
+          <span class="sr-only">Registration No: 25BDS1058</span>
+          <span class="intro-letters-container" aria-hidden="true" data-text="Registration No: 25BDS1058"></span>
+        </p>
+      </div>
+
+      <!-- Pista transversal del toro y partículas de polvo -->
+      <div class="intro-bull-track" id="intro-bull-track" aria-hidden="true">
+        <!-- Corredor con silueta de toro animada por frames (bull-1.png a bull-8.png) -->
+        <div class="intro-bull-runner" id="intro-bull-runner">
+          <div class="bull-sprite-container" id="bull-sprite-container">
+            <img src="images/bull/bull-1.png" alt="Toro al galope - Cuadro 1" class="bull-frame is-active" id="bull-frame-0" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-2.png" alt="Toro al galope - Cuadro 2" class="bull-frame" id="bull-frame-1" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-3.png" alt="Toro al galope - Cuadro 3" class="bull-frame" id="bull-frame-2" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-4.png" alt="Toro al galope - Cuadro 4" class="bull-frame" id="bull-frame-3" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-5.png" alt="Toro al galope - Cuadro 5" class="bull-frame" id="bull-frame-4" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-6.png" alt="Toro al galope - Cuadro 6" class="bull-frame" id="bull-frame-5" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-7.png" alt="Toro al galope - Cuadro 7" class="bull-frame" id="bull-frame-6" width="150" height="100" loading="eager" />
+            <img src="images/bull/bull-8.png" alt="Toro al galope - Cuadro 8" class="bull-frame" id="bull-frame-7" width="150" height="100" loading="eager" />
+          </div>
+        </div>
+
+        <!-- Contenedor dinámico de partículas de polvo albero -->
+        <div class="intro-dust-container" id="intro-dust-container"></div>
+      </div>
+
+      <!-- Barra de progreso dorada de 6.0 segundos -->
+      <div class="intro-progress-bar-container" aria-hidden="true">
+        <div class="intro-progress-line" id="intro-progress-line"></div>
+      </div>
+
+      <!-- Botón Entrar (fade-in al terminar el galope) -->
+      <div class="intro-actions" id="intro-actions">
+        <button type="button" id="btn-enter-site" class="intro-btn-enter" tabindex="-1" aria-label="Entrar a la revista">
+          <span>Entrar</span>
+          <span class="enter-arrow" aria-hidden="true">↓</span>
+        </button>
+      </div>
+
+      <div id="intro-desc" class="sr-only">
+        Introducción interactiva para la Sección 1: La Historia, creada por Sukrish, matrícula 25BDS1058.
+      </div>
+    </div>
+  </aside>
 
   <!-- Contenedor para inyección de la barra de navegación compartida -->
   <div id="site-nav-container"></div>
@@ -27,150 +121,468 @@
            =================================================================== -->
       <header class="historia-hero" id="historia-header">
         <div class="historia-badge-container">
-          <span class="badge badge-gold" id="section-badge">Sección 1 • Crónica Histórica</span>
+          <span class="badge badge-gold" id="section-badge">
+            <span class="hist-lang-es">Sección 1 • Crónica Histórica</span>
+            <span class="hist-lang-en" style="display:none;">Section 1 • Historical Chronicle</span>
+          </span>
+          <button type="button" id="btn-replay-intro" class="btn-replay-intro" aria-label="Repetir animación de introducción">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>
+              <span class="hist-lang-es">Repetir intro</span>
+              <span class="hist-lang-en" style="display:none;">Replay intro</span>
+            </span>
+          </button>
+          <button type="button" class="btn-replay-intro" id="btn-toggle-language" aria-label="Cambiar idioma (ES / EN)">
+            <span class="hist-translate-icon" aria-hidden="true">🌐</span>
+            <span class="hist-translate-label">ES / EN</span>
+          </button>
         </div>
 
-        <h1 class="historia-title" id="page-title">La Historia</h1>
+        <h1 class="historia-title" id="page-title">
+          <span class="hist-lang-es">La Historia</span>
+          <span class="hist-lang-en" style="display:none;">The History</span>
+        </h1>
 
         <p class="historia-subtitle" id="page-subtitle">
-          De los ritos ancestrales y el rejoneo nobiliario a la lidia moderna a pie: la metamorfosis del toro en España.
+          <span class="hist-lang-es">De los ritos ancestrales y el rejoneo nobiliario a la lidia moderna a pie: la metamorfosis del toro en España.</span>
+          <span class="hist-lang-en" style="display:none;">From ancestral rites and aristocratic rejoneo to modern lidia on foot: the metamorphosis of the bull in Spain.</span>
         </p>
 
         <div class="historia-byline-wrapper">
           <div class="byline-container" id="article-byline">
             <div class="byline-avatar" aria-hidden="true">S</div>
             <div class="byline-info">
-              <span class="byline-author" id="author-name">Por Sukrish, Sección 1</span>
-              <span class="byline-role">Investigación Histórica &amp; Redacción</span>
+              <span class="byline-author" id="author-name">
+                <span class="hist-lang-es">Por Sukrish, Sección 1: La Historia</span>
+                <span class="hist-lang-en" style="display:none;">By Sukrish, Section 1: History</span>
+              </span>
+              <span class="byline-role">
+                <span class="hist-lang-es">Investigación Histórica &amp; Redacción</span>
+                <span class="hist-lang-en" style="display:none;">Historical Research &amp; Writing</span>
+              </span>
             </div>
           </div>
           <div class="historia-meta-tags">
             <span class="meta-item">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              Lectura estimada: ~8 min (Próximamente)
+              <span class="hist-lang-es">Lectura estimada: ~12 min</span>
+              <span class="hist-lang-en" style="display:none;">Estimated reading: ~12 min</span>
             </span>
             <span class="meta-item">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              Fuentes archivísticas y bibliográficas
+              <span class="hist-lang-es">Fuentes archivísticas y bibliográficas</span>
+              <span class="hist-lang-en" style="display:none;">Archival &amp; bibliographic sources</span>
             </span>
           </div>
         </div>
       </header>
 
       <!-- ===================================================================
-           2. ÁREA DE INTRODUCCIÓN (PLACEHOLDER)
+           MUSEO HISTÓRICO VIRTUAL: FACHADA EXTERIOR Y PÓRTICO DE ENTRADA (PHASE 2)
            =================================================================== -->
-      <section class="historia-intro-section" id="historia-intro" aria-labelledby="intro-heading">
-        <div class="reading-container">
-          <article class="intro-placeholder-card">
-            <h2 class="intro-guide-title" id="intro-heading">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-              Introducción Histórica [Espacio Reservado]
-            </h2>
-            <div class="intro-placeholder-text">
-              <p>
-                <strong>[Área reservada para el ensayo introductorio]:</strong> Aquí se redactará el marco contextual sobre el origen mitológico y sacrificial del toro en las culturas mediterráneas e ibéricas, explorando cómo la tauromaquia evolucionó desde una práctica aristocrática a caballo hacia un espectáculo popular y reglamentado a pie en plazas públicas.
-              </p>
-              <p class="text-muted" style="font-size: var(--text-sm); margin-top: var(--space-sm);">
-                <em>Nota del autor:</em> Este bloque albergará los párrafos narrativos, citas de historiadores y la tesis central de la Sección 1.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           3. CONTENEDOR DE LA LÍNEA DE TIEMPO (EMPTY TIMELINE CONTAINER)
-           =================================================================== -->
-      <section class="historia-timeline-section" id="historia-timeline-section" aria-labelledby="timeline-heading">
-        <div class="section-heading-wrapper">
-          <span class="section-label">Cronología Interactiva</span>
-          <h2 class="section-title" id="timeline-heading">Hitos y Épocas Históricas</h2>
-        </div>
-
-        <div class="timeline-container-wrapper">
-          <!-- Contenedor vacío donde se inyectará dinámicamente la línea temporal -->
-          <div id="timeline-container" class="timeline-container" aria-live="polite">
-            <div class="timeline-placeholder-content">
-              <div class="placeholder-icon" aria-hidden="true">⏳</div>
-              <h3 class="placeholder-title">Línea de Tiempo en Construcción</h3>
-              <p class="placeholder-desc">
-                Contenedor interactivo preparado para albergar los períodos cronológicos fundamentales del toreo. Se incorporará navegación interactiva por épocas, descripciones históricas y material visual.
-              </p>
-              <div class="timeline-skeleton-badges" aria-label="Épocas proyectadas">
-                <span class="epoch-badge">1. Orígenes y Ritos Ibéricos</span>
-                <span class="epoch-badge">2. Edad Media y Rejoneo Aristocrático</span>
-                <span class="epoch-badge">3. Siglo XVIII y Escuelas Populares</span>
-                <span class="epoch-badge">4. La Edad de Oro (Joselito y Belmonte)</span>
-                <span class="epoch-badge">5. Siglo XX y Contemporaneidad</span>
-              </div>
-            </div>
+      <section id="hist-museum-exterior" class="hist-museum-exterior" aria-labelledby="hist-exterior-heading">
+        <div class="hist-exterior-header">
+          <div class="hist-exterior-badge">
+            <span class="hist-exterior-badge-icon" aria-hidden="true">🏛️</span>
+            <span class="hist-lang-es">FACHADA EXTERIOR • PÓRTICO MONUMENTAL</span>
+            <span class="hist-lang-en" style="display:none;">MUSEUM EXTERIOR • MONUMENTAL PORTAL</span>
           </div>
+          <h2 id="hist-exterior-heading" class="hist-exterior-title">
+            <span class="hist-lang-es">Museo Virtual de la Tauromaquia</span>
+            <span class="hist-lang-en" style="display:none;">Virtual Museum of Bullfighting</span>
+          </h2>
+          <p class="hist-exterior-subtitle">
+            <span class="hist-lang-es">Palacio andaluz barroco del siglo XVIII. Presione «Entrar al Museo» para iniciar el recorrido cinematográfico de acceso a las salas.</span>
+            <span class="hist-lang-en" style="display:none;">18th-century Baroque Andalusian palace. Press «Enter the Museum» to begin the cinematic journey into the museum galleries.</span>
+          </p>
         </div>
-      </section>
 
-      <!-- ===================================================================
-           4. CAJA "MI REFLEXIÓN" (REFLEXIÓN EDITORIAL PERSONAL)
-           =================================================================== -->
-      <section class="historia-reflexion-section" id="historia-reflexion-section" aria-labelledby="reflexion-heading">
-        <div class="reading-container">
-          <aside class="reflection-box" id="mi-reflexion">
-            <h2 class="reflection-title" id="reflexion-heading">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Mi reflexión
-            </h2>
-            <div class="reflection-body">
-              <p>
-                <strong>[Espacio para la reflexión editorial de Sukrish]:</strong> En esta caja se recogerá la postura y análisis personal sobre el peso histórico de la tauromaquia, su contradicción inherente como patrimonio cultural y fenómeno controvertido a lo largo de las distintas épocas, y qué lecciones nos deja la transformación de sus reglas.
-              </p>
-            </div>
-            <div class="reflexion-author-sig">
-              — Sukrish, Responsable de la Sección 1: La Historia
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           5. SECCIÓN DE REFERENCIAS (BIBLIOGRAFÍA Y FUENTES)
-           =================================================================== -->
-      <section class="historia-referencias-section" id="historia-referencias-section" aria-labelledby="referencias-heading">
-        <div class="reading-container">
-          <div class="referencias-wrapper" id="referencias-container">
-            <div class="referencias-header">
-              <h2 class="referencias-title" id="referencias-heading">Referencias y Fuentes Históricas</h2>
-              <span class="badge" id="references-badge">Bibliografía</span>
-            </div>
-
-            <p class="text-muted" style="font-size: var(--text-sm);">
-              Relación de tratados taurinos, fuentes documentales y estudios historiográficos consultados para la elaboración de esta sección:
-            </p>
-
-            <div class="referencias-grid">
-              <div class="referencia-card">
-                <div class="referencia-card-type">Tratado Clásico</div>
-                <div class="referencia-card-placeholder">
-                  [Espacio reservado para tratado histórico, e.g. Pepe-Hillo (1796), La Tauromaquia o arte de torear]
-                </div>
-              </div>
-              <div class="referencia-card">
-                <div class="referencia-card-type">Estudio Historiográfico</div>
-                <div class="referencia-card-placeholder">
-                  [Espacio reservado para bibliografía académica y monografías históricas sobre la España moderna]
-                </div>
-              </div>
-              <div class="referencia-card">
-                <div class="referencia-card-type">Archivo Documental</div>
-                <div class="referencia-card-placeholder">
-                  [Espacio reservado para registros de las Reales Maestranzas de Caballería y crónicas de época]
-                </div>
+        <!-- Escenario interactivo central -->
+        <div class="hist-exterior-stage-card" id="hist-exterior-stage-card">
+          
+          <!-- Escenario de la Travesía Cinemática Exterior-a-Entrada (Milestone 1B) -->
+          <div class="hist-cinematic-stage hist-view-active" id="hist-cinematic-stage" role="region" aria-label="Recorrido cinematográfico de acceso al museo">
+            <!-- Capa 1: Fachada Panorámica Exterior (Stage A: Establecimiento) -->
+            <div class="hist-cine-layer hist-cine-layer-establishing is-active" id="cine-layer-establishing">
+              <img src="assets/museum/exterior-establishing.webp" alt="Fachada exterior monumental del palacio del museo histórico con patio andaluz" class="hist-cine-img" width="1376" height="768" loading="eager" />
+              
+              <!-- Hotspot interactivo accesible en la puerta central de la fachada -->
+              <div class="hist-facade-hotspot-wrap">
+                <button type="button" class="hist-facade-hotspot-btn" id="btn-facade-hotspot" aria-label="Entrar al Museo: Iniciar aproximación al pórtico">
+                  <span class="hist-hotspot-ring" aria-hidden="true"></span>
+                  <span class="hist-hotspot-core" aria-hidden="true">🏛️</span>
+                  <span class="hist-hotspot-label">
+                    <span class="hist-lang-es">Entrar al Museo</span>
+                    <span class="hist-lang-en" style="display:none;">Enter Museum</span>
+                  </span>
+                </button>
               </div>
             </div>
+
+            <!-- Capa 2: Aproximación por el Patio Exterior (Stage B) -->
+            <div class="hist-cine-layer hist-cine-layer-approach" id="cine-layer-approach" aria-hidden="true">
+              <img src="assets/museum/exterior-approach.webp" alt="Aproximación por la verja de forja hacia el pórtico central" class="hist-cine-img" width="1376" height="768" loading="lazy" />
+            </div>
+
+            <!-- Capa 3: Puertas Cerradas en el Arco de Entrada (Stage C) -->
+            <div class="hist-cine-layer hist-cine-layer-doors-closed" id="cine-layer-doors-closed" aria-hidden="true">
+              <img src="assets/museum/entrance-doors-closed.webp" alt="Puertas monumentales de cedro cerradas en el arco pétreo" class="hist-cine-img" width="1376" height="768" loading="lazy" />
+            </div>
+
+            <!-- Capa 4: Puertas Abriéndose (Stage C) -->
+            <div class="hist-cine-layer hist-cine-layer-doors-opening" id="cine-layer-doors-opening" aria-hidden="true">
+              <img src="assets/museum/entrance-doors-opening.webp" alt="Puertas de cedro abriéndose hacia el interior" class="hist-cine-img" width="1376" height="768" loading="lazy" />
+            </div>
+
+            <!-- Capa 5: Puertas Totalmente Abiertas (Stage C) -->
+            <div class="hist-cine-layer hist-cine-layer-doors-open" id="cine-layer-doors-open" aria-hidden="true">
+              <img src="assets/museum/entrance-doors-open.webp" alt="Puertas completamente abiertas revelando la perspectiva de la galería abovedada" class="hist-cine-img" width="1376" height="768" loading="lazy" />
+            </div>
+
+            <!-- Capa 6: Umbral Interior / Tránsito hacia la galería (Stage D) -->
+            <div class="hist-cine-layer hist-cine-layer-threshold" id="cine-layer-threshold" aria-hidden="true">
+              <img src="assets/museum/entrance-interior-threshold.webp" alt="Tránsito a través del umbral hacia el interior iluminado por faroles" class="hist-cine-img" width="1376" height="768" loading="lazy" />
+            </div>
+
+            <!-- Capa 7: Corredor Abovedado en Movimiento (Stage D) -->
+            <div class="hist-cine-layer hist-cine-layer-corridor" id="cine-layer-corridor" aria-hidden="true">
+              <div class="hist-corridor-camera-rig" id="hist-corridor-camera-rig">
+                <img src="assets/museum/corridor-bg.webp" alt="Corredor abovedado barroco con arcos de medio punto y faroles de forja" class="hist-cine-img" width="1376" height="768" loading="lazy" />
+                <div class="hist-corridor-lantern-glow" aria-hidden="true"></div>
+                <div class="hist-corridor-light-sweep" aria-hidden="true"></div>
+                <div class="hist-corridor-vignette" aria-hidden="true"></div>
+                <div class="hist-corridor-particles" aria-hidden="true">
+                  <span class="hist-mote hist-mote-1"></span>
+                  <span class="hist-mote hist-mote-2"></span>
+                  <span class="hist-mote hist-mote-3"></span>
+                  <span class="hist-mote hist-mote-4"></span>
+                  <span class="hist-mote hist-mote-5"></span>
+                  <span class="hist-mote hist-mote-6"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mezcla de luz exterior / interior y viñeta atmosférica -->
+            <div class="hist-cine-light-blend" id="hist-cine-light-blend" aria-hidden="true"></div>
+            <div class="hist-cine-vignette" aria-hidden="true"></div>
+
+            <!-- Overlay inicial de cortesía sobre la fachada (Stage A) -->
+            <div class="hist-cine-overlay-initial" id="hist-cine-overlay-initial">
+              <div class="hist-cine-prompt-badge">
+                <span class="hist-prompt-icon" aria-hidden="true">🏛️</span>
+                <span class="hist-lang-es">Acceso Principal al Palacio</span>
+                <span class="hist-lang-en" style="display:none;">Main Palace Entrance</span>
+              </div>
+            </div>
+
+            <!-- Botón flotante para omitir el recorrido cinematográfico en cualquier instante -->
+            <button type="button" class="hist-btn-skip-journey" id="btn-skip-journey" style="display:none;" aria-label="Omitir recorrido cinemático y acceder de inmediato al vestíbulo">
+              <span class="hist-btn-skip-journey-icon" aria-hidden="true">⏭️</span>
+              <span>
+                <span class="hist-lang-es">Saltar al Vestíbulo</span>
+                <span class="hist-lang-en" style="display:none;">Skip to Hall</span>
+              </span>
+            </button>
           </div>
+
+          <!-- Vista 4: Gran Vestíbulo Central (Llegada del Recorrido - Phase 3 & Milestone 1D) -->
+          <div class="hist-central-hall-view" id="hist-central-hall-view" role="region" aria-labelledby="hist-hall-arrival-card" style="display:none;">
+            <span id="hall" class="sr-only"></span>
+            <div class="hist-central-hall-stage" id="hist-central-hall-stage">
+              <!-- Fondo del gran vestíbulo central con cúpula y galerías porticadas -->
+              <img src="assets/museum/central-hall-bg.webp" alt="Gran vestíbulo central del palacio del museo con cúpula y galerías porticadas" class="hist-hall-bg-img" width="1376" height="768" loading="eager" />
+              <div class="hist-hall-ambient-bloom" aria-hidden="true"></div>
+              <div class="hist-hall-vignette" aria-hidden="true"></div>
+
+              <!-- Banner arquitectónico superior (discreto en la cúpula, no obstruye las puertas) -->
+              <header class="hist-hall-top-banner" id="hist-hall-arrival-card" tabindex="-1">
+                <div class="hist-hall-badge">
+                  <span class="hist-hall-badge-icon" aria-hidden="true">🏛️</span>
+                  <span class="hist-lang-es">VESTÍBULO CENTRAL • CRUCERO MONUMENTAL</span>
+                  <span class="hist-lang-en" style="display:none;">CENTRAL ROTUNDA • MONUMENTAL HALL</span>
+                </div>
+                <h3 class="hist-hall-banner-title">
+                  <span class="hist-lang-es">El Gran Vestíbulo del Palacio</span>
+                  <span class="hist-lang-en" style="display:none;">The Grand Palace Hall</span>
+                </h3>
+                <p class="hist-hall-banner-instruction">
+                  <span class="hist-lang-es">Seleccione una puerta arquitectónica para ingresar a la sala</span>
+                  <span class="hist-lang-en" style="display:none;">Select an architectural doorway to enter a gallery</span>
+                </p>
+              </header>
+
+              <!-- Cinco Portales Arquitectónicos Interactivos (Hotspots registrados a escala 1376x768) -->
+              <nav class="hist-hall-doorways-layer" id="hist-hall-doorways-grid" aria-label="Puertas arquitectónicas de acceso a las salas del museo">
+                
+                <!-- Puerta Sala I: Cronología -->
+                <a href="sala-1-cronologia.html?lang=es" class="hist-hall-doorway hist-doorway-sala-1" id="hist-doorway-sala-1" data-room-id="sala-1" aria-label="Entrar a Sala I: Cronología e hitos históricos">
+                  <div class="hist-doorway-keystone" aria-hidden="true">
+                    <span class="hist-doorway-num">I</span>
+                  </div>
+                  <div class="hist-doorway-aura" aria-hidden="true"></div>
+                  <div class="hist-doorway-frame-glow" aria-hidden="true"></div>
+                  <div class="hist-doorway-plaque">
+                    <span class="hist-doorway-kicker">
+                      <span class="hist-lang-es">12 Hitos</span>
+                      <span class="hist-lang-en" style="display:none;">12 Milestones</span>
+                    </span>
+                    <strong class="hist-doorway-title">
+                      <span class="hist-lang-es">Cronología</span>
+                      <span class="hist-lang-en" style="display:none;">Timeline</span>
+                    </strong>
+                    <span class="hist-doorway-cta">
+                      <span class="hist-lang-es">Entrar</span>
+                      <span class="hist-lang-en" style="display:none;">Enter</span>
+                      <span class="hist-doorway-arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </a>
+
+                <!-- Puerta Sala II: Cartografía -->
+                <a href="sala-2-cartografia.html?lang=es" class="hist-hall-doorway hist-doorway-sala-2" id="hist-doorway-sala-2" data-room-id="sala-2" aria-label="Entrar a Sala II: Cartografía y sedes históricas">
+                  <div class="hist-doorway-keystone" aria-hidden="true">
+                    <span class="hist-doorway-num">II</span>
+                  </div>
+                  <div class="hist-doorway-aura" aria-hidden="true"></div>
+                  <div class="hist-doorway-frame-glow" aria-hidden="true"></div>
+                  <div class="hist-doorway-plaque">
+                    <span class="hist-doorway-kicker">
+                      <span class="hist-lang-es">7 Sedes</span>
+                      <span class="hist-lang-en" style="display:none;">7 Arenas</span>
+                    </span>
+                    <strong class="hist-doorway-title">
+                      <span class="hist-lang-es">Cartografía</span>
+                      <span class="hist-lang-en" style="display:none;">Map</span>
+                    </strong>
+                    <span class="hist-doorway-cta">
+                      <span class="hist-lang-es">Entrar</span>
+                      <span class="hist-lang-en" style="display:none;">Enter</span>
+                      <span class="hist-doorway-arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </a>
+
+                <!-- Puerta Sala III: Archivo Digital -->
+                <a href="sala-3-archivo.html?lang=es" class="hist-hall-doorway hist-doorway-sala-3" id="hist-doorway-sala-3" data-room-id="sala-3" aria-label="Entrar a Sala III: Archivo histórico digital y fuentes primarias">
+                  <div class="hist-doorway-keystone" aria-hidden="true">
+                    <span class="hist-doorway-num">III</span>
+                  </div>
+                  <div class="hist-doorway-aura" aria-hidden="true"></div>
+                  <div class="hist-doorway-frame-glow" aria-hidden="true"></div>
+                  <div class="hist-doorway-plaque">
+                    <span class="hist-doorway-kicker">
+                      <span class="hist-lang-es">Fuentes</span>
+                      <span class="hist-lang-en" style="display:none;">Sources</span>
+                    </span>
+                    <strong class="hist-doorway-title">
+                      <span class="hist-lang-es">Archivo</span>
+                      <span class="hist-lang-en" style="display:none;">Archive</span>
+                    </strong>
+                    <span class="hist-doorway-cta">
+                      <span class="hist-lang-es">Entrar</span>
+                      <span class="hist-lang-en" style="display:none;">Enter</span>
+                      <span class="hist-doorway-arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </a>
+
+                <!-- Puerta Sala IV: Cuestionario -->
+                <a href="sala-4-cuestionario.html?lang=es" class="hist-hall-doorway hist-doorway-sala-4" id="hist-doorway-sala-4" data-room-id="sala-4" aria-label="Entrar a Sala IV: Cuestionario y autoevaluación pedagógica">
+                  <div class="hist-doorway-keystone" aria-hidden="true">
+                    <span class="hist-doorway-num">IV</span>
+                  </div>
+                  <div class="hist-doorway-aura" aria-hidden="true"></div>
+                  <div class="hist-doorway-frame-glow" aria-hidden="true"></div>
+                  <div class="hist-doorway-plaque">
+                    <span class="hist-doorway-kicker">
+                      <span class="hist-lang-es">Evaluación</span>
+                      <span class="hist-lang-en" style="display:none;">Quiz</span>
+                    </span>
+                    <strong class="hist-doorway-title">
+                      <span class="hist-lang-es">Cuestionario</span>
+                      <span class="hist-lang-en" style="display:none;">Quiz</span>
+                    </strong>
+                    <span class="hist-doorway-cta">
+                      <span class="hist-lang-es">Entrar</span>
+                      <span class="hist-lang-en" style="display:none;">Enter</span>
+                      <span class="hist-doorway-arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </a>
+
+                <!-- Puerta Sala V: Reflexión -->
+                <a href="sala-5-reflexion.html?lang=es" class="hist-hall-doorway hist-doorway-sala-5" id="hist-doorway-sala-5" data-room-id="sala-5" aria-label="Entrar a Sala V: Reflexión y legado contemporáneo">
+                  <div class="hist-doorway-keystone" aria-hidden="true">
+                    <span class="hist-doorway-num">V</span>
+                  </div>
+                  <div class="hist-doorway-aura" aria-hidden="true"></div>
+                  <div class="hist-doorway-frame-glow" aria-hidden="true"></div>
+                  <div class="hist-doorway-plaque">
+                    <span class="hist-doorway-kicker">
+                      <span class="hist-lang-es">Legado</span>
+                      <span class="hist-lang-en" style="display:none;">Legacy</span>
+                    </span>
+                    <strong class="hist-doorway-title">
+                      <span class="hist-lang-es">Reflexión</span>
+                      <span class="hist-lang-en" style="display:none;">Reflection</span>
+                    </strong>
+                    <span class="hist-doorway-cta">
+                      <span class="hist-lang-es">Entrar</span>
+                      <span class="hist-lang-en" style="display:none;">Enter</span>
+                      <span class="hist-doorway-arrow" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </a>
+
+              </nav>
+
+            </div>
+
+            <!-- Controles secundarios discretos en la base del vestíbulo (adaptables a escritorio y móvil) -->
+            <div class="hist-hall-controls-dock" id="hist-hall-controls-dock">
+              <a href="sala-1-cronologia.html?lang=es" class="hist-btn-hall-dock hist-btn-hall-explore" id="btn-hall-explore">
+                <span class="hist-btn-icon" aria-hidden="true">📜</span>
+                <span>
+                  <span class="hist-lang-es">Explorar Sala I</span>
+                  <span class="hist-lang-en" style="display:none;">Explore Gallery I</span>
+                </span>
+                <span class="hist-btn-arrow" aria-hidden="true">↓</span>
+              </a>
+
+              <button type="button" class="hist-btn-hall-dock" id="btn-hall-replay" aria-label="Repetir recorrido cinematográfico">
+                <span class="hist-btn-icon" aria-hidden="true">🔄</span>
+                <span>
+                  <span class="hist-lang-es">Repetir travesía</span>
+                  <span class="hist-lang-en" style="display:none;">Replay journey</span>
+                </span>
+              </button>
+
+              <button type="button" class="hist-btn-hall-dock" id="btn-hall-return" aria-label="Regresar al pórtico monumental exterior">
+                <span class="hist-btn-icon" aria-hidden="true">🚪</span>
+                <span>
+                  <span class="hist-lang-es">Volver al pórtico</span>
+                  <span class="hist-lang-en" style="display:none;">Return to portal</span>
+                </span>
+              </button>
+            </div>
+
+            <!-- Selector táctil horizontal accesible para dispositivos móviles / pantallas estrechas -->
+            <nav class="hist-hall-mobile-dock" aria-label="Selector táctil de salas">
+              <a href="sala-1-cronologia.html?lang=es" class="hist-hall-mobile-card hist-hall-doorway" id="hist-mobile-doorway-sala-1" data-room-id="sala-1" aria-label="Sala I: Cronología">
+                <span class="hist-mobile-card-num">I</span>
+                <span class="hist-mobile-card-title">
+                  <span class="hist-lang-es">Cronología</span>
+                  <span class="hist-lang-en" style="display:none;">Timeline</span>
+                </span>
+                <span class="hist-mobile-card-sub">
+                  <span class="hist-lang-es">12 Hitos</span>
+                  <span class="hist-lang-en" style="display:none;">12 Milestones</span>
+                </span>
+              </a>
+              <a href="sala-2-cartografia.html?lang=es" class="hist-hall-mobile-card hist-hall-doorway" id="hist-mobile-doorway-sala-2" data-room-id="sala-2" aria-label="Sala II: Cartografía">
+                <span class="hist-mobile-card-num">II</span>
+                <span class="hist-mobile-card-title">
+                  <span class="hist-lang-es">Cartografía</span>
+                  <span class="hist-lang-en" style="display:none;">Map</span>
+                </span>
+                <span class="hist-mobile-card-sub">
+                  <span class="hist-lang-es">7 Sedes</span>
+                  <span class="hist-lang-en" style="display:none;">7 Arenas</span>
+                </span>
+              </a>
+              <a href="sala-3-archivo.html?lang=es" class="hist-hall-mobile-card hist-hall-doorway" id="hist-mobile-doorway-sala-3" data-room-id="sala-3" aria-label="Sala III: Archivo Digital">
+                <span class="hist-mobile-card-num">III</span>
+                <span class="hist-mobile-card-title">
+                  <span class="hist-lang-es">Archivo</span>
+                  <span class="hist-lang-en" style="display:none;">Archive</span>
+                </span>
+                <span class="hist-mobile-card-sub">
+                  <span class="hist-lang-es">Fuentes</span>
+                  <span class="hist-lang-en" style="display:none;">Sources</span>
+                </span>
+              </a>
+              <a href="sala-4-cuestionario.html?lang=es" class="hist-hall-mobile-card hist-hall-doorway" id="hist-mobile-doorway-sala-4" data-room-id="sala-4" aria-label="Sala IV: Cuestionario">
+                <span class="hist-mobile-card-num">IV</span>
+                <span class="hist-mobile-card-title">
+                  <span class="hist-lang-es">Cuestionario</span>
+                  <span class="hist-lang-en" style="display:none;">Quiz</span>
+                </span>
+                <span class="hist-mobile-card-sub">
+                  <span class="hist-lang-es">Evaluación</span>
+                  <span class="hist-lang-en" style="display:none;">Evaluation</span>
+                </span>
+              </a>
+              <a href="sala-5-reflexion.html?lang=es" class="hist-hall-mobile-card hist-hall-doorway" id="hist-mobile-doorway-sala-5" data-room-id="sala-5" aria-label="Sala V: Reflexión">
+                <span class="hist-mobile-card-num">V</span>
+                <span class="hist-mobile-card-title">
+                  <span class="hist-lang-es">Reflexión</span>
+                  <span class="hist-lang-en" style="display:none;">Reflection</span>
+                </span>
+                <span class="hist-mobile-card-sub">
+                  <span class="hist-lang-es">Legado</span>
+                  <span class="hist-lang-en" style="display:none;">Legacy</span>
+                </span>
+              </a>
+            </nav>
+          </div>
+
+          <!-- Barra de controles accesibles -->
+          <div class="hist-exterior-controls">
+            <!-- Botón principal de entrada -->
+            <button type="button" id="btn-enter-museum" class="hist-btn-enter-museum" aria-label="Entrar al Museo: iniciar recorrido cinematográfico">
+              <span class="hist-btn-enter-icon" aria-hidden="true">🏛️</span>
+              <span class="hist-btn-enter-text">
+                <span class="hist-lang-es">Entrar al Museo</span>
+                <span class="hist-lang-en" style="display:none;">Enter Museum</span>
+              </span>
+              <span class="hist-btn-enter-spinner" aria-hidden="true"></span>
+            </button>
+
+            <!-- Botón para avanzar por el corredor si las puertas ya están abiertas -->
+            <button type="button" id="btn-start-corridor" class="hist-btn-start-corridor" style="display:none;" aria-label="Iniciar recorrido cinematográfico hacia el vestíbulo">
+              <span class="hist-btn-icon" aria-hidden="true">🕯️</span>
+              <span>
+                <span class="hist-lang-es">Recorrer galería</span>
+                <span class="hist-lang-en" style="display:none;">Walk gallery</span>
+              </span>
+            </button>
+
+            <!-- Botón para omitir animación e ir directo a las salas -->
+            <button type="button" id="btn-skip-doors" class="hist-btn-skip-doors" aria-label="Omitir animación y saltar al vestíbulo central">
+              <span class="hist-btn-skip-icon" aria-hidden="true">⏭️</span>
+              <span>
+                <span class="hist-lang-es">Omitir animación</span>
+                <span class="hist-lang-en" style="display:none;">Skip animation</span>
+              </span>
+            </button>
+
+            <!-- Botón para volver al exterior y reiniciar -->
+            <button type="button" id="btn-reset-doors" class="hist-btn-reset-doors" style="display:none;" aria-label="Volver a la fachada exterior">
+              <span class="hist-btn-reset-icon" aria-hidden="true">🏛️</span>
+              <span>
+                <span class="hist-lang-es">Volver al exterior</span>
+                <span class="hist-lang-en" style="display:none;">Return to exterior</span>
+              </span>
+            </button>
+
+            <!-- Botón para avanzar a la Sala I tras abrir -->
+            <a href="sala-1-cronologia.html?lang=es" id="btn-explore-galleries" class="hist-btn-explore-galleries" style="display:none;">
+              <span>
+                <span class="hist-lang-es">Explorar Sala I: Cronología</span>
+                <span class="hist-lang-en" style="display:none;">Explore Sala I: Timeline</span>
+              </span>
+              <span class="hist-btn-explore-arrow" aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <!-- Región aria-live para anunciar estados de puertas a tecnologías de asistencia -->
+          <div id="hist-exterior-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
         </div>
       </section>
 
-    </div>
   </main>
 
   <!-- ===================================================================
@@ -180,9 +592,13 @@
     <div class="site-container">
       <div class="footer-content">
         <div class="footer-brand">El Legado del Toro</div>
-        <p class="footer-subtitle">La Corrida de Toros: Arte, Cultura y Controversia</p>
+        <p class="footer-subtitle">
+          <span class="hist-lang-es">La Corrida de Toros: Arte, Cultura y Controversia</span>
+          <span class="hist-lang-en" style="display:none;">The Bullfight: Art, Culture &amp; Controversy</span>
+        </p>
         <p class="footer-copy">
-          Proyecto colaborativo de revista digital • Sección 1: La Historia (Sukrish)
+          <span class="hist-lang-es">Proyecto colaborativo de revista digital • Sección 1: La Historia (Sukrish)</span>
+          <span class="hist-lang-en" style="display:none;">Digital magazine collaborative project • Section 1: The History (Sukrish)</span>
         </p>
       </div>
     </div>

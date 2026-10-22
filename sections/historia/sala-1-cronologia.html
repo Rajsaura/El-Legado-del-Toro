@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sala I: Cronología Histórica - La Metamorfosis del Toro en la Península Ibérica. 12 hitos fundamentales desde el siglo XI hasta el siglo XXI con fuentes primarias verificadas. Revista digital El Legado del Toro.">
+  <title>Sala I: Cronología Histórica | El Legado del Toro</title>
+
+  <!-- Estilos compartidos del proyecto y específicos de historia -->
+  <link rel="stylesheet" href="../../css/shared.css">
+  <link rel="stylesheet" href="style.css?v=20261018c">
+
+  <!-- Preload de las imágenes iniciales de la cronología cinemática -->
+  <link rel="preload" as="image" href="assets/timeline/01-origenes-siglo-xi.png">
+  <link rel="preload" as="image" href="assets/timeline/02-siete-partidas-alfonso-x.png">
+
+  <!-- Scripts: Navegación compartida, motor de cronología cinemática y controlador de Sala I -->
+  <script src="../../js/nav.js?v=2" defer></script>
+  <script src="journey.js?v=2" defer></script>
+  <script src="sala-1.js?v=2" defer></script>
+</head>
+<body>
+
+  <!-- Contenedor para inyección de la barra de navegación compartida -->
+  <div id="site-nav-container"></div>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+         PÓRTICO ARQUITECTÓNICO DE SALA I: CRONOLOGÍA HISTÓRICA
+         =================================================================== -->
+    <div class="hist-room-entry-portal hist-room-entry-sala-1" id="hist-room-entry-sala-1" aria-labelledby="hist-sala-1-heading">
+      <div class="site-container">
+        <div class="hist-room-portal-header">
+          <div class="hist-room-kicker-wrap">
+            <span class="badge badge-gold hist-museum-room-badge">
+              <span class="hist-lang-es">SALA I • CRONOLOGÍA HISTÓRICA</span>
+              <span class="hist-lang-en" style="display:none;">GALLERY I • HISTORICAL TIMELINE</span>
+            </span>
+            <span class="badge hist-badge-curatorial">
+              <span class="hist-lang-es">Colección Monumental • 12 Hitos Fundacionales</span>
+              <span class="hist-lang-en" style="display:none;">Monumental Collection • 12 Foundational Milestones</span>
+            </span>
+            <button type="button" class="hist-btn-translate hist-header-translate-btn" id="btn-toggle-language" aria-label="Cambiar idioma (ES / EN)">
+              <span class="hist-translate-icon" aria-hidden="true">🌐</span>
+              <span class="hist-translate-label">ES / EN</span>
+            </button>
+            <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+              <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+              <span class="hist-lang-es">Vestíbulo</span>
+              <span class="hist-lang-en" style="display:none;">Central Hall</span>
+            </a>
+          </div>
+          
+          <h1 class="hist-room-portal-title" id="hist-sala-1-heading">
+            <span class="hist-room-title-icon" aria-hidden="true">📜</span>
+            <span class="hist-lang-es">Galería de la Cronología: La Metamorfosis del Toro</span>
+            <span class="hist-lang-en" style="display:none;">Timeline Gallery: The Metamorphosis of the Bull</span>
+          </h1>
+
+          <p class="hist-room-portal-desc">
+            <span class="hist-lang-es">Recorrido museográfico guiado por las cinco épocas capitales de la lidia. Desde las prevenciones bajomedievales de <em>Las Siete Partidas</em> y las Reales Maestranzas del siglo XVIII, hasta la revolución estética de Juan Belmonte y las sentencias constitucionales contemporáneas. Desplace verticalmente para avanzar entre los doce lienzos cinemáticos o explore las cédulas de archivo.</span>
+            <span class="hist-lang-en" style="display:none;">A curated museographic journey through the five defining eras of tauromaquia. From 13th-century medieval provisions in <em>Las Siete Partidas</em> and 18th-century Royal Cavalries, to Juan Belmonte's aesthetic revolution and modern constitutional rulings. Scroll vertically to advance through twelve cinematic canvases or explore archival dossiers.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         MENÚ FIJO DE NAVEGACIÓN POR ÉPOCAS (STICKY ERA NAV - SALA I)
+         =================================================================== -->
+    <nav id="hist-era-nav" class="hist-era-nav" aria-label="Navegación por épocas del toreo">
+      <div class="site-container hist-era-nav-inner">
+        <span class="hist-era-nav-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span class="hist-lang-es">Viaje en el tiempo</span>
+          <span class="hist-lang-en" style="display:none;">Time Travel</span>
+        </span>
+        <div class="hist-era-pills">
+          <a href="#hist-era-origenes" class="hist-era-link hist-active" data-era="Orígenes">
+            <span class="hist-lang-es">1. Orígenes</span>
+            <span class="hist-lang-en" style="display:none;">1. Origins</span>
+          </a>
+          <a href="#hist-era-nobleza" class="hist-era-link" data-era="Nobleza y prohibiciones">
+            <span class="hist-lang-es">2. Nobleza</span>
+            <span class="hist-lang-en" style="display:none;">2. Nobility</span>
+          </a>
+          <a href="#hist-era-toreo-pie" class="hist-era-link" data-era="El toreo a pie">
+            <span class="hist-lang-es">3. Toreo a pie</span>
+            <span class="hist-lang-en" style="display:none;">3. Toreo on foot</span>
+          </a>
+          <a href="#hist-era-edad-oro" class="hist-era-link" data-era="Edad de Oro">
+            <span class="hist-lang-es">4. Edad de Oro</span>
+            <span class="hist-lang-en" style="display:none;">4. Golden Age</span>
+          </a>
+          <a href="#hist-era-leyes-debate" class="hist-era-link" data-era="Leyes y debate">
+            <span class="hist-lang-es">5. Leyes y debate</span>
+            <span class="hist-lang-en" style="display:none;">5. Laws &amp; Debate</span>
+          </a>
+        </div>
+        <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+          <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+          <span class="hist-lang-es">Vestíbulo</span>
+          <span class="hist-lang-en" style="display:none;">Central Hall</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Contador de fecha / año lateral adhesivo (Sticky HUD) -->
+    <aside id="hist-year-counter" class="hist-year-counter" aria-live="polite" aria-atomic="true" aria-label="Fecha actual del recorrido">
+      <div class="hist-year-badge">
+        <span class="hist-year-heading">
+          <span class="hist-lang-es">Época</span>
+          <span class="hist-lang-en" style="display:none;">Era</span>
+        </span>
+        <span class="hist-year-era">Orígenes</span>
+        <span class="hist-year-divider" aria-hidden="true"></span>
+        <span class="hist-year-value">S. XI</span>
+      </div>
+    </aside>
+
+    <!-- ===================================================================
+         SALA I: CRONOLOGÍA HISTÓRICA (PINNED STAGE DE PANTALLA COMPLETA)
+         =================================================================== -->
+    <section id="hist-journey-container" class="hist-journey-container hist-museum-room" data-room="timeline" aria-label="Cronología histórica guiada por scroll">
+      <!-- Renderizado dinámicamente por journey.js -->
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIE DE PÁGINA DE SALA I
+       =================================================================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="site-container">
+      <div class="footer-content">
+        <div class="footer-brand">El Legado del Toro</div>
+        <p class="footer-subtitle">
+          <span class="hist-lang-es">Sala I • Cronología: La Metamorfosis del Toro en la Península Ibérica</span>
+          <span class="hist-lang-en" style="display:none;">Gallery I • Timeline: The Metamorphosis of the Bull in Iberia</span>
+        </p>
+        <div class="hist-reflection-footer-actions" style="margin-top: 1.5rem;">
+          <a href="index.html?lang=es#hall" class="hist-btn-room-return-hall" aria-label="Volver al Gran Vestíbulo Central del Museo">
+            <span class="hist-return-icon" aria-hidden="true">🏛️</span>
+            <span class="hist-lang-es">Volver al Gran Vestíbulo Central</span>
+            <span class="hist-lang-en" style="display:none;">Return to Grand Central Hall</span>
+          </a>
+        </div>
+        <p class="footer-copy" style="margin-top: 1.5rem;">
+          <span class="hist-lang-es">Proyecto colaborativo de revista digital • Sección 1: La Historia (Sukrish)</span>
+          <span class="hist-lang-en" style="display:none;">Digital magazine collaborative project • Section 1: The History (Sukrish)</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Scratch and temporary testing files
+scratch/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
